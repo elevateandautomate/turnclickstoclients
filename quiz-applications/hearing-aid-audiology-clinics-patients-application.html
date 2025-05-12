@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result: Connecting More Patients to Hearing Care | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles adapted */
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .quiz-result-page-container { padding-top: 20px; padding-bottom: 40px; }
+        .result-container { max-width: 800px; margin: 20px auto; padding: 30px 40px; background-color: #fff; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .result-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #eee; }
+        .result-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.8em, 4vw, 2.5em); color: #0056b3; margin-bottom: 0.3em; }
+        .result-header .personalized-greeting { font-size: clamp(1.1em, 2.5vw, 1.3em); color: #28a745; font-weight: 700; margin-bottom: 0.5em; }
+        .result-header .sub-headline { font-size: clamp(1em, 2vw, 1.15em); color: #555; max-width: 650px; margin: 0 auto; }
+        .content-section { margin-bottom: 30px; padding: 25px; background-color: #f9f9f9; border-radius: 8px; border-left: 5px solid #007bff; /* Blue accent */ }
+        .content-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.3em, 3vw, 1.7em); color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.1em, 2.5vw, 1.4em); color: #0056b3; margin-top: 20px; margin-bottom: 10px; }
+        .content-section p, .content-section ul li { font-size: clamp(0.95em, 1.8vw, 1.05em); color: #444; margin-bottom: 10px; line-height: 1.7; }
+        .content-section ul { list-style: none; padding-left: 0; }
+        .content-section ul li { position: relative; padding-left: 25px; margin-bottom: 8px; }
+        .content-section ul li::before { content: '\2713'; position: absolute; left: 0; color: #28a745; font-weight: bold; font-size: 1.1em; }
+        .cta-section { text-align: center; padding: 30px; background-color: #e9f5ff; border-radius: 8px; margin-top: 30px; }
+        .cta-section h2 { font-family: 'Montserrat', sans-serif; color: #0056b3; margin-bottom: 15px; }
+        .cta-section p { color: #333; margin-bottom: 25px; font-size: 1.1em; }
+        .detailed-content-placeholder { padding: 40px; background-color: #e9ecef; border: 1px dashed #adb5bd; border-radius: 5px; text-align: center; margin: 20px 0; }
+        .detailed-content-placeholder p { font-size: 1.1em; color: #6c757d; }
+        @media (max-width: 768px) {
+            .result-container { margin: 20px 15px; padding: 20px; }
+            .content-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent">
+                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li><a href="../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="quiz-result-page-container">
+        <div class="result-container">
+            <div class="result-header">
+                <div class="personalized-greeting" id="personalized-greeting">Hi [First Name]!</div>
+                <h1>Your Blueprint for Connecting More People to Life-Changing Hearing Care</h1>
+                <p class="sub-headline">Your quiz results highlight a significant opportunity to improve how your audiology clinic reaches and educates those who could benefit from your vital hearing health services.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>The " unheard Voices" Challenge</h2>
+                <p>A large portion of the population experiences hearing loss but often delays seeking help due to lack of awareness, stigma, or misconceptions about hearing solutions. If your clinic isn't actively working to reach these "Unheard Voices" with targeted education and accessible pathways to care, many individuals will continue to miss out on the benefits of improved hearing and quality of life.</p>
+                <h3>Key Patient Connection & Education Hurdles in Audiology:</h3>
+                <ul>
+                    <li>Low public understanding of the early signs of hearing loss and its impact on overall well-being.</li>
+                    <li>Reluctance among individuals to acknowledge hearing difficulties or seek professional assessment.</li>
+                    <li>Misinformation or outdated perceptions about hearing aids and audiological services.</li>
+                    <li>Insufficient community outreach and educational programs to normalize hearing healthcare.</li>
+                    <li>Weak referral streams from primary care physicians who may not routinely screen for hearing loss.</li>
+                </ul>
+                 <p>Overcoming the "Unheard Voices" challenge means proactively engaging your community, demystifying hearing loss, and making it easy and welcoming for individuals to take the first step towards better hearing. This involves clear communication, accessible information, and building trust.</p>
+            </div>
+            
+            <div class="detailed-content-placeholder">
+                <h3>Get More Patients, Fast: Your Audiology Clinic's Client Growth Plan</h3>
+                <p>
+                  Your quiz results show your clinic is ready to attract a surge of new patients. It's time to fill your schedule, boost your reputation, and turn more inquiries into booked appointments—fast.
+                </p>
+                <ul>
+                  <li><strong>Patient-Getting Campaigns:</strong> We launch targeted ads and outreach to bring in high-intent patients actively searching for hearing care.</li>
+                  <li><strong>Rapid Response & Booking:</strong> Our team follows up with every lead within minutes, answers questions, and gets them scheduled—so you never miss an opportunity.</li>
+                  <li><strong>Reputation Acceleration:</strong> Collect and showcase 5-star reviews to build trust and make your clinic the obvious choice in your area.</li>
+                  <li><strong>Conversion Optimization:</strong> We refine your website, forms, and follow-up to turn more inquiries into booked appointments.</li>
+                  <li><strong>Transparent Results:</strong> See exactly how many new patients you're getting and where they're coming from—so you can scale what works.</li>
+                </ul>
+                <p>
+                  <strong>Imagine this:</strong> Your phones are ringing, your chairs are full, and your clinic is known as the go-to place for hearing care in your community.
+                </p>
+                <p>
+                  <strong>Ready to get more patients now?</strong> Click below to apply for your custom Client Growth Plan. Let's turn your quiz insights into a surge of new patients and rapid growth—starting this month.
+                </p>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Amplify Your Clinic's Voice and Reach More Patients?</h2>
+                <p>Discover our "HearClear Connect" system, specifically designed for audiology clinics to enhance community awareness, patient education, and proactive outreach, ensuring more people access the hearing care they deserve.</p>
+                <a href="#application-form-placeholder" class="cta-button">Apply for a Patient Connection Strategy Session</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../index.html#pricing">Pricing</a></li>
+                    <li><a href="../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                <ul>
+                    <li><a href="../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstName = params.get('firstName');
+            if (firstName) {
+                const greetingElement = document.getElementById('personalized-greeting');
+                if (greetingElement) {
+                    greetingElement.textContent = `Hi ${decodeURIComponent(firstName)}!`;
+                }
+            }
+        });
+    </script>
+    <script src="../script.js"></script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>💬</span> Have a ?<br>Click Here To Send Us a Instant Message
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Start a Conversation</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    <strong>Connect with Our Team Live!</strong><br>
+                    Mon-Fri, 10am - 5pm EST: Expect a reply within the hour.<br>
+                    After hours & weekends: We'll get back to you first thing next business morning.<br><br>
+                    Let us know how we can help your business grow! Please fill out the form below.
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry:</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled selected>Select your industry...</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-businessName">Business Name:</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address:</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number:</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">How can we help you?</label>
+                        <textarea id="chat-message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Send Message</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Our team has been alerted and will get back to you as soon as possible.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

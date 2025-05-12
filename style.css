@@ -1,0 +1,2202 @@
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dynamic Booking Banner */
+#dynamic-booking-banner {
+    background-color: #0056b3; /* Darker blue from existing palette */
+    color: #fff;
+    text-align: center;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    font-weight: 500; /* Slightly less bold than full bold */
+    position: relative; /* Or sticky if header is also sticky */
+    z-index: 1001; /* Ensure it's above other elements if sticky */
+}
+
+#dynamic-booking-banner p {
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+#booked-appointments-count {
+    font-size: 1.15em;
+    color: #ffc107; /* Electric yellow from existing palette */
+    font-weight: 700; /* Bold for the number */
+    display: inline-block;
+    min-width: 25px; /* To prevent layout shift for small numbers */
+    padding: 0 3px;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+    overflow: hidden; /* Clear floats */
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    background-color: #007bff; /* Deep Blue - Primary Accent */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker Blue */
+    transform: translateY(-2px);
+}
+
+.cta-button.secondary {
+    background-color: #28a745; /* Green - Secondary Accent */
+}
+
+.cta-button.secondary:hover {
+    background-color: #1e7e34; /* Darker Green */
+}
+
+.cta-button.tertiary {
+    background-color: #ffc107; /* Electric Yellow - Tertiary Accent */
+    color: #333;
+}
+
+.cta-button.tertiary:hover {
+    background-color: #e0a800; /* Darker Yellow */
+}
+
+/* Header */
+header {
+    background-color: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 0.75rem 0; /* Slightly reduce padding */
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6em; /* Slightly smaller logo, matches sticky-header */
+    font-weight: 900;
+    color: #007bff; /* Deep Blue */
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: #007bff; /* Deep Blue */
+}
+
+/* Dropdown Menu Styles */
+header nav ul li.dropdown-parent {
+    position: relative; /* Needed for absolute positioning of dropdown */
+}
+
+header nav ul li .dropdown-arrow {
+    font-size: 0.7em;
+    margin-left: 4px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+header nav ul li.dropdown-parent:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+header nav ul li ul.dropdown-menu {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 100%; /* Position below parent */
+    left: 0;
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+    min-width: 250px; /* Minimum width */
+    z-index: 1100; /* Ensure it's above other content */
+    padding: 0.5rem 0; /* Padding top/bottom */
+    list-style: none;
+}
+
+header nav ul li.dropdown-parent:hover > ul.dropdown-menu {
+    display: block; /* Show on hover */
+}
+
+header nav ul li ul.dropdown-menu li {
+    margin-left: 0; /* Reset margin for dropdown items */
+    width: 100%;
+}
+
+header nav ul li ul.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px; /* Padding for dropdown links */
+    color: #333; /* Link color */
+    white-space: nowrap; /* Prevent wrapping */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header nav ul li ul.dropdown-menu li a:hover {
+    background-color: #f0f2f5; /* Light background on hover */
+    color: #007bff; /* Blue text on hover */
+}
+
+header .nav-cta {
+    padding: 10px 20px;
+    font-size: 0.9em;
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(rgba(0, 123, 255, 0.6), rgba(0, 86, 179, 0.75)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    color: #fff;
+    padding: 60px 20px; /* Responsive padding */
+    min-height: 75vh; /* Use min-height, slightly reduced */
+    height: auto; /* Allow it to grow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Ensure text is centered if it wraps */
+}
+
+#hero .container {
+    width: 100%; /* Ensure container takes full width for centering */
+}
+
+#hero .hero-headline-stack span {
+    display: block;
+    margin-bottom: 0.25em;
+    line-height: 1.2; /* Ensure consistent line height */
+}
+
+#hero .hero-headline-stack span:first-child {
+    font-size: clamp(1.2em, 2.5vw, 1.8em); /* Min, Preferred (Viewport Width), Max */
+    font-weight: 700;
+    color: #ffc107; /* Electric yellow for emphasis */
+}
+
+#hero .hero-headline-stack span:last-child {
+    font-size: clamp(1.8em, 5vw, 3em); /* Min, Preferred (Viewport Width), Max */
+    font-weight: 900;
+}
+
+#hero .hero-subheadline {
+    font-size: clamp(0.9em, 2vw, 1.2em); /* Min, Preferred (Viewport Width), Max */
+    max-width: 750px; /* Increased max-width slightly */
+    margin: 1.5rem auto 2rem auto;
+    line-height: 1.7;
+}
+
+#hero .primary-cta {
+    padding: clamp(12px, 1.5vw, 15px) clamp(25px, 3vw, 35px);
+    font-size: clamp(0.9em, 1.8vw, 1.1em);
+    background-color: #ffc107; /* Electric Yellow */
+    color: #333;
+    border: 2px solid #ffc107;
+}
+
+#hero .primary-cta:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+
+#hero .hero-tagline {
+    font-size: 1.1em;
+    font-style: italic;
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+/* Ideal Clients Section */
+#ideal-clients {
+    background-color: #fff;
+}
+
+#ideal-clients .ideal-clients-subtext {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.client-niches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.niche-item {
+    background-color: #f9f9f9;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.niche-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.niche-item img {
+    width: 60px; /* Reduced from 80px */
+    height: 60px; /* Reduced from 80px */
+    margin-bottom: 1rem;
+    border-radius: 50%; /* Make icons circular */
+    background-color: #e9ecef;
+    padding:10px;
+}
+
+.niche-item h3 {
+    font-size: 1.25em;
+    color: #007bff; /* Deep Blue */
+    margin-bottom: 0.5rem;
+}
+
+.key-promise {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #28a745; /* Green accent */
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Wrapper link for niche items */
+.niche-link-wrapper {
+    display: block; /* Make the link fill the item */
+    text-decoration: none;
+    color: inherit;
+}
+
+.niche-link-wrapper:hover h3 {
+    text-decoration: underline; /* Optional: underline title on hover */
+}
+
+/* Core Offer & Service Teams Section */
+#core-offer {
+    background-color: #f0f8ff; /* Alice Blue - light, trustworthy */
+}
+
+#core-offer .core-offer-subtext {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #444;
+}
+
+.service-teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; /* Reduced gap */
+    margin-top: 2.5rem;
+}
+
+.team-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.team-card img {
+    width: 50px; /* Reduced icon size */
+    height: 50px;
+    margin-bottom: 0.75rem;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+/* Specific icon background colors for variety, can be refined */
+.team-card:nth-child(3n+1) img { background-color: rgba(0, 123, 255, 0.1); }
+.team-card:nth-child(3n+2) img { background-color: rgba(40, 167, 69, 0.1); }
+.team-card:nth-child(3n+3) img { background-color: rgba(255, 193, 7, 0.1); }
+
+.team-card h4 {
+    font-size: 1.3em;
+    color: #0056b3; /* Darker Blue */
+    margin-bottom: 0.25rem;
+}
+
+.team-card .team-subtitle {
+    font-size: 0.9em;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.team-card p:not(.team-subtitle) {
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Unique Mechanism Explanation in Core Offer Section */
+.unique-mechanism-explanation {
+    background-color: #ffffff; /* White background to stand out on the light blue section */
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    margin-top: 2.5rem !important; /* Ensure margin */
+    margin-bottom: 2.5rem !important; /* Ensure margin */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+}
+
+.unique-mechanism-explanation .mechanism-headline {
+    font-size: 1.6em;
+    color: #007bff; /* Primary blue */
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.unique-mechanism-explanation p {
+    font-size: 1.05em;
+    color: #333;
+    line-height: 1.7;
+    max-width: 800px; /* Control line length for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.unique-mechanism-explanation p strong {
+    color: #0056b3; /* Darker blue for emphasis */
+    font-weight: 700;
+}
+
+/* Deeper Benefit Explanation in Core Offer Section */
+.deeper-benefit-explanation p {
+    font-size: 1.1em; /* Slightly larger for emphasis */
+    color: #2c3e50; /* A rich, trustworthy dark blue/grey */
+    line-height: 1.7;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic; /* Add a touch of emphasis */
+}
+
+.deeper-benefit-explanation p strong {
+    color: #28a745; /* Green for positive keywords like reclaiming time, eliminating stress */
+    font-weight: 700;
+}
+
+/* Our Commitment Section */
+#our-commitment {
+    background-color: #f8f9fa; /* A very light, clean grey */
+}
+
+#our-commitment .text-highlight-blue {
+    color: #007bff; /* Primary blue to match existing highlights */
+}
+
+.commitment-box {
+    background-color: #fff;
+    padding: 2.5rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    border-left: 5px solid #0056b3; /* Dark blue accent border */
+    max-width: 900px;
+    margin: auto;
+}
+
+.commitment-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em; /* Prominent headline */
+    color: #2c3e50; /* Rich dark blue/grey */
+    margin-bottom: 1.5rem;
+}
+
+.commitment-text {
+    font-size: 1.1em;
+    color: #343a40; /* Dark, readable text */
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    text-align: left; /* Align text left for readability in this block */
+}
+
+.commitment-text:last-of-type {
+    margin-bottom: 0;
+}
+
+.commitment-text strong {
+    color: #0056b3; /* Dark blue for strong emphasis */
+    font-weight: 700;
+}
+
+.commitment-text .emphasis {
+    display: block;
+    font-weight: bold;
+    color: #28a745; /* Green for impactful statement */
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background-color: #e6f9ee;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Pricing Plans Section */
+#pricing {
+    background-color: #fff; /* White background for clean look */
+}
+
+#pricing .pricing-subtext {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+    align-items: stretch; /* Makes cards same height if content differs */
+}
+
+.pricing-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* For popular badge */
+    overflow: hidden; /* For popular badge styling */
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card.popular {
+    border-color: #007bff; /* Deep Blue for popular plan */
+    border-width: 3px;
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.15);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -1px; 
+    right: -1px;
+    background-color: #007bff; /* Deep Blue */
+    color: white;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.pricing-card .plan-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 1rem;
+}
+
+.pricing-card h3 {
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-card .price {
+    font-size: 2.8em;
+    font-weight: 900;
+    color: #007bff; /* Deep Blue */
+    margin-bottom: 0.25rem;
+}
+
+.pricing-card .price span {
+    font-size: 0.5em;
+    font-weight: normal;
+    color: #777;
+}
+
+.pricing-card .plan-description {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 1.5rem;
+    min-height: 40px; /* Ensure consistent height */
+}
+
+.pricing-card ul {
+    margin-bottom: 2rem;
+    flex-grow: 1; /* Allows list to take available space */
+}
+
+.pricing-card ul li {
+    margin-bottom: 0.75rem;
+    font-size: 0.95em;
+    color: #444;
+    display: flex;
+    align-items: flex-start; /* Align checkmark and text */
+}
+
+.pricing-card ul li .checkmark {
+    color: #28a745; /* Green */
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.pricing-card .cta-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+}
+
+.pricing-card.growth-plan h3 { color: #ffc107; /* Yellow for Growth */}
+.pricing-card.growth-plan .price { color: #ffc107; }
+
+.pricing-card.accelerate-plan .primary-cta-pricing {
+    background-color: #007bff; /* Deep Blue */
+    color: #fff;
+}
+.pricing-card.accelerate-plan .primary-cta-pricing:hover {
+    background-color: #0056b3;
+}
+
+.pricing-card.fast-track-plan h3 { color: #28a745; /* Green for Fast Track */}
+.pricing-card.fast-track-plan .price { color: #28a745; }
+
+.pricing-tagline {
+    font-size: 1.2em;
+    font-style: italic;
+    font-weight: bold;
+    color: #007bff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Special Promotion Box in Pricing Section */
+.special-promotion-box {
+    background-color: #fffde7; /* Light yellow - attention grabbing but not jarring */
+    border: 2px dashed #ffc107; /* Yellow dashed border */
+    border-radius: 8px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 3rem; /* Space before the regular pricing grid */
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(255,193,7,0.2);
+}
+
+.promotion-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em; /* Large headline */
+    color: #c82333; /* Urgent red color */
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.promotion-subheadline {
+    font-size: 1.15em;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.promotion-details {
+    font-size: 1.1em;
+    color: #444;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.promotion-details strong {
+    color: #007bff; /* Blue for emphasis */
+}
+
+.promotion-details .emphasis {
+    display: block;
+    font-weight: bold;
+    color: #28a745; /* Green for positive emphasis */
+    margin-top: 0.5rem;
+}
+
+.promotion-scarcity {
+    font-size: 1.05em;
+    color: #555;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+}
+
+.promotion-scarcity .icon {
+    font-size: 1.5em;
+    margin-right: 0.5rem;
+}
+
+.promotion-scarcity .highlight-strong {
+    color: #c82333;
+    font-weight: bold;
+}
+
+.promotion-cta {
+    padding: 15px 30px !important; /* Ensure padding overrides */
+    font-size: 1.2em !important; /* Ensure font size overrides */
+    background-color: #28a745 !important; /* Green for main CTA of offer */
+    color: #fff !important;
+    margin-bottom: 1rem;
+}
+
+.promotion-cta:hover {
+    background-color: #1e7e34 !important;
+}
+
+.promotion-expiry {
+    font-size: 0.9em;
+    color: #777;
+    font-style: italic;
+}
+
+/* Guarantee Section */
+#guarantee {
+    background-color: #e9f5ff; /* Light Blue, trustworthy */
+}
+
+.guarantee-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 2.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid #28a745; /* Green border for emphasis */
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.15);
+}
+
+.guarantee-icon {
+    width: 80px; /* Reduced from 100px */
+    height: 80px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background-color: rgba(40, 167, 69, 0.1);
+    padding: 15px;
+}
+
+#guarantee h2 {
+    color: #0056b3; /* Darker blue */
+    font-size: 2.2em;
+}
+
+.guarantee-text {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.7;
+}
+
+.guarantee-conditions {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 1.5rem;
+    font-style: italic;
+}
+
+/* CTA & Contact Section */
+#cta-contact {
+    background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
+    color: #fff;
+}
+
+#cta-contact h2 {
+    font-size: 2.3em;
+    margin-bottom: 0.75rem;
+}
+
+.cta-subtext {
+    font-size: 1.15em;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
+#cta-contact .large-cta {
+    padding: 18px 40px;
+    font-size: 1.2em;
+    background-color: #ffc107; /* Electric Yellow */
+    color: #333;
+    margin-top: 1rem;
+}
+
+#cta-contact .large-cta:hover {
+    background-color: #e0a800;
+}
+
+.book-call-link {
+    color: #ffc107; /* Electric Yellow */
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.book-call-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#cta-contact .key-promise {
+    color: #fff; /* White for contrast on dark background */
+    font-size: 1.4em;
+    opacity: 0.9;
+}
+
+/* P.S. styling in CTA */
+.cta-ps {
+    font-size: 0.95em;
+    color: #e0e0e0; /* Lighter than main text */
+    font-style: italic;
+    max-width: 600px; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.cta-ps strong {
+    font-weight: bold;
+    color: #0056b3; /* Ensure strong text is also a contrasting dark color */
+}
+
+/* Microcopy below CTA buttons */
+.cta-microcopy {
+    font-size: 0.85em;
+    color: #d0d0d0; /* Even lighter grey */
+    margin-top: 0.5rem;
+    margin-bottom: 1rem; /* Add space before next element */
+    font-style: italic;
+}
+
+/* Testimonials Section */
+#testimonials {
+    background-color: #f0f2f5; /* Slightly softer grey */
+}
+
+#testimonials .testimonials-subtext {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly wider min */
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.testimonial-card {
+    background-color: #fff;
+    border-radius: 10px; /* Slightly more rounded */
+    padding: 2.5rem 2rem; /* Adjust padding */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08); /* Softer, more spread shadow */
+    display: flex;
+    flex-direction: column;
+    text-align: center; /* Center align text for author block */
+    border-top: 4px solid #007bff; /* Top border instead of left */
+    border-left: none; /* Remove previous left border */
+}
+
+.testimonial-card:nth-child(2n) {
+    border-top-color: #28a745; /* Green accent for variety */
+    border-left-color: transparent; /* Ensure override */
+}
+.testimonial-card:nth-child(3n) {
+    border-top-color: #ffc107; /* Yellow accent for variety */
+    border-left-color: transparent; /* Ensure override */
+}
+
+/* For the 4th card, let's cycle back to blue or choose another distinct color */
+.testimonial-card:nth-child(4n) {
+    border-top-color: #17a2b8; /* Teal as another option */
+    border-left-color: transparent;
+}
+
+.testimonial-author {
+    display: flex; /* Changed to flex for better control */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    margin-top: 1.5rem; /* Increased space */
+    border-top: 1px solid #f0f0f0; /* Lighter border */
+    padding-top: 1.5rem; /* Increased space */
+}
+
+.testimonial-author img {
+    width: 70px; /* Larger image */
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 1rem; /* Space between image and text */
+    object-fit: cover;
+    border: 3px solid #fff; /* Optional: white border around image */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.testimonial-author .author-name {
+    font-weight: bold;
+    color: #333; /* Darker for better readability */
+    margin-bottom: 0.25em;
+    font-size: 1.1em;
+}
+
+.testimonial-author .author-niche {
+    font-size: 0.9em;
+    color: #007bff; /* Accent color for niche */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.testimonial-quote {
+    font-size: 1.1em; /* Slightly larger quote */
+    color: #444; /* Slightly softer black */
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    text-align: left; /* Keep quote text left-aligned for readability */
+}
+
+.testimonial-quote::before {
+    content: '\201C'; /* Left double quotation mark */
+    font-size: 3em; /* Larger quote mark */
+    color: #007bff;
+    opacity: 0.5; /* Softer opacity */
+    display: block;
+    margin-bottom: -0.1em; /* Adjust positioning */
+    line-height: 0.5;
+    text-align: left;
+}
+
+.testimonial-card:nth-child(2n) .testimonial-quote::before {
+    color: #28a745;
+}
+.testimonial-card:nth-child(3n) .testimonial-quote::before {
+    color: #ffc107;
+}
+.testimonial-card:nth-child(4n) .testimonial-quote::before {
+    color: #17a2b8;
+}
+
+/* ROI Calculator Section */
+#roi-calculator {
+    background-color: #f0f2f5; /* Consistent with testimonials bg */
+}
+
+#roi-calculator .text-highlight-green {
+    color: #28a745; /* Green accent */
+}
+
+#roi-calculator .roi-subtext {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.calculator-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.calculator-inputs .inputs-title,
+.calculator-results .results-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.calculator-inputs .form-group {
+    margin-bottom: 2rem;
+}
+
+.calculator-inputs .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.75rem;
+    font-size: 0.95em;
+}
+
+.calculator-inputs input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calculator-inputs input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #007bff; /* Blue thumb */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.calculator-inputs input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.slider-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.slider-values output {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.calculator-results {
+    background-color: #e9f5ff; /* Light blue accent background */
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #d1e7fb; /* Lighter border */
+}
+
+.result-item:last-of-type {
+    border-bottom: none;
+}
+
+.result-item p {
+    margin: 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.result-item .result-value {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #0056b3; /* Darker blue for values */
+}
+
+.result-item .result-value.highlight {
+    color: #28a745; /* Green for key results */
+    font-size: 1.7em;
+}
+
+.calculator-results .full-width-cta {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 12px;
+    font-size: 1.1em;
+    background-color: #28a745; /* Green button */
+}
+.calculator-results .full-width-cta:hover {
+    background-color: #1e7e34;
+}
+
+.calculator-results .full-width-cta .arrow {
+    margin-left: 8px;
+    transition: margin-left 0.3s ease;
+}
+
+.calculator-results .full-width-cta:hover .arrow {
+    margin-left: 12px;
+}
+
+/* Responsive adjustments for calculator */
+@media (max-width: 992px) { /* Adjust breakpoint if needed */
+    .calculator-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+    .calculator-results {
+        margin-top: 2rem;
+    }
+}
+
+/* Sticky Header Style */
+header.sticky-header {
+    background-color: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 0.75rem 0; /* Slightly reduce padding */
+}
+
+header.sticky-header .logo {
+    font-size: 1.6em; /* Slightly smaller logo */
+}
+
+/* Fade-in Animation */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered fade-in for grid items - optional, can be more complex */
+.client-niches-grid .niche-item, 
+.service-teams-grid .team-card,
+.pricing-grid .pricing-card,
+.testimonials-grid .testimonial-card {
+    animation: fadeInElement 0.5s ease-out forwards;
+}
+
+/* ============================================= */
+/* Footer Styles (New - Footer2)                 */
+/* ============================================= */
+
+footer {
+    background-color: #1a1a2e; /* Dark navy/almost black */
+    color: #e0e0e0; /* Light grey for text */
+    padding: 50px 0 20px 0; /* Generous top padding, smaller bottom */
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-top: 300px; /* Added top margin */
+}
+
+footer .footer-main.container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between; /* Distribute columns */
+    gap: 30px; /* Space between columns */
+    max-width: 1200px; /* Slightly wider container for footer */
+    margin: 0 auto;
+    padding: 0 20px; /* Standard container padding */
+}
+
+footer .footer-column {
+    flex: 1; /* Allow columns to grow and shrink */
+    min-width: 220px; /* Minimum width before wrapping */
+    margin-bottom: 30px; /* Space below columns when they stack */
+}
+
+footer h3 { /* Targeting h3 within footer specifically */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem; /* Slightly larger for column titles */
+    color: #ffffff; /* Pure white for titles */
+    margin-bottom: 20px; /* Space below titles */
+    font-weight: 700;
+    text-transform: none; /* Overriding global uppercase if any */
+}
+
+footer p {
+    margin-bottom: 10px;
+    color: #c0c0c0; /* Slightly lighter grey for paragraph text */
+}
+
+footer a {
+    color: #d0d0d0; /* Light grey for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #00aaff; /* A light, vibrant blue for hover */
+}
+
+/* Specific Column Styling */
+footer .footer-info p {
+    font-size: 0.85rem;
+}
+
+footer .footer-quick-links ul,
+footer .footer-niches ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer .footer-quick-links ul li,
+footer .footer-niches ul li {
+    margin-bottom: 8px;
+}
+
+footer .footer-quick-links ul li a,
+footer .footer-niches ul li a {
+    color: #c0c0c0;
+    font-size: 0.85rem;
+}
+footer .footer-quick-links ul li a:hover,
+footer .footer-niches ul li a:hover {
+    color: #00aaff;
+    padding-left: 3px; /* Subtle indent on hover */
+}
+
+
+footer .footer-social .social-icons {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+footer .footer-social .social-icons a {
+    margin-right: 15px; /* Space between icons */
+    display: inline-block; /* To allow margin */
+}
+
+footer .footer-social .social-icons img {
+    width: 28px; /* Adjust size as needed */
+    height: 28px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+footer .footer-social .social-icons a:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+footer .footer-bottom {
+    text-align: center;
+    padding-top: 30px; /* Space above bottom bar */
+    margin-top: 20px; /* Additional space if columns wrapped significantly */
+    border-top: 1px solid #30304a; /* Subtle separator line */
+    font-size: 0.8rem;
+    color: #a0a0a0; /* Muted color for copyright */
+}
+
+footer .footer-bottom p {
+    margin: 0;
+}
+
+/* Responsive adjustments for footer columns if needed */
+@media (max-width: 992px) {
+    footer .footer-column {
+        min-width: calc(50% - 30px); /* Two columns for medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    footer .footer-column {
+        min-width: 100%; /* Single column for small screens */
+        text-align: center; /* Center text for stacked columns */
+    }
+    footer .footer-quick-links ul,
+    footer .footer-niches ul {
+        padding-left: 0; /* Remove padding for centered lists */
+    }
+    footer .footer-social .social-icons {
+        text-align: center; /* Center icons */
+    }
+     footer .footer-social .social-icons a {
+        margin: 0 10px; /* Adjust spacing for centered icons */
+    }
+    footer h3 { /* Center titles on small screens too */
+        text-align: center;
+    }
+}
+
+
+/* Utility Classes (Keep these general purpose utilities) */
+.section-padding {
+    padding: 60px 0;
+}
+
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.75em; }
+
+    header nav {
+        flex-direction: column;
+    }
+
+    header nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    header nav ul li a {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    header .nav-cta {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Chat Widget Styles */
+#chat-widget-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #007bff; /* Primary Blue */
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px; /* Pill shape */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 1000; /* Restored original z-index */
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#chat-widget-button:hover {
+    background-color: #0056b3; /* Darker Blue */
+    transform: translateY(-2px) scale(1.05);
+}
+
+#chat-widget-button span {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+#chat-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Dim overlay */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#chat-modal.modal-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-modal-content {
+    background-color: #fdfdfd; /* Slightly off-white for a softer base */
+    padding: 30px 35px; /* Slightly more padding */
+    border-radius: 12px; /* More pronounced border-radius */
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15); /* Softer, more spread shadow for premium feel */
+    width: 90%;
+    max-width: 550px; /* Slightly wider max-width */
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+#chat-modal.modal-visible .chat-modal-content {
+    transform: scale(1);
+}
+
+.chat-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef; /* Lighter border */
+    padding-bottom: 15px;
+    margin-bottom: 25px; /* More space after header */
+}
+
+.chat-modal-header h2 {
+    font-family: 'Montserrat', sans-serif; /* Ensure premium font */
+    font-size: 1.8em; /* Slightly larger */
+    color: #0056b3; /* Primary dark blue for title */
+    font-weight: 700;
+    margin: 0;
+}
+
+.chat-close-button {
+    background: none;
+    border: none;
+    font-size: 1.8em; /* Slightly adjusted size */
+    color: #999; /* Softer color */
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px; /* Add some padding for easier clicking */
+    transition: color 0.2s ease;
+}
+
+.chat-close-button:hover {
+    color: #555; /* Darker on hover */
+}
+
+.chat-modal-body p {
+    margin-bottom: 1.8rem; /* More space */
+    font-size: 1em;
+    color: #4a5568; /* Softer text color */
+    line-height: 1.6;
+}
+
+#chat-contact-form .form-group {
+    margin-bottom: 1.25rem; /* Adjusted spacing */
+}
+
+#chat-contact-form label {
+    display: block;
+    font-weight: 600; /* Keep bold */
+    color: #2d3748; /* Darker, more premium label color */
+    margin-bottom: 0.6rem;
+    font-size: 0.95em;
+}
+
+#chat-contact-form input[type="text"],
+#chat-contact-form input[type="email"],
+#chat-contact-form input[type="tel"],
+#chat-contact-form select,
+#chat-contact-form textarea {
+    width: 100%;
+    padding: 12px 15px; /* More padding inside fields */
+    border: 1px solid #cbd5e0; /* Softer border color */
+    border-radius: 6px; /* Slightly more rounded fields */
+    font-size: 1em;
+    font-family: 'Lato', sans-serif;
+    background-color: #fff; /* White background for fields */
+    color: #2d3748;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#chat-contact-form input[type="text"]:focus,
+#chat-contact-form input[type="email"]:focus,
+#chat-contact-form input[type="tel"]:focus,
+#chat-contact-form select:focus,
+#chat-contact-form textarea:focus {
+    border-color: #007bff; /* Primary blue focus */
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15); /* Softer focus shadow */
+    outline: none;
+}
+
+#chat-contact-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%234a5568'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2em;
+    padding-right: 2.5rem; /* Ensure space for arrow */
+}
+
+#chat-contact-form textarea {
+    resize: vertical;
+    min-height: 90px; /* Slightly taller textarea */
+}
+
+.chat-submit-button {
+    width: 100%;
+    padding: 14px !important; /* More prominent button padding */
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+    background-color: #28a745 !important; /* Match secondary button style */
+    color: #fff !important;
+    border-radius: 6px !important;
+    margin-top: 1rem; /* More space before button */
+    transition: background-color 0.3s ease, transform 0.3s ease !important;
+}
+
+.chat-submit-button:hover {
+    background-color: #1e7e34 !important; /* Darker green on hover */
+    transform: translateY(-1px);
+}
+
+/* Initially hide modal */
+.modal-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Transition to Solution Styling */
+.transition-to-solution {
+    margin-top: 1rem; /* Add some space above it */
+    margin-bottom: 2.5rem !important; /* Ensure good space before the main headline */
+}
+
+.transition-text {
+    font-size: 1.15em;
+    color: #4a5568; /* Match other premium text */
+    line-height: 1.7;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+}
+
+.transition-text em {
+    color: #007bff; /* Highlight the 'for' */
+    font-weight: bold;
+}
+
+/* Chat Widget Styles */
+.chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-cta {
+    background-color: #007bff; /* Changed from orange to Primary Blue */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.chat-cta:hover {
+    background-color: #0056b3; /* Darker Blue for hover */
+}
+
+.chat-info-popup {
+    position: absolute;
+    bottom: 70px; /* Position above the button */
+    right: 0;
+    width: 280px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.chat-info-popup p {
+    margin-bottom: 10px;
+}
+
+.chat-info-popup strong {
+    color: #0056b3;
+}
+
+.chat-info-popup button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.chat-info-popup button:hover {
+    background-color: #0056b3;
+}
+
+/* Ensure dropdown arrow is visible */
+.dropdown-arrow {
+    display: inline-block; /* Ensures it's treated as a block for transform */
+    transition: transform 0.3s ease;
+    font-size: 0.7em; /* Adjusted size */
+    margin-left: 4px; /* Space from text */
+}
+
+.dropdown-parent:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Add space if needed below last element */
+
+/* --- Problem vs Solution Comparison Section --- */
+#problem-solution {
+    background-color: #f8f9fa; /* Light background for the whole section */
+}
+
+.comparison-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 30px; /* Space between columns */
+    align-items: stretch; /* Make columns equal height */
+}
+
+.comparison-panel {
+    flex: 1; /* Each panel takes equal space */
+    min-width: 300px; /* Minimum width before wrapping */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+}
+
+.problem-panel {
+    background-color: #fff; /* White background for problem */
+    border-left: 5px solid #dc3545; /* Red accent for problem */
+}
+
+.solution-panel {
+    background-color: #e9f5ff; /* Light blue background for solution */
+    border-left: 5px solid #28a745; /* Green accent for solution */
+}
+
+.panel-title {
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.panel-title .icon {
+    font-size: 1.5em; /* Larger icon */
+    margin-right: 10px;
+    line-height: 1;
+}
+
+.problem-panel .panel-title {
+    color: #dc3545; /* Red title */
+}
+
+.solution-panel .panel-title {
+    color: #28a745; /* Green title */
+}
+
+.comparison-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Allow list to grow and push summary down */
+}
+
+.comparison-list li {
+    padding-left: 30px; /* Space for icon */
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.comparison-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px; /* Adjust vertical alignment */
+    font-family: 'Font Awesome 5 Free'; /* Assuming Font Awesome is available, otherwise use text */
+    font-weight: 900;
+    font-size: 1.1em;
+    width: 20px; /* Ensure space is allocated */
+    text-align: center;
+}
+
+.problem-item::before {
+    /* content: '\f00d'; /* Font Awesome X mark */
+    content: '❌'; /* Using Emoji */
+    color: #dc3545; /* Red icon */
+}
+
+.solution-item::before {
+    /* content: '\f00c'; /* Font Awesome Check mark */
+    content: '✅'; /* Using Emoji */
+    color: #28a745; /* Green icon */
+}
+
+.panel-summary {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: auto; /* Pushes to bottom if list doesn't fill space */
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.panel-cta {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .comparison-container {
+        flex-direction: column; /* Stack columns on smaller screens */
+    }
+    .comparison-panel {
+        min-width: 100%; /* Allow panels to take full width when stacked */
+    }
+}
+/* --- End Problem vs Solution Comparison Section --- */
+
+/* --- 3-Step Process Section --- */
+#three-step-process {
+    background-color: #fff; /* Clean white background */
+}
+
+#three-step-process .process-subtext {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.process-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 2.5rem;
+}
+
+.process-step-card {
+    background-color: #f8f9fa; /* Light grey background for cards */
+    border: 1px solid #e9ecef; /* Subtle border */
+    border-top: 4px solid #007bff; /* Blue top border */
+    border-radius: 8px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Color variation like example - optional */
+.process-step-card:nth-child(2) {
+    border-top-color: #28a745; /* Green */
+}
+
+.process-step-card:nth-child(3) {
+    border-top-color: #ffc107; /* Yellow */
+}
+
+.step-icon-wrapper {
+    margin-bottom: 15px;
+}
+
+.step-icon {
+    display: inline-block;
+    background-color: #28a745; /* Green background for checkmark */
+    color: white;
+    font-size: 1.5em; /* Size of checkmark */
+    width: 45px;
+    height: 45px;
+    line-height: 45px; /* Center the checkmark */
+    border-radius: 50%;
+    text-align: center;
+}
+
+.process-step-card h4 { /* Step 1: Attract etc */
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #6c757d; /* Grey color */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.process-step-card h5 { /* Main Headline */
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #0056b3; /* Dark Blue */
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.process-step-card p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .process-steps-grid {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+}
+/* --- End 3-Step Process Section --- */
+
+/* --- Potential Partnership Summary Section --- */
+#potential-partnership {
+    background-color: #f0f4f8; /* Very light, slightly blue background */
+}
+
+#potential-partnership h2 .text-highlight-pink {
+    color: #007bff; /* Changed from pink #e83e8c to Primary Blue */
+    /* Or use one of your brand colors: #28a745, #ffc107 */
+}
+
+.partnership-subtext {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.what-you-get-box {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 30px 40px;
+    margin-top: 2.5rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.what-you-get-box .box-title {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.get-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px; /* Space between items */
+    text-align: left;
+}
+
+.get-item {
+    display: flex;
+    align-items: flex-start; /* Align icon with top of text */
+    gap: 12px; /* Space between icon and text */
+    padding: 10px 0; /* Add vertical padding */
+}
+
+.get-icon {
+    font-size: 1.3em; /* Checkmark size */
+    color: #28a745; /* Green checkmark */
+    line-height: 1.4; /* Adjust line height for alignment */
+}
+
+.get-item h4 {
+    font-size: 1.05em;
+    font-weight: 700;
+    color: #0056b3; /* Dark Blue */
+    margin-bottom: 5px;
+}
+
+.get-item p {
+    font-size: 0.95em; /* Slightly larger description text */
+    color: #555;
+    line-height: 1.5;
+}
+
+.roi-highlight-box {
+    background-color: #007bff; /* Primary Blue Background */
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    margin-top: 3rem;
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+}
+
+.roi-highlight-box h3 {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.roi-highlight-box .text-highlight-strong {
+    color: #ffc107; /* Yellow highlight */
+    font-weight: 900;
+}
+
+.roi-highlight-box p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .get-items-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust minmax for smaller screens */
+        gap: 20px;
+    }
+    .roi-highlight-box h3 {
+        font-size: 1.6em;
+    }
+    .roi-highlight-box p {
+        font-size: 1em;
+    }
+    #potential-partnership h2 .text-highlight-pink {
+        display: block; /* Stack highlight on mobile if needed */
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+     .get-items-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+    .what-you-get-box {
+        padding: 20px;
+    }
+    .roi-highlight-box {
+        padding: 25px;
+    }
+}
+
+/* --- End Potential Partnership Summary Section --- */
+
+/* --- Qualification Checklist Section --- */
+#qualification-checklist {
+    background-color: #fff; /* Clean white background */
+}
+
+.checklist-container {
+    max-width: 800px; /* Limit width for better readability */
+    margin: auto;
+    background-color: #fff8f0; /* Very light orange/peach background */
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #fde8cd; /* Soft border color */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.checklist-subtext {
+    color: #555;
+    font-size: 1.1em;
+}
+
+#qualifying-checklist-form {
+    margin-top: 1.5rem;
+}
+
+.checklist-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.checklist-items li {
+    margin-bottom: 18px; /* Increased spacing */
+    font-size: 1.05em; /* Slightly larger text */
+    display: flex; /* Align checkbox and label nicely */
+    align-items: flex-start;
+}
+
+.checklist-items input[type="checkbox"] {
+    margin-right: 15px; /* More space between box and text */
+    flex-shrink: 0;
+    /* Optional: Style the checkbox itself */
+    width: 1.3em;
+    height: 1.3em;
+    margin-top: 0.1em; /* Fine-tune vertical alignment */
+    cursor: pointer;
+}
+
+.checklist-items label {
+    cursor: pointer; /* Make label clickable */
+    color: #333;
+    line-height: 1.5;
+}
+
+.checklist-results-box {
+    background-color: #f0f4f8; /* Light blue grey for results */
+    border: 1px solid #d1e7fb; /* Matching border */
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+    text-align: left;
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+.checklist-results-box h4 {
+    font-size: 1.2em;
+    color: #0056b3;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.checklist-results-box p {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.checklist-results-box p:last-child {
+    margin-bottom: 0;
+}
+
+.checklist-results-box a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.checklist-results-box a:hover {
+    color: #0056b3;
+}
+/* --- End Qualification Checklist Section --- */
+
+/* Ensure good contrast for text in the light-background CTA niche section */
+#cta-contact-niche {
+    color: #333; /* Default dark text color for this section */
+}
+
+#cta-contact-niche .cta-subtext,
+#cta-contact-niche .cta-ps,
+#cta-contact-niche .cta-microcopy,
+#cta-contact-niche p { /* General paragraphs within this specific section */
+    color: #4a5568; /* A good, readable dark grey/blue */
+}
+
+#cta-contact-niche .book-call-link {
+    color: #0056b3; /* Darker blue for better contrast than yellow */
+}
+
+#cta-contact-niche .book-call-link:hover {
+    color: #007bff; /* Slightly lighter blue for hover */
+}
+
+#cta-contact-niche .cta-ps strong {
+    color: #0056b3; /* Ensure strong text is also a contrasting dark color */
+}
+
+/* Responsive Header & Nav for Mobile */
+@media (max-width: 900px) {
+  header nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  header .logo {
+    font-size: 1.15em;
+    padding-left: 8px;
+  }
+  header .hamburger {
+    display: block;
+    width: 38px;
+    height: 38px;
+    background: none;
+    border: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1200;
+    cursor: pointer;
+  }
+  header .hamburger span {
+    display: block;
+    width: 28px;
+    height: 4px;
+    margin: 5px auto;
+    background: #007bff;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  header nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    z-index: 1100;
+    padding: 0 0 16px 0;
+    border-radius: 0 0 12px 12px;
+  }
+  header nav ul.open {
+    display: flex;
+  }
+  header nav ul li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1.08em;
+  }
+  header nav ul li:last-child {
+    border-bottom: none;
+  }
+  header nav ul li a, header nav ul li .cta-button {
+    display: block;
+    padding: 16px 0;
+    font-size: 1.08em;
+    color: #222;
+    background: none;
+    border-radius: 0;
+  }
+  header nav ul li .cta-button {
+    margin: 12px 16px 0 16px;
+    font-size: 1.12em;
+    padding: 16px 0;
+    border-radius: 6px;
+  }
+  header nav ul li .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: #f8f9fa;
+    min-width: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+  header nav ul li.dropdown-parent > a {
+    position: relative;
+    padding-right: 24px;
+  }
+  header nav ul li .dropdown-arrow {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  header nav ul li.dropdown-parent.open > .dropdown-menu {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  html { font-size: 17px; }
+  body { font-size: 1em; line-height: 1.6; }
+  h1 { font-size: 2em; line-height: 1.2; }
+  h2 { font-size: 1.5em; line-height: 1.25; }
+  h3 { font-size: 1.2em; line-height: 1.3; }
+  header .logo { font-size: 1em; padding-left: 4px; }
+  header nav ul li a, header nav ul li .cta-button { font-size: 1.06em; padding: 14px 0; }
+  .cta-button, .large-cta { font-size: 1.06em; padding: 16px 0; }
+  label, .cta-microcopy, .cta-subtext, .slider-help, .form-group label { font-size: 1em !important; }
+} 

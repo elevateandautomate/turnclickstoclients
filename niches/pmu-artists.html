@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Booking System for PMU Artists | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Minor style adjustments specific to niche pages if needed */
+        #hero.niche-hero {
+            min-height: 65vh; /* Slightly shorter hero for niche pages */
+            /* PMU Artist Specific Hero Image */
+            background: linear-gradient(rgba(100, 60, 120, 0.65), rgba(50, 20, 70, 0.8)), url('https://images.unsplash.com/photo-1599746298447-1dd79aa40f0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; /* Example PMU artist image */
+        }
+        /* Adjust main headline size if needed */
+         #hero.niche-hero .hero-headline-stack span:last-child {
+            font-size: clamp(1.8em, 4.5vw, 2.8em);
+        }
+         #hero.niche-hero .hero-subheadline {
+            font-size: clamp(0.9em, 1.8vw, 1.1em);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="dynamic-booking-banner">
+        <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
+    </div>
+    <!-- Consistent Header -->
+    <header>
+        <nav>
+            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent">
+                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="pmu-artists.html">PMU Artists</a></li> <!-- Current page -->
+                        <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li><a href="../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#guarantee">Guarantee</a></li>
+                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Niche Hero Section -->
+        <section id="hero" class="niche-hero section-padding text-center">
+            <div class="container">
+                <h1 class="hero-headline-stack">
+                    <span>Is Your PMU Artistry Lost in the Social Media Noise?</span>
+                    <span>Our System Attracts Your Ideal High-Paying Clients – Automatically.</span>
+                </h1>
+                <p class="hero-subheadline">
+                    Are you struggling to attract clients who value your skill and are ready to invest in quality? 
+                    Imagine <strong>confidently commanding</strong> a schedule filled with ideal, high-paying clients who seek out your specific artistry. Our Client Magnet System <strong>powers this transformation</strong>, <strong>elevating your brand</strong> and <strong>freeing you</strong> to thrive doing what you love.
+                    <em>Curious how you can consistently attract premium clients like this? Our 30-second quiz provides a quick look.</em>
+                </p>
+                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & See How</a>
+            </div>
+        </section>
+
+        <!-- Problem/Agitation Section -->
+        <section id="niche-problem" class="section-padding">
+            <div class="container text-center">
+                <h2 class="mb-2">The PMU Artist's Agony: Incredible Skill vs. The Lack of Quality Clients & Sustainable Income</h2>
+                <p class="ideal-clients-subtext mb-2">
+                    You transform faces, boosting confidence with every meticulous stroke. But the business reality? Attracting a steady flow of clients who respect your pricing feels like a grind, highlighting a lack of qualified, high-value leads. It's easy to feel lost in a sea of competitors, forced onto a social media hamster wheel that emphasizes a lack of efficient marketing systems, often yielding inquiries that vanish or haggle, leaving you feeling undervalued due to this lack of perceived appreciation.
+                    As a dedicated artist, you're juggling procedures, consultations, and communication, showcasing a lack of time for strategic growth. The dream of a thriving studio feels buried under the sheer <em>effort</em> required to overcome the lack of predictable bookings and the anxiety of the income rollercoaster. Marketing feels like guesswork because many artists lack a proven client attraction system. Is this draining your passion? 
+                    <em>If you're curious about a more consistent way to attract your ideal PMU clients, our 30-second quiz can show if this is your answer.</em>
+                </p>
+                <div class="text-center mt-1 mb-2">
+                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                </div>
+                <p class="key-promise">"Stop Competing on Price. Start Attracting Premium PMU Clients."</p>
+            </div>
+        </section>
+
+        <!-- Solution: Tailored Core Offer -->
+        <section id="core-offer-niche" class="section-padding" style="background-color: #fff5f5;"> <!-- Light Pink/Rose for PMU -->
+            <div class="container">
+                <div class="transition-to-solution text-center mb-2 fade-in-element">
+                    <p class="transition-text">
+                        We get it – the gap between your passion and the inconsistent client flow. The frustration. That's why TurnClicksToClients is your dedicated system, engineered to bridge that gap, attracting clients who see the true value in your PMU services, so you can consistently feel the joy of a thriving artistry. We deliver...
+                        <em>Curious how this dedicated system could fill your schedule with ideal PMU clients? Our 30-second quiz is the first step.</em>
+                    </p>
+                    <div class="text-center mt-1 mb-2">
+                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    </div>
+                </div>
+                <div class="container mt-3 mb-3">
+                    <h2 class="text-center mb-1 section-headline">Your Dedicated Client Attraction Engine (Filling the Premium Client Gap)</h2>
+                    <p class="text-center core-offer-subtext mb-2">
+                        Imagine a business where the struggle for high-value clients is replaced by a consistent influx, filling you with creative and financial fulfillment. 
+                        This isn't just lead generation; it's your bespoke Engine, designed to <strong>eliminate the lack of premium client acquisition</strong> and let you continuously experience that fulfillment. 
+                        Our specialized teams work in concert to make this your reality:
+                        <em>Take our quick 30-sec quiz to see how.</em>
+                    </p>
+                    <div class="text-center mt-1 mb-2">
+                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    </div>
+                    <div class="service-teams-grid">
+                        <div class="team-card">
+                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Lead" alt="Lead Attraction">
+                            <h4>The Lead Attraction Team</h4>
+                            <p class="team-subtitle">Ideal Client Finders</p>
+                            <p>Pinpoints and attracts individuals seeking your specific premium services, delivering qualified inquiries without you needing to master complex marketing.</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Book" alt="Booking & Follow-Up">
+                            <h4>The Booking & Follow-Up Crew</h4>
+                            <p class="team-subtitle">Appointment Securing Experts</p>
+                            <p>Manages all lead communication and follow-up, securing booked appointments so you can focus on your artistry, not administrative tasks.</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Sys" alt="System Automation">
+                            <h4>The System Automation Engine</h4>
+                            <p class="team-subtitle">Efficiency & Nurturing Powerhouse</p>
+                            <p>Automates crucial client communication and nurturing sequences, ensuring professionalism and saving you significant time and effort daily.</p>
+                        </div>
+                    </div>
+                    <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
+                        <h4 class="mechanism-headline">The Art of Consistent Client Flow (Eliminating Your Marketing Burden)</h4>
+                        <p>
+                            Why does this system work? Because your talent is artistry, and this system <strong>fills the lack of a dedicated marketing arm</strong>, letting you feel creative joy, not marketing drain. 
+                            Our system <strong>manages</strong> the journey, filling the <strong>lack of consistent momentum</strong>. 
+                            Targeted ads and expert follow-up <strong>ensure</strong> clients who value your skill, filling the <strong>lack of appreciation</strong> and helping you keep that feeling of being a valued expert. 
+                            Automation fills the <strong>lack of time</strong> for persistent communication. 
+                            This integrated approach <strong>delivers</strong> consistent bookings by filling these lacks, allowing you to thrive and continuously experience the satisfaction of doing what you love.
+                        </p>
+                    </div>
+                    <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
+                        <p>
+                            This isn't just about more clients; it <strong>transforms you from a struggling artist into a thriving PMU professional</strong> with predictable income and a respected brand. It fills the lack of high-value clients and financial stability, enabling you to <em>be</em> the artist who focuses on their craft, not the grind. <strong>It eliminates</strong> booking stress, freeing you to continually feel the deep satisfaction and financial security that comes from mastering your artistry in a successful business.
+                        </p>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a href="#pricing-niche" class="cta-button secondary">See Client Booking Plans</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Niche Testimonials Section -->
+        <section id="testimonials-niche" class="section-padding" style="background-color: #f9f9f9;">
+            <div class="container">
+                <h2 class="text-center mb-1">How We Help PMU Artists Fill Their Books</h2>
+                <p class="text-center testimonials-subtext mb-2">
+                    Hear from PMU Artists who stopped chasing clients and started focusing on their passion.
+                </p>
+                <div class="testimonials-grid">
+                    <!-- Placeholder Testimonial 1 for PMU Artist -->
+                    <div class="testimonial-card fade-in-element">
+                        <p class="testimonial-quote">
+                            "I was spending hours on Instagram trying to get noticed. TurnClicksToClients brought me qualified leads who were actually ready to book! My schedule is consistently full now, and I'm attracting clients who value my work. The stress relief is amazing."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/70/c8a2c8/FFFFFF?Text=JA" alt="Artist Photo">
+                            <div>
+                                <p class="author-name">Jessica A., PMU Artist</p>
+                                <p class="author-niche">Ethereal Beauty PMU</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Placeholder Testimonial 2 for PMU Artist -->
+                    <div class="testimonial-card fade-in-element">
+                        <p class="testimonial-quote">
+                            "Before, bookings were so unpredictable. Now, I have a steady stream of consultations and appointments booked through their system. The automation for reminders and follow-ups saves me so much time. Best investment I've made for my business."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/70/8a2be2/FFFFFF?Text=MB" alt="Artist Photo">
+                            <div>
+                                <p class="author-name">Maria B., Owner & Artist</p>
+                                <p class="author-niche">Precision Aesthetics PMU</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Teaser Section (Simplified for PMU) -->
+        <section id="roi-teaser-niche" class="section-padding">
+            <div class="container text-center">
+                 <div class="commitment-box fade-in-element" style="border-left-color: #8a2be2;"> <!-- Blue-Violet border color -->
+                    <h2 class="mb-1">Focus on Your Artistry, We'll Handle the Bookings</h2>
+                    <p class="commitment-text" style="text-align: center;">
+                        Imagine spending less time worrying about marketing and more time creating beautiful results for happy clients. Predictable bookings mean predictable income and the freedom to grow your skills and reputation.
+                    </p>
+                    <a href="../index.html#cta-contact" class="cta-button secondary">Let's Fill Your Calendar</a>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Pricing Section (Link back to main) -->
+        <section id="pricing-niche" class="section-padding">
+             <div class="container text-center">
+                 <h2 class="mb-1">Ready for a Consistently Booked Schedule?</h2>
+                 <p class="pricing-subtext mb-2">Our plans are designed to deliver qualified client bookings for talented PMU Artists. Choose the path that fits your business goals.</p>
+                 <a href="../index.html#pricing" class="cta-button primary-cta">View Our Pricing Plans & Special Offer</a>
+                 <p class="mt-1">(You'll be taken to our main pricing section)</p>
+             </div>
+        </section>
+
+        <!-- Guarantee Section -->
+         <section id="guarantee-niche" class="section-padding" style="background-color: #e9e6ff;">
+            <div class="container text-center">
+                 <div class="guarantee-box">
+                    <img src="https://via.placeholder.com/100/8a2be2/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
+                    <h2 class="mb-1">Our 30-Day Premium Client Lead Guarantee + Your Peace of Mind</h2>
+                    <p class="guarantee-text mb-2">
+                        We focus on attracting clients who value quality PMU artistry. If you don't see a measurable increase in qualified leads specifically interested in your premium PMU services within the first 30 days, you don't pay our service fee. <strong>This gives you certainty that you'll connect with clients who truly appreciate your skill.</strong> Zero risk. Real high-value client opportunities.
+                    </p>
+                    <!-- START DOUBT CLOSE INTEGRATION -->
+                    <div class="doubt-close-snippet" style="margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; background-color: #f8f9fa; border-left: 4px solid #007bff; border-radius: 5px; text-align: left;">
+                        <p style="font-style: italic; color: #495057; margin-bottom: 1em;">
+                            Still a little hesitant? Maybe you doubt if this system can *truly* distinguish you in a crowded market, or if it will attract clients who genuinely appreciate and pay for your level of artistry. These thoughts are natural.
+                        </p>
+                        <p style="color: #343a40; margin-bottom: 1em;">
+                            But consider the alternative: the constant social media grind, the unpredictable bookings. Isn't this often perpetuated by doubts that prevent you from investing in a dedicated client attraction system?
+                        </p>
+                        <p style="color: #343a40; margin-bottom: 1em;">
+                            Our Client Magnet System is different because it's been <strong>engineered over 15+ years to elevate artists like you.</strong> It's not just about posting more; it's about strategic attraction and automated booking support. Have other methods offered this comprehensive approach, coupled with our unique guarantee and the safety of our "Go Back Mechanism"?
+                        </p>
+                        <p style="color: #343a40; font-weight: bold;">
+                            The only doubt worth having is whether continuing the old way will ever get you to the thriving artistry business you envision.
+                        </p>
+                    </div>
+                    <!-- END DOUBT CLOSE INTEGRATION -->
+                     <p class="guarantee-text mb-2">
+                        But true confidence comes from knowing you have options. We want you to feel completely secure stepping forward. That's why we also want to be clear: if, for any reason down the line, you feel our system isn't the right long-term fit, <strong>you can always return to managing your marketing the way you did before.</strong> The systems and strategies you were using aren't going anywhere. Nothing is lost, and the insights gained are yours forever.
+                    </p>
+                     <p class="guarantee-text mb-2">
+                        Our goal is simply to deliver such undeniable results and peace of mind that going back becomes unthinkable. This "go back" safety net ensures you can explore this growth opportunity with excitement, not anxiety.
+                    </p>
+                     <p class="guarantee-conditions">
+                        *Performance guarantee applies to service fee; client-funded ad spend separate. Requires active participation and clearly defined lead qualification criteria. Full terms provided.*
+                    </p>
+                </div>
+            </div>
+        </section>
+
+         <!-- Final CTA Section -->
+        <section id="cta-contact-niche" class="section-padding text-center" style="background: linear-gradient(to right, #8a2be2, #4b0082); color: #fff;">
+            <div class="container">
+                <h2>Curious if Your PMU Artistry Can Attract a Consistent Flow of Premium Clients?</h2>
+                <p class="cta-subtext mb-2">Stop letting unpredictable bookings control your income. Our 30-second quiz can help you see if our guaranteed system is the right fit to fill your calendar with clients who value your skill, before your competitor claims your city.</p>
+                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
+                <p class="cta-microcopy">(Quick, no-obligation check for eligibility & city availability)</p>
+                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Book a Brief Strategy Call</a>.</p>
+                 <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
+                 <p class="cta-ps mt-1">
+                     <strong>P.S.</strong> You desire a PMU artistry business that thrives on premium clients and predictable income. That success demands a price. Will it be endless hours on social media, the stress of inconsistent bookings, and the fight for recognition? That's a taxing way to build your dream.
+                     Or will you opt for a system refined over 15+ years, designed to elevate your artistry by attracting clients who value your skill <em>for you</em>? 
+                     Our 30-second quiz is your entry to this strategic shortcut – achieving the recognition and income you deserve without the grind. Top artists choose smart systems. What's your choice for your future? See if you qualify for the shortcut.
+                 </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../index.html#pricing">Pricing</a></li>
+                    <li><a href="../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                <ul>
+                    <li><a href="child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>💬</span> Have a ?<br>Click Here To Send Us a Instant Message
+    </div>
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Start a Conversation</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    <strong>Connect with Our Team Live!</strong><br>
+                    Mon-Fri, 10am - 5pm EST: Expect a reply within the hour.<br>
+                    After hours & weekends: We'll get back to you first thing next business morning.<br><br>
+                    Let us know how we can help your business grow! Please fill out the form below.
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <!-- Options will be populated by script.js -->
+                             <option value="" disabled selected>Select your industry...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Business Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">How can we help you?</label>
+                        <textarea id="chat-message" name="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Our team has been alerted and will get back to you as soon as possible.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

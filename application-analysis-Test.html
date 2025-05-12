@@ -1,0 +1,435 @@
+<!-- TEST COMMENT FROM ASSISTANT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzing Your Application | TurnClicksToClients.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .logo a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.8em;
+            color: #0056b3;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .analysis-container {
+            max-width: 700px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .analysis-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.5em, 3vw, 2em);
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+        .analysis-header p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        /* Carousel Styling */
+        #analysis-carousel-container {
+            position: relative;
+            min-height: 100px; /* Adjust as needed based on typical content height */
+            /* overflow: hidden; /* Not strictly needed for fade, but can keep if container has fixed height */
+            margin-bottom: 20px;
+            display: flex; /* To center the single item if needed */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Single Display Slot Styling */
+        #current-item-display {
+            width: 100%; /* Take full width of parent */
+            opacity: 0; /* Start faded out */
+            transition: opacity 0.7s ease-in-out; /* Fade transition */
+            /* min-height: 80px; /* Ensure it has some height even when empty for layout stability */
+        }
+
+        #current-item-display.visible {
+            opacity: 1; /* Fade in */
+        }
+
+        /* Style for the content INSIDE the single display slot */
+        .analysis-item-content {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-left: 4px solid #007bff;
+            padding: 12px 18px;
+            margin-bottom: 12px; /* Retain if you want space below if more items were stacked, but not needed for single slot */
+            border-radius: 6px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .analysis-item-content .question-text { /* Renamed from .analysis-item .question-text */
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            display: block;
+        }
+        /* Ensure this div takes up flexible space */
+        .analysis-item-content > div:first-child { /* Targeting the div holding Q&A */
+            flex-grow: 1;
+            flex-shrink: 1;
+            min-width: 0;
+            margin-right: 10px;
+        }
+        .status-passed {
+            color: #28a745;
+            font-weight: 700;
+            font-size: 0.9em;
+            white-space: nowrap;
+            /* margin-left: 15px; /* Let display:flex manage spacing if needed */
+            flex-shrink: 0; /* Prevent the status from shrinking */
+            min-width: 90px; /* Increased min-width slightly */
+            /* text-align: right; /* Replaced by flex below */
+            display: flex; /* Make it a flex container */
+            align-items: center; /* Vertically align checkmark and text */
+            justify-content: flex-end; /* Push content to the right */
+            animation: statusPop 0.3s ease-out forwards; /* Add pop animation */
+            opacity: 0; /* Start hidden for pop animation */
+        }
+        #current-item-display.visible .status-passed {
+            opacity: 1; /* Become visible when parent is visible */
+        }
+
+        @keyframes statusPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .status-passed::before { /* Using ::before for the checkmark */
+            content: '✔';
+            margin-right: 5px; /* Space between checkmark and "PASSED" */
+            font-size: 1.2em; /* Slightly larger checkmark */
+            color: #228b22; /* Forest green for a richer color */
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default, shown during final redirect */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+            color: #777;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo"><a href="index.html">TurnClicksToClients.com</a></div>
+
+    <div class="analysis-container">
+        <div class="analysis-header">
+            <h1 id="analysis-title">Analyzing Your Application...</h1>
+            <p id="analysis-subtitle">Our system is reviewing your responses. This will just take a moment.</p>
+            <p id="analysis-progress-text" style="font-size: 0.9em; color: #777; margin-top: -15px; margin-bottom: 20px;"></p>
+        </div>
+        <div id="analysis-carousel-container">
+            <div id="current-item-display"></div> <!-- Single slot for content -->
+        </div>
+        <div id="loader" class="loader"></div>
+    </div>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+13072049792">(307) 204-9792</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="index.html#core-offer">Our Offer</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
+                    <li><a href="index.html#guarantee">Guarantee</a></li>
+                    <li><a href="index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                <ul>
+                    <li><a href="niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/company/turnclickstoclients/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const analysisCarouselContainer = document.getElementById('analysis-carousel-container');
+            const analysisTitle = document.getElementById('analysis-title');
+            const analysisSubtitle = document.getElementById('analysis-subtitle');
+            const loader = document.getElementById('loader');
+            const analysisProgressText = document.getElementById('analysis-progress-text');
+            const BUY_PAGE_URL = 'pricing.html'; // Placeholder for your buy page
+
+            const firstName = params.get('first_name') || 'Applicant';
+            analysisTitle.textContent = `Analyzing Your Application, ${firstName}!`;
+
+            const questionMap = {
+                'niche': 'Selected Industry',
+                'city_serviced': 'Primary Service City',
+                'first_name': 'First Name',
+                'last_name': 'Last Name',
+                'email': 'Email Address',
+                'phone': 'Phone Number',
+                'client_source': 'Current Client Acquisition Method',
+                'goal_2025': 'Biggest Goal for 2025',
+                'goal_6_months': 'Primary Goal for Next 6 Months',
+                'client_flow': 'Client Flow Consistency',
+                'tools_software': 'Current Tools & Software Usage',
+                'business_experience': 'Years of Business Experience',
+                'challenge_details': 'Biggest Challenge Details',
+                'current_marketing_spend': 'Current Marketing Spend',
+                'marketing_results': 'Satisfaction with Marketing Results',
+                'open_to_new_approach': 'Openness to New Marketing Approach',
+                'decision_maker': 'Decision Maker Status',
+                'investment_readiness': 'Investment Readiness for Growth',
+                'commitment_level': 'Commitment to Growth Process',
+                'questions_for_us': 'Questions for Us'
+            };
+
+            const analysisItems = [];
+            params.forEach((value, key) => {
+                if (questionMap[key] && value) {
+                    analysisItems.push({ question: questionMap[key], answer: value });
+                }
+            });
+
+            let currentIndex = 0;
+            const currentItemDisplay = document.getElementById('current-item-display');
+
+            function displayNextItem() {
+                if (currentIndex < analysisItems.length) {
+                    const item = analysisItems[currentIndex];
+                    analysisProgressText.textContent = `Analyzing item ${currentIndex + 1} of ${analysisItems.length}...`;
+                    
+                    currentItemDisplay.classList.remove('visible'); // Fade out previous item
+
+                    setTimeout(() => {
+                        // Create item content
+                        const itemContent = document.createElement('div');
+                        itemContent.classList.add('analysis-item-content');
+                        
+                        const textDiv = document.createElement('div');
+                        const questionSpan = document.createElement('span');
+                        questionSpan.classList.add('question-text');
+                        questionSpan.textContent = item.question;
+                        
+                        const answerSpan = document.createElement('span');
+                        answerSpan.textContent = item.answer;
+                        if (item.answer.length > 50) { // Truncate long answers
+                            answerSpan.textContent = item.answer.substring(0, 47) + '...';
+                        }
+                        
+                        textDiv.appendChild(questionSpan);
+                        textDiv.appendChild(answerSpan);
+                        itemContent.appendChild(textDiv);
+
+                        const statusSpan = document.createElement('span');
+                        statusSpan.classList.add('status-passed');
+                        statusSpan.textContent = 'PASSED';
+                        itemContent.appendChild(statusSpan);
+
+                        currentItemDisplay.innerHTML = ''; // Clear previous content
+                        currentItemDisplay.appendChild(itemContent);
+                        currentItemDisplay.classList.add('visible'); // Fade in new item
+
+                        currentIndex++;
+                        setTimeout(displayNextItem, 1500); // Delay before showing next item
+                    }, 700); // Delay for fade-out to complete
+
+                } else {
+                    analysisProgressText.textContent = 'Analysis Complete!';
+                    analysisTitle.textContent = `Congratulations, ${firstName}! You're Pre-Qualified!`;
+                    analysisSubtitle.textContent = 'Based on your responses, your business is an excellent candidate for our system. Redirecting you to the next step...';
+                    loader.style.display = 'block';
+                    
+                    // Clear the displayed item to avoid it showing during loader
+                    currentItemDisplay.classList.remove('visible');
+                     setTimeout(() => { currentItemDisplay.innerHTML = ''; }, 700); 
+
+                    // Collect all params for redirect
+                    const redirectParams = new URLSearchParams();
+                    params.forEach((value, key) => {
+                        redirectParams.append(key, value);
+                    });
+
+                    setTimeout(function() {
+                        window.location.href = BUY_PAGE_URL + '?' + redirectParams.toString();
+                    }, 3000); // Delay before redirect
+                }
+            }
+
+            displayNextItem(); // Start the carousel
+        });
+    </script>
+    <script src="script.js"></script>
+
+    <!-- Chat Button and Modal -->
+    <button id="chat-button" style="""
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    """><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12zM7 9h10v2H7zm0-3h10v2H7z"/></svg></button>
+
+    <div id="chat-modal" style="""
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 350px;
+        max-height: 80vh;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        z-index: 1001;
+        overflow: hidden;
+    """>
+        <div id="chat-header" style="""
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        """>
+            <span>Chat with Us</span>
+            <button id="close-chat" style="""
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+            """>×</button>
+        </div>
+        <div id="chat-body" style="""
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+        """>
+            <p style="font-size: 0.9em; color: #555;">Welcome! How can we help you today? Select your industry to get started or ask a general question.</p>
+            
+            <div id="initial-options" style="margin-top: 15px;">
+                <select id="industry-dropdown" style="""
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    font-size: 0.95em;
+                """>
+                    <option value="">-- Select Your Industry --</option>
+                    </select>
+                <button id="chat-start-specific" class="cta-button" style="width: 100%; padding: 10px; font-size: 0.95em; margin-bottom: 10px;">Chat About My Industry</button>
+                <button id="chat-start-general" class="cta-button cta-button-secondary" style="width: 100%; padding: 10px; font-size: 0.95em;">Ask a General Question</button>
+            </div>
+
+            <div id="chat-messages" style="margin-top: 10px; display: none;">
+                <!-- Messages will appear here -->
+            </div>
+        </div>
+        <div id="chat-input-area" style="""
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            display: none; /* Initially hidden */
+        """>
+            <textarea id="chat-input" placeholder="Type your message..." style="""
+                width: calc(100% - 70px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                resize: none;
+                height: 40px;
+                font-size: 0.95em;
+                margin-right: 5px;
+                vertical-align: middle;
+            """ rows="1"></textarea>
+            <button id="send-chat" class="cta-button" style="""
+                width: 60px;
+                padding: 10px 0;
+                font-size: 0.95em;
+                vertical-align: middle;
+            """>Send</button>
+        </div>
+    </div>
+</body>
+</html> 
