@@ -1,0 +1,63 @@
+/* Simple Mobile Navigation Fix */
+
+/* Ensure the hamburger button is visible on mobile */
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    z-index: 100;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  /* Mobile navigation menu */
+  #main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 99;
+    padding: 1rem;
+    flex-direction: column;
+  }
+  
+  #main-nav.open {
+    display: flex;
+  }
+  
+  /* Mobile navigation items */
+  #main-nav li {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  #main-nav li:last-child {
+    border-bottom: none;
+  }
+  
+  /* GET STARTED button */
+  a.cta-button.nav-cta,
+  .cta-button.nav-cta,
+  a[href="quiz-start.html"],
+  .get-started {
+    color: white !important;
+  }
+}
