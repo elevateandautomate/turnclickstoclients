@@ -241,16 +241,22 @@
     </style>
 
     <script src="/tracking.js"></script>
-  </head>
+      <link rel="stylesheet" href="../mobile_optimization.css">
+</head>
 <body>
     <!-- Standard Site Header -->
     <header>
-        <nav>
-            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
                     <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
@@ -264,8 +270,8 @@
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
+                <li style="margin-right: 8px;"><a href="../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../index.html#guarantee">Guarantee</a></li>
                 <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
             </ul>
         </nav>
