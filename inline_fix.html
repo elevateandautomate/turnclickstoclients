@@ -1,0 +1,92 @@
+<style>
+/* Direct inline fixes */
+.cta-button.nav-cta, 
+a.cta-button.nav-cta, 
+.get-started, 
+a.get-started, 
+a[href="quiz-start.html"] {
+    color: white !important;
+}
+
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block !important;
+}
+
+.dropdown-menu {
+    padding: 10px 0 !important;
+}
+
+.dropdown-menu:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    top: -20px;
+}
+</style>
+
+<script>
+// Direct inline JavaScript fix
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix GET STARTED button color
+    var ctaButtons = document.querySelectorAll('.cta-button, .nav-cta, [href="quiz-start.html"]');
+    for (var i = 0; i < ctaButtons.length; i++) {
+        ctaButtons[i].style.color = 'white';
+    }
+    
+    // Fix dropdown menu
+    var dropdownParent = document.querySelector('.dropdown-parent');
+    var dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownParent && dropdownMenu) {
+        // Create a buffer element
+        var buffer = document.createElement('div');
+        buffer.style.position = 'absolute';
+        buffer.style.height = '20px';
+        buffer.style.width = '100%';
+        buffer.style.top = '100%';
+        buffer.style.left = '0';
+        buffer.style.zIndex = '999';
+        dropdownParent.appendChild(buffer);
+        
+        // Make dropdown stay visible
+        dropdownParent.onmouseenter = function() {
+            dropdownMenu.style.display = 'block';
+        };
+        
+        buffer.onmouseenter = function() {
+            dropdownMenu.style.display = 'block';
+        };
+        
+        dropdownMenu.onmouseenter = function() {
+            this.style.display = 'block';
+        };
+        
+        // Add delay before hiding
+        dropdownParent.onmouseleave = function() {
+            setTimeout(function() {
+                if (!dropdownMenu.matches(':hover') && !buffer.matches(':hover')) {
+                    dropdownMenu.style.display = 'none';
+                }
+            }, 300);
+        };
+        
+        buffer.onmouseleave = function() {
+            setTimeout(function() {
+                if (!dropdownMenu.matches(':hover') && !dropdownParent.matches(':hover')) {
+                    dropdownMenu.style.display = 'none';
+                }
+            }, 300);
+        };
+        
+        dropdownMenu.onmouseleave = function() {
+            setTimeout(function() {
+                if (!dropdownParent.matches(':hover') && !buffer.matches(':hover')) {
+                    this.style.display = 'none';
+                }
+            }.bind(this), 300);
+        };
+    }
+});
+</script>

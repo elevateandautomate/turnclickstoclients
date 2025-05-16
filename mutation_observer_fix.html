@@ -1,0 +1,32 @@
+<script>
+// Use MutationObserver to keep the GET STARTED button white
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to fix the button
+    function fixButton(button) {
+        button.style.setProperty('color', 'white', 'important');
+    }
+    
+    // Initial fix
+    var buttons = document.querySelectorAll('.cta-button, .nav-cta, a[href="quiz-start.html"]');
+    buttons.forEach(fixButton);
+    
+    // Set up MutationObserver to watch for style changes
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                fixButton(mutation.target);
+            }
+        });
+    });
+    
+    // Start observing each button
+    buttons.forEach(function(button) {
+        observer.observe(button, { attributes: true, attributeFilter: ['style'] });
+    });
+    
+    // Also check periodically
+    setInterval(function() {
+        document.querySelectorAll('.cta-button, .nav-cta, a[href="quiz-start.html"]').forEach(fixButton);
+    }, 100);
+});
+</script>

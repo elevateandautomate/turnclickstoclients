@@ -35,8 +35,263 @@
     <link rel="stylesheet" href="chat_widget_improvements.css">
     <link rel="stylesheet" href="text_spacing.css">
     <link rel="stylesheet" href="improved_hamburger_fix.css">
+    <link rel="stylesheet" href="navigation_fix.css">
+    <link rel="stylesheet" href="get_started_override.css">
+<style>
+/* Use body class for higher specificity */
+body.white-cta .cta-button,
+body.white-cta .nav-cta,
+body.white-cta a[href="quiz-start.html"],
+body.white-cta .get-started,
+body.white-cta [class*="cta"],
+body.white-cta [class*="get-started"],
+body.white-cta nav[aria-label="Main Navigation"] li a.cta-button.nav-cta,
+body.white-cta nav[aria-label="Main Navigation"] li a[href="quiz-start.html"],
+body.white-cta header nav li a.cta-button.nav-cta,
+body.white-cta header nav li a[href="quiz-start.html"],
+body.white-cta #main-nav li:last-child a,
+body.white-cta nav ul li:last-child a {
+  color: white !important;
+  color: #ffffff !important;
+}
+</style>
+<style>
+/* Direct override for GET STARTED button */
+<script>
+// Use MutationObserver to keep the GET STARTED button white
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to fix the button
+    function fixButton(button) {
+        button.style.setProperty('color', 'white', 'important');
+    }
+    
+    // Initial fix
+    var buttons = document.querySelectorAll('.cta-button, .nav-cta, a[href="quiz-start.html"]');
+    buttons.forEach(fixButton);
+    
+    // Set up MutationObserver to watch for style changes
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                fixButton(mutation.target);
+            }
+        });
+    });
+    
+    // Start observing each button
+    buttons.forEach(function(button) {
+        observer.observe(button, { attributes: true, attributeFilter: ['style'] });
+    });
+    
+    // Also check periodically
+    setInterval(function() {
+        document.querySelectorAll('.cta-button, .nav-cta, a[href="quiz-start.html"]').forEach(fixButton);
+    }, 100);
+});
+</script>
+a.cta-button.nav-cta,
+.cta-button.nav-cta,
+a[href="quiz-start.html"].cta-button,
+a[href="quiz-start.html"],
+.get-started,
+a.get-started,
+[class*="cta"],
+[class*="get-started"],
+nav[aria-label="Main Navigation"] li a.cta-button.nav-cta,
+nav[aria-label="Main Navigation"] li a[href="quiz-start.html"],
+header nav li a.cta-button.nav-cta,
+header nav li a[href="quiz-start.html"],
+#main-nav li:last-child a,
+nav ul li:last-child a {
+  color: white !important;
+  color: #ffffff !important;
+}
+</style>
+    <link rel="stylesheet" href="get_started_fix.css">
+    <!-- Inline fixes for navigation issues -->
+    <link rel="stylesheet" href="header_nav_fix.css">
+<script>
+// Immediate and persistent fix for GET STARTED button
+(function() {
+    // Initial fix
+    fixGetStartedButton();
+    
+    // Set up a recurring check to ensure the button stays white
+    setInterval(fixGetStartedButton, 100); // Check every 100ms
+    
+    // Also run after window load event
+    window.addEventListener('load', function() {
+        fixGetStartedButton();
+        // Run again after a slight delay to catch any late changes
+        setTimeout(fixGetStartedButton, 500);
+    });
+    
+    function fixGetStartedButton() {
+        // Target all possible GET STARTED button selectors
+        var buttons = document.querySelectorAll('.cta-button, .nav-cta, a[href="quiz-start.html"], .get-started, [class*="cta"], [class*="get-started"]');
+        
+        for (var i = 0; i < buttons.length; i++) {
+            var button = buttons[i];
+            // Force white color with !important
+            button.setAttribute('style', (button.getAttribute('style') || '') + '; color: white !important;');
+            
+            // Also set the color property directly
+            button.style.setProperty('color', 'white', 'important');
+        }
+        
+        // Specifically target the navigation GET STARTED button
+        var navCta = document.querySelector('nav a.cta-button.nav-cta');
+        if (navCta) {
+            navCta.setAttribute('style', (navCta.getAttribute('style') || '') + '; color: white !important;');
+            navCta.style.setProperty('color', 'white', 'important');
+        }
+    }
+})();
+</script>
+<script>
+// Immediate fix for dropdown width
+(function() {
+    // Get all dropdown menus
+    var dropdownMenus = document.querySelectorAll('.dropdown-menu');
+    
+    // Apply width fixes
+    for (var i = 0; i < dropdownMenus.length; i++) {
+        var menu = dropdownMenus[i];
+        
+        // Set width to auto
+        menu.style.width = 'auto';
+        menu.style.maxWidth = 'fit-content';
+        
+        // Fix list items
+        var listItems = menu.querySelectorAll('li');
+        for (var j = 0; j < listItems.length; j++) {
+            var item = listItems[j];
+            item.style.width = 'auto';
+            item.style.maxWidth = 'fit-content';
+            
+            // Fix links
+            var link = item.querySelector('a');
+            if (link) {
+                link.style.width = 'auto';
+                link.style.maxWidth = 'fit-content';
+            }
+        }
+    }
+})();
+</script>
+<style>
+/* Direct fix for dropdown menu width */
+.dropdown-menu {
+  width: auto !important;
+  max-width: fit-content !important;
+}
+
+.dropdown-menu li {
+  width: auto !important;
+  max-width: fit-content !important;
+}
+
+.dropdown-menu li a {
+  width: auto !important;
+  max-width: fit-content !important;
+  display: block !important;
+}
+</style>
+<style>
+/* Direct inline fixes */
+.cta-button.nav-cta, 
+a.cta-button.nav-cta, 
+.get-started, 
+a.get-started, 
+a[href="quiz-start.html"] {
+    color: white !important;
+}
+
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block !important;
+}
+
+.dropdown-menu {
+    padding: 10px 0 !important;
+}
+
+.dropdown-menu:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    top: -20px;
+}
+</style>
+
+<script>
+// Direct inline JavaScript fix
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix GET STARTED button color
+    var ctaButtons = document.querySelectorAll('.cta-button, .nav-cta, [href="quiz-start.html"]');
+    for (var i = 0; i < ctaButtons.length; i++) {
+        ctaButtons[i].style.color = 'white';
+    }
+    
+    // Fix dropdown menu
+    var dropdownParent = document.querySelector('.dropdown-parent');
+    var dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownParent && dropdownMenu) {
+        // Create a buffer element
+        var buffer = document.createElement('div');
+        buffer.style.position = 'absolute';
+        buffer.style.height = '20px';
+        buffer.style.width = '100%';
+        buffer.style.top = '100%';
+        buffer.style.left = '0';
+        buffer.style.zIndex = '999';
+        dropdownParent.appendChild(buffer);
+        
+        // Make dropdown stay visible
+        dropdownParent.onmouseenter = function() {
+            dropdownMenu.style.display = 'block';
+        };
+        
+        buffer.onmouseenter = function() {
+            dropdownMenu.style.display = 'block';
+        };
+        
+        dropdownMenu.onmouseenter = function() {
+            this.style.display = 'block';
+        };
+        
+        // Add delay before hiding
+        dropdownParent.onmouseleave = function() {
+            setTimeout(function() {
+                if (!dropdownMenu.matches(':hover') && !buffer.matches(':hover')) {
+                    dropdownMenu.style.display = 'none';
+                }
+            }, 300);
+        };
+        
+        buffer.onmouseleave = function() {
+            setTimeout(function() {
+                if (!dropdownMenu.matches(':hover') && !dropdownParent.matches(':hover')) {
+                    dropdownMenu.style.display = 'none';
+                }
+            }, 300);
+        };
+        
+        dropdownMenu.onmouseleave = function() {
+            setTimeout(function() {
+                if (!dropdownParent.matches(':hover') && !buffer.matches(':hover')) {
+                    this.style.display = 'none';
+                }
+            }.bind(this), 300);
+        };
+    }
+});
+</script>
+    <link rel="stylesheet" href="navigation_layout_fix.css">
 </head>
-<body>
+<body class="white-cta">
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
@@ -51,9 +306,9 @@
             <ul id="main-nav">
                 <li style="margin-right: 8px;"><a href="index.html">Home</a></li>
                 <li style="margin-right: 8px;"><a href="about.html">About Us</a></li>
-                <li class="dropdown nav-item-parent" style="margin-right: 8px;">
-                    <a href="#ideal-clients">Clients We Serve <span class="dropdown nav-item-arrow">▼</span></a>
-                    <ul class="dropdown nav-item-menu">
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="niches/child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="niches/pmu-artists.html">PMU Artists</a></li>
@@ -67,7 +322,7 @@
                 </li>
                 <li style="margin-right: 8px;"><a href="index.html#core-offer">Our Offer</a></li>
                 <li style="margin-right: 8px;"><a href="index.html#guarantee">Guarantee</a></li>
-                <li><a href="index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+                <li><a href="quiz-start.html" class="cta-button nav-cta" style="color: white !important; color: #ffffff !important;">GET STARTED</a></li>
             </ul>
         </nav>
     </header>
@@ -716,6 +971,7 @@
             </div>
         </section>
 
+    <script src="get_started_persistent_fix.js"></script>
     </main>
     <footer>
         <div class="footer-main container">
@@ -747,6 +1003,7 @@
                     <li><a href="niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
                     <li><a href="niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
                     <li><a href="niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+    <script src="dropdown_width_fix.js"></script>
                     <li><a href="niches/dme-clinics.html">DME Clinics</a></li>
                 </ul>
             </div>
@@ -858,7 +1115,10 @@
         });
       });
     }
+    <script src="dropdown_fix.js"></script>
     </script>
+    <script src="header_nav_fix.js"></script>
     <script src="improved_hamburger_fix.js"></script>
+    <script src="navigation_fix.js"></script>
 </body>
 </html>

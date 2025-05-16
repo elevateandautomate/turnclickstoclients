@@ -1,0 +1,28 @@
+/* Override for GET STARTED button */
+a.cta-button.nav-cta,
+.cta-button.nav-cta,
+a[href="quiz-start.html"].cta-button,
+a[href="quiz-start.html"],
+.get-started,
+a.get-started,
+[class*="cta"],
+[class*="get-started"] {
+  color: white !important;
+  color: #ffffff !important;
+}
+
+/* Apply the style with higher specificity */
+nav[aria-label="Main Navigation"] li a.cta-button.nav-cta,
+nav[aria-label="Main Navigation"] li a[href="quiz-start.html"],
+header nav li a.cta-button.nav-cta,
+header nav li a[href="quiz-start.html"] {
+  color: white !important;
+  color: #ffffff !important;
+}
+
+/* Target by position */
+#main-nav li:last-child a,
+nav ul li:last-child a {
+  color: white !important;
+  color: #ffffff !important;
+}

@@ -1,0 +1,31 @@
+<script>
+// Immediate fix for dropdown width
+(function() {
+    // Get all dropdown menus
+    var dropdownMenus = document.querySelectorAll('.dropdown-menu');
+    
+    // Apply width fixes
+    for (var i = 0; i < dropdownMenus.length; i++) {
+        var menu = dropdownMenus[i];
+        
+        // Set width to auto
+        menu.style.width = 'auto';
+        menu.style.maxWidth = 'fit-content';
+        
+        // Fix list items
+        var listItems = menu.querySelectorAll('li');
+        for (var j = 0; j < listItems.length; j++) {
+            var item = listItems[j];
+            item.style.width = 'auto';
+            item.style.maxWidth = 'fit-content';
+            
+            // Fix links
+            var link = item.querySelector('a');
+            if (link) {
+                link.style.width = 'auto';
+                link.style.maxWidth = 'fit-content';
+            }
+        }
+    }
+})();
+</script>
