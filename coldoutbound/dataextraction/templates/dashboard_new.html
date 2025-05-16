@@ -1,0 +1,464 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="true">
+                        <i class="bi bi-people"></i> Contacts
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs" type="button" role="tab" aria-controls="logs" aria-selected="false">
+                        <i class="bi bi-journal-text"></i> Logs
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="linkedin-tab" data-bs-toggle="tab" data-bs-target="#linkedin" type="button" role="tab" aria-controls="linkedin" aria-selected="false">
+                        <i class="bi bi-gear"></i> Settings
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content p-3 border border-top-0 rounded-bottom bg-white" id="dashboardTabsContent">
+                <!-- Contacts Tab -->
+                <div class="tab-pane fade show active" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="mb-0">Contact Processing Status</h3>
+                        <div>
+                            <a href="/" class="btn btn-primary">
+                                <i class="bi bi-play-fill"></i> Process More Contacts
+                            </a>
+                        </div>
+                    </div>
+
+                    {% if is_processing %}
+                    <div class="alert alert-info mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div>
+                                <strong>Processing in progress...</strong>
+                                <p class="mb-0">The bot is currently processing contacts. Check the logs for details.</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if contacts %}
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped" id="contactsTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name/Business</th>
+                                    <th>Website</th>
+                                    <th>Contact Form</th>
+                                    <th>LinkedIn</th>
+                                    <th>Last Updated</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contact in contacts %}
+                                <tr>
+                                    <td>{{ contact.id }}</td>
+                                    <td>
+                                        {% if contact.dentist_name_profile %}
+                                        <strong>{{ contact.dentist_name_profile }}</strong>
+                                        {% elif contact.name %}
+                                        <strong>{{ contact.name }}</strong>
+                                        {% else %}
+                                        <em>No name</em>
+                                        {% endif %}
+
+                                        {% if contact.business_name_profile_page %}
+                                        <div class="small text-muted">{{ contact.business_name_profile_page }}</div>
+                                        {% elif contact.company %}
+                                        <div class="small text-muted">{{ contact.company }}</div>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if contact.website_url_profile %}
+                                        <a href="{{ contact.website_url_profile }}" target="_blank" class="text-truncate d-inline-block" style="max-width: 200px;">
+                                            {{ contact.website_url_profile }}
+                                        </a>
+                                        {% elif contact.website_url %}
+                                        <a href="{{ contact.website_url }}" target="_blank" class="text-truncate d-inline-block" style="max-width: 200px;">
+                                            {{ contact.website_url }}
+                                        </a>
+                                        {% else %}
+                                        <span class="badge bg-secondary">No website</span>
+                                        {% endif %}
+
+                                        {% if contact.website_visited == true %}
+                                        <span class="badge bg-success">Visited</span>
+                                        {% elif contact.website_visited == false %}
+                                        <span class="badge bg-danger">Failed</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if contact.contact_form_found == true %}
+                                            {% if contact.contact_form_submitted == true %}
+                                            <span class="badge bg-success">Submitted</span>
+                                            {% elif contact.contact_form_submitted == false %}
+                                            <span class="badge bg-warning">Found but Failed</span>
+                                            {% else %}
+                                            <span class="badge bg-info">Found</span>
+                                            {% endif %}
+                                        {% elif contact.contact_form_found == false %}
+                                        <span class="badge bg-danger">Not Found</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">Pending</span>
+                                        {% endif %}
+
+                                        {% if contact.contact_form_submitted_message %}
+                                        <div class="small text-muted text-truncate" style="max-width: 200px;" title="{{ contact.contact_form_submitted_message }}">
+                                            {{ contact.contact_form_submitted_message }}
+                                        </div>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if contact.linkedin_url_profile %}
+                                        <a href="{{ contact.linkedin_url_profile }}" target="_blank" class="small">
+                                            <i class="bi bi-linkedin"></i> Profile
+                                        </a>
+                                        {% elif contact.linkedin_url %}
+                                        <a href="{{ contact.linkedin_url }}" target="_blank" class="small">
+                                            <i class="bi bi-linkedin"></i> Profile
+                                        </a>
+                                        {% endif %}
+
+                                        {% if contact.linkedin_connected == true %}
+                                        <span class="badge bg-success">Connected</span>
+                                        {% elif contact.linkedin_connected == false %}
+                                        <span class="badge bg-danger">Failed</span>
+                                        {% else %}
+                                        <span class="badge bg-secondary">Pending</span>
+                                        {% endif %}
+
+                                        {% if contact.linkedin_connected_message %}
+                                        <div class="small text-muted text-truncate" style="max-width: 200px;" title="{{ contact.linkedin_connected_message }}">
+                                            {{ contact.linkedin_connected_message }}
+                                        </div>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if contact.contact_form_submitted_timestamp %}
+                                        {{ contact.contact_form_submitted_timestamp|datetime }}
+                                        {% elif contact.linkedin_connected_timestamp %}
+                                        {{ contact.linkedin_connected_timestamp|datetime }}
+                                        {% elif contact.website_visited_timestamp %}
+                                        {{ contact.website_visited_timestamp|datetime }}
+                                        {% elif contact.created_at %}
+                                        {{ contact.created_at|datetime }}
+                                        {% else %}
+                                        <em>Unknown</em>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary retry-contact" data-id="{{ contact.id }}" {% if is_processing %}disabled{% endif %}>
+                                            <i class="bi bi-arrow-repeat"></i> Retry
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        No contacts found. Make sure your Supabase connection is configured correctly.
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Logs Tab -->
+                <div class="tab-pane fade" id="logs" role="tabpanel" aria-labelledby="logs-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="mb-0">Application Logs</h3>
+                        <div>
+                            <button id="refreshLogs" class="btn btn-outline-primary">
+                                <i class="bi bi-arrow-repeat"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="logs-container bg-dark text-light p-3 rounded" style="height: 500px; overflow-y: auto;">
+                        <div id="logsContent" class="font-monospace small">
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-light" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-3">Loading logs...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-pane fade" id="linkedin" role="tabpanel" aria-labelledby="linkedin-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">LinkedIn & Supabase Credentials</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/settings/credentials" method="post">
+                                        <div class="mb-3">
+                                            <label for="linkedin_username" class="form-label">LinkedIn Email/Username</label>
+                                            <input type="email" class="form-control" id="linkedin_username" name="linkedin_username" value="{{ settings.get('linkedin_username', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="linkedin_password" class="form-label">LinkedIn Password</label>
+                                            <input type="password" class="form-control" id="linkedin_password" name="linkedin_password" value="{{ settings.get('linkedin_password', '') }}">
+                                        </div>
+                                        <hr>
+                                        <div class="mb-3">
+                                            <label for="supabase_url" class="form-label">Supabase URL</label>
+                                            <input type="text" class="form-control" id="supabase_url" name="supabase_url" value="{{ settings.get('supabase_url', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="supabase_key" class="form-label">Supabase Key</label>
+                                            <input type="text" class="form-control" id="supabase_key" name="supabase_key" value="{{ settings.get('supabase_key', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="table_name" class="form-label">Table Name</label>
+                                            <input type="text" class="form-control" id="table_name" name="table_name" value="{{ settings.get('table_name', 'dentist') }}">
+                                        </div>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">Save Credentials</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">Message Templates</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/settings/messages" method="post">
+                                        <div class="mb-3">
+                                            <label for="your_name" class="form-label">Your Name</label>
+                                            <input type="text" class="form-control" id="your_name" name="your_name" value="{{ settings.get('your_name', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="your_email" class="form-label">Your Email</label>
+                                            <input type="email" class="form-control" id="your_email" name="your_email" value="{{ settings.get('your_email', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="your_company" class="form-label">Your Company</label>
+                                            <input type="text" class="form-control" id="your_company" name="your_company" value="{{ settings.get('your_company', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Your Phone Number</label>
+                                            <input type="text" class="form-control" id="phone" name="phone" value="{{ settings.get('phone', '') }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contact_form_template" class="form-label">Contact Form Message Template</label>
+                                            <textarea class="form-control" id="contact_form_template" name="contact_form_template" rows="4">{{ settings.get('contact_form_template', '') }}</textarea>
+                                            <div class="form-text template-variables-container">
+                                                <strong>Available variables:</strong><br>
+                                                {% if template_variables %}
+                                                    {% for var in template_variables %}
+                                                        <span class="badge bg-secondary me-1 mb-1">{{ "{" }}{{ var }}{{ "}" }}</span>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {name}, {company}, {your_name}, {your_email}, {phone}, {first_name}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="linkedin_template" class="form-label">LinkedIn Message Template</label>
+                                            <textarea class="form-control" id="linkedin_template" name="linkedin_template" rows="4">{{ settings.get('linkedin_template', '') }}</textarea>
+                                            <div class="form-text template-variables-container">
+                                                <strong>Available variables:</strong> (Max 300 characters)<br>
+                                                {% if template_variables %}
+                                                    {% for var in template_variables %}
+                                                        <span class="badge bg-secondary me-1 mb-1">{{ "{" }}{{ var }}{{ "}" }}</span>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {name}, {company}, {your_name}, {your_email}, {phone}, {first_name}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">Save Message Templates</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable for contacts
+        $('#contactsTable').DataTable({
+            order: [[5, 'desc']],
+            pageLength: 25,
+            responsive: true
+        });
+
+        // Load logs on tab click
+        $('#logs-tab').on('shown.bs.tab', function() {
+            loadLogs();
+        });
+
+        // Update template variables when table name changes
+        $('#table_name').on('change', function() {
+            // Save the setting first
+            $.post('/api/update-setting', {
+                key: 'table_name',
+                value: $(this).val()
+            }).done(function() {
+                // Then fetch the new variables
+                $.get('/api/template-variables', function(data) {
+                    if (data.success && data.variables) {
+                        updateTemplateVariables(data.variables);
+                    }
+                });
+            });
+        });
+
+        // Function to update template variables display
+        function updateTemplateVariables(variables) {
+            const variableContainers = $('.template-variables-container');
+
+            variableContainers.each(function() {
+                let html = '<strong>Available variables:</strong><br>';
+
+                variables.forEach(function(variable) {
+                    html += '<span class="badge bg-secondary me-1 mb-1">{' + variable + '}</span>';
+                });
+
+                $(this).html(html);
+            });
+        }
+
+        // Refresh logs button
+        $('#refreshLogs').click(function() {
+            loadLogs();
+        });
+
+        // Auto-refresh logs every 5 seconds if tab is active
+        setInterval(function() {
+            if ($('#logs-tab').hasClass('active')) {
+                loadLogs();
+            }
+        }, 5000);
+
+        // Retry contact
+        $('.retry-contact').click(function() {
+            const contactId = $(this).data('id');
+            const button = $(this);
+
+            button.prop('disabled', true);
+            button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Retrying...');
+
+            $.get('/api/retry/' + contactId, function(data) {
+                if (data.success) {
+                    // Show success message
+                    alert('Contact queued for retry. Check logs for progress.');
+
+                    // Redirect to dashboard after a short delay
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    alert('Error: ' + data.error);
+                    button.prop('disabled', false);
+                    button.html('<i class="bi bi-arrow-repeat"></i> Retry');
+                }
+            }).fail(function(xhr) {
+                alert('Error: ' + (xhr.responseJSON?.error || 'Unknown error'));
+                button.prop('disabled', false);
+                button.html('<i class="bi bi-arrow-repeat"></i> Retry');
+            });
+        });
+
+        // Function to load logs
+        function loadLogs() {
+            $('#logsContent').html('<div class="text-center py-5"><div class="spinner-border text-light" role="status"></div><p class="mt-3">Loading logs...</p></div>');
+
+            $.get('/api/logs?limit=100', function(data) {
+                if (data.success && data.logs) {
+                    let logsHtml = '';
+
+                    if (data.logs.length === 0) {
+                        logsHtml = '<div class="text-center py-5"><p>No logs available.</p></div>';
+                    } else {
+                        // Reverse the logs to show newest at the bottom
+                        const sortedLogs = [...data.logs].reverse();
+
+                        sortedLogs.forEach(function(log) {
+                            let logClass = '';
+                            let timestamp = '';
+
+                            if (log.level === 'ERROR') {
+                                logClass = 'text-danger';
+                            } else if (log.level === 'WARNING') {
+                                logClass = 'text-warning';
+                            } else if (log.level === 'INFO') {
+                                logClass = 'text-info';
+                            }
+
+                            if (log.timestamp) {
+                                // Format timestamp if available
+                                try {
+                                    const date = new Date(log.timestamp);
+                                    timestamp = date.toLocaleTimeString();
+                                } catch (e) {
+                                    timestamp = log.timestamp;
+                                }
+                            }
+
+                            logsHtml += '<div class="log-entry ' + logClass + '">' +
+                                        (timestamp ? '<span class="text-muted">[' + timestamp + ']</span> ' : '') +
+                                        log.message + '</div>';
+                        });
+                    }
+
+                    $('#logsContent').html(logsHtml);
+
+                    // Scroll to bottom of logs
+                    const logsContainer = document.querySelector('.logs-container');
+                    logsContainer.scrollTop = logsContainer.scrollHeight;
+                } else {
+                    $('#logsContent').html('<div class="text-center py-5"><p class="text-danger">Error loading logs: ' + (data.error || 'Unknown error') + '</p></div>');
+                }
+            }).fail(function(xhr) {
+                $('#logsContent').html('<div class="text-center py-5"><p class="text-danger">Error loading logs: ' + (xhr.responseJSON?.error || 'Unknown error') + '</p></div>');
+            });
+        }
+
+        // Set active tab based on hash
+        const hash = window.location.hash;
+        if (hash) {
+            $('#dashboardTabs button[data-bs-target="' + hash + '"]').tab('show');
+        }
+
+        // Update hash on tab change
+        $('#dashboardTabs button').on('shown.bs.tab', function(e) {
+            window.location.hash = $(e.target).data('bs-target');
+        });
+    });
+</script>
+{% endblock %}

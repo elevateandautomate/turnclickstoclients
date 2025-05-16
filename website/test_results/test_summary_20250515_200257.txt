@@ -1,0 +1,505 @@
+=== SYSTEM TEST SUMMARY ===
+
+Test completed at: 2025-05-15 20:02:57
+
+1. Website Functionality
+   Homepage: ✅
+   Quiz Selection: ✅
+   Quiz Pages:
+     - cosmetic-dentistry: ✅
+     - child-care-centers: ✅
+     - pmu-artists: ✅
+     - sleep-apnea-snoring-clinics: ✅
+     - hearing-aid-audiology-clinics: ✅
+     - dme-clinics: ✅
+     - non-surgical-body-contouring: ✅
+   Results Pages:
+     - cosmetic-dentistry: 33/33 pages working (100.0%)
+     - child-care-centers: 33/33 pages working (100.0%)
+     - pmu-artists: 33/33 pages working (100.0%)
+     - sleep-apnea-snoring-clinics: 33/33 pages working (100.0%)
+     - hearing-aid-audiology-clinics: 33/33 pages working (100.0%)
+     - dme-clinics: 33/33 pages working (100.0%)
+     - non-surgical-body-contouring: 33/33 pages working (100.0%)
+   Application Form: ✅
+
+2. Split Testing Functionality
+   Split Variations Exist:
+     - cosmetic-dentistry/foundation/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/foundation/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/growth/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/growth/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/growth/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/scaling/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/scaling/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/clients/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/clients/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/clients/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/patients/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/patients/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/patients/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/practice/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/practice/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/practice/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/operations/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/operations/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/operations/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/enrollment/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/enrollment/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/future/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/future/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/future/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/studio/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/studio/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/studio/c-most-aware: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/referrals/a-solution: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/referrals/b-problem: Splits 1, 2, 3 exist
+     - cosmetic-dentistry/referrals/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/foundation/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/foundation/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/growth/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/growth/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/growth/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/scaling/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/scaling/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/clients/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/clients/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/clients/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/patients/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/patients/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/patients/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/practice/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/practice/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/practice/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/operations/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/operations/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/operations/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/enrollment/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/enrollment/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/future/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/future/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/future/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/studio/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/studio/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/studio/c-most-aware: Splits 1, 2, 3 exist
+     - child-care-centers/referrals/a-solution: Splits 1, 2, 3 exist
+     - child-care-centers/referrals/b-problem: Splits 1, 2, 3 exist
+     - child-care-centers/referrals/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/foundation/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/foundation/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/growth/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/growth/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/growth/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/scaling/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/scaling/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/clients/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/clients/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/clients/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/patients/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/patients/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/patients/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/practice/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/practice/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/practice/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/operations/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/operations/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/operations/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/enrollment/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/enrollment/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/future/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/future/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/future/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/studio/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/studio/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/studio/c-most-aware: Splits 1, 2, 3 exist
+     - pmu-artists/referrals/a-solution: Splits 1, 2, 3 exist
+     - pmu-artists/referrals/b-problem: Splits 1, 2, 3 exist
+     - pmu-artists/referrals/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/foundation/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/foundation/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/growth/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/growth/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/growth/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/scaling/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/scaling/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/clients/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/clients/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/clients/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/patients/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/patients/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/patients/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/practice/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/practice/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/practice/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/operations/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/operations/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/operations/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/enrollment/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/enrollment/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/future/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/future/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/future/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/studio/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/studio/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/studio/c-most-aware: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/referrals/a-solution: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/referrals/b-problem: Splits 1, 2, 3 exist
+     - sleep-apnea-snoring-clinics/referrals/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/foundation/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/foundation/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/growth/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/growth/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/growth/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/scaling/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/scaling/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/clients/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/clients/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/clients/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/patients/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/patients/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/patients/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/practice/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/practice/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/practice/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/operations/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/operations/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/operations/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/enrollment/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/enrollment/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/future/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/future/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/future/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/studio/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/studio/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/studio/c-most-aware: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/referrals/a-solution: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/referrals/b-problem: Splits 1, 2, 3 exist
+     - hearing-aid-audiology-clinics/referrals/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/foundation/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/foundation/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/growth/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/growth/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/growth/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/scaling/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/scaling/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/clients/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/clients/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/clients/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/patients/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/patients/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/patients/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/practice/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/practice/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/practice/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/operations/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/operations/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/operations/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/enrollment/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/enrollment/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/future/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/future/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/future/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/studio/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/studio/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/studio/c-most-aware: Splits 1, 2, 3 exist
+     - dme-clinics/referrals/a-solution: Splits 1, 2, 3 exist
+     - dme-clinics/referrals/b-problem: Splits 1, 2, 3 exist
+     - dme-clinics/referrals/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/foundation/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/foundation/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/foundation/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/growth/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/growth/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/growth/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/scaling/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/scaling/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/scaling/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/clients/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/clients/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/clients/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/patients/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/patients/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/patients/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/practice/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/practice/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/practice/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/operations/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/operations/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/operations/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/enrollment/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/enrollment/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/enrollment/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/future/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/future/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/future/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/studio/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/studio/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/studio/c-most-aware: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/referrals/a-solution: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/referrals/b-problem: Splits 1, 2, 3 exist
+     - non-surgical-body-contouring/referrals/c-most-aware: Splits 1, 2, 3 exist
+   Split Redirects Working:
+     - cosmetic-dentistry/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - cosmetic-dentistry/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - child-care-centers/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - pmu-artists/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - sleep-apnea-snoring-clinics/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - hearing-aid-audiology-clinics/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - dme-clinics/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/foundation/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/foundation/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/foundation/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/growth/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/growth/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/growth/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/scaling/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/scaling/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/scaling/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/clients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/clients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/clients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/patients/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/patients/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/patients/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/practice/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/practice/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/practice/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/operations/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/operations/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/operations/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/enrollment/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/enrollment/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/enrollment/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/future/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/future/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/future/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/studio/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/studio/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/studio/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/referrals/a-solution: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/referrals/b-problem: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+     - non-surgical-body-contouring/referrals/c-most-aware: Split 1: 2 (40.0%); Split 2: 2 (40.0%); Split 3: 1 (20.0%)
+
+3. Tracking Integration
+   Supabase Connection: ✅
+   Tables Exist:
+     - tctc_user_flow: ✅
+     - tctc_user_behavior: ✅
+     - tctc_quiz_submission: ✅
+   Events Recorded:
+     - tctc_user_behavior: ✅
+     - tctc_quiz_submission: ✅
+
+4. Dashboard Functionality
+   Dashboard Accessible: ✅
+   Dashboard Displays Data: ⚠️ Requires manual verification
+

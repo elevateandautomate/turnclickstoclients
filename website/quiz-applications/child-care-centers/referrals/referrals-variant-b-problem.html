@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Your DME Referral Network Letting You Down? | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background-color: #f8f9fa; margin: 0; padding: 0; }
+        .result-container { padding: 40px 28px; max-width: 880px; margin: 30px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 7px 30px rgba(0,0,0,0.07); }
+        .result-container h1 { font-family: 'Montserrat', sans-serif; color: #c0392b; /* Red for problem */ font-size: clamp(2em, 4.6vw, 2.8em); margin-bottom: 20px; text-align: center; line-height: 1.3; }
+        .result-container h2 { font-family: 'Montserrat', sans-serif; color: #d35400; /* Darker Orange/Red for problem subheads */ font-size: clamp(1.6em, 3.6vw, 2.15em); margin-top: 38px; margin-bottom: 18px; border-bottom: 2px solid #e67e22; padding-bottom: 8px; }
+        .solution-intro h2 { color: #16a085; /* Green Sea for solution */ border-bottom-color: #1abc9c; /* Turquoise for solution */ }
+        .result-container p { font-size: clamp(1.05em, 2.2vw, 1.15em); color: #3a3a3a; margin-bottom: 20px; line-height: 1.8; }
+        .result-container ul { list-style: none; padding-left: 0; margin-bottom: 22px; }
+        .result-container li { margin-bottom: 14px; padding-left: 30px; position: relative; font-size: clamp(1.02em, 2.1vw, 1.1em); }
+        .empathy-box li::before { content: '❓'; color: #c0392b; position: absolute; left: 0; font-size: 1.3em; top: 1px; }
+        .empathy-box { background-color: #fdedec; border-left: 6px solid #c0392b; padding: 28px; margin: 30px 0; border-radius: 8px; }
+        .empathy-box h2 { margin-top: 0; color: #96281b; }
+        .solution-highlight li::before { content: '🔗'; color: #16a085; left: 3px; top: 0; font-size: 1.4em; }
+        .cta-section { text-align: center; padding: 45px 28px; background: linear-gradient(135deg, #117a65 0%, #16a085 100%); /* Green Sea Gradient for solution CTA */ border-radius: 10px; margin-top: 45px; color: #fff; }
+        .cta-button.primary { background-color: #f39c12; /* Orange */ border: none; color: #fff !important; padding: 18px 45px; font-size: 1.35em; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .cta-button.primary:hover { background-color: #e67e22; /* Darker Orange */ transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0,0,0,0.25); }
+        .user-name-emphasis { font-weight: 900; color: #c0392b; }
+        .testimonial { background: #e0f2f1; padding: 25px; border-radius: 8px; margin-bottom: 22px; box-shadow: 0 3px 7px rgba(0,0,0,0.06); border-left: 5px solid #1abc9c; }
+        .testimonial p:first-child { font-style: italic; font-size: 1.12em; color: #2d3a33; }
+        .testimonial p:last-child { font-weight: bold; margin-top: 18px; color: #117a65; text-align: right; }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="../../../split-test-redirect.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/child-care-centers.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="result-container">
+        <div class="personalized-greeting" id="personalized-greeting" style="display: none; text-align: center; margin-bottom: 1.4em; font-size: 1.35em; color: #424242;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const firstName = urlParams.get('firstName');
+                const userNameSpan = document.getElementById('user-first-name');
+                const greetingDiv = document.getElementById('personalized-greeting');
+                if (firstName) {
+                    const decodedName = decodeURIComponent(firstName);
+                    if (userNameSpan) userNameSpan.textContent = decodedName;
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Hi <span class="user-name-emphasis">${decodedName}</span>. Is your referral network feeling a bit... empty?`;
+                        greetingDiv.style.display = 'block';
+                    }
+                } else {
+                    if (userNameSpan) userNameSpan.textContent = "DME Business Owner"; // Fallback
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Hi <span class="user-name-emphasis">DME Business Owner</span>. Is your referral network feeling a bit... empty?`;
+                        greetingDiv.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+
+        <h1>Tired of <span class="user-name-emphasis">Referral Roulette</span>, <span id="user-first-name" class="user-name-emphasis">DME Business Owner</span>? Are Inconsistent Referrals Stalling Your Growth?</h1>
+        <p style="font-size:1.22em; color:#333; font-weight:normal; margin-bottom: 1.8em; text-align:center;">
+           Your quiz responses point to a common frustration: a referral pipeline that's more of a trickle than a torrent, making consistent growth a constant uphill battle.
+        </p>
+
+        <div class="empathy-box">
+            <h2 style="color: #96281b;">Do These Referral Frustrations Hit Close to Home?</h2>
+            <ul>
+                <li><strong>Physician Apathy:</strong> Feel like you're constantly chasing doctors for referrals, only to get a lukewarm response or complete silence?</li>
+                <li><strong>Discharge Planner Disconnect:</strong> Struggle to build meaningful relationships with hospital discharge planners who seem to have their established go-to DMEs?</li>
+                <li><strong>Home Health Handoffs Lost in Translation:</strong> Do referrals from home health agencies get lost, lack necessary information, or result in a poor patient experience?</li>
+                <li><strong>"Feast or Famine" Patient Flow:</strong> Experience unpredictable swings in new patient numbers, making staffing and inventory planning a nightmare?</li>
+                <li><strong>Competitors Cornering the Market:</strong> Watch other DMEs seemingly lock up key referral sources, leaving you wondering how they do it?</li>
+                <li><strong>Wasted Marketing Spend:</strong> Pouring money into general marketing efforts that don't yield direct, high-quality patient referrals from trusted medical professionals?</li>
+            </ul>
+            <p>If these scenarios sound all too familiar, you're not alone. Many DME owners grapple with the challenge of building a reliable, proactive referral network. It's a major source of stress and a significant barrier to scaling your business.</p>
+        </div>
+
+        <h2>The True Cost of a Weak Referral Network: More Than Just Missed Patients</h2>
+        <p>
+           A passive or inconsistent referral strategy doesn't just mean fewer patients. It means wasted time for your team chasing unproductive leads, higher patient acquisition costs through less effective channels, increased business uncertainty, and the constant pressure of not knowing where your next patients will come from. It can also damage your reputation if referral partners have a clunky or unreliable experience when trying to send patients your way.
+        </p>
+        <p>
+            Ignoring these foundational issues in your referral strategy is like trying to grow a garden with poor soil and no water – your efforts will yield minimal results, and your business potential will remain untapped. You deserve a predictable, growing stream of the right patients.
+        </p>
+
+        <div class="solution-intro">
+            <h2>The Pathway to a Predictable Patient Pipeline: Introducing the DME Referral Pipeline Pro™</h2>
+            <p>
+                It's time to stop playing "Referral Roulette" and start engineering a consistent flow of qualified patients. The TurnClicksToClients "DME Referral Pipeline Pro™" is your systematic solution to building, nurturing, and maximizing relationships with the key referral sources in your community. We help you transform your referral efforts from a source of frustration into a powerful growth engine.
+            </p>
+            <ul class="solution-highlight">
+                <li><strong>Targeted Partner Identification & Engagement:</strong> We don't just tell you to network; we help you identify the *right* physicians, clinics, and hospital contacts and develop tailored strategies to engage them effectively.</li>
+                <li><strong>Value-Driven Communication Tools:</strong> Equipping you with compelling materials and messaging that clearly articulate why your DME is the best choice for their patients.</li>
+                <li><strong>Relationship Management Framework:</strong> Implementing simple, sustainable systems to track your outreach, manage follow-ups, and ensure no referral opportunity falls through the cracks.</li>
+                <li><strong>Referral Process Optimization:</strong> Streamlining how referrals are sent and received to make it easy for partners to work with you and ensure a seamless experience for patients.</li>
+                <li><strong>Building Trust & Demonstrating Outcomes:</strong> Strategies to showcase your excellent patient care and results, reinforcing your value to referring partners and encouraging more referrals.</li>
+            </ul>
+        </div>
+
+         <div class="testimonial">
+            <p>"Before working with TurnClicksToClients on our referral strategy, getting new patients felt random. Now, we have a clear plan, know exactly who to talk to, and our referral numbers from local doctor's offices have steadily increased. It's taken so much stress off my shoulders!"</p>
+            <p>- Sarah K., Owner, Vitality Home Medical Supply</p>
+        </div>
+
+        <div class="cta-section">
+            <style>
+                .cta-section p, .cta-section ul, .cta-section h2, .cta-section h3, .cta-section li, .cta-section div { color: #fff !important; }
+                .cta-section .cta-button.primary { background-color: #f39c12; color: #fff !important; font-weight: bold; text-shadow: none; }
+                .cta-section .cta-button.primary:hover { background-color: #e67e22; }
+                .cta-section span[style*="color: #f39c12"] { color: #f39c12 !important; }
+            </style>
+            
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2018, we've specialized in helping DME providers attract qualified patients who need your solutions and have the proper insurance coverage.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our approach was developed after seeing DME providers struggle with the changing reimbursement landscape and increasing competition from online retailers.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">What began as insurance-focused marketing has evolved into a comprehensive patient acquisition system that pre-qualifies leads and educates them on the value of working with a local provider.</p>
+    </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A DME provider in Texas increased their monthly CPAP setups from 35 to over 90 within 60 days.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A specialized mobility equipment provider doubled their revenue in 6 months while reducing their advertising spend by 20%.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A multi-location DME company increased their insurance-qualified leads by 65% while reducing their cost per acquisition.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> DME providers using our system for 2+ years have built resilient businesses that thrive despite reimbursement challenges and online competition.</p>
+    </div>
+</div>
+<h2 style="font-size: 2.3em; margin-bottom: 25px;">Ready to Create the Success Other Professionals Are Already Enjoying?</h2>
+            
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you prepare for inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> By confidently managing marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day with this system means more opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p style="font-size: 1.25em; margin: 0 auto 30px auto; max-width: 750px; opacity: 0.95;">Stop letting inconsistent referrals dictate your DME's future. Let's pinpoint your biggest referral roadblocks and implement a proven system for sustainable growth.</p>
+
+            <div style="background: rgba(255,255,255,0.08); padding: 30px; border-radius: 8px; margin: 35px 0; display: inline-block; border: 1px solid rgba(255,255,255,0.2); text-align:left;">
+                <h3 style="color: #f39c12; margin-bottom: 18px; font-size: 1.7em; text-align:center;">What Your DME Referral Strategy Session Application Unlocks:</h3>
+                 <ul style="list-style: none; padding: 0; max-width: 550px; margin: 0 auto; font-size: 1.12em;">
+                    <li style="margin-bottom: 12px; padding-left: 22px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f39c12;">✓</span> A focused analysis of your current referral challenges and untapped opportunities with physicians, hospitals, and other local health providers.</li>
+                    <li style="margin-bottom: 12px; padding-left: 22px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f39c12;">✓</span> Identification of the most promising referral partner types for your specific DME services and patient focus.</li>
+                    <li style="margin-bottom: 12px; padding-left: 22px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f39c12;">✓</span> A clear, actionable plan to implement key components of the DME Referral Pipeline Pro™ for immediate impact.</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.18em; margin: 30px 0 25px 0; font-weight: bold;">It's time to build the reliable referral network your DME deserves. <span style="color: #f39c12;">This partnership is selective.</span></p>
+            
+            <a href="../../../universal-application-form.html?niche=child-care-centers&bucket=referrals&variant=B_Problem" class="cta-button primary">Apply for a DME Referral Strategy & Growth Session</a>
+             <div style="font-size: 1.15em; color: #fff; margin-top: 18px; font-weight: 600; letter-spacing: 0.5px;">TurnClicksToClients: Your Partner in Building a Powerful DME Referral Engine.</div>
+
+            <div style="margin-top: 35px; padding: 18px; background: rgba(0,0,0,0.22); border-radius: 8px; max-width: 650px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; font-size: 0.98em;">✓ Don't let referral frustrations hold your business back. Your application is the first step to a predictable patient pipeline.</p>
+            </div>
+        </div>
+    
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The path to joining these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>You have all the talent and dedication needed. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system now available to you.</strong></p>
+</div></main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/child-care-centers.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+<script src="../../../script.js"></script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>❓</span> Referral Roulette Frustrating You?
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Tired of Inconsistent DME Referrals?</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>Feeling the strain of an unpredictable patient pipeline? Are physician and hospital relationships not yielding the referrals you need?</strong><br>
+                    Our DME Referral Specialists are here to understand your specific frustrations and show you how the "DME Referral Pipeline Pro™" can build a systematic approach to growth.
+                    Mon-Fri, 10am - 5pm EST: Let's talk solutions.<br>
+                    After hours & weekends: We'll follow up promptly next business day.<br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled>Select your industry...</option>
+                             <option value="DME Clinics" selected>DME Clinics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">DME Business Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone</label>
+                        <input type="tel" id="chat-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">What's the primary reason your current referral efforts aren't working as well as you'd like?</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., Can't get past gatekeepers, lack of time for consistent follow-up, unsure how to demonstrate value to busy doctors."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Discuss My Referral Frustrations</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Your message regarding your DME referral frustrations has been received. A Referral Specialist will contact you soon to discuss solutions.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script> // Chat Modal Script Integration
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatWidgetButton = document.getElementById('chat-widget-button');
+        const chatModal = document.getElementById('chat-modal');
+        const chatModalClose = document.getElementById('chat-modal-close');
+        const chatContactForm = document.getElementById('chat-contact-form');
+        const chatSuccessMessage = document.getElementById('chat-success-message');
+
+        if (chatWidgetButton && chatModal && chatModalClose && chatContactForm && chatSuccessMessage) {
+            chatWidgetButton.addEventListener('click', function() {
+                chatModal.classList.remove('modal-hidden');
+                chatModal.classList.add('modal-visible');
+            });
+
+            chatModalClose.addEventListener('click', function() {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            });
+
+            chatModal.addEventListener('click', function(event) {
+                if (event.target === chatModal) { 
+                    chatModal.classList.add('modal-hidden');
+                    chatModal.classList.remove('modal-visible');
+                }
+            });
+
+            chatContactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+                chatContactForm.querySelectorAll('[required]').forEach(input => {
+                    if (!input.value) {
+                        isValid = false;
+                        input.style.borderColor = 'red'; 
+                    } else {
+                        input.style.borderColor = '#ccc'; // Reset border color
+                    }
+                });
+
+                if (isValid) {
+                    chatContactForm.style.display = 'none';
+                    chatSuccessMessage.style.display = 'block';
+                } else {
+                    alert('Please fill out all required fields.');
+                }
+            });
+        }
+
+        const industrySelect = document.getElementById('chat-industry');
+        const industries = [
+            "Child Care Centers", "Cosmetic Dentists", "PMU Artists", "Non-Surgical Body Contouring", 
+            "Weight Loss Clinics", "High-End Chiropractors", "Sleep Apnea & Snoring Clinics",
+            "Hearing Aid & Audiology Clinics"
+        ];
+        if (industrySelect && industrySelect.options.length <= 2) {
+            industries.forEach(industry => {
+                if (industry !== "DME Clinics") { 
+                    const option = document.createElement('option');
+                    option.value = industry;
+                    option.textContent = industry;
+                    industrySelect.appendChild(option);
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html> 

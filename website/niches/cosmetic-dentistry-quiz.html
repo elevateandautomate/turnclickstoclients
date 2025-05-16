@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetic Dentistry Business Growth Quiz | TurnClicksToClients</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure body matches site's general feel if not already covered by style.css */
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4; /* Match main site background */
+        }
+        /* Quiz specific container */
+        .quiz-page-container {
+            padding-top: 20px; /* Space below sticky header */
+            padding-bottom: 40px;
+        }
+        .quiz-container {
+            max-width: 850px; /* Wider for 3 blocks in a row more easily */
+            margin: 20px auto;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .quiz-hook h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8em, 4vw, 2.4em); /* Responsive */
+            color: #0056b3; /* Primary dark blue */
+            margin-bottom: 0.5em;
+        }
+        .quiz-hook p.subheadline {
+            font-size: clamp(1em, 2vw, 1.15em);
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 650px; /* Adjusted */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Benefit Blocks Styling */
+        .quiz-benefits-intro {
+            margin: 30px 0 40px 0;
+            display: flex; /* Changed to flex */
+            justify-content: space-between; /* Distribute space */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 20px; /* Adjust gap */
+            text-align: left;
+        }
+        .benefit-block {
+            background-color: #f9f9f9; /* Light background for blocks */
+            padding: 18px; /* Slightly reduced padding */
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #007bff; /* Accent color - primary blue */
+            flex: 1; /* Allow blocks to grow */
+            min-width: 230px; /* Minimum width before wrapping */
+        }
+        .benefit-block:nth-child(2) {
+            border-left-color: #28a745; /* Accent color - green */
+        }
+        .benefit-block:nth-child(3) {
+            border-left-color: #ffc107; /* Accent color - yellow */
+        }
+        .benefit-block h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15em; /* Slightly reduced */
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .benefit-block p {
+            font-size: 0.9em; /* Slightly reduced */
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Progress Bar Styling */
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden; /* Ensure inner bar stays contained */
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%; /* Initial width */
+            background-color: #28a745; /* Green progress */
+            border-radius: 5px;
+            transition: width 0.4s ease;
+        }
+
+        /* Quiz Area Styling */
+        #quiz-area {
+            background-color: #fdfdfd; /* Slightly off-white bg */
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px; /* Space from benefits/hook */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Subtle inner shadow */
+        }
+
+        .quiz-question h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.3em, 3vw, 1.7em);
+            color: #2c3e50; /* Darker, rich blue/grey */
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        .quiz-answers ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+        .quiz-answers li {
+            margin-bottom: 12px;
+        }
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff; /* Primary Blue */
+            color: white;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            text-align: left; /* Align text to the left within button */
+        }
+        .answer-btn:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .answer-btn.selected { /* Style for selected answer if needed */
+            background-color: #004085; /* Even darker blue for selection */
+            border-color: #00376e;
+            color: #fff;
+        }
+
+        .quiz-navigation .cta-button { /* This class is from main style.css */
+            margin-top: 15px;
+            /* background-color: #28a745; Green for next - already in style.css */
+        }
+
+        #quiz-result { /* Styling for the temporary result display */
+            padding: 20px;
+            background-color: #e9f5ff;
+            border: 1px solid #b8d6f0;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #quiz-result h3 { color: #0056b3; margin-bottom: 10px;}
+        #quiz-result p { color: #333; }
+
+        /* Lead Capture Form Styling */
+        #lead-capture-container {
+            margin-top: 30px;
+            padding: 30px;
+            background-color: #f0f8ff; /* Light blue background */
+            border-radius: 8px;
+            border: 1px solid #cce5ff;
+            text-align: left;
+        }
+        #lead-capture-container h3 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        #lead-capture-container p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9em;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .form-group input:focus { /* Basic focus style */
+             border-color: #007bff;
+             outline: none;
+             box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+        #lead-capture-container .cta-button { /* Use main button class */
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            background-color: #28a745; /* Green submit */
+        }
+         #lead-capture-container .cta-button:hover {
+            background-color: #1e7e34;
+        }
+        .privacy-note {
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <!-- Standard Site Header -->
+    <header>
+        <nav>
+            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent">
+                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li><a href="../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="quiz-page-container">
+        <div class="quiz-container">
+            <div class="quiz-hook">
+                <h1>Discover Your Cosmetic Dental Practice Growth Potential</h1>
+                <p class="subheadline">
+                    Take this 2-minute quiz to identify the hidden opportunities and roadblocks in your cosmetic dental practice, and get a personalized growth plan.
+                </p>
+            </div>
+
+            <!-- Progress Bar Container - will be displayed above quiz-area by JS after first question -->
+            <div id="progress-bar-container" class="progress-bar-container" style="display: none;">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <div id="quiz-area">
+                <!-- Initial Benefit Blocks - Will be hidden after quiz starts -->
+                <div class="quiz-benefits-intro" id="quiz-benefits-intro">
+                    <div class="benefit-block">
+                        <h3>Attract High-Value Patients</h3>
+                        <p>Learn how to consistently fill your schedule with patients seeking premium cosmetic dental services.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <h3>Optimize Your Practice</h3>
+                        <p>Discover ways to streamline operations, improve case acceptance, and maximize profitability.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <h3>Build Your Reputation</h3>
+                        <p>Understand how to position yourself as the premier cosmetic dentist in your area.</p>
+                    </div>
+                </div>
+                <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
+
+                <!-- Questions will be loaded here by JavaScript -->
+                <div id="quiz-question" class="quiz-question" style="display:none;">
+                    <h2></h2> <!-- Question text will be set here -->
+                </div>
+                <div id="quiz-answers" class="quiz-answers" style="display:none;">
+                    <ul>
+                        <!-- Answer buttons will be generated here -->
+                    </ul>
+                </div>
+                <div class="quiz-navigation" style="display:none;">
+                    <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
+                </div>
+            </div>
+
+            <div id="lead-capture-container" style="display:none;">
+                <h3>Get Your Personalized Cosmetic Dental Practice Growth Plan!</h3>
+                <p>Enter your details below to receive your customized growth strategy and recommendations.</p>
+                <form id="lead-capture-form">
+                    <div class="form-group">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="businessName">Practice Name*</label>
+                        <input type="text" id="businessName" name="businessName" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific dental practice.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your practice growth opportunities.</p>
+                    </div>
+                    <button type="button" class="cta-button" onclick="handleLeadSubmit()">See My Practice Potential!</button>
+                    <p class="privacy-note">We respect your privacy. Your information is kept confidential.</p>
+                </form>
+            </div>
+
+            <div id="quiz-result" style="display:none;">
+                <h3>Calculating Your Results...</h3>
+                <p>Please wait a moment.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

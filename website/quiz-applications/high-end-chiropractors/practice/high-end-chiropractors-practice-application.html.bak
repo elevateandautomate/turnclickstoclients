@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results: Crafting Your Precision Practice Blueprint™ | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.8; color: #343a40; background-color: #f4f6f8; /* Slightly cooler grey */ margin: 0; padding: 0; }
+        .premium-container-wrapper { padding: 30px 0; background: linear-gradient(135deg, #778ca3 0%, #4a6fa5 100%); /* Steel Blue / Slate */ }
+        .premium-container { max-width: 960px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; box-shadow: 0 15px 45px rgba(0,0,0,0.12); overflow: hidden; }
+        
+        .premium-header { text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #3d5af1 0%, #2c44cc 100%); /* Practice Blue */ color: #fff; border-bottom: 8px solid #6c757d; /* Grey accent */ }
+        .premium-header .personalized-greeting { font-size: clamp(1.2em, 2.8vw, 1.5em); font-weight: 700; margin-bottom: 10px; opacity: 0.9; }
+        .premium-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(2.1em, 4.5vw, 3.0em); margin-bottom: 15px; line-height: 1.25; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .premium-header .sub-headline { font-size: clamp(1.1em, 2.5vw, 1.3em); max-width: 750px; margin: 0 auto 20px; line-height: 1.6; opacity: 0.95; }
+
+        .content-section { padding: 45px 50px; }
+        .content-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.8em, 4vw, 2.6em); color: #2c44cc; /* Darker Practice Blue */ margin-bottom: 25px; text-align: center; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.4em, 3.2vw, 1.9em); color: #3d5af1; /* Practice Blue */ margin-top: 30px; margin-bottom: 18px; border-bottom: 2px solid #adb5bd; padding-bottom: 8px; }
+        
+        .feature-comparison-table { width: 100%; margin: 30px 0; border-collapse: collapse; }
+        .feature-comparison-table th, .feature-comparison-table td { border: 1px solid #dee2e6; padding: 15px; text-align: left; font-size: clamp(0.95em, 2vw, 1.05em); }
+        .feature-comparison-table th { background-color: #e2e8f0; /* Light Blue/Grey */ color: #2c3e50; /* Darker Slate Blue */ font-weight: 700; }
+        .feature-comparison-table td.our-advantage { background-color: #e6e6fa; /* Lavender for our advantage */ font-weight: bold; color: #1e2a78; /* Darker Practice Blue */ }
+        .feature-comparison-table td.our-advantage::before { content: '⚙️ '; color: #3d5af1; }
+        
+        .advanced-modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 25px; }
+        .module-card { background-color: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center;}
+        .module-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .module-card .module-icon { font-size: 2.8em; color: #6c757d; /* Grey accent */ margin-bottom: 15px; display: block; }
+        .module-card h4 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.25em, 2.8vw, 1.5em); color: #2c44cc; /* Darker Practice Blue */ margin-bottom: 12px; }
+        .module-card p { font-size: clamp(0.95em, 2vw, 1.0em); color: #495057; line-height: 1.7; text-align: left;}
+
+        .testimonial-section-premium { background-color: #4a6fa5; /* Slate Blue */ color: #fff; padding: 50px; margin-top:40px;}
+        .testimonial-section-premium h2 { color: #fff; border-bottom: 2px solid #adb5bd; display:inline-block; padding-bottom:10px; margin-bottom:30px;}
+        .testimonial-card-premium { background-color: rgba(255,255,255,0.1); border-left: 5px solid #adb5bd; padding: 25px; margin-bottom: 25px; border-radius: 8px; }
+        .testimonial-card-premium p.quote { font-style: italic; font-size: clamp(1.05em, 2.2vw, 1.2em); margin-bottom: 15px; line-height:1.7;}
+        .testimonial-card-premium p.author { font-weight: bold; text-align: right; color: #e2e8f0; font-size: clamp(1em, 2.1vw, 1.1em); }
+
+        .faq-section { margin-top: 40px; }
+        .faq-item { margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .faq-question { background-color: #f1f3f5; padding: 18px 25px; font-weight: 700; color: #2c44cc; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: clamp(1.05em, 2.3vw, 1.2em); }
+        .faq-question::after { content: '+'; font-size: 1.5em; transition: transform 0.3s ease; }
+        .faq-answer { padding: 20px 25px; background-color: #fff; display: none; font-size: clamp(0.95em, 2vw, 1.05em); line-height:1.7;}
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
+        .faq-item.active .faq-answer { display: block; }
+        
+        .final-cta-section { text-align: center; padding: 50px 30px; background-color: #e2e8f0; /* Light Blue/Grey */ margin-top: 0; border-radius: 0 0 16px 16px; }
+        .final-cta-section h2 { color: #1e2a78; /* Darkest Practice Blue */ margin-bottom: 20px; font-size: clamp(1.9em, 4.2vw, 2.8em); }
+        .final-cta-section p { color: #343a40; margin-bottom: 30px; font-size: clamp(1.1em, 2.3vw, 1.25em); max-width:700px; margin-left:auto; margin-right:auto;}
+        .cta-button.premium { background: linear-gradient(135deg, #546e7a 0%, #37474f 100%); /* Dark Grey/Blue Button */ border: none; color: #fff !important; padding: 20px 45px; font-size: clamp(1.25em, 2.8vw, 1.5em); font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        .cta-button.premium:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+        .user-name-emphasis { font-weight: 900; color: #6c757d; } 
+
+        @media (max-width: 768px) {
+            .content-section { padding: 30px 25px; }
+            .premium-header { padding: 40px 20px; }
+            .advanced-modules-grid { grid-template-columns: 1fr; }
+            .final-cta-section, .testimonial-section-premium { padding: 40px 25px; }
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="premium-container-wrapper">
+    <div class="premium-container">
+        <div class="premium-header">
+            <div class="personalized-greeting" id="personalized-greeting-practice">Your Practice Potential, <span class="user-name-emphasis">[First Name]</span>, is About to Be Unlocked!</div>
+            <h1>Transform Your Daily Operations: The Precision Practice Blueprint™</h1>
+            <p class="sub-headline">Your quiz insights suggest you're ready for a smoother, more efficient, and patient-delighting practice. Discover the systematic approach to eliminate operational drag and elevate your clinical delivery.</p>
+            </div>
+
+            <div class="content-section">
+            <h2>From Operational Chaos to Clinical Calm: The Power of Precision</h2>
+            <p style="text-align:center; font-size:clamp(1.05em, 2.2vw, 1.15em); margin-bottom:30px;">The Precision Practice Blueprint™ is designed for discerning chiropractors who understand that a truly successful high-end practice isn't just about attracting patients—it's about flawless execution in every internal process.</p>
+
+            <h3>Typical Practice Hurdles vs. The Precision Practice Advantage</h3>
+            <table class="feature-comparison-table">
+                <thead>
+                    <tr>
+                        <th>Operational Area</th>
+                        <th>Typical Practice Hurdles</th>
+                        <th>Precision Practice Advantage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Workflow & Scheduling</strong></td>
+                        <td>Chaotic patient flow, scheduling errors, wasted clinician time.</td>
+                        <td class="our-advantage">Streamlined, predictable workflows; optimized scheduling; maximized clinician focus.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Patient Experience</strong></td>
+                        <td>Inconsistent service, long wait times, poor communication, missed follow-ups.</td>
+                        <td class="our-advantage">Seamless, 5-star patient journey; enhanced communication; proactive care; higher retention.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Team Dynamics & Roles</strong></td>
+                        <td>Unclear responsibilities, inter-staff friction, high turnover, owner micromanagement.</td>
+                        <td class="our-advantage">Clearly defined roles, empowered team members, improved collaboration, reduced owner stress.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Administrative Burden</strong></td>
+                        <td>Excessive paperwork, inefficient billing, compliance headaches, outdated tech.</td>
+                        <td class="our-advantage">Automated admin tasks; simplified billing & compliance; efficient use of modern practice tech.</td>
+                    </tr>
+                     <tr>
+                        <td><strong>Overall Atmosphere</strong></td>
+                        <td>Stressful, reactive, often feels like 'organized chaos'.</td>
+                        <td class="our-advantage">Calm, proactive, efficient, and enjoyable for both team and patients.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Core Components of the Precision Practice Blueprint™</h3>
+            <div class="advanced-modules-grid">
+                <div class="module-card">
+                    <span class="module-icon"><i class="fas fa-sitemap"></i></span>
+                    <h4>Streamlined Workflow Design™</h4>
+                    <p>We meticulously map every process in your practice, from new patient intake to ongoing care management, identifying and eliminating bottlenecks to create a hyper-efficient flow.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon"><i class="fas fa-star"></i></span>
+                    <h4>Patient Experience Optimization Engine™</h4>
+                    <p>Crafting unforgettable patient journeys. This involves refining communication, touchpoints, environment, and follow-up to ensure every patient feels valued and receives exceptional care.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon"><i class="fas fa-users"></i></span>
+                    <h4>High-Performance Team Dynamics Module™</h4>
+                    <p>Building a cohesive, motivated, and efficient team where everyone understands their role and contributes to a positive, productive practice environment. Includes role clarity, communication protocols, and performance management systems.</p>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h3>Your Practice Optimization Questions, Answered</h3>
+                <div class="faq-item">
+                    <div class="faq-question">My team is already good. How much improvement can we really see?</div>
+                    <div class="faq-answer">Even the best teams operate within the constraints of existing systems. The Precision Practice Blueprint™ often reveals hidden inefficiencies and opportunities for your great team to become even more effective, collaborative, and less stressed, leading to higher job satisfaction and better patient outcomes.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Will this require a lot of new expensive technology?</div>
+                    <div class="faq-answer">Not necessarily. The first step is optimizing your *use* of current technology and processes. We then strategically identify if and where new tech could provide a significant ROI by reducing manual work or enhancing patient care, always with a focus on practical, cost-effective solutions.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How long does it take to implement the Blueprint and see results?</div>
+                    <div class="faq-answer">Initial analysis and blueprint design can take a few weeks. Implementation is phased. You'll often see immediate small wins in efficiency and team morale within the first month or two, with more significant, practice-wide improvements solidifying over 3-6 months as new systems become ingrained.</div>
+                </div>
+            </div>
+            </div>
+
+        <div class="testimonial-section-premium">
+            <h2 style="text-align:center;">Chiropractors Who Mastered Their Practice Operations</h2>
+            <div class="testimonial-card-premium">
+                <p class="quote">"Our daily operations were a constant source of stress. The Precision Practice Blueprint™ brought order to the chaos. Our patient flow is smoother, the team is happier, and I can finally focus on complex cases instead of putting out fires."
+                </p>
+                <p class="author">- Dr. Elena Hayes, Serene Spine & Wellness (Placeholder)</p>
+            </div>
+            <div class="testimonial-card-premium">
+                <p class="quote">"I underestimated how much our inefficient processes were costing us in time and patient satisfaction. This blueprint was like a complete tune-up for the practice. We're doing more with less stress."
+                </p>
+                <p class="author">- Dr. Ben Carter, Apex Chiropractic Clinic (Placeholder)</p>
+            </div>
+        </div>
+
+        <div class="final-cta-section">
+            <h2>Ready to Stop Missing Out on the Success Other Professionals Are Already Enjoying?</h2>
+
+
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You're Currently Missing Out On:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you worry about inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day you wait is another day of missed opportunities and falling further behind those who have already implemented this system.</p>
+        
+<a href="../../../universal-application-form.html?niche=high-end-chiropractors&bucket=practice&variant=PracticeOptimizationApplication&system=PrecisionPracticeBlueprint" class="cta-button premium">Apply for Your Practice Optimization Session</a>
+            <p style="font-size:0.9em; color:#555; margin-top:20px;">This complimentary session is your first step towards a more streamlined, profitable, and enjoyable practice.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstName = params.get('firstName');
+            const greetingElement = document.getElementById('personalized-greeting-practice');
+            
+            if (firstName) {
+                const decodedName = decodeURIComponent(firstName);
+                if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                     greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${decodedName}</span>`);
+                } else if (greetingElement) { 
+                    greetingElement.innerHTML = `Your Practice Potential, <span class="user-name-emphasis">${decodedName}</span>, is About to Be Unlocked!`;
+                }
+            } else {
+                const defaultName = "Practice Owner"; 
+                 if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                    greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${defaultName}</span>`);
+                 } else if (greetingElement) {
+                    greetingElement.innerHTML = `Your Practice Potential, <span class="user-name-emphasis">${defaultName}</span>, is About to Be Unlocked!`;
+                 }
+            }
+
+            const hamburger = document.querySelector('.hamburger');
+            const mainNav = document.getElementById('main-nav');
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.faq-item.active');
+                    if (currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
+    <div id="chat-widget-button">
+        <span>💬</span> Questions about the Precision Practice Blueprint™?
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Discuss Your Practice Operations (Precision Practice Blueprint™)</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    <strong>Ready to explore the Precision Practice Blueprint™?</strong><br>
+                    Ask us any questions about how this system can help your high-end chiropractic practice run more smoothly and efficiently.
+                    <br><em>Mon-Fri, 10am - 5pm EST.</em><br>
+                    <em>Evenings & Weekends: We'll prioritize your contact next business day.</em><br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-interest">System of Interest:</label>
+                        <select id="chat-interest" name="systemInterest" required>
+                            <option value="Precision Practice Blueprint" selected>Precision Practice Blueprint™</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-businessName">Practice Name:</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address:</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number (Optional):</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Your Questions about Optimizing Your Practice:</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., Specifics on workflow design, team dynamics, patient experience optimization..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Send Inquiry</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Inquiry Sent!</h3>
+                    <p>Thank you! We'll review your questions about the Precision Practice Blueprint™ and a specialist will be in touch shortly.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../script.js"></script> 
+</body>
+</html> 

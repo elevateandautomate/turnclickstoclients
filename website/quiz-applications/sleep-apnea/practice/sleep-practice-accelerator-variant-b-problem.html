@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROBLEM: Your Sleep Clinic's #1 Growth Killer? The Empty Appointment Slots & Unpredictable Patient Flow! | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.8; color: #333; background-color: #fdfdfe; margin: 0; padding: 0; }
+        .problem-page-container { padding-top: 25px; padding-bottom: 50px; }
+        .problem-container {
+            max-width: 900px; margin: 30px auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 12px 45px rgba(176, 0, 0, 0.1); /* Subtle red shadow */
+            border-top: 10px solid #dc3545; /* Strong problem red */
+        }
+
+        .problem-header {
+            text-align: center;
+            padding: 60px 40px 50px 40px;
+            background: linear-gradient(135deg, #c82333 0%, #a31320 100%); /* Darker, more intense red gradient */
+            color: white;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .problem-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.2em, 5vw, 3.4em);
+            margin-bottom: 0.3em;
+            line-height: 1.25;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .problem-header .personalized-greeting {
+            font-family: 'Lato', sans-serif;
+            font-size: clamp(1.15em, 2.7vw, 1.45em);
+            color: #f8d7da; /* Light red for contrast */
+            font-weight: 700;
+            margin-bottom: 0.6em;
+        }
+        .problem-header .sub-headline {
+            font-family: 'Lato', sans-serif;
+            font-size: clamp(1.1em, 2.3vw, 1.3em);
+            color: #f1f1f1;
+            max-width: 780px;
+            margin: 0 auto 10px auto;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        .content-section { padding: 40px 45px; border-bottom: 1px solid #f1dddf; }
+        .content-section:last-child { border-bottom: none; }
+
+        .content-section h2 { font-family: 'Montserrat', sans-serif; font-weight:700; font-size: clamp(1.8em, 4vw, 2.5em); color: #a31320; margin-bottom: 25px; padding-bottom:15px; border-bottom: 2px solid #e699a1; text-align:left; }
+        .content-section h3 { font-family: 'Lato', sans-serif; font-weight:900; font-size: clamp(1.4em, 3.2vw, 1.9em); color: #b32431; margin-top: 30px; margin-bottom: 20px; }
+        .content-section p, .content-section ul li { font-size: clamp(1.05em, 2vw, 1.15em); color: #444; margin-bottom: 18px; line-height: 1.8; }
+        .content-section strong { font-weight: 700; color: #930f1b; }
+        .content-section b { font-weight: 900; color: #7f0000; }
+
+        .pain-points-list { list-style: none; padding-left: 0; }
+        .pain-points-list li {
+            position: relative; padding-left: 45px; margin-bottom: 20px;
+            font-size: clamp(1.08em, 2.1vw, 1.2em);
+            border: 1px solid #f5c6cb; background-color: #fceeed;
+            padding: 18px 20px 18px 55px; border-radius: 8px;
+        }
+        .pain-points-list li::before {
+            content: '\2717'; /* X Mark */
+            position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+            color: #dc3545; font-size: 1.8em; font-weight: bold;
+        }
+        .pain-points-list li strong { color: #8c1823; }
+
+        .consequences-box {
+            background-color: #fff3f3; /* Very light red */
+            border: 2px solid #f5c6cb; /* Light problem red */
+            padding: 25px 30px;
+            margin: 35px 0;
+            border-radius: 8px;
+        }
+        .consequences-box h3 { color: #8c1823; text-align:center; font-family:'Montserrat', sans-serif; font-size:clamp(1.5em,3vw,2em); }
+        .consequences-box p { color: #58151c; font-size: clamp(1.05em, 2vw, 1.15em); margin-bottom:10px; text-align:center; }
+        .consequences-box strong { color: #720c16; }
+
+        .glimmer-of-hope {
+            background-color: #e6f7ff;
+            border: 2px solid #b3e0ff;
+            padding: 30px; margin: 35px 0; border-radius: 10px;
+            text-align: center;
+        }
+        .glimmer-of-hope h3 { font-family: 'Montserrat', sans-serif; color: #0056b3; font-size: clamp(1.6em,3.3vw,2.1em); margin-bottom: 15px;}
+        .glimmer-of-hope p { color: #004085; font-size: clamp(1.1em, 2.1vw, 1.25em); margin-bottom: 20px;}
+        .glimmer-of-hope .cta-button-problem-to-solution {
+            background-color: #28a745; color: #ffffff; border: none;
+            padding: 16px 40px; font-family: 'Montserrat', sans-serif; font-weight:700;
+            font-size: clamp(1.2em, 2.6vw, 1.5em); text-transform: uppercase; letter-spacing: 0.5px;
+            border-radius: 50px; box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease; text-decoration: none; display: inline-block; cursor: pointer;
+        }
+        .glimmer-of-hope .cta-button-problem-to-solution:hover {
+            background-color: #218838; transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(33, 136, 56, 0.4);
+        }
+        .glimmer-of-hope .cta-button-problem-to-solution .arrow { margin-left:10px; display:inline-block; transition: transform 0.3s ease;}
+        .glimmer-of-hope .cta-button-problem-to-solution:hover .arrow {transform: translateX(5px);}
+
+        @media (max-width: 768px) {
+            .problem-container { margin: 20px 15px; border-top-width: 8px; }
+            .problem-header { padding: 50px 25px 40px 25px; }
+            .content-section { padding: 35px 25px; }
+            .glimmer-of-hope .cta-button-problem-to-solution { padding: 14px 30px; font-size: clamp(1.1em, 2.3vw, 1.35em); }
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="../../../split-test-redirect.js"></script>
+</head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                 <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../universal-application-form.html" class="cta-button nav-cta">Apply for Partnership</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="problem-page-container">
+        <div class="problem-container">
+            <div class="problem-header">
+                <div class="personalized-greeting" id="personalized-greeting-problem">Dr. [ClinicOwnerName], Is This Why Your Sleep Apnea Practice Isn't THRIVING?</div>
+                <h1>The Silent Killer of Your Sleep Clinic's Growth: EMPTY Appointment Slots & An Unpredictable Trickle of HSAT, CPAP & OAT Patients</h1>
+                <p class="sub-headline">You're passionate about treating sleep apnea, but is your calendar a constant source of stress? If you're tired of fighting for every patient and watching potential revenue walk out the door, you're in the right place to understand WHY.</p>
+        </div>
+
+        <div class="content-section">
+                <h2>The Daily Grind: Does This Sound Painfully Familiar For Your Sleep Clinic?</h2>
+                <p>You invested heavily in your skills, your team, and your state-of-the-art Sleep Apnea clinic. You know you offer life-changing treatments. Yet, day after day, you might be facing the same frustrating realities:</p>
+                <ul class="pain-points-list">
+                    <li><strong>The "Feast or Famine" Patient Flow:</strong> Some weeks, a decent number of inquiries for HSATs or CPAP consults. Other weeks? Crickets. This inconsistency makes planning, staffing, and revenue forecasting a nightmare. <strong>How can you grow with such unpredictability?</strong></li>
+                    <li><strong>Marketing That Feels Like a Black Hole:</strong> You've tried local ads, maybe some social media, perhaps even expensive digital marketing agencies promising the world. Yet, the return is minimal, the leads (if any) are low-quality, and your marketing budget feels like it's vanishing into thin air. <strong>Are you just burning cash?</strong></li>
+                    <li><strong>Your Staff's Time Wasted on Dead-End "Leads":</strong> Instead of focusing on patient care and clinic operations, your team spends precious hours chasing lukewarm "interest" that rarely converts into actual, booked appointments for high-value sleep apnea treatments. <strong>How much productivity is this costing you?</strong></li>
+                    <li><strong>The Agony of Seeing Gaps in Your Schedule:</strong> Every empty slot for an HSAT, CPAP fitting, or Oral Appliance consultation isn't just lost time – it's lost revenue, lost opportunity to help someone, and a constant reminder that your patient acquisition isn't working. <strong>How much sleep are YOU losing over this?</strong></li>
+                    <li><strong>Watching Competitors Seemingly Thrive:</strong> You see other clinics (maybe even less qualified ones) with bustling waiting rooms and wonder, "What are they doing that I'm not?" It's demoralizing and makes you question your own efforts. <strong>Is there a secret you're missing?</strong></li>
+                    <li><strong>The Constant Worry About "Making Payroll" or "Hitting Targets":</strong> The pressure to generate enough patient volume to cover overheads, pay your dedicated team, and actually turn a healthy profit can be immense, especially when new patient flow is a trickle. <strong>Is this the dream you envisioned?</strong></li>
+                </ul>
+            </div>
+            
+            <div class="consequences-box">
+                <h3>The CRIPPLING Consequences of a Weak Patient Pipeline</h3>
+                <p>These aren't just minor inconveniences. A consistently weak flow of pre-qualified, booked sleep apnea patients leads to:</p>
+                <p><strong>STAGNANT Growth & Missed Revenue Targets.</strong><br>
+                <strong>Underutilized Staff & Equipment (Wasting Money!).</strong><br>
+                <strong>Increased Stress & Burnout for You and Your Team.</strong><br>
+                <strong>Inability to Invest in New Technologies or Staff Training.</strong><br>
+                <strong>The Slow, Painful Erosion of Your Clinic's Profitability and Your Passion.</strong></p>
+                <p><strong>This isn't sustainable. And it's certainly not the thriving Sleep Apnea practice you set out to build.</strong></p>
+        </div>
+
+        <div class="content-section">
+                <h2>Why Traditional Patient Acquisition Methods FAIL for Specialized Sleep Apnea Treatments</h2>
+                <p>Many Sleep Clinic owners believe that just "being a great doctor" or "having a website" is enough. Or they rely on outdated marketing tactics that simply don't connect with today's health-conscious (and often overwhelmed) consumer looking for specific solutions like HSATs, CPAP therapy, or custom Oral Appliances.</p>
+                <p><strong>The truth is, attracting and booking high-value sleep apnea patients requires a specialized, targeted, and SYSTEMATIC approach.</strong> Generic marketing efforts often fail because:</p>
+                <ul>
+                    <li>They don't reach the <strong>RIGHT</strong> audience (people actively seeking sleep apnea solutions).</li>
+                    <li>They don't speak directly to the patient's specific <strong>PAIN POINTS</strong> and desires related to sleep disorders.</li>
+                    <li>They lack a clear, compelling <strong>CALL TO ACTION</strong> that moves prospects from mere interest to a booked appointment.</li>
+                    <li>They don't have an efficient <strong>QUALIFICATION & NURTURING</strong> process to filter out tire-kickers and educate serious prospects.</li>
+                    <li>They rely on your already busy staff to do all the heavy lifting of <strong>FOLLOW-UP and SCHEDULING</strong>, leading to missed opportunities.</li>
+                </ul>
+                <p><strong>If your current patient acquisition feels like pushing a boulder uphill, it's because you're likely missing the critical components of a modern, automated system designed for YOUR specific niche.</strong></p>
+            </div>
+
+            <div class="glimmer-of-hope">
+                <h3>But What If There Was a PROVEN Way to End This Frustration, Permanently?</h3>
+                <p>Imagine waking up every day knowing your calendar is consistently filling with pre-qualified, high-value sleep apnea patients, eager for your expertise in HSATs, CPAP, and Oral Appliances – without you having to lift a finger on marketing or endless follow-up.</p>
+                <p>What if there was a system that could act as your clinic's most effective, 24/7 patient acquisition specialist, delivering a predictable flow of booked appointments?</p>
+                <a href="sleep-practice-accelerator-variant-a-solution.html" class="cta-button-problem-to-solution">
+                    Yes! Show Me the SOLUTION to My Patient Flow Problem! <span class="arrow">➔</span>
+                </a>
+        
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+                </div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">Your opportunity is to implement a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>You have all the talent and dedication needed. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system now available to you.</strong></p>
+</div></div>
+            </div>
+        </div>
+
+
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2016, we've specialized in helping sleep apnea clinics connect with patients seeking alternatives to CPAP therapy.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our approach was developed after recognizing that millions of sleep apnea sufferers were unaware of modern treatment options available through dental solutions.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">What started as educational marketing has evolved into a complete patient acquisition system that identifies, educates, and converts ideal patients for your sleep practice.</p>
+        </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A dental sleep practice in Texas went from 3 sleep appliances per month to over 20, adding $40,000+ in monthly revenue.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A dedicated sleep clinic in California now consistently adds 15-20 new sleep patients monthly without dependence on physician referrals.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A general dentist in Florida built a $500,000+ annual sleep practice alongside their existing practice using our system.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> Practices using our system for 3+ years have built respected sleep centers with strong physician relationships and consistent patient flow.</p>
+    </div>
+</div>
+<footer>
+    <div class="footer-main container">
+        <div class="footer-info">
+            <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+            <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+            <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+        </div>
+        <div class="footer-quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../about.html">About Us</a></li>
+                <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+            </ul>
+        </div>
+        <div class="footer-niches">
+            <h4>Our Niche Expertise</h4>
+            <ul>
+                <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Connect With Us</h4>
+             <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+    </div>
+</footer>
+
+    <div id="chat-widget-button">
+        <span>💬</span> Calendar Empty? Let's Talk!
+</div>
+
+<div id="chat-modal" class="modal-hidden">
+    <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Struggling with Patient Flow?</h2>
+            <button id="chat-modal-close" class="chat-close-button">&times;</button>
+        </div>
+        <div class="chat-modal-body">
+            <p>
+                    Tell us your biggest frustration with getting consistent, booked sleep apnea appointments (HSAT, CPAP, OAT). We can show you how the <strong>Automatic Appointment Engine</strong> solves this.
+            </p>
+            <form id="chat-contact-form">
+                 <div class="form-group">
+                        <label for="chat-industry">Your Industry:</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="Sleep Apnea & Snoring Clinics" selected>Sleep Apnea & Snoring Clinics</option>
+                            <option value="Other">Other Clinic Type</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                    <input type="text" id="chat-name" name="name" required>
+                </div>
+                <div class="form-group">
+                        <label for="chat-businessName">Clinic Name:</label>
+                    <input type="text" id="chat-businessName" name="businessName" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-email">Email Address:</label>
+                    <input type="email" id="chat-email" name="email" required>
+                </div>
+                <div class="form-group">
+                        <label for="chat-message">My Biggest Patient Acquisition Frustration Is:</label>
+                        <textarea id="chat-message" name="message" rows="3" required placeholder="e.g., Not enough HSAT leads, inconsistent CPAP bookings, marketing waste..."></textarea>
+                </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Get Help Now!</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You! We'll Be In Touch!</h3>
+                    <p>Someone from our team will contact you shortly to discuss how we can solve your patient flow problems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="../../../script.js"></script> 
+    <script>
+        // Personalized Greeting Script (Simplified)
+        document.addEventListener('DOMContentLoaded', function() {
+            const greetingElement = document.getElementById('personalized-greeting-problem');
+            if (greetingElement) {
+                const clinicOwnerName = new URLSearchParams(window.location.search).get('name') || "Clinic Owner";
+                greetingElement.textContent = greetingElement.textContent.replace("[ClinicOwnerName]", clinicOwnerName);
+            }
+        });
+
+        // Mobile nav toggle (Standard)
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.getElementById('main-nav');
+        if (hamburger && navUl) {
+          function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+          }
+          hamburger.style.display = 'block'; 
+          hamburger.addEventListener('click', function() {
+            const open = navUl.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', open);
+            if (!open) closeAllDropdowns();
+          });
+          navUl.querySelectorAll('.dropdown-parent > a').forEach(link => {
+            link.addEventListener('click', function(e) {
+              if (window.innerWidth <= 900) { 
+                e.preventDefault();
+                const parent = this.parentElement;
+                const isOpen = parent.classList.toggle('open');
+                navUl.querySelectorAll('.dropdown-parent').forEach(li => {
+                  if (li !== parent) li.classList.remove('open');
+                });
+              }
+            });
+          });
+          navUl.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+              if (window.innerWidth <= 900) {
+                navUl.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false'); 
+                closeAllDropdowns();
+              }
+            });
+          });
+        }
+
+        // Chat Widget Script (Standard)
+        const chatButton = document.getElementById('chat-widget-button');
+        const chatModal = document.getElementById('chat-modal');
+        const chatCloseButton = document.getElementById('chat-modal-close');
+        const chatForm = document.getElementById('chat-contact-form');
+        const chatSuccessMessage = document.getElementById('chat-success-message');
+        
+        if (chatButton && chatModal) {
+            chatButton.addEventListener('click', () => {
+                let wasOpen = chatModal.classList.contains('modal-visible');
+                chatModal.classList.toggle('modal-visible');
+                chatModal.classList.toggle('modal-hidden');
+                if (!wasOpen) { 
+                    chatForm.style.display = 'block';
+                    chatForm.reset(); 
+                    chatSuccessMessage.style.display = 'none';
+                 }
+            });
+        }
+
+        if (chatCloseButton && chatModal) {
+            chatCloseButton.addEventListener('click', () => {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            });
+        }
+        if (chatModal) { 
+            window.addEventListener('click', (event) => {
+                if (event.target === chatModal) {
+                    chatModal.classList.add('modal-hidden');
+                    chatModal.classList.remove('modal-visible');
+                }
+            });
+        }
+
+        if (chatForm) {
+            chatForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+                chatForm.querySelectorAll('[required]').forEach(input => {
+                    if (!input.value.trim()) { 
+                        isValid = false;
+                        input.style.borderColor = 'red'; 
+                    } else {
+                        input.style.borderColor = '#ccc'; 
+                    }
+                });
+
+                if (isValid) {
+                    console.log('Chat form submitted from Sleep Apnea Practice Problem Page'); 
+                    chatForm.style.display = 'none';
+                    chatSuccessMessage.style.display = 'block';
+                } else {
+                    alert('Please fill out all required fields.');
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

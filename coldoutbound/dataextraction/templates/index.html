@@ -1,0 +1,1465 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Home{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Main Action Card -->
+    <div class="card mb-5 border-0 shadow">
+        <div class="card-body p-0">
+            <div class="row g-0">
+                <div class="col-md-6 bg-primary text-white p-5">
+                    <h1 class="display-5 fw-bold mb-4">Automate Your Outreach</h1>
+                    <p class="fs-5 mb-4">
+                        Automatically visit websites, find contact forms, and send personalized messages.
+                        Connect with prospects on LinkedIn with custom connection requests.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex">
+                        <a href="#start-processing" class="btn btn-light btn-lg px-4 me-md-2">
+                            <i class="bi bi-play-fill"></i> Start Processing
+                        </a>
+                        <a href="/dashboard" class="btn btn-outline-light btn-lg px-4">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 p-5">
+                    <h2 class="mb-4">Current Status</h2>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Supabase Connection</h5>
+                            {% if supabase %}
+                            <span class="badge bg-success">Connected</span>
+                            {% else %}
+                            <span class="badge bg-danger">Not Connected</span>
+                            {% endif %}
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-{{ 'success' if supabase else 'danger' }}" role="progressbar" style="width: {{ '100' if supabase else '0' }}%"></div>
+                        </div>
+                        {% if not supabase %}
+                        <small class="text-danger">Please configure your Supabase connection in <a href="/dashboard#linkedin">Settings</a></small>
+                        {% else %}
+                        <small class="text-muted">Connected to table: {{ table_name }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Browser Mode</h5>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="headlessToggle" {{ 'checked' if settings.get('headless_mode', 'true') == 'true' else '' }}>
+                                <label class="form-check-label" for="headlessToggle">Headless</label>
+                            </div>
+                        </div>
+                        <div class="alert alert-{{ 'secondary' if settings.get('headless_mode', 'true') == 'true' else 'info' }} py-2 mb-0">
+                            <small>
+                                <i class="bi bi-{{ 'eye-slash' if settings.get('headless_mode', 'true') == 'true' else 'eye' }}"></i>
+                                {{ 'Browser runs in background (faster)' if settings.get('headless_mode', 'true') == 'true' else 'Browser is visible (good for debugging)' }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Processing Status</h5>
+                            {% if is_processing %}
+                            <span class="badge bg-primary">
+                                <span class="spinner-border spinner-border-sm me-1"></span>
+                                Running
+                            </span>
+                            {% else %}
+                            <span class="badge bg-secondary">Idle</span>
+                            {% endif %}
+                        </div>
+                        {% if is_processing %}
+                        <div class="alert alert-primary py-2 mb-0">
+                            <small>
+                                <i class="bi bi-info-circle"></i>
+                                Processing is currently running. <a href="#logs">View logs</a> for details.
+                            </small>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Processing Section -->
+    <div id="start-processing" class="card shadow mb-5">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Start Processing Contacts</h3>
+        </div>
+        <div class="card-body p-4">
+            <form id="processForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="limit" class="form-label">Number of Contacts</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="limit" name="limit" value="1" min="1" max="100" required {% if is_processing %}disabled{% endif %}>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Presets</button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="1">1 (Test)</a></li>
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="5">5 (Small Batch)</a></li>
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="20">20 (Medium Batch)</a></li>
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="50">50 (Large Batch)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="filter" class="form-label">Filter Contacts</label>
+                            <select class="form-select" id="filter" name="filter" {% if is_processing %}disabled{% endif %}>
+                                <option value="all" selected>All Contacts</option>
+                                <option value="pending">Pending Only</option>
+                                <option value="failed">Failed Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="browser_mode" class="form-label">Browser Visibility</label>
+                            <select class="form-select" id="browser_mode" name="browser_mode" {% if is_processing %}disabled{% endif %}>
+                                <option value="headless" {{ 'selected' if settings.get('headless_mode', 'true') == 'true' else '' }}>Hidden (Faster)</option>
+                                <option value="visible" {{ 'selected' if settings.get('headless_mode', 'true') != 'true' else '' }}>Visible (For Debugging)</option>
+                            </select>
+                        </div>
+                        <div class="form-check form-switch mt-3">
+                            <input class="form-check-input" type="checkbox" id="resume" name="resume" checked {% if is_processing %}disabled{% endif %}>
+                            <label class="form-check-label" for="resume">
+                                Resume from last processed contact
+                            </label>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle-fill"></i> When enabled, the bot will start from where it left off last time.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <button type="button" id="startProcessingBtn" class="btn btn-primary btn-lg" {% if is_processing or not supabase %}disabled{% endif %}>
+                        <i class="bi bi-play-fill"></i> Start Processing
+                    </button>
+                </div>
+
+                <!-- Processing Status -->
+                <div id="processingStatus" class="mt-3 d-none">
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <strong>Processing started!</strong>
+                                <p class="mb-0">The bot is now processing contacts. You can view the progress in the logs section below.</p>
+                                <div class="mt-2">
+                                    <a href="#logs" class="btn btn-sm btn-info">View Logs</a>
+                                    <button id="stopProcessingBtn" class="btn btn-sm btn-danger ms-2">
+                                        <i class="bi bi-stop-fill"></i> Stop Processing
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Contact Status -->
+                <div id="currentContactStatus" class="mt-3">
+                    <div class="card border-primary shadow">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="bi bi-activity"></i> Current Processing Status
+                            </h5>
+                            <span class="badge bg-light text-dark" id="lastUpdatedStatus">Updated: Just now</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="border-bottom pb-2 mb-3">Contact Information</h6>
+                                    <div class="mb-2">
+                                        <strong>Name:</strong> <span id="currentContactName">Loading...</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Company:</strong> <span id="currentCompanyName">Loading...</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Website:</strong> <span id="currentWebsite">Loading...</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="border-bottom pb-2 mb-3">Processing Details</h6>
+                                    <div class="mb-2">
+                                        <strong>Current Stage:</strong>
+                                        <span class="badge bg-info" id="currentStage">Initializing</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Progress:</strong>
+                                        <div class="progress" style="height: 10px;">
+                                            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <strong>Status:</strong> <span id="currentStatus">Waiting for processing to start or resume...</span>
+                                    </div>
+                                    <div class="mb-2" id="formSubmissionStatusContainer" style="display: none;">
+                                        <div class="alert alert-info p-2 mb-0">
+                                            <strong>Form Submission:</strong> <span id="formSubmissionStatusText">Not attempted yet</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#rawStatusData" aria-expanded="false">
+                                            <i class="bi bi-code-slash"></i> Show Raw Status Data
+                                        </button>
+                                    </div>
+                                    <div class="collapse mt-2" id="rawStatusData">
+                                        <div class="card card-body bg-light">
+                                            <pre id="rawStatusJson" class="mb-0" style="max-height: 200px; overflow-y: auto;">No data available</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Log Status Panel -->
+                <div id="liveLogPanel" class="mt-3">
+                    <div class="card border-success shadow">
+                        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="bi bi-activity"></i> Live Status Updates
+                            </h5>
+                            <button class="btn btn-sm btn-light" id="refreshLiveStatus">
+                                <i class="bi bi-arrow-repeat"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-success">
+                                <i class="bi bi-info-circle-fill"></i> This panel shows real-time status updates from the bot's logs.
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="border-bottom pb-2 mb-3">Current Status</h6>
+                                <div id="liveStatusUpdates" class="bg-light p-3 rounded" style="max-height: 300px; overflow-y: auto;">
+                                    <div class="status-item">
+                                        <span class="badge bg-secondary">Waiting</span>
+                                        <span class="status-text">Waiting for status updates...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Debug Status Panel -->
+                <div id="debugStatusPanel" class="mt-3">
+                    <div class="card border-warning shadow">
+                        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="bi bi-bug"></i> Debug Status
+                            </h5>
+                            <button class="btn btn-sm btn-outline-dark" id="refreshDebugStatus">
+                                <i class="bi bi-arrow-repeat"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i> This panel shows the raw status data from the server for debugging purposes.
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="border-bottom pb-2 mb-3">API Status Response</h6>
+                                <pre id="debugStatusJson" class="bg-light p-3 rounded" style="max-height: 200px; overflow-y: auto;">Loading status data...</pre>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="border-bottom pb-2 mb-3">Status Visibility</h6>
+                                <div class="mb-2">
+                                    <strong>Processing Status Visible:</strong> <span id="debugProcessingVisible">Unknown</span>
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Contact Status Visible:</strong> <span id="debugContactVisible">Unknown</span>
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Is Processing Flag:</strong> <span id="debugIsProcessing">Unknown</span>
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Has Status Details:</strong> <span id="debugHasStatusDetails">Unknown</span>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-warning" id="forceShowStatus">Force Show Status Panel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if not supabase %}
+                <div class="alert alert-warning mt-3">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    You need to configure your Supabase connection before processing contacts.
+                    <a href="/dashboard#linkedin" class="alert-link">Go to Settings</a>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <!-- Upload CSV Section -->
+    <div class="card shadow mb-5">
+        <div class="card-header bg-secondary text-white">
+            <h3 class="mb-0">Upload CSV File (Optional)</h3>
+        </div>
+        <div class="card-body p-4">
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <strong>Note:</strong> If your contacts are already in Supabase, you don't need to upload a CSV file.
+                This option is only for adding new contacts.
+            </div>
+
+            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#uploadFormCollapse" aria-expanded="false" aria-controls="uploadFormCollapse">
+                <i class="bi bi-upload"></i> Show Upload Form
+            </button>
+
+            <div class="collapse mt-3" id="uploadFormCollapse">
+                <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <div class="mb-3">
+                        <label for="list_name" class="form-label">Contact List Name</label>
+                        <input type="text" class="form-control" id="list_name" name="list_name" placeholder="e.g., Dental Professionals Q2 2023" required {% if is_processing %}disabled{% endif %}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select CSV File</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required {% if is_processing %}disabled{% endif %}>
+                        <div class="form-text">
+                            CSV should have columns: name, email, company, website_url, linkedin_url
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="process_immediately" name="process_immediately" checked {% if is_processing %}disabled{% endif %}>
+                            <label class="form-check-label" for="process_immediately">
+                                Process immediately after upload
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="uploadButton" {% if is_processing %}disabled{% endif %}>
+                        <i class="bi bi-upload"></i> Upload and Process
+                    </button>
+                </form>
+
+                <!-- Upload Progress -->
+                <div id="uploadProgress" class="mt-3 d-none">
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div>
+                                <strong>Uploading...</strong>
+                                <div class="progress mt-2" style="height: 10px;">
+                                    <div id="uploadProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                                </div>
+                                <small id="uploadStatus">Preparing file...</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Success -->
+                <div id="uploadSuccess" class="mt-3 d-none">
+                    <div class="alert alert-success">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span id="successMessage">File uploaded successfully!</span>
+                        <a href="/dashboard" class="btn btn-sm btn-success ms-2">View in Dashboard</a>
+                    </div>
+                </div>
+
+                <!-- Upload Error -->
+                <div id="uploadError" class="mt-3 d-none">
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span id="errorMessage">Error uploading file.</span>
+                        <button class="btn btn-sm btn-outline-danger ms-2" onclick="document.getElementById('uploadError').classList.add('d-none')">Dismiss</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Logs Section -->
+    <div id="logs" class="card shadow mb-5">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">
+                <i class="bi bi-terminal"></i> Live Processing Logs
+            </h3>
+            <div>
+                <button id="clearLogs" class="btn btn-sm btn-outline-light">
+                    <i class="bi bi-trash"></i> Clear
+                </button>
+                <button id="refreshLogs" class="btn btn-sm btn-outline-light ms-2">
+                    <i class="bi bi-arrow-repeat"></i> Refresh
+                </button>
+                <div class="form-check form-switch d-inline-block ms-3">
+                    <input class="form-check-input" type="checkbox" id="autoRefresh" checked>
+                    <label class="form-check-label text-light" for="autoRefresh">Auto-refresh</label>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="logs-container" style="height: 400px; overflow-y: auto; background-color: #1e1e1e; color: #f0f0f0; padding: 10px; font-family: 'Courier New', monospace;">
+                <div id="mainLogsContent">
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-light" role="status"></div>
+                        <p class="mt-3">Loading logs...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-dark text-white">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mb-0">
+                        <select id="logLevel" class="form-select form-select-sm">
+                            <option value="all">All Logs</option>
+                            <option value="info">Info Only</option>
+                            <option value="error">Errors Only</option>
+                            <option value="warning">Warnings & Errors</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <span id="logStatus" class="badge bg-success">
+                        <i class="bi bi-check-circle"></i> System Ready
+                    </span>
+                </div>
+                <div class="col-md-4 text-end">
+                    <small>Last updated: <span id="lastUpdated">Never</span></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <h2 class="text-center mb-5">Key Features</h2>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="bi bi-globe fs-1"></i>
+                    </div>
+                    <h4>Website Contact Forms</h4>
+                    <p class="text-muted">
+                        Automatically finds and fills contact forms on target websites with personalized messages.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="bi bi-linkedin fs-1"></i>
+                    </div>
+                    <h4>LinkedIn Connections</h4>
+                    <p class="text-muted">
+                        Sends personalized connection requests on LinkedIn to expand your network.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="bi bi-database fs-1"></i>
+                    </div>
+                    <h4>Supabase Integration</h4>
+                    <p class="text-muted">
+                        Connects directly to your Supabase database to process and update contact records.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Toggle headless mode
+        $('#headlessToggle').change(function() {
+            const isHeadless = $(this).is(':checked');
+
+            // Update browser mode dropdown
+            $('#browser_mode').val(isHeadless ? 'headless' : 'visible');
+
+            // Save setting via AJAX
+            $.post('/api/update-setting', {
+                key: 'headless_mode',
+                value: isHeadless ? 'true' : 'false'
+            });
+        });
+
+        // Preset limits
+        $('.preset-limit').click(function(e) {
+            e.preventDefault();
+            $('#limit').val($(this).data('value'));
+        });
+
+        // Smooth scroll
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top - 70
+            }, 500);
+        });
+
+        // Handle processing form submission
+        $('#startProcessingBtn').click(function() {
+            // Get form data
+            const limit = $('#limit').val();
+            const filter = $('#filter').val();
+            const browser_mode = $('#browser_mode').val();
+            const resume = $('#resume').is(':checked') ? 'true' : 'false';
+
+            // Disable form controls
+            $('#limit, #filter, #browser_mode, #resume, #startProcessingBtn').prop('disabled', true);
+
+            // Show processing status
+            $('#processingStatus').removeClass('d-none');
+
+            // Scroll to logs section
+            $('html, body').animate({
+                scrollTop: $('#logs').offset().top - 70
+            }, 500);
+
+            // Send AJAX request to start processing
+            $.get('/process', {
+                limit: limit,
+                filter: filter,
+                browser_mode: browser_mode,
+                resume: resume
+            }).done(function(response) {
+                // Processing started successfully
+                console.log('Processing started:', response);
+
+                // Update log status to show processing
+                $('#logStatus').removeClass('bg-success bg-danger bg-warning').addClass('bg-info');
+                $('#logStatus').html('<i class="bi bi-gear-fill"></i> Processing');
+
+                // Force refresh logs
+                loadLogs();
+            }).fail(function(xhr, status, error) {
+                // Error starting processing
+                console.error('Error starting processing:', error);
+
+                // Show error in processing status
+                $('#processingStatus').html(`
+                    <div class="alert alert-danger">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <div>
+                                <strong>Error starting processing</strong>
+                                <p class="mb-0">${xhr.responseJSON?.error || error || 'Unknown error'}</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+
+                // Re-enable form controls
+                $('#limit, #filter, #browser_mode, #resume, #startProcessingBtn').prop('disabled', false);
+            });
+        });
+
+        // Handle stop processing button
+        $('#stopProcessingBtn').click(function() {
+            if (confirm('Are you sure you want to stop the bot? This will terminate the current processing job.')) {
+                // Disable stop button to prevent multiple clicks
+                $(this).prop('disabled', true).html('<i class="bi bi-hourglass-split"></i> Stopping...');
+
+                // Send AJAX request to stop processing
+                $.post('/api/stop-processing')
+                    .done(function(response) {
+                        console.log('Processing stopped:', response);
+
+                        // Show success message
+                        $('#processingStatus').html(`
+                            <div class="alert alert-success">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    <div>
+                                        <strong>Processing stopped</strong>
+                                        <p class="mb-0">The bot has been stopped successfully.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+
+                        // Update log status
+                        $('#logStatus').removeClass('bg-info bg-danger bg-warning').addClass('bg-success');
+                        $('#logStatus').html('<i class="bi bi-check-circle"></i> System Ready');
+
+                        // Re-enable form controls
+                        $('#limit, #filter, #browser_mode, #resume, #startProcessingBtn').prop('disabled', false);
+
+                        // Force refresh logs
+                        loadLogs();
+
+                        // Hide processing status after a delay
+                        setTimeout(function() {
+                            $('#processingStatus').addClass('d-none');
+                        }, 5000);
+                    })
+                    .fail(function(xhr, status, error) {
+                        console.error('Error stopping processing:', error);
+
+                        // Show error message
+                        $('#processingStatus').html(`
+                            <div class="alert alert-danger">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                    <div>
+                                        <strong>Error stopping processing</strong>
+                                        <p class="mb-0">${xhr.responseJSON?.error || error || 'Unknown error'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+
+                        // Re-enable stop button
+                        $('#stopProcessingBtn').prop('disabled', false).html('<i class="bi bi-stop-fill"></i> Stop Processing');
+                    });
+            }
+        });
+
+        // Handle file upload with progress
+        $('#uploadForm').submit(function(e) {
+            e.preventDefault();
+
+            // Show progress indicator
+            $('#uploadProgress').removeClass('d-none');
+            $('#uploadSuccess').addClass('d-none');
+            $('#uploadError').addClass('d-none');
+            $('#uploadButton').prop('disabled', true);
+
+            // Get form data
+            var formData = new FormData(this);
+
+            // Send AJAX request
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                xhr: function() {
+                    var xhr = new window.XMLHttpRequest();
+
+                    // Upload progress
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total * 100;
+                            $('#uploadProgressBar').css('width', percentComplete + '%');
+                            $('#uploadStatus').text('Uploading: ' + Math.round(percentComplete) + '%');
+                        }
+                    }, false);
+
+                    return xhr;
+                },
+                success: function(response) {
+                    // Hide progress indicator
+                    $('#uploadProgress').addClass('d-none');
+
+                    // Show success message
+                    $('#successMessage').text('File "' + $('#list_name').val() + '" uploaded successfully!');
+                    $('#uploadSuccess').removeClass('d-none');
+
+                    // Redirect to dashboard if processing immediately
+                    if ($('#process_immediately').is(':checked')) {
+                        setTimeout(function() {
+                            window.location.href = '/dashboard';
+                        }, 1500);
+                    } else {
+                        // Reset form
+                        $('#uploadForm')[0].reset();
+                        $('#uploadButton').prop('disabled', false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Hide progress indicator
+                    $('#uploadProgress').addClass('d-none');
+
+                    // Show error message
+                    $('#errorMessage').text('Error uploading file: ' + (xhr.responseJSON?.error || error));
+                    $('#uploadError').removeClass('d-none');
+
+                    // Re-enable button
+                    $('#uploadButton').prop('disabled', false);
+                }
+            });
+        });
+
+        // Load logs on page load
+        loadLogs();
+
+        // Refresh logs button
+        $('#refreshLogs').click(function() {
+            loadLogs();
+        });
+
+        // Clear logs button
+        $('#clearLogs').click(function() {
+            $('#mainLogsContent').html('<div class="text-center py-3"><p>Logs cleared.</p></div>');
+            $('#lastUpdated').text('Cleared');
+        });
+
+        // Auto-refresh logs based on checkbox
+        setInterval(function() {
+            if ($('#autoRefresh').is(':checked')) {
+                loadLogs();
+            }
+        }, 3000); // Refresh every 3 seconds
+
+        // Filter logs by level
+        $('#logLevel').change(function() {
+            const level = $(this).val();
+
+            if (level === 'all') {
+                $('.log-entry').show();
+            } else if (level === 'info') {
+                $('.log-entry').hide();
+                $('.log-entry.text-info').show();
+            } else if (level === 'error') {
+                $('.log-entry').hide();
+                $('.log-entry.text-danger').show();
+            } else if (level === 'warning') {
+                $('.log-entry').hide();
+                $('.log-entry.text-warning, .log-entry.text-danger').show();
+            }
+        });
+
+        // Auto-refresh status
+        function checkProcessingStatus() {
+            $.getJSON('/api/status', function(data) {
+                if (data.is_processing) {
+                    // Show the processing status
+                    $('#processingStatus').removeClass('d-none');
+
+                    // Update the current contact status if available
+                    if (data.has_status_details && data.current_status) {
+                        updateContactStatus(data.current_status);
+                        // Make sure the status card is visible
+                        $('#currentContactStatus').removeClass('d-none');
+                    } else {
+                        console.log("Processing is active but no status details available");
+                        // Show raw data for debugging
+                        $('#rawStatusJson').text(JSON.stringify(data, null, 2));
+                        $('#currentContactStatus').removeClass('d-none');
+
+                        // Create a dummy status object with just the contact ID if we have it
+                        if (data.debug_info && data.debug_info.has_bot_instance) {
+                            // Try to extract contact info from logs
+                            $.getJSON('/api/logs?limit=20', function(logData) {
+                                if (logData.success && logData.logs) {
+                                    // Look for contact info in logs
+                                    const contactLogs = logData.logs.filter(log =>
+                                        log.message.includes('NOW PROCESSING CONTACT:')
+                                    );
+
+                                    if (contactLogs.length > 0) {
+                                        // Extract contact info from log data
+                                        const match = contactLogs[0].message.match(/NOW PROCESSING CONTACT: (.*?) at (.*)/);
+
+                                        // Create a more complete dummy status
+                                        const dummyStatus = {
+                                            current_contact_id: 1,
+                                            current_contact_name: match && match[1] ? match[1] : lastContactInfo.name,
+                                            current_company_name: match && match[2] ? match[2] : lastContactInfo.company
+                                        };
+
+                                        // Look for website info in logs
+                                        const websiteLogs = logData.logs.filter(log =>
+                                            log.message.includes('Website:')
+                                        );
+
+                                        if (websiteLogs.length > 0) {
+                                            const websiteMatch = websiteLogs[0].message.match(/Website: (https?:\/\/[^\s]+)/);
+                                            if (websiteMatch && websiteMatch[1]) {
+                                                dummyStatus.current_website = websiteMatch[1];
+                                            } else if (lastContactInfo.website) {
+                                                dummyStatus.current_website = lastContactInfo.website;
+                                            }
+                                        }
+
+                                        updateContactStatus(dummyStatus);
+                                    } else if (lastContactInfo.name || lastContactInfo.company || lastContactInfo.website) {
+                                        // If we have cached info but no new logs, use the cached info
+                                        const dummyStatus = {
+                                            current_contact_id: 1,
+                                            current_contact_name: lastContactInfo.name,
+                                            current_company_name: lastContactInfo.company,
+                                            current_website: lastContactInfo.website
+                                        };
+                                        updateContactStatus(dummyStatus);
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    // Update the debug panel
+                    updateDebugPanel(data);
+
+                    // Check again in 2 seconds
+                    setTimeout(checkProcessingStatus, 2000);
+                } else {
+                    // Hide the processing status
+                    $('#processingStatus').addClass('d-none');
+                    // Don't hide the status panels so users can see the last status
+                    // $('#currentContactStatus').addClass('d-none');
+
+                    // If we have cached contact info, make sure it's still displayed
+                    if (lastContactInfo.name || lastContactInfo.company || lastContactInfo.website) {
+                        const dummyStatus = {
+                            current_contact_id: 1,
+                            current_contact_name: lastContactInfo.name,
+                            current_company_name: lastContactInfo.company,
+                            current_website: lastContactInfo.website,
+                            processing_stage: 'completed'
+                        };
+                        updateContactStatus(dummyStatus);
+                    }
+                }
+            });
+        }
+
+        // Function to update the debug panel
+        function updateDebugPanel(data) {
+            $('#debugStatusJson').text(JSON.stringify(data, null, 2));
+            $('#debugProcessingVisible').text($('#processingStatus').hasClass('d-none') ? 'No' : 'Yes');
+            $('#debugContactVisible').text($('#currentContactStatus').hasClass('d-none') ? 'No' : 'Yes');
+            $('#debugIsProcessing').text(data.is_processing ? 'Yes' : 'No');
+            $('#debugHasStatusDetails').text(data.has_status_details ? 'Yes' : 'No');
+        }
+
+        // Cache for contact information to prevent it from disappearing
+        let lastContactInfo = {
+            name: null,
+            company: null,
+            website: null
+        };
+
+        // Function to update the contact status display
+        function updateContactStatus(status) {
+            // Show the status card
+            $('#currentContactStatus').removeClass('d-none');
+
+            // Update form submission status if available
+            if (status.form_submission_success === true) {
+                $('#formSubmissionStatusContainer').show();
+                $('#formSubmissionStatusText').text('Successfully submitted with confirmation');
+                $('#formSubmissionStatusContainer .alert')
+                    .removeClass('alert-info alert-warning alert-danger')
+                    .addClass('alert-success');
+            } else if (status.form_submission_success === false) {
+                $('#formSubmissionStatusContainer').show();
+                $('#formSubmissionStatusText').text(status.error_message || 'Failed to submit form');
+                $('#formSubmissionStatusContainer .alert')
+                    .removeClass('alert-info alert-warning alert-success')
+                    .addClass('alert-danger');
+            } else if (status.form_submission_uncertain === true) {
+                $('#formSubmissionStatusContainer').show();
+                $('#formSubmissionStatusText').text('Form submitted but result uncertain ⚠️');
+                $('#formSubmissionStatusContainer .alert')
+                    .removeClass('alert-info alert-danger alert-success')
+                    .addClass('alert-warning');
+            } else if (status.processing_stage === 'submitting_form') {
+                $('#formSubmissionStatusContainer').show();
+                $('#formSubmissionStatusText').text('Attempting to submit form...');
+                $('#formSubmissionStatusContainer .alert')
+                    .removeClass('alert-warning alert-danger alert-success')
+                    .addClass('alert-info');
+            }
+
+            // Update the contact information with fallback to log parsing and caching
+            if (status.current_contact_name && status.current_contact_name !== 'Unknown') {
+                $('#currentContactName').text(status.current_contact_name);
+                lastContactInfo.name = status.current_contact_name;
+            } else if (status.current_contact_id) {
+                // Only try to get contact name from logs if we don't have it cached
+                if (!lastContactInfo.name) {
+                    // Try to get contact name from logs if not in status
+                    $.getJSON('/api/logs?limit=20', function(data) {
+                        if (data.success && data.logs) {
+                            const contactLogs = data.logs.filter(log =>
+                                log.message.includes('NOW PROCESSING CONTACT:')
+                            );
+                            if (contactLogs.length > 0) {
+                                const match = contactLogs[0].message.match(/NOW PROCESSING CONTACT: (.*?) at (.*)/);
+                                if (match && match[1]) {
+                                    $('#currentContactName').text(match[1]);
+                                    lastContactInfo.name = match[1];
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (lastContactInfo.name) {
+                // Use cached name if available
+                $('#currentContactName').text(lastContactInfo.name);
+            } else {
+                $('#currentContactName').text('Unknown');
+            }
+
+            if (status.current_company_name && status.current_company_name !== 'Unknown') {
+                $('#currentCompanyName').text(status.current_company_name);
+                lastContactInfo.company = status.current_company_name;
+            } else if (status.current_contact_id) {
+                // Only try to get company name from logs if we don't have it cached
+                if (!lastContactInfo.company) {
+                    // Try to get company name from logs if not in status
+                    $.getJSON('/api/logs?limit=20', function(data) {
+                        if (data.success && data.logs) {
+                            const contactLogs = data.logs.filter(log =>
+                                log.message.includes('NOW PROCESSING CONTACT:')
+                            );
+                            if (contactLogs.length > 0) {
+                                const match = contactLogs[0].message.match(/NOW PROCESSING CONTACT: (.*?) at (.*)/);
+                                if (match && match[2]) {
+                                    $('#currentCompanyName').text(match[2]);
+                                    lastContactInfo.company = match[2];
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (lastContactInfo.company) {
+                // Use cached company if available
+                $('#currentCompanyName').text(lastContactInfo.company);
+            } else {
+                $('#currentCompanyName').text('Unknown');
+            }
+
+            // Format the website as a link if available
+            if (status.current_website && status.current_website !== 'Unknown' && status.current_website !== '#') {
+                $('#currentWebsite').html(`<a href="${status.current_website}" target="_blank">${status.current_website}</a>`);
+                lastContactInfo.website = status.current_website;
+            } else if (status.current_contact_id) {
+                // Only try to get website from logs if we don't have it cached
+                if (!lastContactInfo.website) {
+                    // Try to get website from logs if not in status
+                    $.getJSON('/api/logs?limit=20', function(data) {
+                        if (data.success && data.logs) {
+                            const websiteLogs = data.logs.filter(log =>
+                                log.message.includes('Website:')
+                            );
+                            if (websiteLogs.length > 0) {
+                                const match = websiteLogs[0].message.match(/Website: (https?:\/\/[^\s]+)/);
+                                if (match && match[1]) {
+                                    $('#currentWebsite').html(`<a href="${match[1]}" target="_blank">${match[1]}</a>`);
+                                    lastContactInfo.website = match[1];
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (lastContactInfo.website) {
+                // Use cached website if available
+                $('#currentWebsite').html(`<a href="${lastContactInfo.website}" target="_blank">${lastContactInfo.website}</a>`);
+            } else {
+                $('#currentWebsite').text('Unknown');
+            }
+
+            // Update the processing stage
+            const stage = status.processing_stage || 'initializing';
+            $('#currentStage').text(formatStage(stage));
+
+            // Update the progress bar based on the stage
+            updateProgressBar(stage);
+
+            // Update the status message
+            $('#currentStatus').text(getStatusMessage(stage));
+
+            // Update the last updated time
+            if (status.last_updated) {
+                const lastUpdated = new Date(status.last_updated);
+                $('#lastUpdatedStatus').text(`Updated: ${lastUpdated.toLocaleTimeString()}`);
+            }
+
+            // Update the raw status data
+            $('#rawStatusJson').text(JSON.stringify(status, null, 2));
+        }
+
+        // Function to format the stage name for display
+        function formatStage(stage) {
+            const stageMap = {
+                'starting': 'Starting',
+                'visiting_website': 'Visiting Website',
+                'finding_contact_form': 'Finding Contact Form',
+                'filling_form': 'Filling Contact Form',
+                'submitting_form': 'Submitting Form',
+                'connecting_linkedin': 'Connecting on LinkedIn',
+                'completed': 'Completed',
+                'error': 'Error'
+            };
+
+            return stageMap[stage] || stage.charAt(0).toUpperCase() + stage.slice(1).replace(/_/g, ' ');
+        }
+
+        // Function to update the progress bar based on the stage
+        function updateProgressBar(stage) {
+            const stageProgress = {
+                'starting': 10,
+                'visiting_website': 25,
+                'finding_contact_form': 40,
+                'filling_form': 60,
+                'submitting_form': 75,
+                'connecting_linkedin': 90,
+                'completed': 100,
+                'error': 100
+            };
+
+            const progress = stageProgress[stage] || 0;
+            $('#progressBar').css('width', `${progress}%`);
+
+            // Change the color based on the stage
+            $('#progressBar').removeClass('bg-success bg-danger');
+            if (stage === 'completed') {
+                $('#progressBar').addClass('bg-success');
+            } else if (stage === 'error') {
+                $('#progressBar').addClass('bg-danger');
+            }
+        }
+
+        // Function to get a status message based on the stage
+        function getStatusMessage(stage) {
+            const stageMessages = {
+                'starting': 'Preparing to process contact...',
+                'visiting_website': 'Visiting the website and analyzing page structure...',
+                'finding_contact_form': 'Searching for contact forms on the website...',
+                'filling_form': 'Filling out the contact form with your message...',
+                'submitting_form': 'Submitting the contact form...',
+                'connecting_linkedin': 'Connecting on LinkedIn...',
+                'completed': 'Processing completed successfully!',
+                'error': 'An error occurred during processing.'
+            };
+
+            return stageMessages[stage] || 'Processing...';
+        }
+
+        // Check status initially and set up automatic refresh
+        checkProcessingStatus();
+
+        // Set up automatic status refresh every 3 seconds
+        setInterval(checkProcessingStatus, 3000);
+
+        // Make sure the status panel is always visible
+        $('#currentContactStatus').removeClass('d-none');
+
+        // Remove the need for the "Force Show Status Panel" button
+        $('#forceShowStatus').text('Status Panel Always Visible').addClass('disabled');
+
+        // Auto-refresh the status panel immediately
+        refreshDebugStatus();
+
+        // Function to update the live status panel from logs
+        function updateLiveStatusFromLogs() {
+            // Use the status filter to get only relevant logs
+            $.getJSON('/api/logs?limit=50&filter=status', function(data) {
+                if (data.success && data.logs && data.logs.length > 0) {
+                    // Clear the current status updates
+                    $('#liveStatusUpdates').empty();
+
+                    // Add the filtered logs to the panel
+                    const statusLogs = data.logs;
+                    if (statusLogs.length > 0) {
+                        statusLogs.reverse().forEach(log => {
+                            let badgeClass = 'bg-secondary';
+                            let statusText = log.message;
+
+                            // Determine badge color based on log content
+                            if (log.message.includes('error') || log.message.includes('failed') || log.message.includes('Failed to submit form')) {
+                                badgeClass = 'bg-danger';
+                            } else if (log.message.includes('success')) {
+                                badgeClass = 'bg-success';
+                            } else if (log.message.includes('looking') || log.message.includes('attempting')) {
+                                badgeClass = 'bg-info';
+                            } else if (log.message.includes('found')) {
+                                badgeClass = 'bg-primary';
+                            }
+
+                            // Extract the important part of the message
+                            if (log.message.includes('CURRENT_STATUS_UPDATE')) {
+                                try {
+                                    const jsonStart = log.message.indexOf('{');
+                                    if (jsonStart > -1) {
+                                        const jsonStr = log.message.substring(jsonStart);
+                                        const statusData = JSON.parse(jsonStr);
+                                        statusText = `Stage: ${statusData.processing_stage || 'unknown'}`;
+                                        if (statusData.current_contact_name) {
+                                            statusText += ` - ${statusData.current_contact_name}`;
+                                        }
+                                        badgeClass = 'bg-primary';
+                                    }
+                                } catch (e) {
+                                    console.error('Error parsing status JSON:', e);
+                                }
+                            } else if (log.message.includes('BOT_STATUS_UPDATE')) {
+                                // Extract the status message after the prefix
+                                const statusMatch = log.message.match(/BOT_STATUS_UPDATE: (.*)/);
+                                if (statusMatch && statusMatch[1]) {
+                                    statusText = statusMatch[1];
+
+                                    // Set badge class based on content
+                                    if (statusText.includes('Starting')) {
+                                        badgeClass = 'bg-secondary';
+                                    } else if (statusText.includes('Looking') || statusText.includes('Visiting') || statusText.includes('Filling')) {
+                                        badgeClass = 'bg-info';
+                                    } else if (statusText.includes('Found') || statusText.includes('Connecting')) {
+                                        badgeClass = 'bg-primary';
+                                    } else if (statusText.includes('Completed') || statusText.includes('Successfully')) {
+                                        // Only show success if explicitly confirmed
+                                        if (statusText.includes('successfully with confirmation')) {
+                                            badgeClass = 'bg-success';
+                                        } else if (statusText.includes('uncertain')) {
+                                            badgeClass = 'bg-warning';
+                                            statusText += ' ⚠️'; // Add warning emoji
+                                        } else {
+                                            badgeClass = 'bg-info';
+                                        }
+                                    } else if (statusText.includes('Error') || statusText.includes('Failed')) {
+                                        badgeClass = 'bg-danger';
+                                    } else {
+                                        badgeClass = 'bg-info';
+                                    }
+                                }
+                            } else if (log.message.includes('NOW PROCESSING CONTACT')) {
+                                statusText = log.message.split('\n')[0];
+                                badgeClass = 'bg-success';
+                            } else if (log.message.includes('Looking for contact form')) {
+                                statusText = 'Looking for contact form on website';
+                                badgeClass = 'bg-info';
+                            } else if (log.message.includes('Contact form found')) {
+                                statusText = 'Contact form found on website';
+                                badgeClass = 'bg-primary';
+                            } else if (log.message.includes('Filling contact form')) {
+                                statusText = 'Filling out contact form';
+                                badgeClass = 'bg-info';
+                            } else if (log.message.includes('Successfully submitted')) {
+                                statusText = 'Successfully submitted contact form';
+                                badgeClass = 'bg-success';
+                            } else if (log.message.includes('Failed to submit')) {
+                                statusText = 'Failed to submit contact form';
+                                badgeClass = 'bg-danger';
+                            } else if (log.message.includes('Failed to submit form:')) {
+                                // Extract the error message for more details
+                                const errorMatch = log.message.match(/Failed to submit form: (.*)/);
+                                if (errorMatch && errorMatch[1]) {
+                                    statusText = `Form submission failed: ${errorMatch[1]}`;
+                                } else {
+                                    statusText = 'Form submission failed';
+                                }
+                                badgeClass = 'bg-danger';
+                            } else if (log.message.includes('Attempting LinkedIn')) {
+                                statusText = 'Attempting LinkedIn connection';
+                                badgeClass = 'bg-info';
+                            } else {
+                                // Simplify other messages
+                                if (statusText.length > 100) {
+                                    statusText = statusText.substring(0, 100) + '...';
+                                }
+                            }
+
+                            // Add the status item
+                            $('#liveStatusUpdates').append(`
+                                <div class="status-item mb-2">
+                                    <span class="badge ${badgeClass}">${log.timestamp.split(' ')[1]}</span>
+                                    <span class="status-text">${statusText}</span>
+                                </div>
+                            `);
+                        });
+                    } else {
+                        $('#liveStatusUpdates').html(`
+                            <div class="status-item">
+                                <span class="badge bg-secondary">Waiting</span>
+                                <span class="status-text">No status updates found in logs</span>
+                            </div>
+                        `);
+                    }
+                } else {
+                    $('#liveStatusUpdates').html(`
+                        <div class="status-item">
+                            <span class="badge bg-secondary">Waiting</span>
+                            <span class="status-text">No status updates found in logs</span>
+                        </div>
+                    `);
+                }
+            });
+        }
+
+        // Update live status initially and every 2 seconds
+        updateLiveStatusFromLogs();
+        setInterval(updateLiveStatusFromLogs, 2000);
+
+        // Auto-enable the auto-refresh for logs
+        if (!autoRefreshInterval) {
+            autoRefreshInterval = setInterval(fetchLogs, 3000);
+            $('#autoRefreshLogs').html('<i class="bi bi-pause-fill"></i> Pause Refresh');
+            $('#autoRefreshLogs').removeClass('btn-outline-secondary').addClass('btn-primary');
+            $('#autoRefreshStatus').text('Every 3 seconds');
+        }
+
+        // Refresh live status button
+        $('#refreshLiveStatus').click(function() {
+            updateLiveStatusFromLogs();
+        });
+
+        // Debug status panel functionality
+        $('#refreshDebugStatus').click(function() {
+            refreshDebugStatus();
+        });
+
+        $('#forceShowStatus').click(function() {
+            $('#currentContactStatus').removeClass('d-none');
+            $('#debugContactVisible').text('Forced visible');
+
+            // Create dummy status data if none exists
+            if ($('#rawStatusJson').text() === 'No data available') {
+                const dummyStatus = {
+                    current_contact_name: 'Debug Contact',
+                    current_company_name: 'Debug Company',
+                    current_website: 'https://example.com',
+                    processing_stage: 'finding_contact_form',
+                    last_updated: new Date().toISOString()
+                };
+                updateContactStatus(dummyStatus);
+            }
+        });
+
+        // Initial debug status check
+        refreshDebugStatus();
+
+        // Function to refresh debug status
+        function refreshDebugStatus() {
+            $.getJSON('/api/status', function(data) {
+                // Update debug panel
+                $('#debugStatusJson').text(JSON.stringify(data, null, 2));
+                $('#debugProcessingVisible').text($('#processingStatus').hasClass('d-none') ? 'No' : 'Yes');
+                $('#debugContactVisible').text($('#currentContactStatus').hasClass('d-none') ? 'No' : 'Yes');
+                $('#debugIsProcessing').text(data.is_processing ? 'Yes' : 'No');
+                $('#debugHasStatusDetails').text(data.has_status_details ? 'Yes' : 'No');
+
+                // Add form submission status if available
+                if (data.current_status) {
+                    let formStatus = "Unknown";
+                    let statusClass = "text-secondary";
+
+                    if (data.current_status.form_submission_success === true) {
+                        formStatus = "Success (Confirmed)";
+                        statusClass = "text-success";
+                    } else if (data.current_status.form_submission_success === false) {
+                        formStatus = "Failed";
+                        statusClass = "text-danger";
+                    } else if (data.current_status.form_submission_uncertain === true) {
+                        formStatus = "Uncertain";
+                        statusClass = "text-warning";
+                    } else if (data.current_status.processing_stage === "submitting_form") {
+                        formStatus = "In Progress";
+                        statusClass = "text-info";
+                    }
+
+                    // Add or update the form submission status element
+                    if ($('#debugFormSubmissionStatus').length === 0) {
+                        $('#debugStatusPanel .card-body .mb-3:last').after(`
+                            <div class="mb-3">
+                                <h6 class="border-bottom pb-2 mb-3">Form Submission Status</h6>
+                                <div class="mb-2">
+                                    <strong>Status:</strong> <span id="debugFormSubmissionStatus" class="${statusClass}">${formStatus}</span>
+                                </div>
+                                <div class="mb-2" id="debugFormSubmissionErrorContainer" style="display: ${data.current_status.error_message ? 'block' : 'none'}">
+                                    <strong>Error:</strong> <span id="debugFormSubmissionError">${data.current_status.error_message || ''}</span>
+                                </div>
+                            </div>
+                        `);
+                    } else {
+                        $('#debugFormSubmissionStatus').attr('class', statusClass).text(formStatus);
+                        if (data.current_status.error_message) {
+                            $('#debugFormSubmissionErrorContainer').show();
+                            $('#debugFormSubmissionError').text(data.current_status.error_message);
+                        } else {
+                            $('#debugFormSubmissionErrorContainer').hide();
+                        }
+                    }
+                }
+            });
+        }
+
+        // Function to load logs with user-friendly formatting
+        function loadLogs() {
+            $('#mainLogsContent').html('<div class="text-center py-5"><div class="spinner-border text-light" role="status"></div><p class="mt-3">Loading logs...</p></div>');
+
+            $.get('/api/logs?limit=100', function(data) {
+                if (data.success && data.logs) {
+                    let logsHtml = '';
+
+                    if (data.logs.length === 0) {
+                        logsHtml = '<div class="text-center py-5"><p>No logs available.</p></div>';
+                    } else {
+                        // Group logs by action for better readability
+                        const groupedLogs = groupLogsByAction(data.logs);
+
+                        // Build HTML for grouped logs
+                        Object.keys(groupedLogs).forEach(function(action) {
+                            const actionLogs = groupedLogs[action];
+
+                            // Add action header
+                            logsHtml += '<div class="log-group mb-3">';
+                            logsHtml += '<div class="log-group-header bg-secondary bg-opacity-25 p-2 rounded">';
+                            logsHtml += '<strong>' + action + '</strong>';
+                            logsHtml += '</div>';
+
+                            // Add logs for this action
+                            actionLogs.forEach(function(log) {
+                                let logClass = '';
+                                let icon = '';
+
+                                if (log.level === 'ERROR') {
+                                    logClass = 'text-danger';
+                                    icon = '<i class="bi bi-exclamation-triangle-fill me-1"></i>';
+                                } else if (log.level === 'WARNING') {
+                                    logClass = 'text-warning';
+                                    icon = '<i class="bi bi-exclamation-circle-fill me-1"></i>';
+                                } else if (log.level === 'INFO') {
+                                    logClass = 'text-info';
+                                    icon = '<i class="bi bi-info-circle-fill me-1"></i>';
+                                }
+
+                                // Format timestamp
+                                let timestamp = '';
+                                if (log.timestamp) {
+                                    try {
+                                        const date = new Date(log.timestamp);
+                                        timestamp = date.toLocaleTimeString();
+                                    } catch (e) {
+                                        timestamp = log.timestamp;
+                                    }
+                                }
+
+                                // Format message with highlights for important parts
+                                let message = log.message;
+
+                                // Highlight website URLs
+                                message = message.replace(/(https?:\/\/[^\s]+)/g, '<span class="text-success">$1</span>');
+
+                                // Highlight contact names
+                                message = message.replace(/Processing contact: (\d+)/g, 'Processing contact: <span class="text-primary">$1</span>');
+
+                                // Highlight success messages
+                                message = message.replace(/(Found|Filled|Submitted|Success)/g, '<span class="text-success">$1</span>');
+
+                                // Highlight error messages
+                                message = message.replace(/(Error|Failed|Not found)/g, '<span class="text-danger">$1</span>');
+
+                                logsHtml += '<div class="log-entry ' + logClass + ' ms-3 my-1">';
+                                logsHtml += (timestamp ? '<span class="text-muted">[' + timestamp + ']</span> ' : '');
+                                logsHtml += icon + message;
+                                logsHtml += '</div>';
+                            });
+
+                            logsHtml += '</div>';
+                        });
+                    }
+
+                    $('#mainLogsContent').html(logsHtml);
+
+                    // Update last updated time
+                    $('#lastUpdated').text(new Date().toLocaleTimeString());
+
+                    // Update log status
+                    updateLogStatus(data.logs);
+
+                    // Apply current filter
+                    $('#logLevel').trigger('change');
+
+                    // Scroll to bottom of logs
+                    const logsContainer = document.querySelector('.logs-container');
+                    logsContainer.scrollTop = logsContainer.scrollHeight;
+                } else {
+                    $('#mainLogsContent').html('<div class="text-center py-5"><p class="text-danger">Error loading logs: ' + (data.error || 'Unknown error') + '</p></div>');
+                }
+            }).fail(function(xhr) {
+                $('#mainLogsContent').html('<div class="text-center py-5"><p class="text-danger">Error loading logs: ' + (xhr.responseJSON?.error || 'Unknown error') + '</p></div>');
+            });
+        }
+
+        // Group logs by action for better readability
+        function groupLogsByAction(logs) {
+            const groups = {};
+            let currentAction = 'System';
+
+            // Reverse logs to show newest at the bottom within each group
+            const sortedLogs = [...logs].reverse();
+
+            sortedLogs.forEach(function(log) {
+                // Determine action based on log message
+                if (log.message.includes('Processing contact:')) {
+                    const match = log.message.match(/Processing contact: (\d+)/);
+                    if (match) {
+                        currentAction = 'Contact #' + match[1];
+                    }
+                } else if (log.message.includes('Visiting website:')) {
+                    // Keep the current action, but this is a sub-action
+                } else if (log.message.includes('Starting processing with browser mode:')) {
+                    currentAction = 'Processing Job';
+                } else if (log.message.includes('Application starting up')) {
+                    currentAction = 'System';
+                }
+
+                // Add log to current action group
+                if (!groups[currentAction]) {
+                    groups[currentAction] = [];
+                }
+
+                groups[currentAction].push(log);
+            });
+
+            return groups;
+        }
+
+        // Update log status based on recent logs
+        function updateLogStatus(logs) {
+            // Check for errors in the last 10 logs
+            const recentLogs = logs.slice(-10);
+            const hasErrors = recentLogs.some(log => log.level === 'ERROR');
+            const hasWarnings = recentLogs.some(log => log.level === 'WARNING');
+            const isProcessing = recentLogs.some(log =>
+                log.message.includes('Processing') ||
+                log.message.includes('Visiting website:') ||
+                log.message.includes('Looking for contact form')
+            );
+
+            if (hasErrors) {
+                $('#logStatus').removeClass('bg-success bg-warning bg-info').addClass('bg-danger');
+                $('#logStatus').html('<i class="bi bi-exclamation-triangle"></i> Errors Detected');
+            } else if (hasWarnings) {
+                $('#logStatus').removeClass('bg-success bg-danger bg-info').addClass('bg-warning');
+                $('#logStatus').html('<i class="bi bi-exclamation-circle"></i> Warnings Detected');
+            } else if (isProcessing) {
+                $('#logStatus').removeClass('bg-success bg-danger bg-warning').addClass('bg-info');
+                $('#logStatus').html('<i class="bi bi-gear-fill"></i> Processing');
+            } else {
+                $('#logStatus').removeClass('bg-danger bg-warning bg-info').addClass('bg-success');
+                $('#logStatus').html('<i class="bi bi-check-circle"></i> System Ready');
+            }
+        }
+    });
+</script>
+{% endblock %}

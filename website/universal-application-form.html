@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now | Turn Clicks To Clients</title>
+    <link rel="stylesheet" href="style.css"> <!-- Assuming a global style.css in the root -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <!-- Supabase JS Library -->
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .application-page-container { padding-top: 20px; padding-bottom: 40px; }
+        .application-form-container { max-width: 800px; margin: 20px auto; padding: 30px 40px; background-color: #fff; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+
+        .form-header { text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #eee; }
+        .form-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6em, 3.5vw, 2.2em); color: #0056b3; margin-bottom: 0.2em; }
+        .form-header .personalized-greeting { font-size: clamp(1em, 2vw, 1.2em); color: #28a745; font-weight: 700; margin-bottom: 0.4em; }
+
+        .progress-bar-container { width: 100%; height: 12px; background-color: #e9ecef; border-radius: 6px; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { height: 100%; width: 0%; background-color: #007bff; border-radius: 6px; transition: width 0.4s ease; }
+
+        /* Enhanced Intro Text Section Styling */
+        .intro-text-section {
+            margin-top: 25px; /* Increased margin */
+            margin-bottom: 30px; /* Increased margin */
+            padding: 25px; /* Increased padding */
+            background-color: #e6f7ff; /* Lighter, more inviting blue */
+            border-radius: 10px; /* Softer radius */
+            border: 1px solid #b3e0ff; /* Subtle border */
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1); /* Soft shadow for depth */
+        }
+        #city-availability-headline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.3em, 2.8vw, 1.8em); /* Larger and responsive */
+            color: #004085; /* Darker blue for contrast */
+            font-weight: 700; /* Bolder */
+            margin-bottom: 15px; /* More space below headline */
+            padding-bottom: 10px;
+            border-bottom: 2px solid #b3e0ff; /* Accent line */
+            text-align: center; /* Center the headline */
+        }
+        #city-availability-headline .dynamic-professional-term,
+        #city-availability-headline .dynamic-city-name {
+            color: #d9534f; /* Highlight color for dynamic terms - a contrasting reddish tone */
+            font-weight: 900; /* Extra bold */
+        }
+        .intro-text-section #standard-niche-intro p {
+            margin-bottom: 12px; /* More spacing between paragraphs */
+            font-size: 0.95em; /* Slightly larger text */
+            line-height: 1.7; /* Improved line spacing */
+            color: #333;
+        }
+        .intro-text-section #standard-niche-intro strong {
+            font-weight: 700;
+            color: #0056b3; /* Consistent strong color */
+        }
+        /* End Enhanced Intro Text Section Styling */
+
+        .form-step h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .form-step { display: none; animation: fadeIn 0.5s; margin-bottom: 20px; }
+        .form-step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 7px; font-weight: 700; color: #444; font-size: 0.9em; }
+        .form-group label.radio-label { font-weight: normal; margin-left: 5px; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 9px 11px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.95em;
+            box-sizing: border-box;
+        }
+        .form-group textarea { min-height: 90px; resize: vertical; }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+        .form-group .radio-group div { margin-bottom: 7px; }
+        .form-group input[type="radio"] { margin-right: 5px; vertical-align: middle; }
+
+        .form-navigation { margin-top: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn, .submit-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .nav-btn:hover, .submit-btn:hover { background-color: #0056b3; }
+        .nav-btn.prev-btn { background-color: #6c757d; }
+        .nav-btn.prev-btn:hover { background-color: #545b62; }
+        .submit-btn { background-color: #28a745; width:auto; }
+        .submit-btn:hover { background-color: #1e7e34; }
+        .nav-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        .privacy-note { font-size: 0.8em; color: #777; text-align: center; margin-top: 15px; }
+
+        /* Availability Check Styling */
+        #availability-check-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #e9f5ff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+        #availability-check-message p {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+            color: #0056b3;
+            font-weight: 600;
+        }
+        .dot-loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .dot-loader div {
+            width: 10px;
+            height: 10px;
+            background-color: #007bff;
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: dot-blink 1.4s infinite ease-in-out both;
+        }
+        .dot-loader div:nth-child(1) { animation-delay: -0.32s; }
+        .dot-loader div:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes dot-blink {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1.0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .application-form-container { margin: 20px 10px; padding: 15px; }
+            .form-header h1 { font-size: 1.5em; }
+            .nav-btn, .submit-btn { font-size: 0.9em; padding: 8px 15px; }
+        }
+
+        /* --- Custom Radio Button Styling --- */
+        .form-group .radio-group {
+            /* Container for the radio options */
+        }
+        .form-group .radio-option {
+            display: block; /* Make each option take full width */
+            margin-bottom: 8px;
+        }
+        .form-group .radio-option input[type="radio"] {
+            opacity: 0; /* Hide the actual radio button */
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+        .form-group .radio-option label.radio-label {
+            display: block; /* Make label fill the container */
+            padding: 10px 15px 10px 35px; /* Add padding for custom indicator */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative; /* For positioning the custom indicator */
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            font-weight: normal; /* Override default label bolding if needed */
+            margin-left: 0; /* Reset margin from previous rule */
+        }
+        /* Custom indicator circle */
+        .form-group .radio-option label.radio-label::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background-color: #fff;
+            transition: border-color 0.2s ease;
+        }
+        /* Custom indicator inner circle (dot) */
+        .form-group .radio-option label.radio-label::after {
+            content: '';
+            position: absolute;
+            left: 14px; /* Center within the outer circle */
+            top: 50%;
+            transform: translateY(-50%) scale(0); /* Hide by default */
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #007bff;
+            transition: transform 0.2s ease;
+        }
+         /* Hover state */
+        .form-group .radio-option label.radio-label:hover {
+            background-color: #f8f9fa;
+            border-color: #adb5bd;
+        }
+        .form-group .radio-option label.radio-label:hover::before {
+             border-color: #adb5bd;
+        }
+        /* Checked state */
+        .form-group .radio-option input[type="radio"]:checked + label.radio-label {
+            background-color: #e9f5ff;
+            border-color: #007bff;
+        }
+        .form-group .radio-option input[type="radio"]:checked + label.radio-label::before {
+            border-color: #007bff;
+        }
+        .form-group .radio-option input[type="radio"]:checked + label.radio-label::after {
+            transform: translateY(-50%) scale(1); /* Show the inner dot */
+        }
+         /* Focus state (for keyboard navigation) */
+        .form-group .radio-option input[type="radio"]:focus + label.radio-label {
+            box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+        /* --- End Custom Radio Button Styling --- */
+
+        .form-group .radio-group div { 
+            /* This rule might conflict with .radio-option, let's rely on .radio-option */
+            /* margin-bottom: 7px; */ 
+        }
+        .form-group input[type="radio"] { 
+             /* These are hidden by opacity now */
+            /* margin-right: 5px; vertical-align: middle; */ 
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+         <nav>
+            <div class="logo"><a href="index.html">TurnClicksToClients.com</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                 <li class="dropdown-parent">
+                    <a href="index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="niches/cosmetic-dentists-quiz.html">Cosmetic Dentists</a></li>
+                        <li><a href="niches/pmu-artists-quiz.html">PMU Artists</a></li>
+                        <li><a href="niches/non-surgical-body-contouring-quiz.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="niches/weight-loss-clinics-quiz.html">Weight Loss Clinics</a></li>
+                        <li><a href="niches/high-end-chiropractors-quiz.html">High-End Chiropractors</a></li>
+                        <li><a href="niches/sleep-apnea-snoring-clinics-quiz.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="niches/hearing-aid-audiology-clinics-quiz.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="niches/dme-clinics-quiz.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#core-offer">Our Offer</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#guarantee">Guarantee</a></li>
+                <li><a href="index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="application-page-container">
+        <div class="application-form-container">
+            <div class="form-header">
+                <h1 id="form-main-title">Confidential Application: Begin Your Partnership with TurnClicksToClients.com to Secure Consistent Client Growth</h1>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <form id="universal-application-form" novalidate> <!-- Add novalidate attribute here -->
+
+                <!-- Static Steps Start -->
+                <div class="form-step active" data-step="0">
+                    <h2>Welcome! Let's Get Started.</h2>
+                    <div class="form-group">
+                        <label for="niche">Which industry do you service? *</label>
+                        <select id="niche" name="niche" required>
+                            <option value="">-- Select Your Industry --</option>
+                            <option value="pmu-artists">PMU Artists</option>
+                            <option value="cosmetic-dentists">Cosmetic Dentists</option>
+                            <option value="child-care-centers">Child Care Centers</option>
+                            <option value="non-surgical-body-contouring">Non-Surgical Body Contouring</option>
+                            <option value="weight-loss-clinics">Weight Loss Clinics</option>
+                            <option value="high-end-chiropractors">High-End Chiropractors</option>
+                            <option value="sleep-apnea-snoring-clinics">Sleep Apnea & Snoring Clinics</option>
+                            <option value="hearing-aid-audiology-clinics">Hearing Aid & Audiology Clinics</option>
+                            <option value="dme-clinics">DME Clinics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="business_name">Business Name *</label>
+                        <input type="text" id="business_name" name="business_name" required>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="1">
+                    <h2>Your Primary Service City</h2>
+                    <div class="form-group">
+                        <label for="city_serviced">What city do you primarily service? *</label>
+                        <input type="text" id="city_serviced" name="city_serviced" required placeholder="e.g., Los Angeles">
+                    </div>
+                    <div id="availability-check-message" style="display: none;">
+                        <p>Checking our client list to see if your territory is available...</p>
+                        <div class="dot-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id="intro-text-section" class="intro-text-section" style="display: none;">
+                        <h3 id="city-availability-headline"></h3>
+                        <div id="standard-niche-intro"></div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="2">
+                    <h2>Your First Name</h2>
+                    <div class="form-group">
+                        <label for="first-name">First Name *</label>
+                        <input type="text" id="first-name" name="first_name" required>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="3">
+                    <h2>Your Last Name</h2>
+                    <div class="form-group">
+                        <label for="last-name">Last Name *</label>
+                        <input type="text" id="last-name" name="last_name" required>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="4">
+                    <h2>Your Email Address</h2>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="5">
+                    <h2>Your Phone Number</h2>
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="6">
+                    <h2>Current Client Acquisition</h2>
+                    <div class="form-group">
+                        <label>How do you currently get most of your clients? *</label>
+                        <div class="radio-group">
+                            <!-- Apply the new structure -->
+                            <div class="radio-option">
+                                <input type="radio" id="client_source_mouth" name="client_source" value="Word of mouth" required>
+                                <label for="client_source_mouth" class="radio-label">Word of mouth</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="client_source_social" name="client_source" value="Social media (Instagram, TikTok, Facebook)" required>
+                                <label for="client_source_social" class="radio-label">Social media (Instagram, TikTok, Facebook)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="client_source_ads" name="client_source" value="Paid ads" required>
+                                <label for="client_source_ads" class="radio-label">Paid ads</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="client_source_platforms" name="client_source" value="Online booking platforms (StyleSeat, Vagaro, etc.)" required>
+                                <label for="client_source_platforms" class="radio-label">Online booking platforms (StyleSeat, Vagaro, etc.)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="client_source_walkins" name="client_source" value="Walk-ins" required>
+                                <label for="client_source_walkins" class="radio-label">Walk-ins</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="6.5">
+                    <h2>Marketing Investment</h2>
+                    <div class="form-group">
+                        <label>How much do you currently invest in marketing each month? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_0" name="marketing_investment" value="$0" required>
+                                <label for="marketing_invest_0" class="radio-label">$0</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_1" name="marketing_investment" value="$1 - $499" required>
+                                <label for="marketing_invest_1" class="radio-label">$1 - $499</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_2" name="marketing_investment" value="$500 - $1,999" required>
+                                <label for="marketing_invest_2" class="radio-label">$500 - $1,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_3" name="marketing_investment" value="$2,000 - $4,999" required>
+                                <label for="marketing_invest_3" class="radio-label">$2,000 - $4,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_4" name="marketing_investment" value="$5,000 - $9,999" required>
+                                <label for="marketing_invest_4" class="radio-label">$5,000 - $9,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_5" name="marketing_investment" value="$10,000 - $19,999" required>
+                                <label for="marketing_invest_5" class="radio-label">$10,000 - $19,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_6" name="marketing_investment" value="$20,000+" required>
+                                <label for="marketing_invest_6" class="radio-label">$20,000+</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="6.6">
+                    <h2>Monthly Revenue</h2>
+                    <div class="form-group">
+                        <label>What is your business's average monthly revenue? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_0" name="monthly_revenue" value="$0 - $4,999" required>
+                                <label for="revenue_0" class="radio-label">$0 - $4,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_1" name="monthly_revenue" value="$5,000 - $9,999" required>
+                                <label for="revenue_1" class="radio-label">$5,000 - $9,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_2" name="monthly_revenue" value="$10,000 - $24,999" required>
+                                <label for="revenue_2" class="radio-label">$10,000 - $24,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_3" name="monthly_revenue" value="$25,000 - $49,999" required>
+                                <label for="revenue_3" class="radio-label">$25,000 - $49,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_4" name="monthly_revenue" value="$50,000 - $99,999" required>
+                                <label for="revenue_4" class="radio-label">$50,000 - $99,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_5" name="monthly_revenue" value="$100,000+" required>
+                                <label for="revenue_5" class="radio-label">$100,000+</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="7">
+                    <h2>Your Biggest Goal for 2025</h2>
+                    <div class="form-group">
+                        <label for="goal_2025">What is your biggest goal for your <span class="niche-specific-term">business</span> in 2025? *</label>
+                        <select id="goal_2025" name="goal_2025" required>
+                            <option value="">-- Select One --</option>
+                            <option value="Grow client base consistently">To grow my client base consistently</option>
+                            <option value="Increase revenue and profits">To increase my revenue and profits</option>
+                            <option value="Automate more of my business">To automate more of my business</option>
+                            <option value="Build a loyal, returning client base">To build a loyal, returning client base</option>
+                            <option value="Expand services and offerings">To expand my services and offerings</option>
+                            <option value="Fix existing problems with my clients">To fix existing problems with my clients</option>
+                            <option value="Maintain current level of business">To maintain my current level of business</option>
+                            <option value="Work fewer hours and reduce schedule">To work fewer hours and reduce my schedule</option>
+                            <option value="Just get by and make ends meet">To just get by and make ends meet</option>
+                            <option value="Not sure yet / no clear goal">I'm not sure yet / no clear goal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="8">
+                    <h2>Primary Goal for Next 6 Months</h2>
+                    <div class="form-group">
+                        <label for="goal_6_months">What is your primary goal for your <span class="niche-specific-term">business</span> in the next 6 months? *</label>
+                        <select id="goal_6_months" name="goal_6_months" required>
+                             <option value="">-- Select One --</option>
+                            <option value="Increase client retention and loyalty">Increase client retention and loyalty</option>
+                            <option value="Build a reliable, repeat clientele">Build a reliable, repeat clientele</option>
+                            <option value="Fill my schedule with regular appointments">Fill my schedule with regular appointments</option>
+                            <option value="Keep things as they are for now">I just want to keep things as they are for now</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="9">
+                    <h2>Client Flow Consistency</h2>
+                    <div class="form-group">
+                        <label>How consistent is your client flow currently? *</label>
+                        <div class="radio-group">
+                             <div class="radio-option">
+                                <input type="radio" id="client_flow_very" name="client_flow" value="Very consistent" required>
+                                <label for="client_flow_very" class="radio-label">Very consistent—I have a steady stream of repeat clients</label>
+                             </div>
+                             <div class="radio-option">
+                                <input type="radio" id="client_flow_somewhat" name="client_flow" value="Somewhat consistent" required>
+                                <label for="client_flow_somewhat" class="radio-label">Somewhat consistent—I have a mix of repeat and new clients</label>
+                             </div>
+                             <div class="radio-option">
+                                <input type="radio" id="client_flow_inconsistent" name="client_flow" value="Inconsistent" required>
+                                <label for="client_flow_inconsistent" class="radio-label">Inconsistent—I struggle to fill my schedule regularly</label>
+                             </div>
+                             <div class="radio-option">
+                                <input type="radio" id="client_flow_few" name="client_flow" value="Very few clients" required>
+                                <label for="client_flow_few" class="radio-label">I have very few clients and am starting from scratch</label>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="10">
+                    <h2>Current Tools & Software</h2>
+                    <div class="form-group">
+                        <label>Are you currently using any tools or software to manage your appointments, clients, or marketing? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="tools_yes_better" name="tools_software" value="Yes, looking for better options" required>
+                                <label for="tools_yes_better" class="radio-label">Yes, I have systems in place, but I'm looking for better options</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="tools_yes_some" name="tools_software" value="Using some tools, but not for everything" required>
+                                <label for="tools_yes_some" class="radio-label">I'm using some tools, but not for everything</label>
+                             </div>
+                             <div class="radio-option">
+                                <input type="radio" id="tools_no" name="tools_software" value="No, haven't adopted any tools" required>
+                                <label for="tools_no" class="radio-label">No, I haven't yet adopted any tools</label>
+                             </div>
+                             <div class="radio-option">
+                                <input type="radio" id="tools_manual" name="tools_software" value="Prefer handling manually" required>
+                                <label for="tools_manual" class="radio-label">I prefer handling everything manually</label>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="11">
+                    <h2>Your Business Experience</h2>
+                    <div class="form-group">
+                        <label for="business_experience">How long have you been a <span class="niche-specific-term">professional in this field</span>? *</label>
+                        <textarea id="business_experience" name="business_experience" required placeholder="Share a little about where you are in your career..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="12">
+                    <h2>Biggest Client Challenge</h2>
+                    <div class="form-group">
+                        <label for="biggest_challenge_clients">What's your biggest challenge in getting new clients? *</label>
+                        <textarea id="biggest_challenge_clients" name="biggest_challenge_clients" required placeholder="What's been the most frustrating part of attracting new clients?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Conditional Client Retention Step (Initially hidden by JS logic) -->
+                <div class="form-step" data-step="13" id="client-retention-step">
+                    <h2>Client Retention</h2>
+                    <div class="form-group">
+                        <label for="client_retention">How is your client retention? *</label>
+                        <textarea id="client_retention" name="client_retention" placeholder="Tell us about your experience with recurring clients."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="14">
+                     <h2>New Clients Per Month</h2>
+                    <div class="form-group">
+                        <label for="new_clients_per_month">How many new clients do you book per month right now? *</label>
+                        <input type="text" id="new_clients_per_month" name="new_clients_per_month" required placeholder="e.g., 5, 10-15, 20+">
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="15">
+                    <h2>Income Limitation</h2>
+                    <div class="form-group">
+                        <label for="income_limitation">What's limiting your income as a <span class="niche-specific-term">professional</span>? *</label>
+                        <textarea id="income_limitation" name="income_limitation" required placeholder="What do you feel is preventing you from reaching your full potential?"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="16">
+                    <h2>Marketing Efforts</h2>
+                    <div class="form-group">
+                        <label for="marketing_beyond_social">Have you tried marketing your <span class="niche-specific-term">business</span> beyond Instagram (or similar social media)? *</label>
+                        <textarea id="marketing_beyond_social" name="marketing_beyond_social" required placeholder="What has or hasn't worked for you?"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="17">
+                    <h2>Your Growth Mindset</h2>
+                    <div class="form-group">
+                        <label>What's your mindset toward business growth? *</label>
+                        <div class="radio-group">
+                             <div class="radio-option">
+                                <input type="radio" id="mindset_long_term" name="growth_mindset" value="Focused on long-term growth" required>
+                                <label for="mindset_long_term" class="radio-label">I'm focused on long-term growth and scaling my business</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="mindset_open_unsure" name="growth_mindset" value="Open to growth, unsure where to start" required>
+                                <label for="mindset_open_unsure" class="radio-label">I'm open to growth but unsure where to start</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="mindset_maintaining" name="growth_mindset" value="Focused on maintaining" required>
+                                <label for="mindset_maintaining" class="radio-label">I'm more focused on maintaining what I have right now</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="mindset_no_change" name="growth_mindset" value="Prefer not to change approach" required>
+                                <label for="mindset_no_change" class="radio-label">I prefer not to change my business approach</label>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="18">
+                    <h2>Adopting New Tools</h2>
+                    <div class="form-group">
+                        <label>How comfortable are you with adopting new team members, software or tools to streamline your business? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="comfort_very" name="comfort_new_tools" value="Very comfortable" required>
+                                <label for="comfort_very" class="radio-label">Very comfortable—I'm always looking for ways to improve efficiency</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="comfort_somewhat" name="comfort_new_tools" value="Somewhat comfortable, need benefits" required>
+                                <label for="comfort_somewhat" class="radio-label">Somewhat comfortable, but I need to understand the benefits first</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="comfort_not" name="comfort_new_tools" value="Not comfortable, prefer traditional" required>
+                                <label for="comfort_not" class="radio-label">Not comfortable—I prefer sticking with traditional methods</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="comfort_open_guidance" name="comfort_new_tools" value="Open to new tools, need guidance" required>
+                                <label for="comfort_open_guidance" class="radio-label">I'm open to new tools but need guidance</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="19">
+                    <h2>Current Marketing Support</h2>
+                    <div class="form-group">
+                        <label>Are you currently working with a marketing company to bring in leads & booked appointments? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_company_yes" name="current_marketing_company" value="Yes" required>
+                                <label for="marketing_company_yes" class="radio-label">Yes</label>
+                            </div>
+                             <div class="radio-option">
+                                <input type="radio" id="marketing_company_no" name="current_marketing_company" value="No" required>
+                                <label for="marketing_company_no" class="radio-label">No</label>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="20">
+                     <h2>Investment in Success Plan</h2>
+                    <div class="form-group">
+                        <label for="investment_readiness_plan">Smart business owners understand that acquiring a new client isn't just about the first sale... Are you ready to invest in a proven 90 day success plan that brings in high-paying clients who keep coming back? If NOT tell us why? *</label>
+                        <textarea id="investment_readiness_plan" name="investment_readiness_plan" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="21">
+                    <h2>Handling Business Challenges</h2>
+                    <div class="form-group">
+                        <label for="handle_challenges">How do you usually handle challenges or problems in your business? *</label>
+                        <textarea id="handle_challenges" name="handle_challenges" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="22">
+                    <h2>Team Assistance Needs</h2>
+                    <div class="form-group">
+                        <label for="team_assistance_need">If you could bring in a team to assist with one aspect of your <span class="niche-specific-term">business</span> right now, what would it be? *</label>
+                        <textarea id="team_assistance_need" name="team_assistance_need" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="23">
+                    <h2>Investing in Automation/Growth Tools</h2>
+                    <div class="form-group">
+                        <label>How ready are you to invest in tools or services that can help automate and grow your business? *</label>
+                        <div class="radio-group">
+                             <div class="radio-option">
+                                <input type="radio" id="invest_ready_next_level" name="readiness_invest_tools" value="Ready to invest, next level" required>
+                                <label for="invest_ready_next_level" class="radio-label">I'm ready to invest and take my business to the next level</label>
+                             </div>
+                              <div class="radio-option">
+                                <input type="radio" id="invest_ready_interested" name="readiness_invest_tools" value="Interested, need cost/how it works" required>
+                                <label for="invest_ready_interested" class="radio-label">I'm interested but need to see how much it costs & how it works first</label>
+                             </div>
+                              <div class="radio-option">
+                                <input type="radio" id="invest_ready_not_sure" name="readiness_invest_tools" value="Not sure if ready to invest yet" required>
+                                <label for="invest_ready_not_sure" class="radio-label">I'm not sure if I'm ready to invest yet</label>
+                             </div>
+                              <div class="radio-option">
+                                <input type="radio" id="invest_ready_not_looking" name="readiness_invest_tools" value="Not looking to invest right now" required>
+                                <label for="invest_ready_not_looking" class="radio-label">I'm not looking to invest in my business right now</label>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="24">
+                    <h2>Streamlining Operations</h2>
+                    <div class="form-group">
+                        <label>How important is it for you to save time and streamline your business operations? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="streamline_extremely" name="importance_streamline" value="Extremely important" required>
+                                <label for="streamline_extremely" class="radio-label">It's extremely important—I want to be more efficient and grow faster</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="streamline_important" name="importance_streamline" value="Important, other priorities" required>
+                                <label for="streamline_important" class="radio-label">It's important, but I have other priorities right now</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="streamline_not_priority" name="importance_streamline" value="Not a top priority" required>
+                                <label for="streamline_not_priority" class="radio-label">It's not a top priority for me</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="streamline_not_sure" name="importance_streamline" value="Not sure how important" required>
+                                <label for="streamline_not_sure" class="radio-label">I'm not sure how important this is for me</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Static Steps End -->
+
+                <!-- Placeholder Div for Dynamically Inserted Niche Questions -->
+                <div id="dynamic-niche-questions-injection-point" style="display: contents;"></div>
+
+
+                <div class="form-navigation">
+                    <button type="button" id="prev-btn" class="nav-btn prev-btn">Previous</button>
+                    <button type="button" id="next-btn" class="nav-btn">Next</button>
+                    <button type="submit" id="submit-btn" class="submit-btn" style="display: none;">Submit Application</button>
+                </div>
+                <p class="privacy-note">We respect your privacy. Your information is kept confidential and will only be used by Turn Clicks To Clients to assess your application.</p>
+                <input type="hidden" name="split_test_quiz_results_variant" id="variant-field">
+            </form>
+        </div>
+    </div>
+
+<footer>
+    <div class="footer-main container">
+        <div class="footer-column footer-info">
+            <h3>TurnClicksToClients.com</h3>
+            <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+            <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+        </div>
+        <div class="footer-column footer-quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html#ideal-clients">Clients We Serve</a></li>
+                <li><a href="index.html#core-offer">Our Offer</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#guarantee">Guarantee</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-column footer-niches">
+            <h3>Niche Expertise</h3>
+            <ul>
+                <li><a href="niches/child-care-centers.html">Child Care Centers</a></li>
+                <li><a href="niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                <li><a href="niches/pmu-artists.html">PMU Artists</a></li>
+                <li><a href="niches/non-surgical-body-contouring.html">Body Contouring</a></li>
+                <li><a href="niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                <li><a href="niches/high-end-chiropractors.html">Chiropractors</a></li>
+                <li><a href="niches/sleep-apnea-snoring-clinics.html">Sleep Apnea Clinics</a></li>
+                <li><a href="niches/hearing-aid-audiology-clinics.html">Audiology Clinics</a></li>
+                <li><a href="niches/dme-clinics.html">DME Clinics</a></li>
+            </ul>
+        </div>
+        <div class="footer-column footer-social">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <p>Stay updated with our latest insights and offers.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | One Client Per City, Per Niche.</p>
+    </div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstNameParam = params.get('firstName');
+            const nicheParam = params.get('niche');
+
+            const form = document.getElementById('universal-application-form');
+            const progressBar = document.getElementById('progress-bar');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const submitBtn = document.getElementById('submit-btn');
+
+            const nicheDropdown = document.getElementById('niche');
+            const cityServicedInput = document.getElementById('city_serviced');
+            const firstNameInput = document.getElementById('first-name');
+            const greetingElement = document.getElementById('personalized-greeting');
+            const formMainTitle = document.getElementById('form-main-title');
+            const introTextSection = document.getElementById('intro-text-section');
+            const cityAvailabilityHeadline = document.getElementById('city-availability-headline');
+            const standardNicheIntroContainer = document.getElementById('standard-niche-intro');
+
+            const clientRetentionStepDiv = document.getElementById('client-retention-step'); // Reference to the static div
+            const clientRetentionTextarea = document.getElementById('client_retention');
+            const dynamicNicheQuestionsInjectionPoint = document.getElementById('dynamic-niche-questions-injection-point');
+
+            let currentStep = 0;
+            let steps = []; // Global steps array, dynamically managed
+            let selectedNicheData = null;
+            let introShownForCityStep = false;
+
+            // SUPABASE INTEGRATION START
+            const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+
+            if (typeof supabase === 'undefined' || typeof supabase.createClient === 'undefined') {
+                console.error('Supabase client library not loaded correctly.');
+                alert('A critical error occurred (Supabase library not found). Please contact support.');
+                return;
+            }
+            const { createClient } = supabase;
+            const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            // SUPABASE INTEGRATION END
+
+            const nicheData = {
+                'pmu-artists': {
+                    displayName: 'PMU Artist',
+                    businessTerm: 'PMU business',
+                    professionalTerm: 'PMU artist',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a PMU artist in your city, that spot is gone for good.</strong></p><p>Let's be real: Most PMU artists struggle to stay fully booked. They rely on referrals, outdated marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new clients, your business is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from lead generation to appointment booking—so you dominate your local market, attract a steady stream of clients, and position yourself as the top PMU artist in your area.</p><p>We only partner with serious, committed PMU artists who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your PMU artist business thrives with consistent, high-quality clients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group"><label for="pmu_services">What specific PMU services do you offer (e.g., microblading, lip blush, eyeliner)?</label><textarea id="pmu_services" name="pmu_services_offered" placeholder="List your main PMU services" required></textarea></div><div class="form-group"><label for="pmu_portfolio">Do you have an online portfolio (e.g., Instagram, website link)? If so, please provide the link.</label><input type="text" id="pmu_portfolio" name="pmu_portfolio_link" placeholder="https://..." required></div>`
+                },
+                'cosmetic-dentists': {
+                    displayName: 'Cosmetic Dentist',
+                    businessTerm: 'dental practice',
+                    professionalTerm: 'cosmetic dentist',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a cosmetic dentist in your city, that spot is gone for good.</strong></p><p>Let's be real: Most cosmetic dentists struggle to stay fully booked with high-value cases. They rely on referrals, outdated marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new, qualified patients, your practice is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from targeted lead generation to appointment booking—so you dominate your local market, attract a steady stream of ideal patients, and position yourself as the top cosmetic dentist in your area.</p><p>We only partner with serious, committed cosmetic dentists who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your dental practice thrives with consistent, high-quality patients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group"><label for="cd_services_offered">What are your primary high-value cosmetic dental services (e.g., full mouth reconstruction, smile makeovers, veneers, dental implants)?</label><textarea id="cd_services_offered" name="cd_services_offered" placeholder="List your key high-value services" required></textarea></div><div class="form-group"><label for="cd_ideal_patient">Describe your ideal cosmetic dentistry patient.</label><textarea id="cd_ideal_patient" name="cd_ideal_patient" placeholder="e.g., specific demographics, seeking certain procedures, etc." required></textarea></div>`
+                },
+                 'child-care-centers': {
+                    displayName: 'Child Care Center',
+                    businessTerm: 'child care center',
+                    professionalTerm: 'child care provider',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a child care provider in your city, that spot is gone for good.</strong></p><p>Let's be real: Most child care providers struggle to maintain full enrollment. They rely on word-of-mouth, inconsistent marketing, and trial-and-error strategies that waste time and resources.</p><p>The reality? Without a predictable system bringing in new families, your center is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from parent lead generation to tour booking—so you dominate your local market, attract a steady stream of interested families, and position yourself as the top child care provider in your area.</p><p>We only partner with serious, committed child care providers who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your child care center thrives with consistent, full enrollment.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group"><label for="childcare_capacity">What is the current capacity of your child care center?</label><input type="number" id="childcare_capacity" name="childcare_capacity" placeholder="e.g., 50" required></div><div class="form-group"><label for="childcare_ages">What age groups do you cater to?</label><input type="text" id="childcare_ages" name="childcare_ages_served" placeholder="e.g., Infants, Toddlers, Preschool" required></div>`
+                },
+                'non-surgical-body-contouring': {
+                    displayName: 'Non-Surgical Body Contouring',
+                    businessTerm: 'body contouring practice',
+                    professionalTerm: 'body contouring specialist',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a body contouring specialist in your city, that spot is gone for good.</strong></p><p>Let's be real: Most body contouring specialists struggle to stay fully booked with ideal clients. They rely on referrals, outdated marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new clients, your practice is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from lead generation to consultation booking—so you dominate your local market, attract a steady stream of clients, and position yourself as the top body contouring specialist in your area.</p><p>We only partner with serious, committed body contouring specialists who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your body contouring specialist practice thrives with consistent, high-quality clients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group">
+                            <label for="bc_technologies">What main non-surgical body contouring technologies/services do you offer (e.g., CoolSculpting, Emsculpt, RF, Laser Lipo)? *</label>
+                            <textarea id="bc_technologies" name="bc_technologies_used" required placeholder="List primary technologies/services"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="bc_ideal_client">Briefly describe your ideal body contouring client (e.g., demographics, concerns). *</label>
+                            <textarea id="bc_ideal_client" name="bc_ideal_client" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="bc_avg_package_price">What is the typical price range for a body contouring treatment package at your practice? *</label>
+                            <input type="text" id="bc_avg_package_price" name="bc_avg_package_price" required placeholder="e.g., $1500 - $4000">
+                        </div>
+                        <div class="form-group">
+                            <label for="bc_marketing_challenge">What's your biggest marketing challenge in attracting qualified body contouring clients? *</label>
+                            <textarea id="bc_marketing_challenge" name="bc_marketing_challenge" required></textarea>
+                        </div>`
+                },
+                'weight-loss-clinics': {
+                    displayName: 'Weight Loss Clinic',
+                    businessTerm: 'weight loss clinic',
+                    professionalTerm: 'weight loss specialist',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a weight loss specialist in your city, that spot is gone for good.</strong></p><p>Let's be real: Most weight loss specialists struggle to consistently attract committed patients. They rely on referrals, hit-or-miss marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new patients, your clinic is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from qualified lead generation to consultation booking—so you dominate your local market, attract a steady stream of patients, and position yourself as the top weight loss specialist in your area.</p><p>We only partner with serious, committed weight loss specialists who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your weight loss specialist clinic thrives with consistent, motivated patients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group">
+                            <label for="wl_programs">What types of weight loss programs/methods do you primarily offer (e.g., medical, coaching, meal plans)? *</label>
+                            <textarea id="wl_programs" name="wl_programs_offered" required placeholder="List main programs/methods"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="wl_avg_program_value">What is the average value or duration of a typical patient's weight loss program? *</label>
+                            <input type="text" id="wl_avg_program_value" name="wl_avg_program_value" required placeholder="e.g., $1200, 6 months">
+                        </div>
+                        <div class="form-group">
+                            <label for="wl_commitment_challenge">What's your biggest challenge in attracting *committed* patients who complete their programs? *</label>
+                            <textarea id="wl_commitment_challenge" name="wl_commitment_challenge" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="wl_virtual_offerings">Do you currently offer virtual consultations or remote programs? *</label>
+                            <select id="wl_virtual_offerings" name="wl_virtual_offerings" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Planning to">Planning to</option>
+                            </select>
+                        </div>`
+                },
+                'high-end-chiropractors': {
+                    displayName: 'High-End Chiropractor',
+                    businessTerm: 'chiropractic practice',
+                    professionalTerm: 'chiropractor',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a chiropractor in your city focusing on high-value care, that spot is gone for good.</strong></p><p>Let's be real: Most chiropractors struggle to consistently attract premium patients. They rely on referrals, outdated marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new, high-value patients, your practice is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from targeted lead generation to new patient booking—so you dominate your local market, attract a steady stream of ideal patients, and position yourself as the top chiropractor in your area.</p><p>We only partner with serious, committed chiropractors who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your chiropractor practice thrives with consistent, high-quality patients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group">
+                            <label for="chiro_specialization">What conditions or patient types do you specialize in for high-value care (e.g., chronic pain, athletes, specific techniques like ART, decompression)? *</label>
+                            <textarea id="chiro_specialization" name="chiro_specialization" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="chiro_high_end_factors">What makes your practice 'high-end' (e.g., cash-based, advanced therapies, exceptional service)? *</label>
+                            <textarea id="chiro_high_end_factors" name="chiro_high_end_factors" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="chiro_avg_care_plan_value">What is the approximate average value of a new patient's initial care plan? *</label>
+                            <input type="text" id="chiro_avg_care_plan_value" name="chiro_avg_care_plan_value" required placeholder="e.g., $1000 - $3000+">
+                        </div>
+                        <div class="form-group">
+                            <label for="chiro_attraction_challenge">What is your biggest challenge attracting patients willing to invest in comprehensive, high-value care plans? *</label>
+                            <textarea id="chiro_attraction_challenge" name="chiro_attraction_challenge" required></textarea>
+                        </div>`
+                },
+                'sleep-apnea-snoring-clinics': {
+                    displayName: 'Sleep Apnea & Snoring Clinic',
+                    businessTerm: 'sleep clinic',
+                    professionalTerm: 'sleep specialist',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a sleep specialist in your city, that spot is gone for good.</strong></p><p>Let's be real: Most sleep specialists struggle to consistently reach patients needing diagnosis and treatment. They rely on physician referrals, sporadic marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new patients, your clinic is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from patient lead generation to appointment booking—so you dominate your local market, attract a steady stream of patients, and position yourself as the top sleep specialist in your area.</p><p>We only partner with serious, committed sleep specialists who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your sleep specialist clinic thrives with consistent, qualified patients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group">
+                            <label for="sleep_diagnostics">What diagnostic services do you offer (e.g., Home Sleep Tests (HST), In-Lab Polysomnography (PSG))? *</label>
+                            <textarea id="sleep_diagnostics" name="sleep_diagnostics_offered" required placeholder="List main diagnostic services"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="sleep_treatments">What primary treatments for sleep apnea/snoring do you manage (e.g., CPAP/APAP, Oral Appliances, Positional Therapy, Inspire)? *</label>
+                            <textarea id="sleep_treatments" name="sleep_treatments_managed" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="sleep_referral_sources">What are your main patient referral sources currently? *</label>
+                            <input type="text" id="sleep_referral_sources" name="sleep_referral_sources" required placeholder="e.g., Physicians, Dentists, Self-referred">
+                        </div>
+                        <div class="form-group">
+                            <label for="sleep_compliance_challenge">What is your biggest challenge related to patient treatment compliance or long-term management? *</label>
+                            <textarea id="sleep_compliance_challenge" name="sleep_compliance_challenge" required></textarea>
+                        </div>`
+                },
+                'hearing-aid-audiology-clinics': {
+                    displayName: 'Hearing Aid & Audiology Clinic',
+                    businessTerm: 'audiology clinic',
+                    professionalTerm: 'audiologist/hearing specialist',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with an audiologist/hearing specialist in your city, that spot is gone for good.</strong></p><p>Let's be real: Most audiologists/hearing specialists struggle to consistently reach patients needing hearing care. They rely on referrals, outdated marketing, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system bringing in new patients, your clinic is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from lead generation to appointment booking—so you dominate your local market, attract a steady stream of patients, and position yourself as the top audiologist/hearing specialist in your area.</p><p>We only partner with serious, committed audiologists/hearing specialists who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your audiologist/hearing specialist clinic thrives with consistent, high-quality patients.</p>`,
+                    showRetentionQuestion: true,
+                    specificQuestionsHTML: `<div class="form-group">
+                            <label for="audio_brands">What major hearing aid brands do you primarily dispense? *</label>
+                            <textarea id="audio_brands" name="audio_brands_dispensed" required placeholder="e.g., Phonak, Oticon, Starkey, Widex, Resound"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="audio_diagnostics">Do you perform comprehensive diagnostic audiological evaluations on-site? *</label>
+                             <select id="audio_diagnostics" name="audio_diagnostics_offered" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="audio_avg_pair_price">What is the approximate average selling price for a pair of hearing aids at your clinic? *</label>
+                            <input type="text" id="audio_avg_pair_price" name="audio_avg_pair_price" required placeholder="e.g., $3000 - $7000">
+                        </div>
+                        <div class="form-group">
+                            <label for="audio_conversion_challenge">What is your biggest challenge in converting potential patients or overcoming sales objections (e.g., cost, stigma, perceived need)? *</label>
+                            <textarea id="audio_conversion_challenge" name="audio_conversion_challenge" required></textarea>
+                        </div>`
+                },
+                 'dme-clinics': {
+                    displayName: 'DME Clinic',
+                    businessTerm: 'DME business',
+                    professionalTerm: 'DME provider',
+                    introText: `<p><strong>If you're reading this, consider yourself lucky—because once we partner with a DME provider in your city, that spot is gone for good.</strong></p><p>Let's be real: Most DME providers struggle to build consistent referral streams and efficient operations. They rely on fluctuating referrals, outdated processes, and trial-and-error strategies that waste time and money.</p><p>The reality? Without a predictable system for referrals and fulfillment, your business is at risk.</p><p>That's where we come in. TurnClicksToClients.com's expert team handles everything—from referral network building to operational streamlining strategies—so you dominate your local market, attract a steady stream of referrals, and position yourself as the top DME provider in your area.</p><p>We only partner with serious, committed DME providers who meet our qualifications.</p><p><strong>Take 30 seconds to apply now.</strong></p><p>If accepted, you'll gain access to our proven system and dedicated team, ensuring your DME provider business thrives with consistent growth and efficiency.</p>`,
+                    showRetentionQuestion: false,
+                    specificQuestionsHTML: `<div class="form-group">
+                            <label for="dme_categories">What are your primary DME product categories (e.g., Respiratory, Mobility, Diabetic, Orthotics, Rehab)? *</label>
+                            <textarea id="dme_categories" name="dme_product_categories" required placeholder="List main categories"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dme_referral_sources">What are your main referral sources (e.g., Hospitals, Physicians, Home Health Agencies, Clinics)? *</label>
+                            <textarea id="dme_referral_sources" name="dme_referral_sources" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dme_billing_challenge">What is your biggest operational challenge (e.g., Billing/Reimbursement, Inventory Management, Compliance, Logistics)? *</label>
+                            <textarea id="dme_billing_challenge" name="dme_operational_challenge" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dme_accreditation">Is your DME business currently accredited (e.g., by ACHC, BOC, JCAHO)? *</label>
+                            <select id="dme_accreditation" name="dme_accreditation_status" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="In Process">In Process</option>
+                            </select>
+                        </div>`
+                },
+                'default': {
+                    displayName: 'Professional',
+                    businessTerm: 'business',
+                    professionalTerm: 'professional',
+                    introText: '<p>Thank you for your interest. Please select your industry and city to see relevant information.</p>',
+                    showRetentionQuestion: false,
+                    specificQuestionsHTML: ''
+                }
+            };
+
+            // ----- Core Logic Functions -----
+
+            function updateNicheSpecificTextContent() {
+                if (!selectedNicheData) selectedNicheData = nicheData['default'];
+                const cityEntered = cityServicedInput.value.trim();
+                const nicheValue = nicheDropdown.value;
+
+                const capitalizedCity = cityEntered ? cityEntered.charAt(0).toUpperCase() + cityEntered.slice(1) : '';
+                const capitalizedProfessionalTerm = selectedNicheData.professionalTerm ? selectedNicheData.professionalTerm.charAt(0).toUpperCase() + selectedNicheData.professionalTerm.slice(1) : 'Professional';
+
+                // Update intro text section if it's meant to be visible
+                if (capitalizedCity && nicheValue && introTextSection.style.display === 'block') {
+                    cityAvailabilityHeadline.innerHTML = `OPPORTUNITY KNOCKS! Your City is Available! TurnClicksToClients.com Is Actively Seeking ONE Premier <span class="dynamic-professional-term">${capitalizedProfessionalTerm}</span> in <span class="dynamic-city-name">${capitalizedCity}</span>. This Could Be You.`;
+                    standardNicheIntroContainer.innerHTML = selectedNicheData.introText.replace(/in your city/g, `in ${capitalizedCity}`).replace(/in your area/g, `in the ${capitalizedCity} area`);
+                }
+
+                // Update niche-specific terms throughout the entire form (even in hidden steps)
+                form.querySelectorAll('.niche-specific-term').forEach(span => {
+                    const parentLabel = span.closest('.form-group')?.querySelector('label');
+                    if (parentLabel) {
+                        const labelFor = parentLabel.htmlFor;
+                         if (['business_experience', 'income_limitation', 'investment_readiness_plan'].includes(labelFor)) {
+                             span.textContent = selectedNicheData.professionalTerm;
+                        } else {
+                            span.textContent = selectedNicheData.businessTerm;
+                        }
+                    } else {
+                         span.textContent = selectedNicheData.businessTerm; // Fallback
+                    }
+                });
+            }
+
+            function regenerateSteps() {
+                console.log("Regenerating steps...");
+                // Clear previously injected dynamic niche question steps
+                const existingDynamicSteps = form.querySelectorAll('.niche-specific-dynamic-step');
+                existingDynamicSteps.forEach(step => step.remove());
+            
+                // Start with all statically defined steps present in the HTML (excluding the conditional one initially)
+                let baseSteps = Array.from(form.querySelectorAll('.form-step[data-step]:not(#client-retention-step)'));
+                 // Sort by initial data-step to ensure base order
+                baseSteps.sort((a, b) => parseInt(a.dataset.step) - parseInt(b.dataset.step));
+            
+                let stepsDraft = [...baseSteps]; // Create a mutable array
+            
+                // Handle conditional client retention step insertion
+                const clientRetentionOriginalStep = document.getElementById('client-retention-step');
+                const shouldShowRetention = selectedNicheData && selectedNicheData.showRetentionQuestion;
+                
+                clientRetentionOriginalStep.style.display = 'none'; // Assume hidden initially
+                clientRetentionTextarea.required = false;
+                
+                if (shouldShowRetention) {
+                    clientRetentionTextarea.required = true;
+                    // Find the correct insertion point: *after* step 12 (Biggest Challenge)
+                    const challengeStepIndex = stepsDraft.findIndex(step => step.dataset.step === "12"); // Find the element with data-step 12
+                    if (challengeStepIndex !== -1 && challengeStepIndex + 1 <= stepsDraft.length) {
+                        console.log("Inserting Client Retention after step 12");
+                        stepsDraft.splice(challengeStepIndex + 1, 0, clientRetentionOriginalStep); 
+                    } else {
+                        // Fallback: Insert before step 14 if step 12 wasn't found reliably
+                        const nextMajorStepIndex = stepsDraft.findIndex(step => step.dataset.step === "14");
+                        if (nextMajorStepIndex !== -1) {
+                           console.log("Inserting Client Retention before step 14");
+                           stepsDraft.splice(nextMajorStepIndex, 0, clientRetentionOriginalStep);
+                        } else {
+                           console.warn("Could not determine specific location for Client Retention step, appending towards end.");
+                           // Insert before the injection point placeholder if possible, otherwise append
+                           const injectionPointIndex = stepsDraft.findIndex(el => el.id === 'dynamic-niche-questions-injection-point');
+                           if(injectionPointIndex !== -1) {
+                               stepsDraft.splice(injectionPointIndex, 0, clientRetentionOriginalStep);
+                           } else {
+                               stepsDraft.push(clientRetentionOriginalStep);
+                           }
+                        }
+                    }
+                } // If !shouldShowRetention, the step remains excluded from stepsDraft
+            
+                // Inject niche-specific questions as new steps
+                const nicheInsertionPoint = document.getElementById('dynamic-niche-questions-injection-point');
+                let nicheQuestionSteps = [];
+                if (selectedNicheData && selectedNicheData.specificQuestionsHTML && nicheInsertionPoint) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = selectedNicheData.specificQuestionsHTML;
+                    const questionGroups = Array.from(tempDiv.querySelectorAll('.form-group'));
+            
+                    questionGroups.forEach((group, index) => {
+                        const newStepDiv = document.createElement('div');
+                        newStepDiv.classList.add('form-step', 'niche-specific-dynamic-step');
+                        // Ensure it's hidden by default until shown by showStep
+                        newStepDiv.style.display = 'none'; 
+            
+                        const labelElement = group.querySelector('label');
+                        const stepTitle = document.createElement('h2');
+                        let titleText = labelElement ? labelElement.textContent.replace(/\*| \(e\.g\..*\)|:/g, '').trim() : `${selectedNicheData.displayName} Question ${index + 1}`;
+                        if (titleText.length > 50) titleText = titleText.substring(0, 47) + "...";
+                        stepTitle.textContent = titleText;
+                        
+                        // Ensure inputs within the group are marked required if the original label had *
+                        if (labelElement && labelElement.textContent.includes('*')){
+                            group.querySelectorAll('input, select, textarea').forEach(input => input.required = true);
+                        }
+
+                        newStepDiv.appendChild(stepTitle);
+                        newStepDiv.appendChild(group);
+                        
+                        // Insert the new step div into the DOM before the placeholder div
+                        nicheInsertionPoint.parentNode.insertBefore(newStepDiv, nicheInsertionPoint);
+                        nicheQuestionSteps.push(newStepDiv);
+                    });
+                }
+                
+                // Add the dynamically created niche steps to the draft array in the correct position
+                // Find the index where the injection point *would* be relative to the static steps
+                const injectionPointIndex = stepsDraft.findIndex(el => el.id === 'dynamic-niche-questions-injection-point');
+                if (injectionPointIndex !== -1) {
+                     stepsDraft.splice(injectionPointIndex, 0, ...nicheQuestionSteps);
+                } else {
+                    // Fallback: Append niche questions if injection point isn't found in the draft
+                    stepsDraft.push(...nicheQuestionSteps);
+                }
+                // Remove the placeholder div itself from the steps array if it exists
+                stepsDraft = stepsDraft.filter(step => step.id !== 'dynamic-niche-questions-injection-point');
+
+
+                // Finalize the global `steps` array
+                steps = stepsDraft;
+                
+                // Re-assign sequential data-step attributes for accurate indexing and progress
+                steps.forEach((step, index) => {
+                    step.dataset.step = index; 
+                });
+                console.log("Steps regenerated. Total steps:", steps.length);
+            }
+
+
+            function showStep(stepIndex) {
+                console.log(`Showing step ${stepIndex} / ${steps.length - 1}`);
+                if (stepIndex < 0 || stepIndex >= steps.length) {
+                    console.error("Attempted to show invalid step index:", stepIndex, "Total steps:", steps.length);
+                    return;
+                }
+                // Explicitly hide all steps first, then show the target one
+                steps.forEach((step, index) => {
+                    if(step) { // Check if step element exists
+                       step.style.display = 'none';
+                       step.classList.remove('active');
+                    }
+                });
+                
+                // Show the target step
+                if(steps[stepIndex]) {
+                    steps[stepIndex].style.display = 'block';
+                    steps[stepIndex].classList.add('active');
+                    currentStep = stepIndex;
+                    updateProgressBar();
+                    updateNavigationButtons();
+                    updateNicheSpecificTextContent(); // Update terms on each step change
+                } else {
+                     console.error(`Step element at index ${stepIndex} not found.`);
+                }
+            }
+
+            function updateProgressBar() {
+                const totalQuestionSteps = steps.length > 2 ? steps.length - 2 : 0; // Niche (0) and City/Intro (1) are not counted as question steps
+                const currentQuestionProgressIndex = Math.max(0, currentStep - 2); // Index relative to the start of actual questions
+
+                let progressPercentage = 0;
+                if (totalQuestionSteps > 0 && currentStep >= 2) {
+                     progressPercentage = ((currentQuestionProgressIndex + 1) / totalQuestionSteps) * 100; // +1 because index is 0-based
+                } else if (currentStep === 1 && introShownForCityStep) {
+                    progressPercentage = 5; // Small progress for intro shown
+                }
+                 progressBar.style.width = `${Math.min(progressPercentage, 100)}%`;
+            }
+
+            function updateNavigationButtons() {
+                if (!steps || steps.length === 0) return;
+
+                prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-block';
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+
+                if (currentStep === 0) { // Niche selection
+                    nextBtn.textContent = 'Next';
+                    nextBtn.disabled = !nicheDropdown.value;
+                } else if (currentStep === 1) { // City serviced & Intro
+                    if (introShownForCityStep) {
+                        nextBtn.textContent = 'Proceed to Application';
+                        nextBtn.disabled = false; // Always enabled once intro is shown
+                    } else {
+                        nextBtn.textContent = 'Check Availability & Continue';
+                        nextBtn.disabled = !cityServicedInput.value.trim() || !nicheDropdown.value;
+                    }
+                } else { // All other question steps
+                    nextBtn.textContent = 'Next';
+                    nextBtn.disabled = false;
+                    if (currentStep === steps.length - 1) { // Is it the last step?
+                        console.log("updateNavigationButtons: Reached last step. Showing Submit button.");
+                        nextBtn.style.display = 'none';
+                        submitBtn.style.display = 'inline-block';
+                        submitBtn.disabled = false; // Explicitly enable the submit button
+                    }
+                }
+            }
+
+            function validateStep(stepIndex) {
+                if (stepIndex < 0 || stepIndex >= steps.length) return true; // Should not happen
+                const currentStepElement = steps[stepIndex];
+                if (!currentStepElement || !currentStepElement.classList.contains('active')) {
+                     // Don't validate inactive steps if called erroneously
+                    return true;
+                }
+
+                if (stepIndex === 0) { // Niche validation
+                    if (!nicheDropdown.value) {
+                        alert('Please select your industry.');
+                        nicheDropdown.focus();
+                        return false;
+                    }
+                    return true;
+                }
+                if (stepIndex === 1 && !introShownForCityStep) { // City validation (before intro shown)
+                     if (!cityServicedInput.value.trim()) {
+                        alert('Please enter the city you service.');
+                        cityServicedInput.focus();
+                        return false;
+                    }
+                    // Also ensure niche was selected from previous step
+                    if (!nicheDropdown.value) {
+                        alert('Please select your industry first (go back).');
+                        showStep(0); // Force back to niche selection
+                        return false;
+                    }
+                    return true;
+                }
+
+                // For all active question steps (index >= 2 or step 1 after intro)
+                const requiredField = currentStepElement.querySelector('[required]');
+                if (requiredField) {
+                     // Check if the step containing the required field is actually active
+                     const fieldStep = requiredField.closest('.form-step');
+                     if (!fieldStep || !fieldStep.classList.contains('active')) {
+                         return true; // Don't validate required fields in inactive steps
+                     }
+
+                    if (requiredField.type === 'radio') {
+                        const radioGroupName = requiredField.name;
+                        if (!form.querySelector(`input[name="${radioGroupName}"]:checked`)) {
+                            alert('Please select an option.');
+                            const firstRadio = currentStepElement.querySelector(`input[name="${radioGroupName}"]`);
+                            if(firstRadio) firstRadio.focus();
+                            return false;
+                        }
+                    } else if (requiredField.value === undefined || requiredField.value.trim() === '') {
+                         alert('Please fill out this field.');
+                         requiredField.focus();
+                         return false;
+                    }
+                }
+                return true;
+            }
+
+            // ----- Event Listeners -----
+
+            nicheDropdown.addEventListener('change', function() {
+                selectedNicheData = this.value ? nicheData[this.value] : nicheData['default'];
+                introShownForCityStep = false;
+                introTextSection.style.display = 'none';
+
+                regenerateSteps(); 
+                // If on step 0 or 1, stay there but reflect changes. If past step 1, changing niche might alter future steps,
+                // showing the current step index *might* now point to a different question if steps were added/removed before it.
+                // Safest might be to stay on the *current* step number after regeneration, even if it's a different question.
+                // Let's ensure the current step index is valid for the new steps array length.
+                let newCurrentStep = Math.min(currentStep, steps.length - 1); 
+                
+                showStep(newCurrentStep); // Show the potentially adjusted current step
+                // updateNavigationButtons(); // Called within showStep
+            });
+
+            cityServicedInput.addEventListener('input', function() {
+                if (currentStep === 1 && !introShownForCityStep) {
+                    updateNavigationButtons();
+                }
+                 // If intro is already shown, update the text dynamically as city changes
+                if (currentStep === 1 && introShownForCityStep) {
+                     updateNicheSpecificTextContent();
+                }
+            });
+
+            nextBtn.addEventListener('click', function() {
+                if (!validateStep(currentStep)) return;
+
+                if (currentStep === 1 && !introShownForCityStep) { 
+                    selectedNicheData = nicheData[nicheDropdown.value] || nicheData['default']; 
+                    if (!selectedNicheData || !nicheDropdown.value) { 
+                        alert("Please select your industry first.");
+                        showStep(0);
+                        return;
+                    }
+
+                    // Show availability check message and loader
+                    const availabilityCheckDiv = document.getElementById('availability-check-message');
+                    introTextSection.style.display = 'none'; // Ensure intro text is hidden
+                    availabilityCheckDiv.style.display = 'block';
+                    nextBtn.disabled = true;
+                    nextBtn.textContent = 'Checking...';
+                    prevBtn.disabled = true; // Disable prev button during check
+
+                    setTimeout(() => {
+                        availabilityCheckDiv.style.display = 'none';
+                        introTextSection.style.display = 'block';
+                        introShownForCityStep = true;
+                        regenerateSteps(); 
+                        updateNicheSpecificTextContent(); 
+                        showStep(currentStep); // Re-show to update nav buttons correctly
+                        // nextBtn.disabled = false; // Re-enabled by updateNavigationButtons in showStep
+                        // nextBtn.textContent = 'Proceed to Application'; // Set by updateNavigationButtons
+                        prevBtn.disabled = false;
+                    }, 4000); // 4 second delay for checking simulation
+
+                    return; 
+                }
+
+                // For all other 'Next' clicks 
+                if (currentStep < steps.length - 1) {
+                    showStep(currentStep + 1);
+                } else {
+                    console.log("Next button clicked on what should be the last step. Attempting to trigger form submission.");
+                     // If somehow submit isn't visible, trigger form submission programmatically
+                    if(submitBtn.style.display === 'none') {
+                        console.log("Submit button was hidden, attempting form.requestSubmit().");
+                        form.requestSubmit(submitBtn); // submitBtn might be better here if it exists
+                    } else if (submitBtn.disabled) {
+                        console.log("Submit button was visible but disabled. Enabling and attempting form.requestSubmit().");
+                        submitBtn.disabled = false;
+                        form.requestSubmit(submitBtn);
+                    } else {
+                        console.log("Submit button was visible and enabled. Attempting form.requestSubmit().");
+                        form.requestSubmit(submitBtn); // Or form.submit() if requestSubmit is an issue with the actual button.
+                    }
+                }
+            });
+
+            prevBtn.addEventListener('click', function() {
+                if (currentStep === 1 && introShownForCityStep) { 
+                    introTextSection.style.display = 'none';
+                    introShownForCityStep = false;
+                    // Regenerate to remove dynamic steps if they were added based on niche shown in intro step
+                    regenerateSteps(); 
+                    // Re-show city step without intro - step index remains 1
+                    showStep(currentStep); 
+                } else if (currentStep > 0) {
+                    showStep(currentStep - 1);
+                }
+            });
+
+             // SUPABASE SUBMISSION LOGIC (ensure it uses the latest field list)
+            form.addEventListener('submit', async function(event) {
+                console.log("Form submit event listener triggered."); // LOG ADDED HERE
+                event.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                // Final validation of the current (last) step
+                console.log("Submit handler: About to validate step", currentStep);
+                const isValid = validateStep(currentStep);
+                console.log("Submit handler: Validation result for step", currentStep, ":", isValid);
+                if (!isValid) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                    return;
+                }
+
+                const formDataInstance = new FormData(form);
+                const submissionData = {};
+
+                 const allKnownFieldNames = [
+                    'niche', 'city_serviced', 'first_name', 'last_name', 'email', 'phone',
+                    'client_source', 'goal_2025', 'goal_6_months', 'client_flow', 'tools_software',
+                    'business_experience', 'biggest_challenge_clients', 'client_retention',
+                    'new_clients_per_month', 'income_limitation', 'marketing_beyond_social',
+                    'growth_mindset', 'comfort_new_tools',
+                    'current_marketing_company', 'investment_readiness_plan', 'handle_challenges',
+                    'team_assistance_need', 'readiness_invest_tools', 'importance_streamline',
+                    'pmu_services_offered', 'pmu_portfolio_link', 'cd_services_offered', 'cd_ideal_patient',
+                    'childcare_capacity', 'childcare_ages_served', 'bc_technologies_used', 'bc_ideal_client',
+                    'bc_avg_package_price', 'bc_marketing_challenge', 'wl_programs_offered', 'wl_avg_program_value',
+                    'wl_commitment_challenge', 'wl_virtual_offerings', 'chiro_specialization',
+                    'chiro_high_end_factors', 'chiro_avg_care_plan_value', 'chiro_attraction_challenge',
+                    'sleep_diagnostics_offered', 'sleep_treatments_managed', 'sleep_referral_sources',
+                    'sleep_compliance_challenge', 'audio_brands_dispensed', 'audio_diagnostics_offered',
+                    'audio_avg_pair_price', 'audio_conversion_challenge', 'dme_product_categories',
+                    'dme_referral_sources', 'dme_operational_challenge', 'dme_accreditation_status',
+                    'business_name', 'marketing_investment', 'monthly_revenue'
+                ];
+
+                // Populate submissionData only with fields present in the form at submission time
+                allKnownFieldNames.forEach(fieldName => {
+                    if (form.querySelector(`[name="${fieldName}"]`)) { // Check if element exists in DOM
+                       if (formDataInstance.has(fieldName)) {
+                            let value = formDataInstance.get(fieldName);
+                             if (fieldName === 'childcare_capacity' && value) {
+                                const parsedValue = parseInt(value, 10);
+                                submissionData[fieldName] = isNaN(parsedValue) ? null : parsedValue;
+                            } else {
+                                submissionData[fieldName] = value ? value : null; // Send null for empty strings too
+                            }
+                       } else {
+                            // Field exists but has no value in FormData (e.g., maybe unchecked radio?)
+                            // Ensure it's null for Supabase if column expects a value or is nullable
+                             submissionData[fieldName] = null;
+                       }
+                    } else {
+                         // If field doesn't exist in DOM (e.g. hidden niche question), explicitly set to null
+                         // if the column exists in Supabase and is nullable.
+                         // Assuming all columns listed are nullable if not required=true
+                         submissionData[fieldName] = null;
+                    }
+                });
+
+                 // Final check for client_retention nullability if it wasn't shown/required
+                 const retentionField = form.querySelector('[name="client_retention"]');
+                 if (retentionField && !retentionField.required && submissionData.client_retention === '') {
+                      submissionData.client_retention = null;
+                 } else if (!retentionField) { // If the field wasn't even in the DOM
+                      submissionData.client_retention = null;
+                 }
+
+                // Get URL parameters for tracking
+                const urlParams = new URLSearchParams(window.location.search);
+                const userFlowData = {
+                    user_first_name: submissionData.first_name,
+                    user_last_name: submissionData.last_name,
+                    user_business_name: submissionData.business_name,
+                    user_email: submissionData.email,
+                    action_type: 'application_submitted',
+                    niche: submissionData.niche,
+                    page_bucket: urlParams.get('bucket') || null,
+                    page_variant: urlParams.get('variant') || null,
+                    original_source: urlParams.get('source') || 'direct',
+                    track_source: urlParams.get('track_source') || null,
+                    quiz_score: urlParams.get('score') || null,
+                    source_page: urlParams.get('source_page') || window.location.pathname,
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log('Submitting data to Supabase:', JSON.stringify(submissionData, null, 2));
+
+                try {
+                    // First track the application submission in user flow
+                    const { data: flowData, error: flowError } = await _supabase
+                        .from('tctc_user_flow')
+                        .insert([userFlowData]);
+                        
+                    if (flowError) {
+                        console.error('Error tracking application submission:', flowError);
+                        // Continue with form submission even if tracking fails
+                    } else {
+                        console.log('Application submission tracking successful');
+                    }
+                    
+                    // Then submit the actual application
+                    const { data, error: supabaseError } = await _supabase
+                        .from('TurnClicksToClientsApplication')
+                        .insert([submissionData])
+                        .select(); // Useful for debugging errors
+
+                    if (supabaseError) {
+                        console.error('Supabase error:', supabaseError);
+                        alert('Error submitting application: ' + supabaseError.message + '\nDetails: ' + (supabaseError.details || 'No further details.') + '\nPlease try again. If the problem persists, contact support.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit Application';
+                    } else {
+                        console.log('Supabase success:', data);
+                        // Send Slack notification
+                        const slackWebhookUrl = 'https://hooks.slack.com/services/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';
+                        let slackText = '🚨 *New Application Received!*\n';
+                        for (const [key, value] of Object.entries(submissionData)) {
+                          slackText += `*${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:* ${value || '-'}\n`;
+                        }
+                        const slackMessage = { text: slackText };
+                        try {
+                          await fetch(slackWebhookUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(slackMessage)
+                          });
+                        } catch (slackErr) {
+                          console.error('Slack notification error:', slackErr);
+                        }
+                        // Redirect to the analysis page with form data as URL parameters
+                        const queryString = new URLSearchParams(submissionData).toString();
+                        window.location.href = `application-analysis.html?${queryString}`;
+                    }
+                } catch (error) {
+                    console.error('Catch block error during submission:', error);
+                    alert('An unexpected error occurred: ' + error.message + '\nPlease try again. If the problem persists, contact support.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }
+            });
+
+
+            // ----- Initial Setup -----
+            if (firstNameParam && firstNameInput) {
+                firstNameInput.value = decodeURIComponent(firstNameParam);
+            }
+            if (greetingElement && firstNameParam) {
+                 greetingElement.textContent = `Hi ${decodeURIComponent(firstNameParam)}!`;
+            }
+            formMainTitle.textContent = "Confidential Application: Begin Your Partnership with TurnClicksToClients.com to Secure Consistent Client Growth";
+
+             // Set initial niche if passed in URL param
+             if (nicheParam && nicheData[nicheParam]) {
+                 nicheDropdown.value = nicheParam;
+             }
+             // Set initial selectedNicheData based on current dropdown value (or default)
+             selectedNicheData = nicheData[nicheDropdown.value || 'default'];
+
+            regenerateSteps(); // Initial generation of steps array based on potentially pre-selected niche
+            showStep(0); // Start at the niche selection step (index 0)
+
+            document.getElementById('variant-field').value = params.get('variant') || 'N/A';
+        });
+    </script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>💬</span> Have a ?<br>Click Here To Send Us a Instant Message
+    </div>
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Start a Conversation</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    <strong>Connect with Our Team Live!</strong><br>
+                    Mon-Fri, 10am - 5pm EST: Expect a reply within the hour.<br>
+                    After hours & weekends: We'll get back to you first thing next business morning.<br><br>
+                    Let us know how we can help your business grow! Please fill out the form below.
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled selected>Select your industry...</option>
+                            <!-- Options will be populated by script.js -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-businessName">Business Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">How can we help you?</label>
+                        <textarea id="chat-message" name="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Our team has been alerted and will get back to you as soon as possible.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- Added script.js link -->
+</body>
+</html>

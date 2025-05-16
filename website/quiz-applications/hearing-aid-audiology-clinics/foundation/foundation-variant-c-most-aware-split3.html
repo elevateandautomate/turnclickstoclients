@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Patient Foundation Engine™ for Cosmetic Dentists | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #2c3e50; background-color: #ecf0f1; margin: 0; padding: 0; }
+        .result-container { padding: 40px 30px; max-width: 900px; margin: 30px auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .result-container h1 { font-family: 'Montserrat', sans-serif; color: #2980b9; font-size: clamp(2.2em, 5vw, 3em); margin-bottom: 20px; text-align: center; line-height: 1.3; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .result-container h2 { font-family: 'Montserrat', sans-serif; color: #3498db; font-size: clamp(1.8em, 4vw, 2.4em); margin-top: 40px; margin-bottom: 18px; border-bottom: 3px solid #3498db; padding-bottom: 8px; }
+        .result-container h3 { font-family: 'Montserrat', sans-serif; color: #2c3e50; font-size: clamp(1.4em, 3vw, 1.8em); margin-top: 30px; margin-bottom: 15px; }
+        .result-container p { font-size: clamp(1.05em, 2.2vw, 1.15em); color: #34495e; margin-bottom: 20px; line-height: 1.8; }
+        .result-container ul { list-style: none; padding-left: 0; margin-bottom: 25px; }
+        .result-container li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: clamp(1.02em, 2.1vw, 1.1em); }
+        .result-container li::before { content: '🚀'; color: #2980b9; position: absolute; left: 0; font-size: 1.4em; top: -2px; }
+        .feature-box { background-color: #eaf5ff; border: 1px solid #aed6f1; padding: 25px; margin: 30px 0; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .feature-box h3 { margin-top: 0; color: #2980b9; }
+        .cta-section { text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border-radius: 12px; margin-top: 50px; color: #fff; }
+        .cta-button.primary { background-color: #f1c40f; border: none; color: #2c3e50 !important; padding: 20px 45px; font-size: 1.4em; font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .cta-button.primary:hover { background-color: #f39c12; transform: translateY(-3px); box-shadow: 0 7px 20px rgba(0,0,0,0.25); }
+        .user-name-emphasis { font-weight: 900; color: #2980b9; }
+        .testimonial { background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.08); border-left: 5px solid #3498db; }
+        .testimonial p:first-child { font-style: italic; font-size: 1.12em; color: #555; margin-bottom: 15px; }
+        .testimonial p:last-child { font-weight: bold; margin-top: 15px; color: #333; text-align: right; }
+        .faq-section h2 { border-bottom: none; text-align:center; margin-bottom:30px; }
+        .faq-item { margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; }
+        .faq-question { background-color: #3498db; color: white; padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 1.15em; }
+        .faq-question span { font-size: 1.5em; transition: transform 0.3s ease; }
+        .faq-answer { padding: 15px 20px; background-color: #f9f9f9; display: none; font-size: 1.05em; }
+        .module-breakdown li::before { content: '⚙️'; color: #27ae60; }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="../../../split-test-redirect.js"></script>
+  <!-- Split Test Variation 3 --></head>
+<body data-split="3">
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="result-container">
+        <div class="personalized-greeting" id="personalized-greeting" style="display: none; text-align: center; margin-bottom: 1.5em; font-size: 1.3em; color: #555;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const firstName = urlParams.get('firstName');
+                const userNameSpan = document.getElementById('user-first-name');
+                const greetingDiv = document.getElementById('personalized-greeting');
+                if (firstName) {
+                    const decodedName = decodeURIComponent(firstName);
+                    if (userNameSpan) userNameSpan.textContent = decodedName;
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Welcome, <span class="user-name-emphasis">${decodedName}</span>. You're ready for a premier foundational solution.`;
+                        greetingDiv.style.display = 'block';
+                    }
+                } else {
+                    if (userNameSpan) userNameSpan.textContent = "Doctor"; // Fallback
+                     if (greetingDiv) {
+                        greetingDiv.innerHTML = `Welcome, <span class="user-name-emphasis">Doctor</span>. You're ready for a premier foundational solution.`;
+                        greetingDiv.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+
+        <h1>Unlock Foundational Dominance with the Patient Foundation Engine™, <span id="user-first-name" class="user-name-emphasis">Doctor</span>!</h1>
+        <p style="font-size:1.3em; color:#34495e; font-weight:normal; margin-bottom: 2em; text-align:center; max-width: 800px; margin-left:auto; margin-right:auto;">
+            Your quiz results show you're a forward-thinking cosmetic dentist who understands that a sophisticated, multi-faceted patient acquisition system isn't just an expense—it's the bedrock of sustainable growth and market leadership. You're past quick fixes and ready for a comprehensive, done-for-you engine.
+        </p>
+
+        <h2>You're Seeking More Than Just Leads; You're Seeking a Foundational System for Predictable Success.</h2>
+        <p>
+            Many dentists in the foundation stage grapple with inconsistent marketing or struggle to attract the *right* kind of high-value cosmetic patients. You, however, recognize the need for an integrated, strategic approach. You know that true foundational strength comes from a system that consistently delivers pre-qualified patients ready for your expertise. This is precisely what our <strong>Patient Foundation Engine™</strong> is engineered to provide.
+        </p>
+
+        <div class="feature-box">
+            <h3>Introducing the Patient Foundation Engine™: Your All-In-One Solution</h3>
+            <p>The Patient Foundation Engine™ is our most comprehensive Done-For-You service for cosmetic dentists looking to build an unshakeable foundation for their practice. It's not just about generating leads; it's about creating a predictable, scalable system for attracting, nurturing, and converting ideal cosmetic patients. This engine is built to make your practice the recognized authority in your local market from day one.</p>
+        </div>
+
+        <h2>Core Modules of the Patient Foundation Engine™:</h2>
+        <ul class="module-breakdown">
+            <li>
+                <strong>Module 1: Hyper-Targeted Local Patient Attraction</strong>
+                <p>We deploy precision-targeted advertising campaigns (Google Ads & Social Media) geographically focused on your ideal patient demographic actively seeking cosmetic procedures. This ensures your marketing budget is spent efficiently, reaching those most likely to convert.</p>
+            </li>
+            <li>
+                <strong>Module 2: Authority-Building Online Presence Optimization</strong>
+                <p>Your website and Google Business Profile are transformed into high-conversion assets. We optimize for local SEO, compelling messaging, and seamless user experience to establish you as the premier choice.</p>
+            </li>
+            <li>
+                <strong>Module 3: Advanced Lead Nurturing & Conversion Funnels</strong>
+                <p>Leads are only valuable if they convert. We implement sophisticated automated follow-up sequences (email & SMS) and provide scripts/training to ensure inquiries are effectively nurtured into booked, high-value consultations.</p>
+            </li>
+            <li>
+                <strong>Module 4: Foundational Reputation Management & Social Proof Amplification</strong>
+                <p>We help you systematically gather and showcase patient testimonials and reviews, building a powerful online reputation that attracts new patients and reinforces trust.</p>
+            </li>
+            <li>
+                <strong>Module 5: Core Cosmetic Service Promotion Strategy</strong>
+                <p>We work with you to identify and strategically promote your most profitable and desired cosmetic services (e.g., veneers, smile makeovers, implants), ensuring you attract patients for the procedures you love to perform.</p>
+            </li>
+             <li>
+                <strong>Module 6: Performance Analytics & Iterative Optimization</strong>
+                <p>You receive transparent monthly reports detailing key metrics (leads, cost-per-lead, conversion rates). We continuously analyze performance data to refine strategies and maximize your ROI.</p>
+            </li>
+        </ul>
+
+        <h2>Why Choose the Patient Foundation Engine™?</h2>
+        <ul>
+            <li><strong>Comprehensive & Integrated:</strong> No more juggling multiple vendors or disjointed marketing efforts. This is a holistic system where every component works in synergy.</li>
+            <li><strong>Done-For-You Peace of Mind:</strong> We handle the A-Z of your foundational patient acquisition, freeing you to focus on delivering exceptional cosmetic dentistry.</li>
+            <li><strong>Built for Predictability:</strong> Escape the feast-or-famine cycle. Our engine is designed for consistent, measurable patient flow.</li>
+            <li><strong>Expert Partnership:</strong> You gain a dedicated team of dental marketing specialists committed to building your practice's foundation.</li>
+            <li><strong>Exclusive Market Positioning:</strong> We typically partner with only one cosmetic dentist per city for this premier service, ensuring focused attention and market dominance for you.</li>
+        </ul>
+
+        <div class="testimonial">
+            <p>"We were looking for a truly comprehensive system to build our new cosmetic practice from the ground up. The Patient Foundation Engine from TurnClicksToClients was the most robust offering we found. The strategic approach, the detailed reporting, and the quality of leads have been exceptional. We feel like we have a true partner in our growth."</p>
+            <p>- Dr. Isabella Chen, Founder, Radiance Cosmetic Dental</p>
+        </div>
+         <div class="testimonial">
+            <p>"As a dentist wanting to focus on high-value cosmetic cases from the start, I needed more than just a few ads. The Patient Foundation Engine provided a full strategy. It addressed everything from lead generation to nurturing. Highly recommend for anyone serious about building a strong foundation."</p>
+            <p>- Dr. Marcus Thorne, Thorne Aesthetic Dentistry</p>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions about the Patient Foundation Engine™</h2>
+            <div class="faq-item">
+                <div class="faq-question">What kind of results can I realistically expect in the first few months? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>While results vary based on market competition and budget, our goal within the first 90 days is to establish consistent lead flow, optimize your online presence for conversions, and begin seeing a tangible increase in qualified patient inquiries for your core cosmetic services. We focus on building a sustainable foundation, not just quick, unsustainable spikes.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is this a long-term contract? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>We typically start with an initial 6-month commitment for the Patient Foundation Engine™. This allows us sufficient time to implement all modules, gather data, optimize campaigns, and demonstrate significant ROI. Our goal is to build a long-term partnership based on performance and mutual success.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How much involvement is required from my team? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>This is a Done-For-You service. Your primary involvement will be an initial strategy session, providing practice information/assets, and regular (brief) check-in calls. Your front office team will need to be prepared to handle the increased flow of qualified leads effectively, and we provide guidance for that.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What makes this different from other marketing agencies? <span>+</span></div>
+                <div class="faq-answer">
+                    <p>Our Patient Foundation Engine™ is not just a collection of services; it's a specifically engineered, integrated system for cosmetic dentists in the foundational stage. We combine strategic marketing with a deep understanding of the patient journey for high-value cosmetic procedures, all delivered with transparent reporting and a focus on exclusivity and partnership.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+             <style>
+                .cta-section p, .cta-section ul, .cta-section h2, .cta-section h3, .cta-section li, .cta-section div { color: #fff !important; }
+                .cta-section .cta-button.primary { background-color: #f1c40f; color: #2c3e50 !important; font-weight: bold; text-shadow: none; }
+                .cta-section .cta-button.primary:hover { background-color: #f39c12; }
+                .cta-section span[style*="color: #f1c40f"] { color: #f1c40f !important; }
+            </style>
+            
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2015, we've been helping cosmetic dentists transform their practices with our proven patient acquisition system.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our founder, after working with over 200 dental practices, identified the exact formula that consistently delivers high-value cosmetic patients.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">What started as a simple Facebook ad strategy has evolved into a comprehensive system that includes advanced targeting, follow-up automation, and conversion optimization.</p>
+    </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> Dr. Sarah in Boston increased her monthly cosmetic cases from 4 to 17 within 90 days.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A practice in Miami went from struggling to fill their schedule to having a 3-week waiting list for consultations.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> Dr. Michael's practice in Seattle now generates $120,000+ in additional monthly revenue from cosmetic procedures.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> Practices that implemented our system 3+ years ago continue to see consistent growth, with many expanding to multiple locations.</p>
+    </div>
+</div>
+<h2 style="font-size: 2.4em; margin-bottom: 25px;">Ready to Create the Success Other Professionals Are Already Enjoying?</h2>
+            
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you worry about inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> By confidently managing marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day with this system means more opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p style="font-size: 1.25em; margin: 0 auto 30px auto; max-width: 750px; opacity: 0.95;">If you're serious about establishing a dominant cosmetic practice with a predictable flow of high-value patients, the Patient Foundation Engine™ is your definitive solution. Apply now to see if your practice qualifies for this exclusive partnership.</p>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 10px; margin: 35px 0; display: inline-block; border: 1px solid rgba(255,255,255,0.15);">
+                <h3 style="color: #f1c40f; margin-bottom: 20px; font-size: 1.8em;">Your Next Step to Foundational Market Leadership:</h3>
+                 <ul style="list-style: none; padding: 0; text-align: left; max-width: 520px; margin: 0 auto; font-size: 1.15em;">
+                    <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;"> <span style="position: absolute; left: -5px; top: 0px; color: #f1c40f;">✓</span> Secure a comprehensive, Done-For-You patient acquisition system.</li>
+                    <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;"> <span style="position: absolute; left: -5px; top: 0px; color: #f1c40f;">✓</span> Partner with experts dedicated to your foundational success.</li>
+                    <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;"> <span style="position: absolute; left: -5px; top: 0px; color: #f1c40f;">✓</span> Position your practice for long-term growth and profitability.</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.2em; margin: 30px 0 20px 0; font-weight: bold;">This premier engine is for cosmetic dentists committed to building a leading practice. <span style="color: #f1c40f;">Partnership opportunities are limited.</span></p>
+
+            <a href="../../../universal-application-form.html?niche=hearing-aid-audiology-clinics&bucket=foundation&variant=c-most-aware&split=1&system=PatientFoundationEngine&source_page=foundation-variant-c-most-aware" class="cta-button primary" id="apply-button" onclick="trackApplicationClick(event)">Apply for the Patient Foundation Engine™</a>
+            <div style="font-size: 1.1em; color: #ecf0f1; margin-top: 20px; font-weight: 600; letter-spacing: 0.5px;">TurnClicksToClients: Engineering Your Cosmetic Practice's Success.</div>
+
+            <div style="margin-top: 35px; padding: 20px; background: rgba(0,0,0,0.25); border-radius: 10px; max-width: 650px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; font-size: 1em;">✨ Your application is the first step towards a dominant market presence. We respect your ambition and privacy.</p>
+            </div>
+        </div>
+    
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This System</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The path to joining these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">Your opportunity is to implement a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>You have all the talent and dedication needed. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system now available to you.</strong></p>
+</div></main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+<script> // Navigation Hamburger Script (Standard)
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.getElementById('main-nav');
+    if (hamburger && navUl) {
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+        }
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            navUl.classList.toggle('active');
+            if (!isExpanded) {
+                hamburger.setAttribute('aria-label', 'Close navigation');
+            } else {
+                hamburger.setAttribute('aria-label', 'Open navigation');
+                closeAllDropdowns();
+            }
+        });
+        document.querySelectorAll('.dropdown-parent > a').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const parentLi = anchor.closest('.dropdown-parent');
+                if (window.innerWidth <= 768) {
+                    if (e.target.classList.contains('dropdown-arrow') || anchor.getAttribute('href') === '#ideal-clients' || anchor.getAttribute('href').includes('index.html#ideal-clients')) {
+                        e.preventDefault();
+                        parentLi.classList.toggle('open');
+                        document.querySelectorAll('.dropdown-parent').forEach(li => {
+                            if (li !== parentLi) {
+                                li.classList.remove('open');
+                            }
+                        });
+                    } else if (!parentLi.classList.contains('open')) {
+                         parentLi.classList.add('open');
+                    }
+                } else {
+                    if (anchor.getAttribute('href') === '#ideal-clients' || anchor.getAttribute('href').includes('index.html#ideal-clients')) {
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+         document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown-parent') && !e.target.closest('.hamburger')) {
+                closeAllDropdowns();
+            }
+            if (navUl.classList.contains('active') && !e.target.closest('nav') && !e.target.closest('.hamburger')) {
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open navigation');
+                navUl.classList.remove('active');
+                closeAllDropdowns();
+            }
+        });
+    }
+</script>
+
+<script> // FAQ Accordion Script
+document.addEventListener('DOMContentLoaded', function () {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = question.querySelector('span');
+
+        question.addEventListener('click', () => {
+            const isVisible = answer.style.display === 'block';
+            // Close all other answers
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector('.faq-answer').style.display = 'none';
+                    otherItem.querySelector('.faq-question span').textContent = '+';
+                     otherItem.querySelector('.faq-question').classList.remove('open');
+                }
+            });
+            // Toggle current answer
+            answer.style.display = isVisible ? 'none' : 'block';
+            icon.textContent = isVisible ? '+' : '−';
+            question.classList.toggle('open', !isVisible);
+        });
+    });
+});
+</script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>💬</span> Inquire About the Patient Foundation Engine™
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Ask About Our Premier Foundation Solution</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>Have detailed questions about the Patient Foundation Engine™?</strong><br>
+                    Our senior strategists are available to discuss how this comprehensive system can establish your market leadership.
+                    Mon-Fri, 10am - 5pm EST: Priority response.<br>
+                    After hours & weekends: We'll get back to you first thing next business day.<br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled>Select your industry...</option>
+                             <option value="Cosmetic Dentists" selected>Cosmetic Dentists</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Practice Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone</label>
+                        <input type="tel" id="chat-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Your Specific Question about the Engine™:</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., What is the typical investment? How does the exclusivity work? Can you detail Module 3 further?"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send to Senior Strategist</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Your inquiry about the Patient Foundation Engine™ has been received. A Senior Strategist will be in touch with you shortly.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script> // Chat Modal Script (Standard)
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatWidgetButton = document.getElementById('chat-widget-button');
+        const chatModal = document.getElementById('chat-modal');
+        const chatModalClose = document.getElementById('chat-modal-close');
+        const chatContactForm = document.getElementById('chat-contact-form');
+        const chatSuccessMessage = document.getElementById('chat-success-message');
+
+        if (chatWidgetButton && chatModal && chatModalClose && chatContactForm && chatSuccessMessage) {
+            chatWidgetButton.addEventListener('click', function() {
+                chatModal.classList.remove('modal-hidden');
+                chatModal.classList.add('modal-visible');
+            });
+
+            chatModalClose.addEventListener('click', function() {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            });
+
+            chatModal.addEventListener('click', function(event) {
+                if (event.target === chatModal) {
+                    chatModal.classList.add('modal-hidden');
+                    chatModal.classList.remove('modal-visible');
+                }
+            });
+
+            chatContactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                chatContactForm.style.display = 'none';
+                chatSuccessMessage.style.display = 'block';
+            });
+        }
+
+        const industrySelect = document.getElementById('chat-industry');
+        const industries = [
+            "Child Care Centers", "PMU Artists", "Non-Surgical Body Contouring",
+            "Weight Loss Clinics", "High-End Chiropractors", "Sleep Apnea & Snoring Clinics",
+            "Hearing Aid & Audiology", "DME Clinics"
+        ];
+        if (industrySelect) {
+            industries.forEach(industry => {
+                if (industry !== "Cosmetic Dentists") {
+                    const option = document.createElement('option');
+                    option.value = industry;
+                    option.textContent = industry;
+                    industrySelect.appendChild(option);
+                }
+            });
+        }
+    });
+</script>
+
+<script>
+    // Initialize Supabase client
+    const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+    let supabaseClient;
+
+    try {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('Supabase client initialized successfully');
+    } catch (error) {
+        console.error('Error initializing Supabase client:', error);
+    }
+
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    window.userParams = {
+        firstName: urlParams.get('firstName') || '',
+        lastName: urlParams.get('lastName') || '',
+        businessName: urlParams.get('businessName') || '',
+        email: urlParams.get('email') || '',
+        bucket: urlParams.get('bucket') || 'foundation',
+        variant: urlParams.get('variant') || 'c-most-aware',
+        split: urlParams.get('split') || '1',
+        score: urlParams.get('score') || '',
+        source: urlParams.get('source') || 'direct',
+        track_source: urlParams.get('track_source') || ''
+    };
+
+    // Track when user clicks application button
+    function trackApplicationClick(event) {
+        // Don't prevent default - let the link work normally
+
+        if (!supabaseClient) return;
+
+        supabaseClient
+            .from('tctc_user_flow')
+            .insert([{
+                user_first_name: window.userParams.firstName,
+                user_last_name: window.userParams.lastName,
+                user_business_name: window.userParams.businessName,
+                action_type: 'application_click',
+                page_path: window.location.pathname,
+                page_bucket: window.userParams.bucket,
+                page_variant: window.userParams.variant,
+                page_split: window.userParams.split,
+                original_source: window.userParams.source,
+                track_source: window.userParams.track_source,
+                quiz_score: window.userParams.score,
+                destination_url: event.target.href,
+                timestamp: new Date().toISOString()
+            }])
+            .then(({ data, error }) => {
+                if (error) {
+                    console.error('Error tracking application click:', error);
+                } else {
+                    console.log('Application click tracked successfully');
+                }
+            });
+    }
+</script>
+
+</body>
+</html>

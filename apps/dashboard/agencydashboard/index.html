@@ -1,0 +1,3430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://placehold.co/32x32?text=TCTC" type="image/png">
+  <title>TurnClicksToClients.com</title>
+  <!-- Load Supabase v2 JS client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link href="./dist/output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+  <script src="./js/config.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .sidebar {
+      transition: all 0.3s ease;
+    }
+    .sidebar.collapsed {
+      width: 70px;
+      overflow: hidden;
+    }
+    .sidebar.collapsed .nav-text {
+      display: none;
+    }
+    .sidebar.collapsed .logo-text {
+      display: none;
+    }
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: white;
+    }
+    .pipeline-stage {
+      min-height: 300px;
+      border: 1px solid #E5E7EB;
+      transition: all 0.3s ease;
+      background-color: #F9FAFB;
+    }
+    .pipeline-stage:hover {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .pipeline-stage h3 {
+      border-bottom: 2px solid #E5E7EB;
+      padding-bottom: 0.5rem;
+      color: #374151;
+    }
+    .lead-card {
+      margin-bottom: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .lead-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .health-score-excellent {
+      background-color: #10B981;
+    }
+    .health-score-good {
+      background-color: #3B82F6;
+    }
+    .health-score-warning {
+      background-color: #F59E0B;
+    }
+    .health-score-critical {
+      background-color: #EF4444;
+    }
+    .status-pending {
+      background-color: #F59E0B;
+    }
+    .status-declined {
+      background-color: #EF4444;
+    }
+    .status-approved {
+      background-color: #10B981;
+    }
+    /* Chart container styles */
+    .chart-wrapper {
+      position: relative;
+      height: 300px;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+    /* Client onboarding section styles */
+    #client-onboarding {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    #client-onboarding:not(.hidden) {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+    }
+    .pipeline-container {
+      scrollbar-width: thin;
+      scrollbar-color: #CBD5E0 #F7FAFC;
+    }
+    .pipeline-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .pipeline-container::-webkit-scrollbar-track {
+      background: #F7FAFC;
+      border-radius: 4px;
+    }
+    .pipeline-container::-webkit-scrollbar-thumb {
+      background-color: #CBD5E0;
+      border-radius: 4px;
+    }
+    .stage-count {
+      background-color: #E5E7EB;
+      color: #4B5563;
+      border-radius: 9999px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .stage-progress {
+      height: 4px;
+      background-color: #E5E7EB;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+    }
+    .stage-progress-bar {
+      height: 100%;
+      background-color: #3B82F6;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .stage-actions {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .pipeline-stage:hover .stage-actions {
+      opacity: 1;
+    }
+    .stage-action-btn {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      transition: all 0.2s ease;
+    }
+    .stage-action-btn:hover {
+      background-color: #F3F4F6;
+    }
+    .add-client-btn {
+      transition: all 0.2s ease;
+    }
+    .add-client-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .stage-content {
+      max-height: calc(100vh - 200px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+    .stage-content::-webkit-scrollbar {
+      width: 4px;
+    }
+    .stage-content::-webkit-scrollbar-track {
+      background: #F3F4F6;
+      border-radius: 2px;
+    }
+    .stage-content::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 2px;
+    }
+    canvas {
+      background-color: #1f2937; /* Dark background */
+      border-radius: 12px; /* Slightly larger radius */
+      padding: 1rem; /* Use rem unit for padding */
+      /* Remove the box-shadow from previous version */
+    }
+  </style>
+</head>
+<body class="text-sm text-gray-700 bg-gray-50 font-sans">
+  <!-- Dashboard Container -->
+  <div id="dashboard-container" class="min-h-screen">
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar fixed inset-y-0 left-0 bg-white shadow-lg w-64 z-20">
+    <div class="flex items-center justify-between p-4 border-b">
+      <div class="flex items-center">
+          
+          <span class="logo-text text-xl font-bold text-gray-800">TurnClicksToClients.com</span>
+      </div>
+    </div>
+    <div class="p-4">
+      <nav>
+        <ul class="space-y-2">
+		<li>
+              <a href="#" id="dashboard-overview-link" class="flex items-center p-2 text-sm font-medium rounded-md text-white bg-blue-600 nav-link">
+              <i class="fas fa-tachometer-alt mr-3"></i>
+              <span class="nav-text">Dashboard Overview</span>
+  </a>
+</li>
+          <li>
+              <a href="#" id="client-onboarding-link" class="flex items-center p-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 nav-link">
+              <i class="fas fa-user-cog mr-3"></i>
+              <span class="nav-text">Client Onboarding</span>
+            </a>
+          </li>
+          <li>
+              <a href="#" id="client-tracking-link" class="flex items-center p-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 nav-link">
+              <i class="fas fa-users mr-3"></i>
+              <span class="nav-text">Client Side Tracking</span>
+            </a>
+          </li>
+          <li>
+              <a href="#" id="agency-tracking-link" class="flex items-center p-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 nav-link">
+              <i class="fas fa-chart-line mr-3"></i>
+              <span class="nav-text">Agency Side Tracking</span>
+            </a>
+          </li>
+          <li>
+              <a href="#" id="ad-manager-link" class="flex items-center p-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 nav-link">
+              <i class="fas fa-ad mr-3"></i>
+              <span class="nav-text">Ad Manager</span>
+            </a>
+          </li>
+          <li>
+              <a href="#" id="reports-link" class="flex items-center p-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 nav-link">
+              <i class="fas fa-file-export mr-3"></i>
+              <span class="nav-text">Reports & Exports</span>
+            </a>
+          </li>
+		  <li>
+              <a href="#" id="messages-tab-link" class="flex items-center p-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 nav-link">
+    <i class="fas fa-comments mr-3"></i>
+    <span class="nav-text">Messages & Bookings</span>
+  </a>
+</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="ml-0 lg:ml-64 transition-all duration-300">
+    <!-- Top Navigation -->
+    <header class="sticky-header bg-white shadow-sm z-10">
+      <div class="flex items-center justify-between p-4">
+        <div class="flex items-center">
+          <button id="mobile-sidebar-toggle" class="text-gray-500 focus:outline-none lg:hidden mr-4">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 id="page-title" class="text-xl font-semibold text-gray-800">Dashboard</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <button id="notifications-btn" class="p-1 rounded-full text-gray-500 hover:text-gray-700 focus:outline-none">
+              <i class="fas fa-bell"></i>
+              <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+            </button>
+          </div>
+          <div class="relative">
+            <button id="date-filter-btn" class="flex items-center space-x-1 px-3 py-1 border rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+              <span>Today</span>
+              <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<!-- Dashboard Content -->
+<main class="p-4">
+        <!-- Dashboard Overview -->
+      <div id="dashboard-overview" class="p-4">
+    <!-- KPI Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-3 mb-4">
+            <!-- Brand and Timeframe Selector -->
+            <div class="bg-white p-3 rounded-lg shadow">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex-1">
+                    <p class="text-xs font-medium text-gray-500">Select Brand</p>
+                    <select id="kpi-brand-selector" class="mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <option value="all">All Brands</option>
+              </select>
+            </div>
+                  <div class="p-2 ml-2 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-filter text-sm"></i>
+            </div>
+            </div>
+                <div class="flex items-center">
+                  <div class="flex-1">
+                    <p class="text-xs font-medium text-gray-500">Timeframe</p>
+                    <select id="kpi-timeframe-selector" class="bg-white border border-gray-300 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                      <option value="today">Today</option>
+                      <option value="yesterday">Yesterday</option>
+                      <option value="last7days">Last 7 Days</option>
+                      <option value="last30days">Last 30 Days</option>
+                      <option value="last60days">Last 60 Days</option>
+                      <option value="last90days">Last 90 Days</option>
+                      <option value="alltime">All Time</option>
+              </select>
+            </div>
+                  <div class="p-2 ml-2 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-calendar text-sm"></i>
+          </div>
+              </div>
+          </div>
+        </div>
+
+            <!-- Leads Today -->
+            <div class="bg-white p-3 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+          <div>
+                  <p class="text-xs font-medium text-gray-500">Leads Today</p>
+                  <p class="text-xl font-bold text-gray-800" id="leads-today" data-metric="leads-today">--</p>
+          </div>
+                <div class="p-2 rounded-full bg-blue-100 text-blue-600">
+                  <i class="fas fa-user-plus text-sm"></i>
+          </div>
+        </div>
+              <div class="mt-1">
+                <span class="text-xs font-medium text-green-500" id="leads-change" data-metric="leads-change">--</span>
+        </div>
+      </div>
+
+            <!-- Appointments Today -->
+            <div class="bg-white p-3 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+          <div>
+                  <p class="text-xs font-medium text-gray-500">Appointments Today</p>
+                  <p class="text-xl font-bold text-gray-800" id="appointments-today" data-metric="appointments-today">--</p>
+          </div>
+                <div class="p-2 rounded-full bg-green-100 text-green-600">
+                  <i class="fas fa-calendar-check text-sm"></i>
+          </div>
+        </div>
+              <div class="mt-1">
+                <span class="text-xs font-medium text-green-500" id="appointments-change" data-metric="appointments-change">--</span>
+        </div>
+      </div>
+
+            <!-- Show Rate -->
+            <div class="bg-white p-3 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+          <div>
+                  <p class="text-xs font-medium text-gray-500">Show Rate</p>
+                  <p class="text-xl font-bold text-gray-800" id="show-rate" data-metric="show-rate">--</p>
+          </div>
+                <div class="p-2 rounded-full bg-purple-100 text-purple-600">
+                  <i class="fas fa-check-circle text-sm"></i>
+          </div>
+        </div>
+              <div class="mt-1">
+                <span class="text-xs font-medium text-red-500" id="show-rate-change" data-metric="show-rate-change">--</span>
+        </div>
+      </div>
+
+            <!-- Cancellation Rate -->
+            <div class="bg-white p-3 rounded-lg shadow">
+        <div class="flex items-center justify-between">
+          <div>
+                  <p class="text-xs font-medium text-gray-500">Cancellation Rate</p>
+                  <p class="text-xl font-bold text-gray-800" id="cancellation-rate" data-metric="cancellation-rate">--</p>
+          </div>
+                <div class="p-2 rounded-full bg-red-100 text-red-600">
+                  <i class="fas fa-times-circle text-sm"></i>
+          </div>
+        </div>
+              <div class="mt-1">
+                <span class="text-xs font-medium text-red-500" id="cancellation-rate-change" data-metric="cancellation-rate-change">--</span>
+        </div>
+      </div>
+    </div>
+
+          <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Leads Trend -->
+      <div class="bg-white p-4 rounded-lg shadow">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-medium text-gray-800">Leads Trend</h3>
+          <div class="flex space-x-2">
+                  <button class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-md" data-timeframe="daily" data-chart="leads" id="daily-btn">Daily</button>
+                  <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-md" data-timeframe="weekly" data-chart="leads" id="weekly-btn">Weekly</button>
+                  <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-md" data-timeframe="monthly" data-chart="leads" id="monthly-btn">Monthly</button>
+          </div>
+        </div>
+        <div class="h-64">
+          <canvas id="leadsChart"></canvas>
+        </div>
+      </div>
+
+            <!-- Appointment Status -->
+      <div class="bg-white p-4 rounded-lg shadow">
+        <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-medium text-gray-800">Appointments Booked</h3>
+          <div class="flex space-x-2">
+                  <button class="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-md" data-timeframe="daily" data-chart="appointments" id="appointments-daily-btn">Daily</button>
+                  <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-md" data-timeframe="weekly" data-chart="appointments" id="appointments-weekly-btn">Weekly</button>
+                  <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-md" data-timeframe="monthly" data-chart="appointments" id="appointments-monthly-btn">Monthly</button>
+          </div>
+        </div>
+        <div class="h-64">
+                <canvas id="appointmentChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flex Layout for Brand Performance + Metrics + Top Brands -->
+    <div class="flex flex-wrap gap-4 items-start justify-between w-full mt-4">
+    
+      <!-- Brand Performance Card -->
+      <div class="bg-white p-5 rounded-lg shadow-md w-full md:w-[32%]">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand Performance</h3> 
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Select Brand</label>
+            <select id="brand-selector" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm text-gray-700">
+              <option value="all">All Brands</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Timeframe</label>
+            <select id="performance-timeframe" class="w-full px-3 py-2 border rounded-md text-sm">
+              <option value="3days">Last 3 Days</option>
+              <option value="7days">Last 7 Days</option>
+              <option value="14days">Last 14 Days</option>
+              <option value="30days">Last 30 Days</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Metrics Card -->
+      <div class="bg-white p-5 rounded-lg shadow-md w-full md:w-[32%]">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Performance Metrics</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">Total Leads</span><span class="text-lg font-semibold text-gray-900" id="total-leads">--</span></div>
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">Conversion Rate</span><span class="text-lg font-semibold text-gray-900" id="conversion-rate">--</span></div>
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">Show Rate</span><span class="text-lg font-semibold text-gray-900" id="show-rate-display">--</span></div>
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">No Show Rate</span><span class="text-lg font-semibold text-gray-900" id="no-show-rate-display">--</span></div>
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">Cost per Lead</span><span class="text-lg font-semibold text-gray-900" id="cost-per-lead">--</span></div>
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">Cost per Booked Appointment</span><span class="text-lg font-semibold text-gray-900" id="cost-per-appointment">--</span></div>
+          <div class="flex justify-between text-sm text-gray-600"><span class="text-gray-500">ROAS</span><span class="text-lg font-semibold text-gray-900" id="roas">--</span></div>
+        </div>
+      </div>
+    
+      <!-- Top Performing Brands Card -->
+      <div class="bg-white p-5 rounded-lg shadow-md w-full md:w-[32%]">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Top Performing Brands</h3>
+          <div class="flex gap-2 flex-wrap justify-end mb-2"> <!-- Ensure dropdowns stay aligned right -->
+            <select id="top-brands-timeframe" class="border px-2 py-1 rounded text-sm">
+              <option value="3days">Last 3 Days</option>
+              <option value="7days">Last 7 Days</option>
+              <option value="30days">Last 30 Days</option>
+              <option value="alltime">All Time</option>
+            </select>
+            <select id="top-brands-count" class="border px-2 py-1 rounded text-sm">
+              <option value="1">Top 1</option>
+              <option value="3" selected>Top 3</option>
+              <option value="5">Top 5</option>
+            </select>
+            <select id="top-brands-metric" class="border px-2 py-1 rounded text-sm">
+              <option value="score">Custom Score</option>
+              <option value="roas">ROAS</option>
+              <option value="showRate">Show Rate</option>
+              <option value="conversion">Conversion Rate</option>
+            </select>
+          </div>
+        </div>
+        <div id="top-brands-list" class="space-y-1 text-sm text-gray-700">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    
+    </div>
+    <!-- End of Flex Layout -->
+
+    </div>
+  </div>
+
+      <!-- Client Onboarding -->
+      <div class="ml-0 lg:ml-64 transition-all duration-300"> <!-- Wrapper Added -->
+        <div id="client-onboarding" class="hidden">
+          <div class="p-4">
+            <div class="bg-white rounded-lg shadow p-6">
+              <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Client Onboarding</h2>
+                <div class="flex items-center space-x-4">
+                  <div class="relative">
+                    <input type="text" placeholder="Search clients..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                  </div>
+                  <button id="toggle-new-client-form" class="add-client-btn bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <i class="fas fa-plus mr-2"></i>Add New Client
+                  </button>
+                  <script>
+                    // Initialize Supabase client - REMOVE this duplicate
+                    // const { createClient } = supabase;
+                    // const supabaseUrl = "https://ehveemvdrzmnernsuuxv.supabase.co";
+                    // const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodmVlbXZkcnptbmVybnN1dXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjA2NTEsImV4cCI6MjA2MDAzNjY1MX0.A43KWW3G0kE_NgptszpaqC2-wFDGVPzGfcS7LFskV1E";
+                    // const supabaseClient = createClient(supabaseUrl, supabaseKey);
+                    console.log("Expecting global supabaseClient here...");
+
+                    document.getElementById("toggle-new-client-form").addEventListener("click", function() {
+                      const form = document.getElementById("new-client-form");
+                      form.classList.toggle("hidden");
+                    });
+                  </script>
+                </div>
+              </div>
+
+              <!-- Client Onboarding Pipeline -->
+              <div class="mb-8">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Client Onboarding Pipeline</h3>
+                
+                <!-- Enhanced Controls for Onboarding Pipeline -->
+                <div class="flex flex-wrap items-end gap-3 mb-4">
+                  <!-- Original controls enhanced -->
+                  <div>
+                    <label for="onboarding-brand-filter" class="block text-sm font-medium text-gray-700 mb-1">Filter by Brand</label>
+                    <select id="onboarding-brand-filter" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="all">All Brands</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="onboarding-search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                    <input type="text" id="onboarding-search" placeholder="Search name, subaccount..." 
+                      class="border rounded-md px-3 py-2 text-sm w-48">
+                  </div>
+                  
+                  <!-- New enhanced controls -->
+                  <div>
+                    <label for="onboarding-date-filter" class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                    <select id="onboarding-date-filter" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="all">All Time</option>
+                      <option value="today">Today</option>
+                      <option value="week">This Week</option>
+                      <option value="month">This Month</option>
+                      <option value="quarter">Last 3 Months</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="onboarding-sort" class="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+                    <select id="onboarding-sort" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="date-desc">Date (Newest)</option>
+                      <option value="date-asc">Date (Oldest)</option>
+                      <option value="name-asc">Name (A-Z)</option>
+                      <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="onboarding-view-mode" class="block text-sm font-medium text-gray-700 mb-1">View Mode</label>
+                    <select id="onboarding-view-mode" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="standard">Standard</option>
+                      <option value="compact">Compact</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button id="onboarding-reset-filters" class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-md text-sm ml-2">
+                      Reset Filters
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Pipeline Columns Container -->
+                <div class="pipeline-container overflow-x-auto">
+                  <div class="flex space-x-4 min-w-max">
+                    <!-- Pipeline Stages will be dynamically populated -->
+                    <!-- Each stage is now wrapped in a scrollable container -->
+                    <div id="onboarding-stages" class="flex space-x-4 min-w-max">
+                      <!-- Application Submitted -->
+                      <div class="pipeline-stage w-80" data-stage="application_submitted">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Application Submitted</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="application_submitted" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="application_submitted_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Getting To Know You -->
+                      <div class="pipeline-stage w-80" data-stage="getting_to_know_you">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Getting To Know You</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="getting_to_know_you" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="getting_to_know_you_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- New Client -->
+                      <div class="pipeline-stage w-80" data-stage="new_client">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">New Client</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="new_client" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="new_client_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Info Verified / Agreement Signed -->
+                      <div class="pipeline-stage w-80" data-stage="info_verified_agreement_signed">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Info Verified / Agreement Signed</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="info_verified_agreement_signed" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="info_verified_agreement_signed_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Continue with other stages -->
+                      <!-- Slack Support Created -->
+                      <div class="pipeline-stage w-80" data-stage="slack_support_created">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Slack Support Created</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="slack_support_created" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="slack_support_created_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Campaign Domain Selected -->
+                      <div class="pipeline-stage w-80" data-stage="campaign_domain_selected">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Campaign Domain Selected</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="campaign_domain_selected" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="campaign_domain_selected_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Subaccount Creation -->
+                      <div class="pipeline-stage w-80" data-stage="subaccount_creation">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Subaccount Creation</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="subaccount_creation" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="subaccount_creation_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Social Media Integration -->
+                      <div class="pipeline-stage w-80" data-stage="social_media_integration_complete">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Social Media Integration</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="social_media_integration_complete" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="social_media_integration_complete_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Ad Launched -->
+                      <div class="pipeline-stage w-80" data-stage="ad_launched">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Ad Launched</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="ad_launched" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="ad_launched_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- Live -->
+                      <div class="pipeline-stage w-80" data-stage="live">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Live</h3>
+                        <div class="flex items-center mb-2">
+                          <div class="stage-count bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                          <div class="ml-2 text-xs text-gray-500">clients</div>
+                        </div>
+                        <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                          <div class="stage-progress-bar bg-blue-500 h-full" style="width: 0%"></div>
+                        </div>
+                        <div id="live" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                        <div id="live_pagination" class="mt-2 text-center text-sm"></div>
+                      </div>
+
+                      <!-- And so on for other stages... -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- A2P Registration Pipeline -->
+              <div class="bg-white rounded-lg shadow p-4 mt-4">
+                <h2 class="text-lg font-medium mb-4">A2P Registration Pipeline</h2>
+                
+                <!-- Enhanced Controls for A2P Pipeline -->
+                <div class="flex flex-wrap items-end gap-3 mb-4">
+                  <!-- Original controls -->
+                  <div>
+                    <label for="a2p-brand-filter" class="block text-sm font-medium text-gray-700 mb-1">Filter by Brand</label>
+                    <select id="a2p-brand-filter" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="all">All Brands</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="a2p-search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                    <input type="text" id="a2p-search" placeholder="Search name, subaccount..." 
+                      class="border rounded-md px-3 py-2 text-sm w-48">
+                  </div>
+                  
+                  <!-- New enhanced controls -->
+                  <div>
+                    <label for="a2p-date-filter" class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                    <select id="a2p-date-filter" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="all">All Time</option>
+                      <option value="today">Today</option>
+                      <option value="week">This Week</option>
+                      <option value="month">This Month</option>
+                      <option value="quarter">Last 3 Months</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="a2p-sort" class="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+                    <select id="a2p-sort" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="date-desc">Date (Newest)</option>
+                      <option value="date-asc">Date (Oldest)</option>
+                      <option value="name-asc">Name (A-Z)</option>
+                      <option value="name-desc">Name (Z-A)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="a2p-view-mode" class="block text-sm font-medium text-gray-700 mb-1">View Mode</label>
+                    <select id="a2p-view-mode" class="border rounded-md px-3 py-2 text-sm">
+                      <option value="standard">Standard</option>
+                      <option value="compact">Compact</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button id="a2p-reset-filters" class="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-md text-sm ml-2">
+                      Reset Filters
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- A2P Pipeline Columns -->
+                <div class="pipeline-container overflow-x-auto">
+                  <div class="flex space-x-4 min-w-max">
+                    <!-- A2P Pending -->
+                    <div class="pipeline-stage w-80" data-stage="a2p_pending">
+                      <h3 class="text-sm font-medium text-gray-700 mb-2">A2P Pending</h3>
+                      <div class="flex items-center mb-2">
+                        <div class="stage-count bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                        <div class="ml-2 text-xs text-gray-500">submissions</div>
+                      </div>
+                      <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                        <div class="stage-progress-bar bg-yellow-500 h-full" style="width: 0%"></div>
+                      </div>
+                      <div id="a2p_pending_cards" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                      <div id="a2p_pending_pagination" class="mt-2 text-center text-sm"></div>
+                    </div>
+
+                    <!-- A2P Approved -->
+                    <div class="pipeline-stage w-80" data-stage="a2p_approved">
+                      <h3 class="text-sm font-medium text-gray-700 mb-2">A2P Approved</h3>
+                      <div class="flex items-center mb-2">
+                        <div class="stage-count bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                        <div class="ml-2 text-xs text-gray-500">submissions</div>
+                      </div>
+                      <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                        <div class="stage-progress-bar bg-green-500 h-full" style="width: 0%"></div>
+                      </div>
+                      <div id="a2p_approved_cards" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                      <div id="a2p_approved_pagination" class="mt-2 text-center text-sm"></div>
+                    </div>
+                    
+                    <!-- A2P Declined -->
+                    <div class="pipeline-stage w-80" data-stage="a2p_declined">
+                      <h3 class="text-sm font-medium text-gray-700 mb-2">A2P Declined</h3>
+                      <div class="flex items-center mb-2">
+                        <div class="stage-count bg-red-100 text-red-800 px-2 py-0.5 rounded text-xs font-medium">0</div>
+                        <div class="ml-2 text-xs text-gray-500">submissions</div>
+                      </div>
+                      <div class="stage-progress bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                        <div class="stage-progress-bar bg-red-500 h-full" style="width: 0%"></div>
+                      </div>
+                      <div id="a2p_declined_cards" class="stage-content mt-4 space-y-2 max-h-[600px] overflow-y-auto pr-1"></div>
+                      <div id="a2p_declined_pagination" class="mt-2 text-center text-sm"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- New Client Form (Collapsible) -->
+              <div id="new-client-form" class="hidden bg-gray-50 rounded-lg p-6 mt-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Client / Subaccount</h3>
+                <form id="add-client-form" class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Client Information -->
+                    <div class="space-y-4">
+                      <h4 class="text-sm font-medium text-gray-700">Client Information</h4>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" id="first-name" name="firstName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input type="text" id="last-name" name="lastName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Phone</label>
+                        <input type="tel" id="phone" name="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <!-- City Field -->
+                      <div class="mb-4">
+                        <label for="city" class="block text-gray-700 font-medium mb-2">City</label>
+                        <input type="text" id="city" name="city" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter city (e.g. Miami)">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Brand</label>
+                        <input type="text" id="brand" name="brand" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Subaccount Name</label>
+                        <input type="text" id="subaccount" name="subaccount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                    </div>
+
+                    <!-- Subaccount Information -->
+                    <div class="space-y-4">
+                      <h4 class="text-sm font-medium text-gray-700">Subaccount Information</h4>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Subaccount Name</label>
+                        <input type="text" name="subaccountName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Subaccount ID</label>
+                        <input type="text" name="subaccountId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Subaccount API Key</label>
+                        <input type="text" name="subaccountApiKey" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                      <div>
+                        <label class="block text-sm font-medium text-gray-700">Subaccount Calendar URL</label>
+                        <input type="url" name="subaccountCalendarUrl" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                      Save Client to System
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- Wrapper Added -->
+
+<!-- Client Side Tracking (hidden by default) -->
+<div class="ml-0 lg:ml-64 transition-all duration-300"> <!-- Wrapper Added -->
+  <div id="client-tracking" class="hidden">
+    <!-- Filters -->
+    <div class="bg-white p-4 rounded-lg shadow mb-6">
+          <!-- Top row with dropdowns -->
+          <div class="flex gap-6 mb-4">
+            <div class="w-1/5">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Brand</label>
+              <select id="brand-dropdown" class="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 h-10">
+  <option value="all">All Brands</option>
+</select>
+      </div>
+            <div class="w-1/5">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Subaccount</label>
+              <select id="subaccount-dropdown" class="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 h-10">
+  <option value="all">All Subaccounts</option>
+</select>
+      </div>
+            <div class="w-1/5">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
+              <select id="date-filter-select" class="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 h-10">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="last7days">Last 7 Days</option>
+                <option value="last30days">Last 30 Days</option>
+                <option value="alltime">All Time</option>
+        </select>
+      </div>
+            <div class="w-1/5">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Health Score</label>
+              <select id="health-score-dropdown" class="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 h-10">
+  <option value="all">All Scores</option>
+                <option value="excellent">Excellent (60%+)</option>
+                <option value="good">Good (40-59%)</option>
+                <option value="warning">Warning (15-39%)</option>
+  <option value="critical">Critical (< 15%)</option>
+</select>
+      </div>
+            <div class="w-1/5">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Ad Status</label>
+              <select id="ad-status-dropdown" class="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 h-10">
+                <option value="all">All Statuses</option>
+                <option value="Active">Active</option>
+                <option value="Paused">Paused</option>
+              </select>
+    </div>
+    </div>
+          <!-- Search bar -->
+          <div class="relative">
+            <input type="text" id="subaccount-search" placeholder="Search subaccounts..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+        </div>
+    </div>
+  </div>
+
+        <!-- Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Brand</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subaccount</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client Name</th>
+			<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Health Score</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Leads</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Confirmed</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unconfirmed</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Showed</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Show</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead to Booked %</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show Rate %</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Show Rate %</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CPL</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ROAS</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ad Status</th>            
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+                <!-- Table rows will be populated dynamically -->
+        </tbody>
+      </table>
+    </div>
+          <!-- Pagination Controls -->
+          <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+            <div class="flex-1 flex justify-between sm:hidden">
+              <!-- Mobile pagination controls -->
+              <button id="prev-page-mobile" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                Previous
+              </button>
+              <button id="next-page-mobile" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                Next
+              </button>
+</div>
+  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+                  Showing
+                  <span class="font-medium" id="start-item">0</span>
+                  to
+                  <span class="font-medium" id="end-item">0</span>
+                  of
+                  <span class="font-medium" id="total-items">0</span>
+                  results
+      </p>
+    </div>
+              <div class="flex items-center space-x-4">
+                <!-- Items per page selector -->
+                <select id="items-per-page" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                  <option value="10">10 per page</option>
+                  <option value="20">20 per page</option>
+                  <option value="50">50 per page</option>
+                  <option value="100">100 per page</option>
+                  <option value="-1">Show all</option>
+                </select>
+                <!-- Desktop pagination controls -->
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                  <button id="prev-page" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">Previous</span>
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <div id="page-numbers" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                    <!-- Page numbers will be inserted here -->
+                  </div>
+                  <button id="next-page" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+          <span class="sr-only">Next</span>
+                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+      </nav>
+    </div>
+  </div>
+</div>
+  </div>
+</div> <!-- Wrapper Added -->
+    </main>
+      </div>
+          </div>
+
+<script>
+    // Supabase configuration and initialization
+    const SUPABASE_URL = "https://ehveemvdrzmnernsuuxv.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodmVlbXZkcnptbmVybnN1dXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0NjA2NTEsImV4cCI6MjA2MDAzNjY1MX0.A43KWW3G0kE_NgptszpaqC2-wFDGVPzGfcS7LFskV1E";
+    // Single Global Declaration - Change back to const
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    console.log('✅ Supabase client initialized globally (Main Script)');
+   
+    // Global variable removed
+
+    // Utility Functions
+    console.log('🔄 Initializing utility functions...');
+    try {
+        /**
+         * Debounce function to limit the rate at which a function can fire
+         * @param {Function} fn - The function to debounce
+         * @param {number} delay - The delay in milliseconds
+         * @returns {Function} - The debounced function
+         */
+        function debounce(fn, delay) {
+            console.log(`Creating debounced function with ${delay}ms delay`);
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    try {
+                        console.log('Executing debounced function');
+                        fn(...args);
+                    } catch (error) {
+                        console.error('❌ Error in debounced function:', error);
+                        console.error('Error details:', {
+                            message: error.message,
+                            stack: error.stack,
+                            args: args
+                        });
+                    }
+                }, delay);
+            };
+        }
+        console.log('✅ Debounce utility function initialized');
+    } catch (error) {
+        console.error('❌ Error initializing utility functions:', error);
+        console.error('Error details:', {
+            message: error.message,
+            stack: error.stack
+        });
+    }
+
+    // 🚀 Onboarding pipeline stage mappings
+    // These keys match the Supabase boolean columns in client_onboarding
+    // Each client card will render under the first 'true' stage
+    const onboardingStageMappings = {
+        application_submitted: "Application Submitted",
+        getting_to_know_you: "Getting To Know You",
+        new_client: "New Client",
+        info_verified_agreement_signed: "Info Verified / Agreement Signed",
+        slack_support_created: "Slack Support Created",
+        campaign_domain_selected: "Campaign Domain Selected",
+        subaccount_creation: "Subaccount Creation",
+        social_media_integration_complete: "Social Media Integration Complete",
+        ad_launched: "Ad Launched",
+        live: "Live"
+    };
+
+    // Define the correct order of onboarding stages (most recent to oldest)
+    const onboardingStageOrder = [
+      "live",
+      "ad_launched",
+      "social_media_integration_complete",
+      "subaccount_creation",
+      "campaign_domain_selected",
+      "slack_support_created",
+      "info_verified_agreement_signed",
+      "new_client",
+      "getting_to_know_you",
+      "application_submitted"
+    ];
+
+    // Function to determine the correct stage based on boolean fields
+    function determineClientStage(client) {
+        // Find all true stages
+        const trueStages = onboardingStageOrder.filter(stage => client[stage] === true);
+        
+        if (trueStages.length === 0) {
+            return null; // No stage is true
+        }
+        
+        // Return the last true stage based on the order
+        return trueStages[trueStages.length - 1];
+    }
+
+    // Function to update a client's stage in Supabase
+    async function updateClientStage(clientId, stage) {
+        try {
+            const { error } = await supabaseClient
+                .from('client_onboarding')
+                .update({ stage })
+                .eq('id', clientId);
+            
+            if (error) {
+                console.error('❌ Error updating client stage:', error);
+                return false;
+            }
+            return true;
+        } catch (error) {
+            console.error('❌ Error in updateClientStage:', error);
+            return false;
+        }
+    }
+
+    // Function to process and update all client stages
+    async function updateAllClientStages(clients) {
+        console.log('🔄 Updating client stages...');
+        const updates = [];
+        
+        for (const client of clients) {
+            const correctStage = determineClientStage(client);
+            if (correctStage !== client.stage) {
+                updates.push({
+                    id: client.id,
+                    currentStage: client.stage,
+                    newStage: correctStage
+                });
+                await updateClientStage(client.id, correctStage);
+            }
+        }
+        
+        if (updates.length > 0) {
+            console.log('✅ Updated stages for clients:', updates);
+        } else {
+            console.log('✅ All client stages are up to date');
+        }
+    }
+
+    // Stage mappings
+    console.log('🔄 Initializing stage mappings...');
+    try {
+        const a2pStageMapping = {
+            'a2p_pending': 'A2P Pending',
+            'a2p_declined': 'A2P Declined',
+            'a2p_approved': 'A2P Approved'
+        };
+        console.log('✅ A2P stage mappings initialized');
+
+        const healthScoreMappings = {
+            'excellent': { min: 60, class: 'health-score-excellent' },
+            'good': { min: 40, max: 59, class: 'health-score-good' },
+            'warning': { min: 15, max: 39, class: 'health-score-warning' },
+            'critical': { max: 14, class: 'health-score-critical' }
+        };
+        console.log('✅ Health score mappings initialized');
+
+        const statusMappings = {
+            'active': { class: 'status-active', text: 'Active' },
+            'paused': { class: 'status-paused', text: 'Paused' },
+            'pending': { class: 'status-pending', text: 'Pending' },
+            'declined': { class: 'status-declined', text: 'Declined' },
+            'approved': { class: 'status-approved', text: 'Approved' }
+        };
+        console.log('✅ Status mappings initialized');
+
+        // Global variables
+        // Remove existing chart variables and currentTimeframe
+    } catch (error) {
+        console.error('❌ Error initializing stage mappings:', error);
+        console.error('Error details:', {
+            message: error.message,
+            stack: error.stack
+        });
+    }
+
+    // Initialize the dashboard
+    async function initializeDashboard() {
+      console.log('🔄 Starting dashboard initialization...');
+      try {
+        // Initialize Supabase client
+        console.log('Attempting to initialize Supabase client...');
+        // REMOVE this line - Use global client
+        // supabase = supabase.createClient(supabaseUrl, supabaseKey); 
+        console.log('✅ Using globally initialized Supabase client');
+
+        // Initialize tab switching
+        console.log('Setting up tab switching...');
+        const tabLinks = document.querySelectorAll('.nav-link');
+        console.log(`Found ${tabLinks.length} tab links`);
+        
+        tabLinks.forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            try {
+              const targetId = button.id.replace('-link', '');
+              console.log('Tab clicked:', targetId);
+
+              // Hide all sections
+              const sections = ['dashboard-overview', 'client-onboarding', 'client-tracking'];
+              sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                  section.style.display = 'none';
+                  section.classList.add('hidden');
+                  console.log(`Hidden section: ${sectionId}`);
+                }
+              });
+
+              // Show the target section
+              const targetSection = document.getElementById(targetId);
+              if (targetSection) {
+                targetSection.style.display = 'block';
+                targetSection.classList.remove('hidden');
+                console.log(`Showing section: ${targetId}`);
+
+                // Update active states for nav links
+                tabLinks.forEach(link => {
+                  link.classList.remove('text-white', 'bg-blue-600');
+                  link.classList.add('text-gray-600', 'hover:bg-gray-100');
+                });
+
+                // Set active state for clicked tab
+                button.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                button.classList.add('text-white', 'bg-blue-600');
+
+                // Update page title
+                const pageTitle = document.getElementById('page-title');
+                if (pageTitle) {
+                  const navText = button.querySelector('.nav-text');
+                  if (navText) {
+                    pageTitle.textContent = navText.textContent;
+                  }
+                }
+
+                // Initialize data based on the active tab
+                switch(targetId) {
+                  case 'dashboard-overview':
+                    console.log('Initializing dashboard overview...');
+                    updateDashboardOverview();
+                    break;
+                  case 'client-onboarding':
+                    console.log('Initializing client onboarding...');
+                    filterAndRenderOnboardingPipeline();
+                    // Also load A2P pipeline data when switching to onboarding tab
+                    setTimeout(() => {
+                      try {
+                        console.log('Loading A2P pipeline data...');
+                        loadA2PPipeline();
+                        console.log('✅ A2P pipeline loaded for onboarding tab');
+                      } catch (pipelineError) {
+                        console.error('Error loading A2P pipeline:', pipelineError);
+                      }
+                    }, 300);
+                    break;
+                  case 'client-tracking':
+                    console.log('Initializing client tracking tab specific logic...');
+                    // Ensure initializeClientTracking is called here
+                    if (typeof initializeClientTracking === 'function') {
+                      initializeClientTracking(); 
+                    } else {
+                      console.error("initializeClientTracking is not defined when switching tabs.");
+                    }
+                    break;
+                }
+              }
+            } catch (error) {
+              console.error('❌ Error during tab switch:', error);
+            }
+          });
+        });
+
+        // Initialize brand dropdowns
+        // Ensure the original declaration IS HERE:
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        console.log('✅ Supabase client initialized within main script scope');
+        
+        // Global variable to store all brand/subaccount mapping
+        let allBrandSubaccountData = []; 
+
+        await initializeBrandDropdowns();
+
+        // Show dashboard overview by default
+        const dashboardOverview = document.getElementById('dashboard-overview');
+        const dashboardLink = document.getElementById('dashboard-overview-link');
+        
+        if (dashboardOverview && dashboardLink) {
+          dashboardOverview.style.display = 'block';
+          dashboardOverview.classList.remove('hidden');
+          dashboardLink.classList.add('text-white', 'bg-blue-600');
+          dashboardLink.classList.remove('text-gray-600', 'hover:bg-gray-100');
+          await updateDashboardOverview();
+        }
+
+        console.log('✅ Dashboard initialization completed');
+      } catch (error) {
+        console.error('❌ Error during dashboard initialization:', error);
+      }
+    }
+
+    // Initialize brand dropdowns and add event listeners
+    async function initializeBrandDropdowns() {
+      console.log('🔄 Initializing GENERAL brand dropdowns...');
+      try {
+        // Fetch distinct brands (only needed for general dropdowns now)
+        const { data: brandsData, error: brandsError } = await supabaseClient
+            .from('client_metrics_history') // Or other relevant table
+            .select('brand')
+            .not('brand', 'is', null); 
+
+        if (brandsError) {
+            console.error('❌ Error fetching general brands:', brandsError);
+            return;
+        }
+
+        // --- Brand Dropdown Processing (General) ---
+        const uniqueBrands = [...new Set(brandsData.map(item => item.brand).filter(Boolean))].sort();
+        console.log('Found general brands:', uniqueBrands);
+        // List dropdowns EXCEPT the client tracking ones
+        const brandDropdownIds = [
+            // 'brand-dropdown', // Handled by initializeClientTracking
+            'kpi-brand-selector',
+            'onboarding-brand-filter',
+            'a2p-brand-filter',
+            'brand-selector'
+        ];
+        brandDropdownIds.forEach(dropdownId => {
+            const dropdown = document.getElementById(dropdownId);
+            if (dropdown) {
+              const currentValue = dropdown.value; 
+              dropdown.innerHTML = '<option value="all">All Brands</option>' +
+                uniqueBrands.map(brand => `<option value="${brand}" ${brand === currentValue ? 'selected' : ''}>${brand}</option>`).join('');
+              console.log(`✅ Updated ${dropdownId} with ${uniqueBrands.length} brands`);
+              
+              // Attach relevant listeners if not handled globally in DOMContentLoaded
+              if (!dropdown.dataset.listenerAttachedGeneral) {
+                  if(dropdownId === 'kpi-brand-selector') {
+                    dropdown.addEventListener('change', async (e) => {
+                         console.log(`${dropdownId} changed:`, e.target.value);
+                         await updateDashboardOverview(); 
+                         await updateCharts(currentTimeframe); 
+                         await updateBrandPerformance();
+                         await updateTopBrands();
+                    });
+                    dropdown.dataset.listenerAttachedGeneral = 'true'; 
+                    console.log(`✅ Added GENERAL listener to ${dropdownId}`);
+                  }
+                  // Add listeners for onboarding/a2p/performance brand selectors if needed
+              }
+            }
+        });
+        // --- End Brand Processing ---
+
+        // --- Subaccount Dropdown (General - None Needed Here Anymore) ---
+        // Removed subaccount logic - handled by initializeClientTracking
+
+      } catch (error) {
+        console.error('❌ Error initializing GENERAL dropdowns:', error);
+      }
+    }
+
+    // Function to update subaccount dropdown based on selected brand
+    function updateSubaccountDropdown(selectedBrand, brandSubaccountData) {
+      const subaccountDropdown = document.getElementById("subaccount-dropdown");
+      if (!subaccountDropdown) {
+          console.warn("#subaccount-dropdown not found");
+          return;
+      }
+    
+      subaccountDropdown.innerHTML = '<option value="all">All Subaccounts</option>';
+      
+      // Ensure brandSubaccountData is an array before filtering/mapping
+      if (!Array.isArray(brandSubaccountData)) {
+          console.error("Invalid brandSubaccountData passed to updateSubaccountDropdown");
+          brandSubaccountData = []; // Default to empty array to avoid errors
+      }
+    
+      const filtered = selectedBrand === "all"
+        ? [...new Set(brandSubaccountData.map(item => item.subaccount_name).filter(Boolean))].sort()
+        : [...new Set(brandSubaccountData
+            .filter(item => item.brand === selectedBrand && item.subaccount_name) // Check name exists
+            .map(item => item.subaccount_name))].sort();
+            
+      filtered.forEach(name => {
+        if (name) { // Ensure name is not null/empty
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          subaccountDropdown.appendChild(option);
+        }
+      });
+    
+      // Always reset to 'All Subaccounts' when brand changes
+      subaccountDropdown.value = "all";
+      console.log(`✅ Subaccount dropdown updated for brand: ${selectedBrand}, found ${filtered.length} subaccounts.`);
+    }
+
+    // Initialization function specifically for the Client Tracking tab
+    async function initializeClientTracking() {
+      console.log("🔄 Initializing Client Tracking Tab...");
+      const brandDropdown = document.getElementById("brand-dropdown");
+      const subaccountDropdown = document.getElementById("subaccount-dropdown");
+    
+      if (!brandDropdown || !subaccountDropdown) {
+          console.error("Client Tracking dropdowns not found.");
+          return;
+      }
+      
+      // Clear previous listeners to prevent duplicates if tab is revisited
+      brandDropdown.replaceWith(brandDropdown.cloneNode(true));
+      subaccountDropdown.replaceWith(subaccountDropdown.cloneNode(true));
+      // Re-get references after cloning
+      const freshBrandDropdown = document.getElementById("brand-dropdown");
+      const freshSubaccountDropdown = document.getElementById("subaccount-dropdown");
+
+      // Step 1: Fetch brand-subaccount pairs
+      let brandSubaccountData = []; // Scope data to this function
+      try {
+          const { data, error } = await supabaseClient
+            .from("client_metrics_live") // Using live data for current associations
+            .select("brand, subaccount_name")
+            .not("brand", "is", null)
+            .not("subaccount_name", "is", null);
+        
+          if (error) throw error; // Let catch block handle it
+          brandSubaccountData = data || [];
+          console.log(`Fetched ${brandSubaccountData.length} brand/subaccount pairs for Client Tracking.`);
+
+          // Populate Brands Dropdown
+          const uniqueBrands = [...new Set(brandSubaccountData.map(item => item.brand).filter(Boolean))].sort();
+          freshBrandDropdown.innerHTML = '<option value="all">All Brands</option>';
+          uniqueBrands.forEach(brand => {
+              const option = document.createElement("option");
+              option.value = brand;
+              option.textContent = brand;
+              freshBrandDropdown.appendChild(option);
+          });
+          console.log("Populated brands for Client Tracking.");
+
+          // Step 2: Populate subaccount dropdown based on initial selection ('all')
+          updateSubaccountDropdown("all", brandSubaccountData);
+          
+          // Load initial table data for 'all' brands and 'all' subaccounts
+          if (typeof loadClientTrackingData === 'function') {
+              await loadClientTrackingData("all", "all"); 
+          } else {
+              console.error("loadClientTrackingData not found during init.");
+          }
+
+          // Step 3: Set up event listeners
+          freshBrandDropdown.addEventListener("change", (e) => {
+            const selectedBrand = e.target.value;
+            console.log(`Client Tracking Brand changed: ${selectedBrand}`);
+            updateSubaccountDropdown(selectedBrand, brandSubaccountData);
+            // Load data for the selected brand, showing all its subaccounts initially
+            if (typeof loadClientTrackingData === 'function') {
+                loadClientTrackingData(selectedBrand, "all"); 
+            }
+          });
+        
+          freshSubaccountDropdown.addEventListener("change", (e) => {
+            const selectedSubaccount = e.target.value;
+            const selectedBrand = freshBrandDropdown.value; // Get current brand selection
+            console.log(`Client Tracking Subaccount changed: ${selectedSubaccount}`);
+            // Load data filtered by both selections
+            if (typeof loadClientTrackingData === 'function') {
+                 loadClientTrackingData(selectedBrand, selectedSubaccount);
+            }
+          });
+          console.log("✅ Client Tracking listeners attached.");
+
+          // Add listeners for other filters
+          const dateFilterSelect = document.getElementById('date-filter-select');
+          if (dateFilterSelect) {
+              dateFilterSelect.addEventListener('change', () => {
+                  console.log("Date Filter Changed");
+                  loadClientTrackingData(freshBrandDropdown.value, freshSubaccountDropdown.value);
+              });
+          }
+          const healthScoreDropdown = document.getElementById('health-score-dropdown');
+          if (healthScoreDropdown) {
+              healthScoreDropdown.addEventListener('change', () => {
+                  console.log("Health Score Filter Changed");
+                  loadClientTrackingData(freshBrandDropdown.value, freshSubaccountDropdown.value);
+              });
+          }
+          const adStatusDropdown = document.getElementById('ad-status-dropdown');
+          if (adStatusDropdown) {
+              adStatusDropdown.addEventListener('change', () => {
+                  console.log("Ad Status Filter Changed");
+                  loadClientTrackingData(freshBrandDropdown.value, freshSubaccountDropdown.value);
+              });
+          }
+          const searchInput = document.getElementById('subaccount-search');
+          if (searchInput) {
+              // Use debounce for search input
+              searchInput.addEventListener('input', debounce(() => {
+                  console.log("Search Input Changed");
+                  loadClientTrackingData(freshBrandDropdown.value, freshSubaccountDropdown.value);
+              }, 300)); // 300ms debounce
+          }
+          console.log("✅ Added listeners for date, health, status, and search filters.");
+
+      } catch (error) {
+        console.error("❌ Error initializing Client Tracking tab:", error);
+        // Optionally set dropdowns to an error state
+        freshBrandDropdown.innerHTML = '<option value="all">Error</option>';
+        freshSubaccountDropdown.innerHTML = '<option value="all">Error</option>';
+      }
+    }
+
+    // Function to render rows into the client tracking table
+    function renderClientTrackingTable(dataToRender) {
+        const tableBody = document.querySelector('#client-tracking tbody');
+        if (!tableBody) {
+          console.error('❌ Could not find client tracking table body');
+          return;
+        }
+        
+        tableBody.innerHTML = ''; // Clear previous rows
+        
+        if (!dataToRender || dataToRender.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="16" class="text-center py-4 text-gray-500">No matching client data found.</td></tr>';
+            console.log("Rendered no data message.");
+            return;
+        }
+
+        console.log(`Rendering ${dataToRender.length} rows...`);
+        dataToRender.forEach(row => {
+          const tr = document.createElement('tr');
+          // Use subaccount_name here
+          tr.innerHTML = ` 
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${row.brand || '-'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${row.subaccount_name || '-'}</td> 
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${row.client_name || '-'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-center">
+              <span class="px-2 py-1 text-xs font-medium rounded-full ${getHealthScoreClass(row.health_score)}">
+                ${row.health_score != null ? row.health_score + '%' : '--'}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.leads ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.confirmed ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.unconfirmed ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.shows ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.no_shows ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.leadToConfirmedRate != null ? row.leadToConfirmedRate + '%' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.showedRate != null ? row.showedRate + '%' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.noShowRate != null ? row.noShowRate + '%' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.cpl != null ? '$' + Number(row.cpl).toFixed(2) : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.roas != null ? Number(row.roas).toFixed(2) + 'x' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-center">
+              <span class="px-2 py-1 text-xs font-medium rounded-full ${getStatusClass(row.ad_status)}">
+                ${row.ad_status || 'Unknown'}
+              </span>
+            </td>
+          `;
+          tableBody.appendChild(tr);
+        });
+        console.log('✅ Client tracking table rendered.');
+        // Update pagination info if pagination is implemented
+        // updatePaginationControls(currentPage, totalPages, dataToRender.length);
+    }
+
+    // Function to load client tracking data (now focuses on fetching and filtering)
+    async function loadClientTrackingData(selectedBrand = 'all', selectedSubaccount = 'all') {
+      console.log(`🔄 Loading client tracking data for Brand: ${selectedBrand}, Subaccount: ${selectedSubaccount}`);
+      
+      try {
+        let query = supabaseClient
+          .from("client_metrics_live") // Or _history depending on needs
+          .select("*"); // Select all columns needed for display
+    
+        // Apply SERVER-SIDE brand filter (more efficient)
+        if (selectedBrand && selectedBrand !== 'all') {
+          query = query.eq('brand', selectedBrand);
+        }
+        // Apply SERVER-SIDE subaccount filter (more efficient)
+        if (selectedSubaccount && selectedSubaccount !== 'all') {
+          query = query.eq('subaccount_name', selectedSubaccount); 
+        }
+
+        // Date Filtering (can be server-side if needed, but handled client-side for now)
+        const dateFilter = document.getElementById('date-filter-select')?.value || 'alltime';
+        if (dateFilter !== 'alltime' && dateFilter !== 'all') {
+             const { start } = getDateRange(dateFilter); 
+             if (start) {
+                 // Example of adding server-side date filter if desired:
+                 // query = query.gte('created_at', start.toISOString());
+             }
+        }
+
+        const { data, error } = await query;
+    
+        if (error) {
+          console.error("❌ Error fetching client metrics:", error);
+          renderClientTrackingTable([]); // Render empty table on error
+          return;
+        }
+        
+        let fetchedData = data || [];
+        console.log(`Fetched ${fetchedData.length} rows from Supabase.`);
+
+        // Apply ALL client-side filters (including Date, Health, Status, Search)
+        const filteredData = applyClientSideFilters(fetchedData); 
+        
+        console.log(`Filtered down to ${filteredData.length} rows client-side.`);
+
+        // Render the final filtered data
+        renderClientTrackingTable(filteredData);
+        
+        console.log("✅ Client tracking data fetch and filter complete.");
+
+      } catch (error) {
+        console.error("❌ Error in loadClientTrackingData logic:", error);
+        renderClientTrackingTable([]); // Render empty table on error
+      }
+    }
+
+    // Helper function for health score styling
+    function getHealthScoreClass(score) {
+      score = Number(score);
+      if (score >= 60) return 'bg-green-100 text-green-800';
+      if (score >= 40) return 'bg-blue-100 text-blue-800';
+      if (score >= 15) return 'bg-yellow-100 text-yellow-800';
+      return 'bg-red-100 text-red-800';
+    }
+
+    // Helper function for status styling
+    function getStatusClass(status) {
+      switch(status?.toLowerCase()) {
+        case 'active':
+          return 'bg-green-100 text-green-800';
+        case 'paused':
+          return 'bg-yellow-100 text-yellow-800';
+        default:
+          return 'bg-gray-100 text-gray-800';
+      }
+    }
+
+    // Function to get date range based on timeframe
+    function getDateRange(timeframe) {
+      const now = new Date();
+      const start = new Date();
+      
+      switch(timeframe) {
+        case 'today':
+          start.setHours(0, 0, 0, 0);
+          break;
+        case 'yesterday':
+          start.setDate(start.getDate() - 1);
+          start.setHours(0, 0, 0, 0);
+          now.setDate(now.getDate() - 1);
+          now.setHours(23, 59, 59, 999);
+          break;
+        case 'last7days':
+          start.setDate(start.getDate() - 7);
+          start.setHours(0, 0, 0, 0);
+          break;
+        case 'last30days':
+          start.setDate(start.getDate() - 30);
+          start.setHours(0, 0, 0, 0);
+          break;
+        case 'last60days':
+          start.setDate(start.getDate() - 60);
+          start.setHours(0, 0, 0, 0);
+          break;
+        case 'last90days':
+          start.setDate(start.getDate() - 90);
+          start.setHours(0, 0, 0, 0);
+          break;
+        default:
+          start.setHours(0, 0, 0, 0);
+      }
+      
+      return { start, end: now };
+    }
+
+    // Function to update charts
+    async function updateCharts(timeframe = 'daily', selectedBrand = null) {
+      console.log('🔄 Updating charts for timeframe:', timeframe);
+      try {
+        // Get date range using the same logic as updateDashboardOverview
+        const now = new Date();
+        let start = new Date();
+        
+        switch(timeframe) {
+          case 'today':
+            start.setHours(0, 0, 0, 0);
+            break;
+          case 'yesterday':
+            start.setDate(start.getDate() - 1);
+            start.setHours(0, 0, 0, 0);
+            now.setDate(now.getDate() - 1);
+            now.setHours(23, 59, 59, 999);
+            break;
+          case 'last7days':
+            start.setDate(start.getDate() - 7);
+            start.setHours(0, 0, 0, 0);
+            break;
+          case 'last30days':
+            start.setDate(start.getDate() - 30);
+            start.setHours(0, 0, 0, 0);
+            break;
+          case 'last60days':
+            start.setDate(start.getDate() - 60);
+            start.setHours(0, 0, 0, 0);
+            break;
+          case 'last90days':
+            start.setDate(start.getDate() - 90);
+            start.setHours(0, 0, 0, 0);
+            break;
+          case 'alltime':
+            start.setFullYear(start.getFullYear() - 1);
+            start.setHours(0, 0, 0, 0);
+            break;
+          default:
+            start.setHours(0, 0, 0, 0);
+        }
+
+        console.log('Chart date range:', { start: start.toISOString(), end: now.toISOString() });
+        
+        // Fetch leads data
+        let leadsQuery = supabaseClient
+          .from('client_metrics_live')
+          .select('created_at, leads')
+          .gte('created_at', start.toISOString())
+          .lte('created_at', now.toISOString())
+          .order('created_at', { ascending: true });
+
+        if (selectedBrand && selectedBrand !== 'all') {
+          leadsQuery = leadsQuery.eq('brand', selectedBrand);
+        }
+
+        // Fetch appointments data
+        let appointmentsQuery = supabaseClient
+          .from('client_metrics_live')
+          .select('created_at, confirmed')
+          .gte('created_at', start.toISOString())
+          .lte('created_at', now.toISOString())
+          .order('created_at', { ascending: true });
+
+        if (selectedBrand && selectedBrand !== 'all') {
+          appointmentsQuery = appointmentsQuery.eq('brand', selectedBrand);
+        }
+
+        const [leadsResult, appointmentsResult] = await Promise.all([
+          leadsQuery,
+          appointmentsQuery
+        ]);
+
+        if (leadsResult.error) {
+          console.error('Error fetching leads data:', leadsResult.error);
+          return;
+        }
+        if (appointmentsResult.error) {
+          console.error('Error fetching appointments data:', appointmentsResult.error);
+          return;
+        }
+
+        console.log('Fetched leads data:', leadsResult.data);
+        console.log('Fetched appointments data:', appointmentsResult.data);
+
+        // Process data for charts
+        const dates = new Set();
+        const leadsData = new Map();
+        const appointmentsData = new Map();
+
+        // Process leads data
+        leadsResult.data.forEach(row => {
+          const date = new Date(row.created_at).toLocaleDateString();
+          dates.add(date);
+          leadsData.set(date, (leadsData.get(date) || 0) + (Number(row.leads) || 0));
+        });
+
+        // Process appointments data
+        appointmentsResult.data.forEach(row => {
+          const date = new Date(row.created_at).toLocaleDateString();
+          dates.add(date);
+          appointmentsData.set(date, (appointmentsData.get(date) || 0) + (Number(row.confirmed) || 0));
+        });
+
+        // Sort dates
+        const sortedDates = Array.from(dates).sort((a, b) => new Date(a) - new Date(b));
+
+        // Update Leads Chart
+        if (leadsChart) {
+          leadsChart.data.labels = sortedDates;
+          leadsChart.data.datasets = [{
+            label: 'Leads',
+            data: sortedDates.map(date => leadsData.get(date) || 0),
+            borderColor: '#3B82F6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }];
+          leadsChart.update();
+        }
+
+        // Update Appointments Chart
+        if (appointmentsChart) {
+          appointmentsChart.data.labels = sortedDates;
+          appointmentsChart.data.datasets = [{
+            label: 'Appointments',
+            data: sortedDates.map(date => appointmentsData.get(date) || 0),
+            borderColor: '#10B981',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }];
+          appointmentsChart.update();
+        }
+
+        console.log('✅ Charts updated successfully');
+      } catch (error) {
+        console.error('❌ Error updating charts:', error);
+      }
+    }
+
+    // Replace existing updateDashboardOverview function
+    async function updateDashboardOverview() {
+      console.log("🔄 Updating Dashboard Overview KPIs...");
+      // Use existing HTML IDs for selectors
+      const brandSelector = document.getElementById("kpi-brand-selector");
+      const timeframeSelector = document.getElementById("kpi-timeframe-selector");
+
+      if (!brandSelector || !timeframeSelector) {
+          console.error("Missing KPI selectors for overview update.");
+          return;
+      }
+
+      const brand = brandSelector.value;
+      const timeframe = timeframeSelector.value;
+
+      let startDate = new Date();
+      let endDate = new Date(); // End date is typically now
+
+      // Calculate date range based on timeframe selector
+      switch (timeframe) {
+        case "today":
+          startDate.setHours(0, 0, 0, 0);
+          endDate.setHours(23, 59, 59, 999); // End of today
+            break;
+        case "yesterday":
+          startDate.setDate(startDate.getDate() - 1);
+          startDate.setHours(0, 0, 0, 0);
+          endDate.setDate(endDate.getDate() - 1);
+          endDate.setHours(23, 59, 59, 999);
+            break;
+        case "last7days":
+          startDate.setDate(startDate.getDate() - 7);
+          startDate.setHours(0, 0, 0, 0);
+          // End date remains today
+            break;
+        case "last30days":
+          startDate.setDate(startDate.getDate() - 30);
+          startDate.setHours(0, 0, 0, 0);
+          // End date remains today
+            break;
+         case "last60days":
+          startDate.setDate(startDate.getDate() - 60);
+          startDate.setHours(0, 0, 0, 0);
+            break;
+        case "last90days":
+          startDate.setDate(startDate.getDate() - 90);
+          startDate.setHours(0, 0, 0, 0);
+            break;
+        case "alltime":
+          // For 'alltime', fetch without a start date filter or use a very old date
+          startDate = null; // Signal to fetch all data
+            break;
+          default:
+          startDate.setHours(0, 0, 0, 0); // Default to today
+        }
+
+      const startDateISO = startDate ? startDate.toISOString() : null;
+      const endDateISO = endDate.toISOString();
+      
+      console.log(`Fetching overview for: ${brand}, Timeframe: ${timeframe} (Range: ${startDateISO || 'Beginning'} to ${endDateISO})`);
+
+        let query = supabaseClient
+        .from("client_metrics_history") // Use history table
+        .select("brand, leads, confirmed, shows, no_shows, created_at")
+        .lte("created_at", endDateISO);
+
+      // Apply date filter if startDate is set
+      if (startDateISO) {
+          query = query.gte("created_at", startDateISO);
+      }
+      
+      // Apply brand filter if not "all"
+      if (brand !== "all") {
+          query = query.eq("brand", brand);
+      }
+
+      const { data, error } = await query;
+
+        if (error) {
+        console.error("❌ Error fetching dashboard overview data:", error.message);
+        // Reset KPIs to error state or default
+        document.getElementById("leads-today").textContent = "Error";
+        document.getElementById("appointments-today").textContent = "Error";
+        document.getElementById("show-rate").textContent = "Error";
+        document.getElementById("cancellation-rate").textContent = "Error";
+          return;
+        }
+
+      if (!data || data.length === 0) {
+        console.warn("⚠️ No overview data found for the selected criteria.");
+        // Show zeros if no data
+        document.getElementById("leads-today").textContent = "0";
+        document.getElementById("appointments-today").textContent = "0";
+        document.getElementById("show-rate").textContent = "0%";
+        document.getElementById("cancellation-rate").textContent = "0%";
+        return;
+      }
+      
+      console.log(`📊 Processing ${data.length} overview records.`);
+
+      // Aggregate data
+      let leads = 0;
+      let confirmed = 0; // Total confirmed appointments
+      let unconfirmed = 0; // Assuming unconfirmed is leads - confirmed?
+      let shows = 0;
+      let noShows = 0;
+
+      data.forEach(row => {
+        const rowLeads = Number(row.leads) || 0;
+        const rowConfirmed = Number(row.confirmed) || 0;
+        leads += rowLeads;
+        confirmed += rowConfirmed;
+        // Calculate unconfirmed if needed, e.g., unconfirmed += rowLeads - rowConfirmed;
+        shows += Number(row.shows) || 0;
+        noShows += Number(row.no_shows) || 0;
+      });
+
+      // Calculate derived metrics
+      const totalAppointmentsBooked = confirmed; // Use confirmed count for booked appointments KPI
+      const totalAppointmentsAttended = shows + noShows; // Base rates on appointments that had a chance to be attended
+      
+      const showRate = totalAppointmentsAttended > 0 ? (shows / totalAppointmentsAttended) * 100 : 0;
+      const cancelRate = totalAppointmentsAttended > 0 ? (noShows / totalAppointmentsAttended) * 100 : 0; // Renamed from cancelRate to align with noShows
+
+      console.log(`Aggregated Overview: Leads=${leads}, Booked=${totalAppointmentsBooked}, Shows=${shows}, NoShows=${noShows}`);
+      console.log(`Calculated Rates: Show=${showRate.toFixed(0)}%, NoShow=${cancelRate.toFixed(0)}%`);
+
+      // Update DOM using existing HTML IDs
+      document.getElementById("leads-today").textContent = leads.toLocaleString();
+      document.getElementById("appointments-today").textContent = totalAppointmentsBooked.toLocaleString();
+      document.getElementById("show-rate").textContent = showRate.toFixed(0) + "%";
+      document.getElementById("cancellation-rate").textContent = cancelRate.toFixed(0) + "%";
+      
+      console.log("✅ Dashboard Overview KPIs updated.");
+
+      // Optionally, trigger chart update if overview data changes charts
+      // updateCharts(timeframe); // Call this if charts depend on the same filters/data
+    }
+
+    // Insert the new chart variables and helper functions here
+    let leadsChart;
+    let appointmentsChart;
+    let currentTimeframe = "daily";
+
+    // Helper: format label for daily/weekly/monthly
+    function formatLabel(dateStr, type) {
+      const date = new Date(dateStr);
+      if (type === "monthly") return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+      if (type === "weekly") {
+        const start = new Date(date.getFullYear(), 0, 1);
+        const days = Math.floor((date - start) / (24 * 60 * 60 * 1000));
+        const week = Math.ceil((days + start.getDay() + 1) / 7);
+        return `${date.getFullYear()}-W${week}`;
+      }
+      return date.toISOString().split("T")[0]; // daily
+    }
+
+    // Helper: consistent brand colors
+    function getBrandColor(brand) {
+      const h = [...brand].reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360;
+      return `hsl(${h}, 70%, 60%)`;
+    }
+
+    async function updateCharts(timeframe = "daily") {
+      console.log(`🔄 Updating charts for timeframe: ${timeframe}`);
+      const kpiBrandSelector = document.getElementById("kpi-brand-selector");
+      const selectedBrand = kpiBrandSelector ? kpiBrandSelector.value : "all";
+      console.log(`Selected brand for charts: ${selectedBrand}`);
+
+      let data, error;
+      try {
+          const result = await supabaseClient
+              .from("client_metrics_history") // Query the history table
+              .select("created_at, brand, leads, confirmed")
+              .order("created_at", { ascending: true });
+      
+          data = result.data;
+          error = result.error;
+
+          if (error) throw error;
+          if (!data) throw new Error("No chart data returned from query.");
+
+      } catch (err) {
+          console.error("❌ Error fetching chart data:", err.message);
+          return;
+      }
+
+      console.log(`📊 Processing ${data.length} records for charts.`);
+
+      const grouped = {}; // Structure: brand -> date_label -> { leads, confirmed }
+
+      data.forEach(row => {
+          if (!row.brand || (selectedBrand !== "all" && row.brand !== selectedBrand)) {
+              return; // Skip if no brand or not the selected brand
+          }
+
+          const date = new Date(row.created_at);
+          let label;
+
+          // Generate date label based on timeframe
+          try {
+              if (timeframe === "daily") {
+                  label = date.toISOString().split("T")[0];
+              } else if (timeframe === "weekly") {
+                   // Calculate ISO week number
+                   const dayNum = date.getUTCDay() || 7;
+                   date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+                   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+                   const weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+                   label = `${date.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+              } else { // Monthly
+                   label = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+              }
+          } catch(e) {
+              console.warn(`Could not format date label for ${row.created_at}: ${e.message}`);
+              label = 'invalid_date';
+          }
+          
+          if (!label) return; // Skip if label couldn't be generated
+
+          // Initialize brand grouping if it doesn't exist
+          if (!grouped[row.brand]) grouped[row.brand] = {};
+          // Initialize date label grouping if it doesn't exist
+          if (!grouped[row.brand][label]) grouped[row.brand][label] = { leads: 0, confirmed: 0 };
+
+          // Aggregate leads and confirmed counts
+          const currentLeads = Number(row.leads) || 0;
+          const currentConfirmed = Number(row.confirmed) || 0;
+          grouped[row.brand][label].leads += currentLeads;
+          grouped[row.brand][label].confirmed += currentConfirmed;
+
+          // Add console log for debugging chart data points
+          console.log("Chart Point:", { brand: row.brand, label, leads: currentLeads, confirmed: currentConfirmed });
+      });
+
+      // Get all unique date labels across all brands and sort them
+      const allLabels = [...new Set(Object.values(grouped).flatMap(brandData => Object.keys(brandData)))].sort(); 
+
+      const leadDatasets = [];
+      const appointmentDatasets = [];
+
+      // Create datasets for each brand
+      for (const brand in grouped) {
+          const color = getBrandColor(brand);
+          leadDatasets.push({
+              label: `${brand} Leads`,
+              data: allLabels.map(label => grouped[brand][label]?.leads || 0), // Get leads for each label, default to 0
+              borderColor: color,
+              borderWidth: 2,
+              backgroundColor: "transparent",
+              pointBackgroundColor: color,
+              pointBorderColor: color,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              tension: 0.3,
+              fill: false
+          });
+          appointmentDatasets.push({
+              label: `${brand} Appointments`,
+              data: allLabels.map(label => grouped[brand][label]?.confirmed || 0), // Get confirmed for each label, default to 0
+              borderColor: color, 
+              borderWidth: 2,
+              backgroundColor: "transparent",
+              pointBackgroundColor: color,
+              pointBorderColor: color,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              tension: 0.3,
+              fill: false
+          });
+      }
+
+      // Destroy existing chart instances before creating new ones
+      if (window.leadsChart instanceof Chart) { 
+          window.leadsChart.destroy();
+          console.log("Destroyed existing leads chart.");
+      }
+      if (window.appointmentsChart instanceof Chart) {
+          window.appointmentsChart.destroy();
+          console.log("Destroyed existing appointments chart.");
+      }
+
+      // Define common chart options
+      const commonOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "top",
+              labels: {
+                color: "#ffffff",
+                pointStyle: "circle",
+                font: {
+                  size: 11,
+                  family: "'Segoe UI', system-ui, sans-serif"
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              titleColor: "#ffffff",
+              bodyColor: "#ffffff",
+              callbacks: {
+                label: function(context) {
+                  return `${context.dataset.label}: ${context.parsed.y.toLocaleString()}`;
+                }
+              }
+            }
+          },
+          scales: {
+              x: {
+                  ticks: { color: "#ffffff" },
+                  grid: { color: "#333" }
+              },
+              y: {
+                  ticks: { color: "#ffffff" },
+                  grid: { color: "#333" } // Added missing closing brace here for grid color
+              }
+          }
+      };
+
+      // Get canvas contexts
+      const leadCtx = document.getElementById("leadsChart")?.getContext("2d");
+      const confirmCtx = document.getElementById("appointmentChart")?.getContext("2d");
+
+      // Create new chart instances only if contexts are available
+      if (leadCtx) {
+          window.leadsChart = new Chart(leadCtx, {
+              type: "line",
+              data: { labels: allLabels, datasets: leadDatasets },
+              options: commonOptions
+          });
+          console.log("✅ Created new leads chart.");
+      } else {
+          console.error("Could not find canvas context for leadsChart.");
+      }
+
+      if (confirmCtx) {
+          window.appointmentsChart = new Chart(confirmCtx, {
+              type: "line",
+              data: { labels: allLabels, datasets: appointmentDatasets },
+              options: commonOptions 
+          });
+          console.log("✅ Created new appointments chart.");
+      } else {
+           console.error("Could not find canvas context for appointmentChart.");
+      }
+    }
+
+    // Enhanced client onboarding pipeline with search functionality
+    async function filterAndRenderOnboardingPipeline(appendMode = false) {
+      console.log('🔄 Filtering and rendering onboarding pipeline...');
+      
+      try {
+        // Get all filter values
+        const brandFilter = document.getElementById('onboarding-brand-filter').value;
+        const searchTerm = document.getElementById('onboarding-search').value.toLowerCase().trim();
+        const dateFilter = document.getElementById('onboarding-date-filter')?.value || 'all';
+        const sortOption = document.getElementById('onboarding-sort')?.value || 'date-desc';
+        const viewMode = document.getElementById('onboarding-view-mode')?.value || 'standard';
+        
+        console.log('Filters:', { 
+          brand: brandFilter, 
+          search: searchTerm, 
+          date: dateFilter, 
+          sort: sortOption, 
+          view: viewMode 
+        });
+
+        // Pagination settings
+        const ITEMS_PER_PAGE = 10;
+        // Get current page from data attributes on pagination elements or default to 1
+        const paginationElements = document.querySelectorAll('[id$="_pagination"]');
+        const currentPages = {};
+        
+        paginationElements.forEach(el => {
+          const stage = el.id.replace('_pagination', '');
+          currentPages[stage] = parseInt(el.getAttribute('data-current-page') || '1');
+        });
+
+        // If not in append mode, clear existing cards
+        if (!appendMode) {
+          console.log('🧹 Clearing existing cards from all stages');
+          const stageContents = document.querySelectorAll('.stage-content');
+          stageContents.forEach(container => {
+            container.innerHTML = '';
+          });
+        }
+
+        let query = supabaseClient
+          .from('client_onboarding')
+          .select('id, client_name, email, phone, brand, subaccount_name, created_at, last_updated, stage, application_submitted, getting_to_know_you, new_client, info_verified_agreement_signed, slack_support_created, campaign_domain_selected, subaccount_creation, social_media_integration_complete, ad_launched, live, city');
+
+        const { data: clients, error } = await query;
+
+        if (error) {
+          console.error('❌ Error fetching onboarding data:', error);
+          return;
+        }
+
+        console.log('📥 Raw onboarding data:', clients);
+
+        // Apply date filter to the data
+        let dateFilteredData = clients.filter(client => {
+          if (dateFilter === 'all') {
+            return true; // Return all data
+          }
+          
+          if (!client.created_at) {
+            return false; // Skip entries without dates
+          }
+          
+          const creationDate = new Date(client.created_at);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0); // Start of today
+          
+          const yesterday = new Date(today);
+          yesterday.setDate(yesterday.getDate() - 1);
+          
+          const lastWeekStart = new Date(today);
+          lastWeekStart.setDate(lastWeekStart.getDate() - 7);
+          
+          const lastMonthStart = new Date(today);
+          lastMonthStart.setMonth(lastMonthStart.getMonth() - 1);
+          
+          const lastQuarterStart = new Date(today);
+          lastQuarterStart.setMonth(lastQuarterStart.getMonth() - 3);
+          
+          switch (dateFilter) {
+            case 'today':
+              return creationDate >= today;
+            case 'week':
+              return creationDate >= lastWeekStart;
+            case 'month':
+              return creationDate >= lastMonthStart;
+            case 'quarter':
+              return creationDate >= lastQuarterStart;
+            default:
+              return true;
+          }
+        });
+
+        // Assign correct stage based on flags (most recent to oldest)
+        dateFilteredData.forEach(client => {
+          client.stage = null;
+          
+          for (let i = 0; i < onboardingStageOrder.length; i++) {
+            const key = onboardingStageOrder[i];
+            if (client[key] === true) {
+              client.stage = key;
+              break;
+            }
+          }
+        });
+
+        // Apply brand and search filters
+        let filteredClients = dateFilteredData.filter(client => {
+          // Brand filter
+          if (brandFilter && brandFilter !== "all" && client.brand?.toLowerCase() !== brandFilter.toLowerCase()) {
+            return false;
+          }
+          
+          // Search filter (check multiple fields)
+          if (searchTerm) {
+            const clientNameMatch = client.client_name && client.client_name.toLowerCase().includes(searchTerm);
+            const emailMatch = client.email && client.email.toLowerCase().includes(searchTerm);
+            const phoneMatch = client.phone && client.phone.toLowerCase().includes(searchTerm);
+            const brandMatch = client.brand && client.brand.toLowerCase().includes(searchTerm);
+            const subaccountMatch = client.subaccount_name && client.subaccount_name.toLowerCase().includes(searchTerm);
+            const cityMatch = client.city && client.city.toLowerCase().includes(searchTerm);
+            
+            // Return true if any field matches the search term
+            return clientNameMatch || emailMatch || phoneMatch || brandMatch || subaccountMatch || cityMatch;
+          }
+          
+          // Include all entries if no search term
+          return true;
+        });
+
+        // Apply sorting
+        filteredClients.sort((a, b) => {
+          switch (sortOption) {
+            case 'date-asc':
+              return new Date(a.created_at || 0) - new Date(b.created_at || 0);
+            case 'date-desc':
+              return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+            case 'name-asc':
+              const nameA = (a.client_name || '').toLowerCase();
+              const nameB = (b.client_name || '').toLowerCase();
+              return nameA.localeCompare(nameB);
+            case 'name-desc':
+              const nameADesc = (a.client_name || '').toLowerCase();
+              const nameBDesc = (b.client_name || '').toLowerCase();
+              return nameBDesc.localeCompare(nameADesc);
+            default:
+              return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+          }
+        });
+
+        console.log(`🔍 Found ${filteredClients.length} clients after filtering`);
+
+        // Group clients by stage
+        const stageGroups = {};
+        onboardingStageOrder.forEach(stage => {
+          stageGroups[stage] = filteredClients.filter(client => client.stage === stage);
+        });
+
+        // Update counters and progress bars
+        let totalClients = filteredClients.length || 1; // Avoid division by zero
+        Object.keys(stageGroups).forEach(stage => {
+          const count = stageGroups[stage]?.length || 0;
+          const percentage = Math.round((count / totalClients) * 100);
+          
+          // Update counter elements if they exist
+          const stageElement = document.querySelector(`[data-stage="${stage}"]`);
+          if (stageElement) {
+            const counter = stageElement.querySelector('.stage-count');
+            const progressBar = stageElement.querySelector('.stage-progress-bar');
+            
+            if (counter) counter.textContent = count;
+            if (progressBar) progressBar.style.width = `${percentage}%`;
+          }
+        });
+
+        // Show "no results" message if no entries after filtering
+        if (filteredClients.length === 0) {
+          const stageContents = document.querySelectorAll('.stage-content');
+          stageContents.forEach(container => {
+            container.innerHTML = `
+              <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg text-gray-700">
+                <p class="font-medium">No clients found</p>
+                <p class="text-sm mt-1">Try adjusting your search filters.</p>
+              </div>
+            `;
+          });
+          
+          // Clear pagination
+          document.querySelectorAll('[id$="_pagination"]').forEach(el => {
+            el.innerHTML = '';
+          });
+          
+          return; // Exit early if no data to process
+        }
+
+        // Process each stage with pagination
+        Object.keys(stageGroups).forEach(stage => {
+          const clients = stageGroups[stage] || [];
+          const stageContent = document.getElementById(stage);
+          const paginationEl = document.getElementById(`${stage}_pagination`);
+          
+          if (!stageContent || !paginationEl) return;
+          
+          // Calculate pagination
+          const totalClients = clients.length;
+          const totalPages = Math.ceil(totalClients / ITEMS_PER_PAGE);
+          const currentPageNum = currentPages[stage] || 1;
+          
+          // Save current page to the pagination element
+          paginationEl.setAttribute('data-current-page', currentPageNum.toString());
+          
+          // Get current page items
+          const startIdx = (currentPageNum - 1) * ITEMS_PER_PAGE;
+          const endIdx = Math.min(startIdx + ITEMS_PER_PAGE, totalClients);
+          const currentPageClients = clients.slice(startIdx, endIdx);
+          
+          // Clear column if not in append mode
+          if (!appendMode) {
+            stageContent.innerHTML = '';
+          }
+          
+          // Add client cards to the column
+          currentPageClients.forEach(client => {
+            // Create card element
+            const card = document.createElement('div');
+            
+            // Format the creation date if it exists
+            let formattedDate = 'No Date';
+            if (client.created_at) {
+              try {
+                formattedDate = new Date(client.created_at).toLocaleDateString();
+              } catch (err) {
+                console.warn('⚠️ Error formatting date:', err);
+              }
+            }
+            
+            // Apply different styling based on view mode
+            if (viewMode === 'compact') {
+              // Compact view
+              card.className = 'bg-white border p-2 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer mb-2 text-sm';
+              card.innerHTML = `
+                <div class="flex justify-between items-center">
+                  <span class="font-medium truncate">${client.client_name || 'Unnamed Client'}</span>
+                  <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    ${onboardingStageMappings[stage] ? onboardingStageMappings[stage].substring(0, 3).toUpperCase() : 'N/A'}
+                  </span>
+                </div>
+                <p class="text-xs text-gray-600 truncate">${client.brand || 'No Brand'} | ${formattedDate}</p>
+              `;
+            } else {
+              // Standard view
+              card.className = 'bg-white border p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer mb-3';
+              card.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                  <strong class="text-base">${client.client_name || 'Unnamed Client'}</strong>
+                  <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    ${onboardingStageMappings[stage] || 'N/A'}
+                  </span>
+                </div>
+                <p class="text-sm text-gray-700">${client.email || 'No email'}</p>
+                <p class="text-sm text-gray-700">${client.phone || 'No phone'}</p>
+                <p class="text-xs text-gray-600">Brand: ${client.brand || 'None'}</p>
+                <p class="text-xs text-gray-600">Subaccount: ${client.subaccount_name || 'None'}</p>
+                <p class="text-xs text-gray-600">Created: ${formattedDate}</p>
+                <p class="text-xs text-gray-500 mt-1">${client.city ? `📍 ${client.city}` : ''}</p>
+              `;
+            }
+            
+            // Add click event listener for modal dialog
+            card.addEventListener('click', function() {
+              console.log('📝 Card clicked:', client);
+              
+              // Create a modal dialog with all details
+              const modal = document.createElement('div');
+              modal.className = 'fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50';
+              modal.setAttribute('id', 'client-detail-modal');
+              
+              modal.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-md w-full shadow-xl">
+                  <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-medium">Client Details</h3>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-500">
+                      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Client Name</label>
+                      <p class="mt-1">${client.client_name || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Brand</label>
+                      <p class="mt-1">${client.brand || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Email</label>
+                      <p class="mt-1">${client.email || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Phone</label>
+                      <p class="mt-1">${client.phone || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">City</label>
+                      <p class="mt-1">${client.city || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Subaccount</label>
+                      <p class="mt-1">${client.subaccount_name || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Stage</label>
+                      <p class="mt-1">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          ${onboardingStageMappings[stage] || 'N/A'}
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      <label class="text-sm font-medium text-gray-500">Created Date</label>
+                      <p class="mt-1">${formattedDate}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="mt-6 space-y-3">
+                    <button id="edit-client-btn" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                      Edit Client
+                    </button>
+                    <button id="close-modal-btn" class="w-full border border-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-50">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              `;
+              
+              document.body.appendChild(modal);
+              
+              // Handle closing the modal
+              document.getElementById('close-modal').addEventListener('click', function() {
+                document.body.removeChild(modal);
+              });
+              
+              document.getElementById('close-modal-btn').addEventListener('click', function() {
+                document.body.removeChild(modal);
+              });
+              
+              // Handle edit client button
+              document.getElementById('edit-client-btn').addEventListener('click', function() {
+                document.body.removeChild(modal);
+                // TODO: Implement edit client functionality
+                console.log('Edit client:', client.id);
+              });
+              
+              // Close modal when clicking outside
+              modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                  document.body.removeChild(modal);
+                }
+              });
+            });
+            
+            // Add card to stage content
+            stageContent.appendChild(card);
+          });
+          
+          // Add pagination controls if needed
+          if (totalPages > 1) {
+            // Create pagination UI
+            paginationEl.innerHTML = `
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-600">
+                  ${totalClients > 0 ? `${startIdx + 1}-${endIdx} of ${totalClients}` : 'No clients'}
+                </span>
+                <div class="flex space-x-1">
+                  <button 
+                    class="px-2 py-1 border rounded ${currentPageNum === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}"
+                    ${currentPageNum === 1 ? 'disabled' : ''}
+                    data-action="prev"
+                    data-stage="${stage}">
+                    &laquo; Prev
+                  </button>
+                  <button 
+                    class="px-2 py-1 border rounded ${currentPageNum >= totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}"
+                    ${currentPageNum >= totalPages ? 'disabled' : ''}
+                    data-action="next"
+                    data-stage="${stage}">
+                    Next &raquo;
+                  </button>
+                </div>
+              </div>
+            `;
+            
+            // Add event listeners to pagination buttons
+            paginationEl.querySelectorAll('button').forEach(button => {
+              button.addEventListener('click', function() {
+                const action = this.getAttribute('data-action');
+                const targetStage = this.getAttribute('data-stage');
+                
+                // Get current page from data attribute
+                let pageNum = parseInt(paginationEl.getAttribute('data-current-page') || '1');
+                
+                if (action === 'prev' && pageNum > 1) {
+                  pageNum--;
+                } else if (action === 'next' && pageNum < totalPages) {
+                  pageNum++;
+                }
+                
+                // Save updated page number
+                paginationEl.setAttribute('data-current-page', pageNum.toString());
+                
+                // Reload with new page
+                filterAndRenderOnboardingPipeline();
+              });
+            });
+          } else {
+            // No pagination needed
+            paginationEl.innerHTML = '';
+          }
+        });
+
+        console.log('✅ Onboarding pipeline updated successfully');
+        
+      } catch (error) {
+        console.error('❌ Error rendering onboarding pipeline:', error);
+        console.error('Stack trace:', error.stack);
+        
+        // Show error message in each stage
+        const stageContents = document.querySelectorAll('.stage-content');
+        stageContents.forEach(container => {
+          container.innerHTML = `
+            <div class="bg-red-50 border border-red-200 p-4 rounded-lg text-red-700">
+              <p class="font-medium">Failed to load pipeline data</p>
+              <p class="text-sm mt-1">Please try refreshing the page or check the console for details.</p>
+            </div>
+          `;
+        });
+      }
+    }
+
+    // Add event listeners for timeframe and search
+    document.addEventListener('DOMContentLoaded', () => {
+      // Timeframe selector
+      const timeframeSelect = document.getElementById('kpi-timeframe-selector');
+      if (timeframeSelect) {
+        timeframeSelect.addEventListener('change', async (e) => {
+          const brandSelect = document.getElementById('kpi-brand-selector');
+          const selectedBrand = brandSelect ? brandSelect.value : null;
+          await updateDashboardOverview(selectedBrand);
+        });
+      }
+
+      // Onboarding search
+      const onboardingSearch = document.getElementById('onboarding-search');
+      if (onboardingSearch) {
+        onboardingSearch.addEventListener('input', debounce(async () => {
+          await filterAndRenderOnboardingPipeline();
+        }, 300));
+      }
+
+      // Onboarding brand filter
+      const onboardingBrandFilter = document.getElementById('onboarding-brand-filter');
+      if (onboardingBrandFilter) {
+        onboardingBrandFilter.addEventListener('change', async () => {
+          await filterAndRenderOnboardingPipeline();
+        });
+      }
+
+      // New onboarding pipeline controls
+      // Date filter
+      const onboardingDateFilter = document.getElementById('onboarding-date-filter');
+      if (onboardingDateFilter) {
+        onboardingDateFilter.addEventListener('change', function() {
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding date filter');
+      }
+      
+      // Sort option
+      const onboardingSort = document.getElementById('onboarding-sort');
+      if (onboardingSort) {
+        onboardingSort.addEventListener('change', function() {
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding sort');
+      }
+      
+      // View mode
+      const onboardingViewMode = document.getElementById('onboarding-view-mode');
+      if (onboardingViewMode) {
+        onboardingViewMode.addEventListener('change', function() {
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding view mode');
+      }
+      
+      // Reset filters
+      const onboardingResetFilters = document.getElementById('onboarding-reset-filters');
+      if (onboardingResetFilters) {
+        onboardingResetFilters.addEventListener('click', function() {
+          // Reset all filter controls to default values
+          if (onboardingBrandFilter) onboardingBrandFilter.value = 'all';
+          if (onboardingSearch) onboardingSearch.value = '';
+          if (onboardingDateFilter) onboardingDateFilter.value = 'all';
+          if (onboardingSort) onboardingSort.value = 'date-desc';
+          if (onboardingViewMode) onboardingViewMode.value = 'standard';
+          
+          // Reset pagination for all stages
+          document.querySelectorAll('[id$="_pagination"]').forEach(el => {
+            el.setAttribute('data-current-page', '1');
+          });
+          
+          // Reload the pipeline with reset filters
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding reset filters');
+      }
+
+      // A2P search in onboarding tab
+      const a2pSearch = document.getElementById('a2p-search');
+      if (a2pSearch) {
+        a2pSearch.addEventListener('input', debounce(function() {
+          loadA2PPipeline();
+        }, 300));
+        console.log('✅ Added event listener for A2P search with debounce');
+      }
+      
+      // A2P filter in onboarding tab
+      const a2pFilter = document.getElementById('a2p-brand-filter');
+      if (a2pFilter) {
+        a2pFilter.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P filter');
+      }
+      
+      // A2P date filter
+      const a2pDateFilter = document.getElementById('a2p-date-filter');
+      if (a2pDateFilter) {
+        a2pDateFilter.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P date filter');
+      }
+      
+      // A2P sort option
+      const a2pSort = document.getElementById('a2p-sort');
+      if (a2pSort) {
+        a2pSort.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P sort');
+      }
+      
+      // A2P view mode
+      const a2pViewMode = document.getElementById('a2p-view-mode');
+      if (a2pViewMode) {
+        a2pViewMode.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P view mode');
+      }
+      
+      // A2P reset filters
+      const a2pResetFilters = document.getElementById('a2p-reset-filters');
+      if (a2pResetFilters) {
+        a2pResetFilters.addEventListener('click', function() {
+          // Reset all filter controls to default values
+          if (a2pFilter) a2pFilter.value = 'all';
+          if (a2pSearch) a2pSearch.value = '';
+          if (a2pDateFilter) a2pDateFilter.value = 'all';
+          if (a2pSort) a2pSort.value = 'date-desc';
+          if (a2pViewMode) a2pViewMode.value = 'standard';
+          
+          // Reset pagination
+          const paginationEls = [
+            document.getElementById('a2p_pending_pagination'),
+            document.getElementById('a2p_approved_pagination'),
+            document.getElementById('a2p_declined_pagination')
+          ];
+          
+          paginationEls.forEach(el => {
+            if (el) el.setAttribute('data-current-page', '1');
+          });
+          
+          // Reload the pipeline with reset filters
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P reset filters');
+      }
+    });
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('🔄 DOM Content Loaded - Setting up initial calls and listeners');
+      
+      // Initialize the main dashboard structure and data
+      initializeDashboard().then(() => {
+        console.log('Dashboard initialized, loading initial data...');
+        // Initial data fetches - ensure functions are defined before calling
+        if (typeof updateBrandPerformance === 'function') updateBrandPerformance(); else console.error('updateBrandPerformance is not defined at initial call');
+        if (typeof updateTopBrands === 'function') updateTopBrands(); else console.error('updateTopBrands is not defined at initial call');
+        if (typeof updateCharts === 'function') updateCharts('daily'); else console.error('updateCharts is not defined at initial call');
+        if (typeof updateDashboardOverview === 'function') updateDashboardOverview(); else console.error('updateDashboardOverview is not defined at initial call');
+        if (typeof initializeBrandDropdowns === 'function') initializeBrandDropdowns(); else console.error('initializeBrandDropdowns is not defined at initial call'); // Changed from refreshBrandOptions
+      }).catch(error => {
+        console.error('❌ Error initializing dashboard:', error);
+        // Consider fallback logic or displaying an error message to the user
+      });
+
+      // --- Event Listener Setup --- 
+      // Ensure functions are defined before attaching listeners
+
+      // KPI Section Listeners
+      const kpiBrandSelector = document.getElementById('kpi-brand-selector');
+      if (kpiBrandSelector) {
+        kpiBrandSelector.addEventListener('change', () => {
+          console.log('KPI brand selector changed');
+          updateDashboardOverview(); 
+          updateCharts(currentTimeframe); 
+          updateBrandPerformance();
+          updateTopBrands();
+        });
+      }
+      const kpiTimeframeSelector = document.getElementById('kpi-timeframe-selector');
+      if (kpiTimeframeSelector) {
+        kpiTimeframeSelector.addEventListener('change', async () => {
+          console.log('KPI timeframe selector changed');
+          await updateDashboardOverview(); // updateDashboardOverview calls updateCharts implicitly based on its logic
+          await updateBrandPerformance(); 
+          await updateTopBrands(); 
+        });
+      }
+      
+      // Chart Timeframe Buttons
+      document.querySelectorAll('[data-chart="leads"][data-timeframe]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentTimeframe = btn.getAttribute('data-timeframe');
+          console.log(`Leads chart timeframe changed to: ${currentTimeframe}`);
+          updateCharts(currentTimeframe);
+          document.querySelectorAll('[data-chart="leads"][data-timeframe]').forEach(b => b.classList.remove('bg-blue-100', 'text-blue-600'));
+          btn.classList.add('bg-blue-100', 'text-blue-600');
+        });
+      });
+      document.querySelectorAll('[data-chart="appointments"][data-timeframe]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const appointmentTimeframe = btn.getAttribute('data-timeframe');
+          console.log(`Appointments chart timeframe changed to: ${appointmentTimeframe}`);
+          currentTimeframe = appointmentTimeframe; 
+          updateCharts(currentTimeframe);
+          document.querySelectorAll('[data-chart="appointments"][data-timeframe]').forEach(b => b.classList.remove('bg-blue-100', 'text-blue-600'));
+          btn.classList.add('bg-blue-100', 'text-blue-600');
+        });
+      });
+
+      // Brand Performance Section Listeners
+      const brandSelectorPerformance = document.getElementById('brand-selector');
+      if (brandSelectorPerformance) {
+          if (typeof updateBrandPerformance === 'function') {
+              brandSelectorPerformance.addEventListener("change", updateBrandPerformance);
+              console.log("Added listener for #brand-selector");
+          } else {
+              console.error("Cannot add listener: updateBrandPerformance is not defined");
+          }
+      }
+      const performanceTimeframeSelector = document.getElementById('performance-timeframe');
+      if (performanceTimeframeSelector) {
+          if (typeof updateBrandPerformance === 'function') {
+              performanceTimeframeSelector.addEventListener("change", updateBrandPerformance);
+              console.log("Added listener for #performance-timeframe");
+          } else {
+               console.error("Cannot add listener: updateBrandPerformance is not defined");
+          }
+      }
+
+      // Top Performing Brands Listeners
+      updateTopBrands(); // Call on initial load
+      document.getElementById("top-brands-timeframe")?.addEventListener("change", updateTopBrands);
+      document.getElementById("top-brands-count")?.addEventListener("change", updateTopBrands);
+      document.getElementById("top-brands-metric")?.addEventListener("change", updateTopBrands); // Add listener for new metric dropdown
+      console.log("Added listeners for #top-brands-timeframe, #top-brands-count, and #top-brands-metric");
+
+      // --- Onboarding & A2P Listeners (Keep existing) --- 
+       const onboardingSearch = document.getElementById('onboarding-search');
+      if (onboardingSearch) {
+        onboardingSearch.addEventListener('input', debounce(async () => {
+          await filterAndRenderOnboardingPipeline();
+        }, 300));
+      }
+      const onboardingBrandFilter = document.getElementById('onboarding-brand-filter');
+      if (onboardingBrandFilter) {
+        onboardingBrandFilter.addEventListener('change', async () => {
+          await filterAndRenderOnboardingPipeline();
+        });
+      }
+       const onboardingDateFilter = document.getElementById('onboarding-date-filter');
+      if (onboardingDateFilter) {
+        onboardingDateFilter.addEventListener('change', function() {
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding date filter');
+      }
+      const onboardingSort = document.getElementById('onboarding-sort');
+      if (onboardingSort) {
+        onboardingSort.addEventListener('change', function() {
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding sort');
+      }
+      const onboardingViewMode = document.getElementById('onboarding-view-mode');
+      if (onboardingViewMode) {
+        onboardingViewMode.addEventListener('change', function() {
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding view mode');
+      }
+      const onboardingResetFilters = document.getElementById('onboarding-reset-filters');
+      if (onboardingResetFilters) {
+        onboardingResetFilters.addEventListener('click', function() {
+          if (onboardingBrandFilter) onboardingBrandFilter.value = 'all';
+          if (onboardingSearch) onboardingSearch.value = '';
+          if (onboardingDateFilter) onboardingDateFilter.value = 'all';
+          if (onboardingSort) onboardingSort.value = 'date-desc';
+          if (onboardingViewMode) onboardingViewMode.value = 'standard';
+          document.querySelectorAll('[id$="_pagination"]').forEach(el => {
+            el.setAttribute('data-current-page', '1');
+          });
+          filterAndRenderOnboardingPipeline();
+        });
+        console.log('✅ Added event listener for onboarding reset filters');
+      }
+       const a2pSearch = document.getElementById('a2p-search');
+      if (a2pSearch) {
+        a2pSearch.addEventListener('input', debounce(function() {
+          loadA2PPipeline();
+        }, 300));
+        console.log('✅ Added event listener for A2P search with debounce');
+      }
+      const a2pFilter = document.getElementById('a2p-brand-filter');
+      if (a2pFilter) {
+        a2pFilter.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P filter');
+      }
+      const a2pDateFilter = document.getElementById('a2p-date-filter');
+      if (a2pDateFilter) {
+        a2pDateFilter.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P date filter');
+      }
+      const a2pSort = document.getElementById('a2p-sort');
+      if (a2pSort) {
+        a2pSort.addEventListener('change', function() {
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P sort');
+      }
+      const a2pViewMode = document.getElementById('a2p-view-mode');
+      if (a2pViewMode) {
+        a2pViewMode.addEventListener('change', function() {
+                loadA2PPipeline();
+              });
+        console.log('✅ Added event listener for A2P view mode');
+      }
+      const a2pResetFilters = document.getElementById('a2p-reset-filters');
+      if (a2pResetFilters) {
+        a2pResetFilters.addEventListener('click', function() {
+          if (a2pFilter) a2pFilter.value = 'all';
+          if (a2pSearch) a2pSearch.value = '';
+          if (a2pDateFilter) a2pDateFilter.value = 'all';
+          if (a2pSort) a2pSort.value = 'date-desc';
+          if (a2pViewMode) a2pViewMode.value = 'standard';
+          const paginationEls = [
+            document.getElementById('a2p_pending_pagination'),
+            document.getElementById('a2p_approved_pagination'),
+            document.getElementById('a2p_declined_pagination')
+          ];
+          paginationEls.forEach(el => {
+            if (el) el.setAttribute('data-current-page', '1');
+          });
+          loadA2PPipeline();
+        });
+        console.log('✅ Added event listener for A2P reset filters');
+      }
+      // --- END Onboarding & A2P Listeners ---
+
+      // Remove the previous setInterval for refreshBrandOptions if it exists
+      // Set interval to refresh ALL brand dropdowns periodically
+      const BRAND_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes
+      setInterval(initializeBrandDropdowns, BRAND_REFRESH_INTERVAL);
+      console.log(`🕒 All brand dropdowns will refresh every ${BRAND_REFRESH_INTERVAL / 1000 / 60} minutes.`);
+
+    }); // End of DOMContentLoaded
+
+    // Load initial brand options (this runs immediately because it's attached to DOMContentLoaded)
+    // window.addEventListener("DOMContentLoaded", loadBrandOptions); // Listener already added
+
+    // Function to apply client-side filters to the tracking data
+    function applyClientSideFilters(data) {
+      const selectedBrand = document.getElementById("brand-dropdown")?.value; // Correct ID
+      const selectedSubaccount = document.getElementById("subaccount-dropdown")?.value; // Correct ID
+      const selectedHealthScore = document.getElementById("health-score-dropdown")?.value; // Correct ID
+      const selectedAdStatus = document.getElementById("ad-status-dropdown")?.value; // Correct ID
+      const searchFilter = document.getElementById('subaccount-search')?.value.toLowerCase() || ''; // Added search
+    
+      // Log selected filters for debugging
+      console.log('Applying Filters:', { 
+          brand: selectedBrand, 
+          subaccount: selectedSubaccount, 
+          health: selectedHealthScore, 
+          status: selectedAdStatus, 
+          search: searchFilter 
+      });
+
+      if (!Array.isArray(data)) {
+          console.warn("Invalid data provided to applyClientSideFilters");
+          return [];
+      }
+
+      return data.filter(row => {
+        const matchesBrand =
+          !selectedBrand || selectedBrand === "all" || row.brand === selectedBrand;
+    
+        const matchesSubaccount =
+          !selectedSubaccount || selectedSubaccount === "all" || row.subaccount_name === selectedSubaccount;
+    
+        // Adjusted Health Score Logic based on HTML values
+        let matchesHealth = true; // Default to true unless a specific filter is chosen
+        if (selectedHealthScore && selectedHealthScore !== "all") {
+            const score = Number(row.health_score);
+            if (isNaN(score)) {
+                matchesHealth = false; // Exclude rows with invalid health score if filtering by score
+            } else {
+                switch (selectedHealthScore) {
+                    case "excellent": matchesHealth = score >= 60; break;
+                    case "good": matchesHealth = score >= 40 && score <= 59; break;
+                    case "warning": matchesHealth = score >= 15 && score <= 39; break;
+                    case "critical": matchesHealth = score < 15; break;
+                    default: matchesHealth = true; // Should not happen if ID is correct
+                }
+            }
+        }
+    
+        const matchesAdStatus =
+          !selectedAdStatus || selectedAdStatus === "all" || row.ad_status === selectedAdStatus;
+
+        // Search Filter Logic (copied from previous version)
+        let matchesSearch = true;
+        if (searchFilter) {
+            matchesSearch = 
+                (row.subaccount_name && row.subaccount_name.toLowerCase().includes(searchFilter)) ||
+                (row.client_name && row.client_name.toLowerCase().includes(searchFilter)) ||
+                (row.brand && row.brand.toLowerCase().includes(searchFilter));
+        }
+
+        // Return true only if all active filters match
+        return matchesBrand && matchesSubaccount && matchesHealth && matchesAdStatus && matchesSearch;
+      });
+    }
+
+    // Function to render rows into the client tracking table
+    function renderClientTrackingTable(dataToRender) {
+        const tableBody = document.querySelector('#client-tracking tbody');
+        if (!tableBody) {
+          console.error('❌ Could not find client tracking table body');
+          return;
+        }
+        
+        tableBody.innerHTML = ''; // Clear previous rows
+        
+        if (!dataToRender || dataToRender.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="16" class="text-center py-4 text-gray-500">No matching client data found.</td></tr>';
+            console.log("Rendered no data message.");
+            return;
+        }
+
+        console.log(`Rendering ${dataToRender.length} rows...`);
+        dataToRender.forEach(row => {
+          const tr = document.createElement('tr');
+          // Use subaccount_name here
+          tr.innerHTML = ` 
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${row.brand || '-'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${row.subaccount_name || '-'}</td> 
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${row.client_name || '-'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-center">
+              <span class="px-2 py-1 text-xs font-medium rounded-full ${getHealthScoreClass(row.health_score)}">
+                ${row.health_score != null ? row.health_score + '%' : '--'}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.leads ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.confirmed ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.unconfirmed ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.shows ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.no_shows ?? '0'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.leadToConfirmedRate != null ? row.leadToConfirmedRate + '%' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.showedRate != null ? row.showedRate + '%' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.noShowRate != null ? row.noShowRate + '%' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.cpl != null ? '$' + Number(row.cpl).toFixed(2) : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">${row.roas != null ? Number(row.roas).toFixed(2) + 'x' : '--'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-center">
+              <span class="px-2 py-1 text-xs font-medium rounded-full ${getStatusClass(row.ad_status)}">
+                ${row.ad_status || 'Unknown'}
+              </span>
+            </td>
+          `;
+          tableBody.appendChild(tr);
+        });
+        console.log('✅ Client tracking table rendered.');
+        // Update pagination info if pagination is implemented
+        // updatePaginationControls(currentPage, totalPages, dataToRender.length);
+    }
+
+</script>
+
+<script>
+  // This script block primarily handles the client onboarding form submission
+  // and potentially A2P pipeline logic if it's added later.
+  // Ensure the global supabaseClient is accessible here.
+
+  // Event listener for the Add Client form
+  const addClientForm = document.getElementById("add-client-form");
+  if (addClientForm) {
+    addClientForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      
+      try {
+          // Get form values
+          const form = document.getElementById('add-client-form');
+          if (!form) {
+              console.error("Form element not found!");
+              return;
+          }
+          
+          const formData = new FormData(form);
+          
+          console.log('Submitting new client:', { 
+              firstName: formData.get('firstName'),
+              lastName: formData.get('lastName'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              brand: formData.get('brand'),
+              city: formData.get('city')
+          });
+          
+          const newClient = {
+              client_name: formData.get('firstName') + ' ' + formData.get('lastName'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              brand: formData.get('brand'),
+              city: formData.get('city'),
+              business_name: formData.get('firstName') + ' ' + formData.get('lastName'),
+              subaccount_name: formData.get('firstName') + ' ' + formData.get('lastName'),
+              subaccount_id: null,
+              stage: 'new_client',
+              new_client: true
+          };
+  
+          console.log("🧾 Final client object to insert:", newClient);
+  
+          // Insert into Supabase (Ensure supabaseClient is globally available)
+          try {
+              const { data, error } = await supabaseClient
+                  .from('client_onboarding')
+                  .insert([newClient])
+                  .select(); // This makes sure Supabase returns the inserted row
+  
+              if (error) {
+                  console.error("❌ Error inserting new client:", error);
+                  alert("An error occurred. Please check the console.");
+                  return;
+              } else {
+                  console.log("✅ Successfully added new client:", data);
+              }
+  
+              // Debug post-insert logic
+              console.log("👀 Post-insert logic starts here...");
+  
+              // Reset form and close modal
+              this.reset();
+              // Ensure toggleNewClientModal is defined and accessible if needed
+              // toggleNewClientModal(false); 
+              const formContainer = document.getElementById("new-client-form");
+              if(formContainer) formContainer.classList.add("hidden"); // Directly hide form
+              
+              // Refresh the onboarding pipeline
+              if (typeof filterAndRenderOnboardingPipeline === 'function') {
+                  await filterAndRenderOnboardingPipeline();
+              } else {
+                  console.warn('filterAndRenderOnboardingPipeline not found for refresh.');
+              }
+              
+          } catch (err) {
+              console.error("🚨 Unexpected error in post-insert logic:", err);
+              alert("An unexpected error occurred. Please check the console.");
+          }
+      } catch (error) {
+          console.error('Unexpected error:', error);
+          alert('An unexpected error occurred. Please try again.');
+      }
+    });
+  } else {
+      console.warn('Add client form not found.');
+  }
+
+</script>
+
+<script>
+  // Move these functions outside the 'if' block
+
+  // Define updateBrandPerformance *first*
+  async function updateBrandPerformance() {
+    const brand = document.getElementById("brand-selector")?.value || "all";
+    const timeframe = document.getElementById("performance-timeframe")?.value || "3days";
+
+    const daysMap = {
+      "3days": 3,
+      "7days": 7,
+      "14days": 14,
+      "30days": 30
+    };
+
+    const days = daysMap[timeframe] || 3;
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - days);
+    const startDateISO = startDate.toISOString();
+
+    let query = supabaseClient // Assumes global supabaseClient
+      .from("client_metrics_history")
+      .select("*")
+      .gte("created_at", startDateISO);
+
+    if (brand !== "all") {
+      query = query.eq("brand", brand);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error("❌ Error fetching performance data:", error);
+      // Ensure displayEmptyMetrics is defined before calling it
+      if (typeof displayEmptyMetrics === 'function') displayEmptyMetrics();
+      return;
+    }
+
+    if (!data || data.length === 0) {
+       console.warn(`⚠️ No performance data found for Brand=${brand}, Timeframe=${timeframe}`);
+       if (typeof displayEmptyMetrics === 'function') displayEmptyMetrics();
+      return;
+    }
+
+    let leads = 0, confirmed = 0, shows = 0, noShows = 0;
+    let totalCPL = 0, totalCPA = 0, totalROAS = 0;
+    let cplCount = 0, cpaCount = 0, roasCount = 0;
+
+    data.forEach(row => {
+      leads += Number(row.leads) || 0;
+      confirmed += Number(row.confirmed) || 0;
+      shows += Number(row.shows) || 0;
+      noShows += Number(row.no_shows) || 0;
+
+      const rowCpl = Number(row.cpl);
+      if (!isNaN(rowCpl)) { totalCPL += rowCpl; cplCount++; }
+
+      const rowCpa = Number(row.cpa);
+      if (!isNaN(rowCpa)) { totalCPA += rowCpa; cpaCount++; }
+
+      const rowRoas = Number(row.roas);
+      if (!isNaN(rowRoas)) { totalROAS += rowRoas; roasCount++; }
+    });
+
+    const conversionRate = leads ? (confirmed / leads) * 100 : 0;
+    const showRate = confirmed ? (shows / confirmed) * 100 : 0;
+    const noShowRate = confirmed ? (noShows / confirmed) * 100 : 0;
+    const avgCPL = cplCount ? totalCPL / cplCount : 0;
+    const avgCPA = cpaCount ? totalCPA / cpaCount : 0;
+    const avgROAS = roasCount ? totalROAS / roasCount : 0;
+
+    document.getElementById("total-leads").textContent = leads.toLocaleString();
+    document.getElementById("conversion-rate").textContent = `${conversionRate.toFixed(1)}%`;
+    document.getElementById("show-rate-display").textContent = `${showRate.toFixed(1)}%`;
+    document.getElementById("no-show-rate-display").textContent = `${noShowRate.toFixed(1)}%`;
+    document.getElementById("cost-per-lead").textContent = avgCPL > 0 ? `$${avgCPL.toFixed(2)}` : "--";
+    document.getElementById("cost-per-appointment").textContent = avgCPA > 0 ? `$${avgCPA.toFixed(2)}` : "--";
+    document.getElementById("roas").textContent = avgROAS > 0 ? `${avgROAS.toFixed(2)}x` : "--";
+    console.log("✅ Brand performance updated."); // Simplified log
+  }
+
+  function displayEmptyMetrics() {
+    document.getElementById("total-leads").textContent = "--";
+    document.getElementById("conversion-rate").textContent = "--";
+    document.getElementById("show-rate-display").textContent = "--";
+    document.getElementById("no-show-rate-display").textContent = "--";
+    document.getElementById("cost-per-lead").textContent = "--";
+    document.getElementById("cost-per-appointment").textContent = "--";
+    document.getElementById("roas").textContent = "--";
+  }
+  // === End Step 2 & 3 ===
+
+  // === Step 4: Add new updateTopBrands function (Remove old version first) ===
+  // Replace previous function with this version with scoring logic
+  async function updateTopBrands() {
+    try {
+      // Fetch all data first (timeframe filtering applied later if needed by scoring)
+      const { data, error } = await supabaseClient
+        .from("client_metrics_history")
+        .select("brand, leads, confirmed, shows, roas"); // Select necessary columns
+
+      if (error) throw error;
+      if (!data || data.length === 0) {
+        console.warn("No data in client_metrics_history for scoring.");
+        const topBrandsContainer = document.getElementById("top-brands-list");
+        if (topBrandsContainer) topBrandsContainer.innerHTML = '<li class="text-gray-400">No data available.</li>';
+        return; 
+      }
+
+      // Group by brand
+      const brandGroups = {};
+      data.forEach(row => {
+        const brand = row.brand;
+        if (brand) { // Only process rows with a brand
+          if (!brandGroups[brand]) brandGroups[brand] = [];
+          brandGroups[brand].push(row);
+        }
+      });
+
+      // Convert brandGroups object to an array of groups for mapping
+      const brandGroupsArray = Object.values(brandGroups);
+
+      const scoredBrands = brandGroupsArray.map(group => {
+        if (!group || group.length === 0) return null; // Handle empty groups if they occur
+
+        const leads = group.reduce((sum, row) => sum + Number(row.leads || 0), 0);
+        const booked = group.reduce((sum, row) => sum + Number(row.confirmed || 0), 0);
+        const shows = group.reduce((sum, row) => sum + Number(row.shows || 0), 0);
+        // Calculate showRate based on booked appointments
+        const showRate = booked ? (shows / booked) * 100 : 0;
+      
+        // Custom weighted score
+        const score = (leads * 0.3) + (booked * 0.4) + (showRate * 0.3);
+      
+        return {
+          brand: group[0].brand, // Get brand from the first row of the group
+          leads,
+          booked,
+          showRate,
+          // Ensure score is a number and format it
+          score: isNaN(score) ? 0 : parseFloat(score.toFixed(1)) 
+        };
+      }).filter(brand => brand !== null); // Filter out any null entries from empty groups
+
+      // Get sorting metric from dropdown (Update ID later in HTML step)
+      const metric = document.getElementById("top-brands-sort")?.value || "custom"; // Default to custom
+
+      // Sort descending based on selected metric
+      scoredBrands.sort((a, b) => {
+        if (metric === "leads") return b.leads - a.leads;
+        if (metric === "booked") return b.booked - a.booked;
+        if (metric === "showRate") return b.showRate - a.showRate;
+        return b.score - a.score; // default to custom score
+      });
+
+      // Get top N from dropdown (defaults to 3)
+      const topN = parseInt(document.getElementById("top-brands-count")?.value || "3", 10);
+
+      const topBrandsContainer = document.getElementById("top-brands-list");
+      if (!topBrandsContainer) {
+        console.error("Top brands list container not found!");
+        return;
+      }
+
+      topBrandsContainer.innerHTML = ""; // Clear previous entries
+
+      if (scoredBrands.length === 0) {
+          topBrandsContainer.innerHTML = '<li class="text-gray-400">No scored brands found.</li>';
+          return;
+      }
+      
+      console.log(`Displaying Top ${Math.min(topN, scoredBrands.length)} brands based on score.`);
+      // Ensure display uses score
+      scoredBrands.slice(0, topN).forEach(({ brand, score }) => { 
+        const el = document.createElement("div"); 
+        el.className = "py-1"; 
+        el.textContent = `${brand} – Score: ${score}`;
+        topBrandsContainer.appendChild(el);
+      });
+       console.log("✅ Top Performing Brands (scored) updated.");
+
+    } catch (err) {
+      console.error("❌ Failed to update top brands:", err);
+      const topBrandsContainer = document.getElementById("top-brands-list");
+      if (topBrandsContainer) topBrandsContainer.innerHTML = '<li class="text-red-500">Error loading brands</li>';
+    }
+  }
+  // === End Step 4 ===
+
+
+  // ✅ Ensure Supabase library exists
+  if (typeof supabase !== 'undefined' && typeof supabase.createClient === 'function') {
+      // REMOVE const supabaseClient = supabase.createClient(...)
+      console.log("✅ Supabase client expected to be initialized globally.");
+
+      // REMOVE function definitions from here (they are now above)
+
+      // REMOVE document.addEventListener("DOMContentLoaded", ...) listener from here
+      // === End Step 5 ===
+
+  } else {
+    console.error("❌ Supabase library not found.");
+  }
+
+  // REMOVE // === DELETE the duplicate function definition... comments ===
+
+</script>
+  <script src="./js/client_tracking.js"></script>
+  <script src="./js/client-onboarding-complete.js"></script>
+  <script src="./js/a2p_fix.js"></script>
+  <script src="./js/a2p-test-data.js"></script>
+  <script src="./js/a2p-enhanced-test-data.js"></script>
+  <script src="./js/update_dashboard.js"></script>
+
+</body>
+</html>
+
+
+
+

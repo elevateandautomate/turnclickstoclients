@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Settings{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">Settings</h2>
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="credentials-tab" data-bs-toggle="tab" data-bs-target="#credentials" type="button" role="tab" aria-controls="credentials" aria-selected="true">
+                    <i class="bi bi-key-fill me-1"></i> Credentials
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
+                    <i class="bi bi-chat-left-text-fill me-1"></i> Message Templates
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3" id="settingsTabContent">
+            <!-- Credentials Tab -->
+            <div class="tab-pane fade show active" id="credentials" role="tabpanel" aria-labelledby="credentials-tab">
+                <form id="credentialsForm" action="/settings/credentials" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">LinkedIn Credentials</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                These credentials will be used to log in to LinkedIn for sending connection requests.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_username" class="form-label">LinkedIn Email/Username</label>
+                                <input type="email" class="form-control" id="linkedin_username" name="linkedin_username" value="{{ settings.get('linkedin_username', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_password" class="form-label">LinkedIn Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="linkedin_password" name="linkedin_password" value="{{ settings.get('linkedin_password', '') }}" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Your password is stored securely and only used for LinkedIn automation.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Supabase Configuration</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                These settings are used to connect to your Supabase database.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supabase_url" class="form-label">Supabase URL</label>
+                                <input type="text" class="form-control" id="supabase_url" name="supabase_url" value="{{ settings.get('supabase_url', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supabase_key" class="form-label">Supabase Key</label>
+                                <input type="text" class="form-control" id="supabase_key" name="supabase_key" value="{{ settings.get('supabase_key', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="table_name" class="form-label">Table Name</label>
+                                <input type="text" class="form-control" id="table_name" name="table_name" value="{{ settings.get('table_name', 'contacts') }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Credentials
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Message Templates Tab -->
+            <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                <form id="messagesForm" action="/settings/messages" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Contact Form Message Template</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                This template will be used when filling contact forms on websites.
+                                <br>
+                                <strong>Available variables:</strong><br>
+                                {% if template_variables %}
+                                    {% for var in template_variables %}
+                                        <span class="badge bg-secondary me-1 mb-1">{{ "{" }}{{ var }}{{ "}" }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <code>{name}</code>, <code>{company}</code>, <code>{email}</code>, <code>{your_name}</code>, <code>{your_email}</code>, <code>{phone}</code>
+                                {% endif %}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contact_form_template" class="form-label">Contact Form Message</label>
+                                <textarea class="form-control" id="contact_form_template" name="contact_form_template" rows="6" required>{{ settings.get('contact_form_template', 'Hi {name},\n\nI came across {company} and was impressed by your work. I\'d love to connect and discuss potential opportunities to collaborate.\n\nLooking forward to hearing from you,\n{your_name}') }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="your_name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="your_name" name="your_name" value="{{ settings.get('your_name', '') }}" required>
+                                <div class="form-text">This will be used to sign your messages and fill name fields in contact forms.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="your_email" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="your_email" name="your_email" value="{{ settings.get('your_email', '') }}" required>
+                                <div class="form-text">This will be used to fill email fields in contact forms.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Your Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" value="{{ settings.get('phone', '') }}" required>
+                                <div class="form-text">This will be used to fill phone fields in contact forms.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="your_company" class="form-label">Your Company</label>
+                                <input type="text" class="form-control" id="your_company" name="your_company" value="{{ settings.get('your_company', '') }}" required>
+                                <div class="form-text">This will be used to fill company fields in contact forms.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">LinkedIn Message Template</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                This template will be used when sending LinkedIn connection requests.
+                                <br>
+                                <strong>Available variables:</strong><br>
+                                {% if template_variables %}
+                                    {% for var in template_variables %}
+                                        <span class="badge bg-secondary me-1 mb-1">{{ "{" }}{{ var }}{{ "}" }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <code>{name}</code>, <code>{company}</code>, <code>{your_name}</code>
+                                {% endif %}
+                                <br>
+                                Note: LinkedIn limits connection messages to 300 characters.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_template" class="form-label">LinkedIn Message</label>
+                                <textarea class="form-control" id="linkedin_template" name="linkedin_template" rows="4" required>{{ settings.get('linkedin_template', 'Hi {name}, I came across {company} and was impressed by your work. I\'d love to connect and discuss potential opportunities to collaborate. - {your_name}') }}</textarea>
+                                <div id="charCount" class="form-text">0/300 characters</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Message Templates
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('linkedin_password');
+
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle eye icon
+                const eyeIcon = this.querySelector('i');
+                eyeIcon.classList.toggle('bi-eye');
+                eyeIcon.classList.toggle('bi-eye-slash');
+            });
+        }
+
+        // Character counter for LinkedIn message
+        const linkedinTemplate = document.getElementById('linkedin_template');
+        const charCount = document.getElementById('charCount');
+
+        if (linkedinTemplate && charCount) {
+            function updateCharCount() {
+                const count = linkedinTemplate.value.length;
+                charCount.textContent = `${count}/300 characters`;
+
+                if (count > 300) {
+                    charCount.classList.add('text-danger');
+                } else {
+                    charCount.classList.remove('text-danger');
+                }
+            }
+
+            linkedinTemplate.addEventListener('input', updateCharCount);
+            updateCharCount(); // Initial count
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{
+    "linkedin_username": "aarontherealestateguy@gmail.com",
+    "linkedin_password": "Getmoney12!!",
+    "supabase_url": "https://eumhqssfvkyuepyrtlqj.supabase.co",
+    "supabase_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NjU2MTQwMSwiZXhwIjoyMDYyMTM3NDAxfQ.hpiGyFGfFOhkbrfLNnp9uapkICXeeBY-md6QCV0C0ck",
+    "table_name": "core_data",
+    "your_name": "david lee lee",
+    "your_email": "info@aol.com",
+    "contact_form_template": "Hi {listing_name},\r\n\r\nI came across your website and was impressed by your work. I'd love to connect and discuss potential opportunities to collaborate.\r\n\r\nLooking forward to hearing from you,\r\nDavid\r\nDavidleehanha092@aol.com",
+    "linkedin_template": "Hi {listing_name},\r\n\r\nI came across your profile and was impressed by your work at {listing_business_name}. I'd love to connect and discuss potential opportunities to collaborate.\r\n\r\nBest regards,\r\nDavid",
+    "phone": "4125076621",
+    "your_company": "walker home",
+    "form_detection_priority": "aggressive",
+    "navigate_to_contact_page": true,
+    "submit_form": true,
+    "headless_mode": "false",
+    "resume_processing": "true",
+    "your_first_name": "david lee",
+    "your_last_name": "lee",
+    "default_message": "daivd lee"
+}

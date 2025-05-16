@@ -1,0 +1,2720 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Dashboard{% endblock %}
+
+{% block head %}
+<style>
+    .status-badge {
+        width: 100px;
+        text-align: center;
+    }
+    .status-true {
+        background-color: #d1e7dd;
+        color: #0f5132;
+    }
+    .status-false {
+        background-color: #f8d7da;
+        color: #842029;
+    }
+    .status-null {
+        background-color: #e2e3e5;
+        color: #41464b;
+    }
+    .refresh-icon {
+        cursor: pointer;
+    }
+    .processing-indicator {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+        0% { background-color: rgba(40, 167, 69, 0.5); }
+        50% { background-color: rgba(40, 167, 69, 1); }
+        100% { background-color: rgba(40, 167, 69, 0.5); }
+    }
+
+    /* Fix for progress bars */
+    .progress {
+        width: 100%;
+        min-width: 100px;
+        background-color: #e9ecef;
+        border-radius: 0.25rem;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        transition: width 0.6s ease;
+    }
+
+    /* Ensure minimum width for very small percentages */
+    .progress-bar[style*="width: 0%"] {
+        min-width: 0;
+    }
+
+    .progress-bar[style*="width: 1%"] {
+        min-width: 3px;
+    }
+
+    /* Custom progress bars */
+    .custom-progress-container {
+        width: 100%;
+        height: 15px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-progress-bar {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        min-width: 4px;
+        transition: width 0.3s ease;
+    }
+
+    .custom-progress-bar-success {
+        background-color: #28a745;
+    }
+
+    .custom-progress-bar-danger {
+        background-color: #dc3545;
+    }
+
+    .custom-progress-bar-secondary {
+        background-color: #6c757d;
+    }
+
+    /* Ensure minimum width for very small percentages */
+    .custom-progress-bar[style*="width: 0%"] {
+        min-width: 0;
+    }
+
+    .custom-progress-bar[style*="width: 1%"] {
+        min-width: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Dashboard</h2>
+        <div>
+            {% if is_processing %}
+            <span class="badge bg-success me-2">
+                <span class="processing-indicator me-1"></span>
+                Processing
+            </span>
+            {% endif %}
+            <button id="refreshBtn" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3" id="dashboardTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="lists-tab" data-bs-toggle="tab" data-bs-target="#lists" type="button" role="tab" aria-controls="lists" aria-selected="true">
+                    <i class="bi bi-list-ul me-1"></i> Contact Lists
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">
+                    <i class="bi bi-people-fill me-1"></i> Contacts
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tracking-tab" data-bs-toggle="tab" data-bs-target="#tracking" type="button" role="tab" aria-controls="tracking" aria-selected="false">
+                    <i class="bi bi-graph-up me-1"></i> Tracking
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="linkedin-tab" data-bs-toggle="tab" data-bs-target="#linkedin" type="button" role="tab" aria-controls="linkedin" aria-selected="false">
+                    <i class="bi bi-linkedin me-1"></i> LinkedIn Settings
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
+                    <i class="bi bi-chat-left-text-fill me-1"></i> Message Templates
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs" type="button" role="tab" aria-controls="logs" aria-selected="false">
+                    <i class="bi bi-journal-text me-1"></i> Logs
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="dashboardTabContent">
+            <!-- Contact Lists Tab -->
+            <div class="tab-pane fade show active" id="lists" role="tabpanel" aria-labelledby="lists-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Your Contact Lists</h4>
+                    <a href="/" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus-circle"></i> Upload New List
+                    </a>
+                </div>
+
+                {% if contact_lists %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Created</th>
+                                <th>Status</th>
+                                <th>Contacts</th>
+                                <th>Success Rate</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for list in contact_lists %}
+                            <tr>
+                                <td>{{ list.name }}</td>
+                                <td>{{ list.created_at|datetime }}</td>
+                                <td>
+                                    {% if list.status == 'uploaded' %}
+                                    <span class="badge bg-secondary">Uploaded</span>
+                                    {% elif list.status == 'processing' %}
+                                    <span class="badge bg-primary">
+                                        <span class="processing-indicator me-1"></span>
+                                        Processing
+                                    </span>
+                                    {% elif list.status == 'completed' %}
+                                    <span class="badge bg-success">Completed</span>
+                                    {% elif list.status == 'error' %}
+                                    <span class="badge bg-danger" title="{{ list.error_message }}">Error</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">{{ list.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if list.total_contacts > 0 %}
+                                    {{ list.processed_contacts }}/{{ list.total_contacts }}
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if list.total_contacts > 0 %}
+                                    <div class="progress" style="height: 10px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ (list.successful_contacts / list.total_contacts * 100) if list.total_contacts > 0 else 0 }}%"></div>
+                                    </div>
+                                    <small>{{ list.successful_contacts }}/{{ list.total_contacts }} ({{ ((list.successful_contacts / list.total_contacts * 100) if list.total_contacts > 0 else 0)|round|int }}%)</small>
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary view-list-btn" data-list-id="{{ list.id }}">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        {% if list.status == 'uploaded' %}
+                                        <button class="btn btn-sm btn-outline-success process-list-btn" data-list-id="{{ list.id }}" {% if is_processing %}disabled{% endif %}>
+                                            <i class="bi bi-play-fill"></i>
+                                        </button>
+                                        {% endif %}
+                                        <button class="btn btn-sm btn-outline-danger delete-list-btn" data-list-id="{{ list.id }}" data-list-name="{{ list.name }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i>
+                    You don't have any contact lists yet. <a href="/">Upload a CSV file</a> to get started.
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Contacts Tab -->
+            <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Website</th>
+                                <th>Website Visited</th>
+                                <th>Contact Form</th>
+                                <th>Form Submitted</th>
+                                <th>LinkedIn</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTableBody">
+                            {% for contact in contacts %}
+                            <tr>
+                                <td>{{ contact.name }}</td>
+                                <td>{{ contact.company }}</td>
+                                <td>
+                                    {% if contact.website_url %}
+                                    <a href="{{ contact.website_url }}" target="_blank" class="text-truncate d-inline-block" style="max-width: 150px;" title="{{ contact.website_url }}">
+                                        {{ contact.website_url }}
+                                    </a>
+                                    {% else %}
+                                    <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.website_visited == true %}true{% elif contact.website_visited == false %}false{% else %}null{% endif %}">
+                                        {% if contact.website_visited == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Success
+                                        {% elif contact.website_visited == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Failed
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.contact_form_found == true %}true{% elif contact.contact_form_found == false %}false{% else %}null{% endif %}">
+                                        {% if contact.contact_form_found == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Found
+                                        {% elif contact.contact_form_found == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Not Found
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.contact_form_submitted == true %}true{% elif contact.contact_form_submitted == false %}false{% else %}null{% endif %}">
+                                        {% if contact.contact_form_submitted == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Submitted
+                                        {% elif contact.contact_form_submitted == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Failed
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.linkedin_connected == true %}true{% elif contact.linkedin_connected == false %}false{% else %}null{% endif %}">
+                                        {% if contact.linkedin_connected == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Connected
+                                        {% elif contact.linkedin_connected == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Failed
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary view-details-btn" data-contact-id="{{ contact.id }}">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-warning retry-btn" data-contact-id="{{ contact.id }}" {% if is_processing %}disabled{% endif %}>
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tracking Tab -->
+            <div class="tab-pane fade" id="tracking" role="tabpanel" aria-labelledby="tracking-tab">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Contact Outreach Summary</h5>
+                                <button id="refreshStatisticsBtn" class="btn btn-sm btn-outline-light">
+                                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body text-center">
+                                                <h3 class="mb-0" id="total-contacts-count">0</h3>
+                                                <p class="mb-0">Total Contacts</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-success text-white">
+                                            <div class="card-body text-center">
+                                                <h3 class="mb-0" id="forms-submitted-count">0</h3>
+                                                <p class="mb-0">Forms Submitted</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-danger text-white">
+                                            <div class="card-body text-center">
+                                                <h3 class="mb-0" id="forms-failed-count">0</h3>
+                                                <p class="mb-0">Forms Failed</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-info text-white">
+                                            <div class="card-body text-center">
+                                                <h3 class="mb-0" id="linkedin-connected-count">0</h3>
+                                                <p class="mb-0">LinkedIn Connected</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card bg-warning text-dark">
+                                            <div class="card-body text-center">
+                                                <h3 class="mb-0" id="alternative-contacts-count">0</h3>
+                                                <p class="mb-0">Alternative Contacts Found</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Contact Form Status</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Count</th>
+                                                <th>Percentage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span class="badge bg-success">Submitted</span></td>
+                                                <td id="form-submitted-count">0</td>
+                                                <td>
+                                                    <div style="width: 100%; height: 15px; background-color: #e9ecef; border-radius: 4px; margin-bottom: 5px; position: relative; overflow: hidden;">
+                                                        <div id="form-submitted-progress" style="width: 0%; height: 100%; position: absolute; left: 0; top: 0; background-color: #28a745;"></div>
+                                                    </div>
+                                                    <small id="form-submitted-percent">0%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="badge bg-danger">Failed</span></td>
+                                                <td id="form-failed-count">0</td>
+                                                <td>
+                                                    <div style="width: 100%; height: 15px; background-color: #e9ecef; border-radius: 4px; margin-bottom: 5px; position: relative; overflow: hidden;">
+                                                        <div id="form-failed-progress" style="width: 0%; height: 100%; position: absolute; left: 0; top: 0; background-color: #dc3545;"></div>
+                                                    </div>
+                                                    <small id="form-failed-percent">0%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="badge bg-secondary">Pending</span></td>
+                                                <td id="form-pending-count">0</td>
+                                                <td>
+                                                    <div style="width: 100%; height: 15px; background-color: #e9ecef; border-radius: 4px; margin-bottom: 5px; position: relative; overflow: hidden;">
+                                                        <div id="form-pending-progress" style="width: 0%; height: 100%; position: absolute; left: 0; top: 0; background-color: #6c757d;"></div>
+                                                    </div>
+                                                    <small id="form-pending-percent">0%</small>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">LinkedIn Status</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Count</th>
+                                                <th>Percentage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span class="badge bg-success">Connected</span></td>
+                                                <td id="linkedin-connected-status-count">0</td>
+                                                <td>
+                                                    <div style="width: 100%; height: 15px; background-color: #e9ecef; border-radius: 4px; margin-bottom: 5px; position: relative; overflow: hidden;">
+                                                        <div id="linkedin-connected-progress" style="width: 0%; height: 100%; position: absolute; left: 0; top: 0; background-color: #28a745;"></div>
+                                                    </div>
+                                                    <small id="linkedin-connected-percent">0%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="badge bg-danger">Failed</span></td>
+                                                <td id="linkedin-failed-count">0</td>
+                                                <td>
+                                                    <div style="width: 100%; height: 15px; background-color: #e9ecef; border-radius: 4px; margin-bottom: 5px; position: relative; overflow: hidden;">
+                                                        <div id="linkedin-failed-progress" style="width: 0%; height: 100%; position: absolute; left: 0; top: 0; background-color: #dc3545;"></div>
+                                                    </div>
+                                                    <small id="linkedin-failed-percent">0%</small>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="badge bg-secondary">Pending</span></td>
+                                                <td id="linkedin-pending-count">0</td>
+                                                <td>
+                                                    <div style="width: 100%; height: 15px; background-color: #e9ecef; border-radius: 4px; margin-bottom: 5px; position: relative; overflow: hidden;">
+                                                        <div id="linkedin-pending-progress" style="width: 0%; height: 100%; position: absolute; left: 0; top: 0; background-color: #6c757d;"></div>
+                                                    </div>
+                                                    <small id="linkedin-pending-percent">0%</small>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Record Status</h5>
+                        <div>
+                            <div class="btn-group me-2">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="statusFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="currentStatusFilter">All Records</span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="statusFilterDropdown">
+                                    <li><a class="dropdown-item status-filter" href="#" data-status="all">All Records</a></li>
+                                    <li><a class="dropdown-item status-filter" href="#" data-status="submitted">Form Submitted</a></li>
+                                    <li><a class="dropdown-item status-filter" href="#" data-status="failed">Form Failed</a></li>
+                                    <li><a class="dropdown-item status-filter" href="#" data-status="error">Website Error</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group me-2">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="recordsPerPageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="currentRecordsPerPage">5</span> per page
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="recordsPerPageDropdown">
+                                    <li><a class="dropdown-item records-per-page" href="#" data-value="5">5 per page</a></li>
+                                    <li><a class="dropdown-item records-per-page" href="#" data-value="10">10 per page</a></li>
+                                    <li><a class="dropdown-item records-per-page" href="#" data-value="20">20 per page</a></li>
+                                    <li><a class="dropdown-item records-per-page" href="#" data-value="30">30 per page</a></li>
+                                    <li><a class="dropdown-item records-per-page" href="#" data-value="100">100 per page</a></li>
+                                    <li><a class="dropdown-item records-per-page" href="#" data-value="500">500 per page</a></li>
+                                </ul>
+                            </div>
+                            <button id="refreshRecordStatusBtn" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-arrow-clockwise"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="recordStatusTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Company</th>
+                                        <th>Website</th>
+                                        <th>Niche</th>
+                                        <th>Status</th>
+                                        <th>Submitted Details</th>
+                                        <th>Timestamp</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recordStatusTableBody">
+                                    <tr>
+                                        <td colspan="8" class="text-center">Loading records...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination Controls -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div>
+                                <span id="paginationInfo">Showing 0-0 of 0 records</span>
+                            </div>
+                            <nav aria-label="Record status pagination">
+                                <ul class="pagination pagination-sm" id="recordStatusPagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" id="prevPageBtn" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" id="nextPageBtn" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Alternative Contact Methods Found</h5>
+                        <button id="refreshAlternativeContactsBtn" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-arrow-clockwise"></i> Refresh
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="alternativeContactsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Company</th>
+                                        <th>Website</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Social Media</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="alternativeContactsTableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center">Loading alternative contacts...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LinkedIn Settings Tab -->
+            <div class="tab-pane fade" id="linkedin" role="tabpanel" aria-labelledby="linkedin-tab">
+                <form id="credentialsForm" action="/settings/credentials" method="post">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Supabase Database Configuration</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                <strong>Important:</strong> These settings connect to your existing Supabase database with contact records.
+                                Make sure to enter the correct table name where your contacts are stored.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supabase_url" class="form-label">Supabase URL</label>
+                                <input type="text" class="form-control" id="supabase_url" name="supabase_url" value="{{ settings.get('supabase_url', '') }}" required>
+                                <div class="form-text">Example: https://yourproject.supabase.co</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supabase_key" class="form-label">Supabase Key</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="supabase_key" name="supabase_key" value="{{ settings.get('supabase_key', '') }}" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleSupabaseKey">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Use the service role key for full access to your database.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="table_name" class="form-label">Contacts Table Name</label>
+                                <input type="text" class="form-control" id="table_name" name="table_name" value="{{ settings.get('table_name', 'contacts') }}" required>
+                                <div class="form-text">The name of the table where your contacts are stored (e.g., "contacts", "Contacts", etc.)</div>
+                            </div>
+
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                <strong>Required Table Structure:</strong> Your contacts table should have columns for name, email, company, website_url, and optionally linkedin_url.
+                            </div>
+
+                            <div class="mt-3">
+                                <button type="button" id="testConnectionBtn" class="btn btn-outline-primary">
+                                    <i class="bi bi-database-check"></i> Test Connection
+                                </button>
+                                <div id="connectionResult" class="mt-2 d-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">LinkedIn Credentials</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                These credentials will be used to log in to LinkedIn for sending connection requests.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_username" class="form-label">LinkedIn Email/Username</label>
+                                <input type="email" class="form-control" id="linkedin_username" name="linkedin_username" value="{{ settings.get('linkedin_username', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_password" class="form-label">LinkedIn Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="linkedin_password" name="linkedin_password" value="{{ settings.get('linkedin_password', '') }}" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Your password is stored securely and only used for LinkedIn automation.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="your_name_linkedin" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="your_name_linkedin" name="your_name" value="{{ settings.get('your_name', '') }}" required>
+                                <div class="form-text">This will be used to sign your messages.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Browser Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                Configure how the browser behaves during automation.
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="headless_mode" name="headless_mode" {% if settings.get('headless_mode', 'true') == 'true' %}checked{% endif %}>
+                                    <label class="form-check-label" for="headless_mode">Run in Headless Mode</label>
+                                </div>
+                                <div class="form-text">
+                                    When enabled, the browser runs in the background. Disable to see the browser in action.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="browser_speed" class="form-label">Browser Speed</label>
+                                <select class="form-select" id="browser_speed" name="browser_speed">
+                                    <option value="fast" {% if settings.get('browser_speed') == 'fast' %}selected{% endif %}>Fast</option>
+                                    <option value="normal" {% if settings.get('browser_speed', 'normal') == 'normal' %}selected{% endif %}>Normal</option>
+                                    <option value="slow" {% if settings.get('browser_speed') == 'slow' %}selected{% endif %}>Slow (Good for debugging)</option>
+                                </select>
+                                <div class="form-text">
+                                    Controls how quickly the bot navigates through websites. Slower speeds are easier to follow visually.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <button type="button" id="clearLinkedInCookies" class="btn btn-warning">
+                                    <i class="bi bi-trash"></i> Clear LinkedIn Cookies
+                                </button>
+                                <div class="form-text mt-2">
+                                    Use this button if you need to log in to LinkedIn with different credentials. The bot will save cookies to avoid logging in repeatedly.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Settings
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Logs Tab -->
+            <div class="tab-pane fade" id="logs" role="tabpanel" aria-labelledby="logs-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Application Logs</h4>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" id="refreshLogs">
+                            <i class="bi bi-arrow-clockwise"></i> Refresh
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" id="autoRefreshLogs">
+                            <i class="bi bi-play-fill"></i> Auto-Refresh
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" id="clearLogs">
+                            <i class="bi bi-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header bg-dark text-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Log Filters</span>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-sm btn-outline-light active log-level-filter" data-level="all">All</button>
+                                <button type="button" class="btn btn-sm btn-outline-info log-level-filter" data-level="INFO">Info</button>
+                                <button type="button" class="btn btn-sm btn-outline-warning log-level-filter" data-level="WARNING">Warning</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger log-level-filter" data-level="ERROR">Error</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary log-level-filter" data-level="DEBUG">Debug</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="log-container bg-dark text-light p-3" style="height: 500px; overflow-y: auto; font-family: monospace; font-size: 0.85rem;">
+                            <div id="logContent">
+                                <div class="text-center text-muted">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    Loading logs...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark text-white d-flex justify-content-between">
+                        <small>Auto-refresh: <span id="autoRefreshStatus">Off</span></small>
+                        <small>Last updated: <span id="lastUpdated">Never</span></small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Templates Tab -->
+            <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                <form id="messagesForm" action="/settings/messages" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Contact Form Message Template</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                This template will be used when filling contact forms on websites.
+                                <br>
+                                Available variables from Supabase table and user settings:
+                                <div class="mt-2">
+                                    {% for var in template_variables %}
+                                    <code class="me-2">{{"{" + var + "}"}}</code>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contact_form_template" class="form-label">Contact Form Message Template</label>
+                                <textarea class="form-control" id="contact_form_template" name="contact_form_template" rows="6" required>{{ settings.get('contact_form_template', 'Hi {name},\n\nI came across {company} and was impressed by your work. I\'d love to connect and discuss potential opportunities to collaborate.\n\nLooking forward to hearing from you,\n{your_first_name} {your_last_name}\n{your_email}\n{phone}') }}</textarea>
+                                <div class="form-text">This is a template with variables that will be replaced with actual data. Use the variables listed above.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Contact Details</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">First Name</span>
+                                            <input type="text" class="form-control" id="your_first_name" name="your_first_name" value="{{ settings.get('your_first_name', '') }}" placeholder="Your first name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">Last Name</span>
+                                            <input type="text" class="form-control" id="your_last_name" name="your_last_name" value="{{ settings.get('your_last_name', '') }}" placeholder="Your last name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">Full Name</span>
+                                            <input type="text" class="form-control" id="your_name" name="your_name" value="{{ settings.get('your_name', '') }}" placeholder="Your full name (or how you want to be addressed)">
+                                        </div>
+                                        <div class="form-text">This is used for the {your_name} variable in templates. Will be auto-filled from First and Last name if left empty.</div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">Email</span>
+                                            <input type="email" class="form-control" id="your_email" name="your_email" value="{{ settings.get('your_email', '') }}" placeholder="Your email address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">Phone</span>
+                                            <input type="text" class="form-control" id="phone" name="phone" value="{{ settings.get('phone', '') }}" placeholder="Your phone number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text">Company</span>
+                                            <input type="text" class="form-control" id="your_company" name="your_company" value="{{ settings.get('your_company', '') }}" placeholder="Your company name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-text">These details will be used to fill out contact forms on websites. Make sure to provide accurate information.</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Contact Form Detection Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                <strong>How the bot finds contact forms:</strong>
+                                <ol>
+                                    <li>First, it looks for forms with contact-related IDs or classes</li>
+                                    <li>Then, it looks for forms with email fields and message textareas</li>
+                                    <li>If no form is found, it looks for links to contact pages and navigates to them</li>
+                                    <li>As a last resort, it tries to fill any form it finds</li>
+                                </ol>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Form Detection Priority</label>
+                                <select class="form-select" id="form_detection_priority" name="form_detection_priority">
+                                    <option value="strict" {{ 'selected' if settings.get('form_detection_priority') == 'strict' else '' }}>Strict (only fill forms that are clearly contact forms)</option>
+                                    <option value="balanced" {{ 'selected' if settings.get('form_detection_priority', 'balanced') == 'balanced' else '' }}>Balanced (default)</option>
+                                    <option value="aggressive" {{ 'selected' if settings.get('form_detection_priority') == 'aggressive' else '' }}>Aggressive (try to fill any form found)</option>
+                                </select>
+                                <div class="form-text">This setting controls how aggressively the bot tries to find and fill contact forms.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="navigate_to_contact_page" name="navigate_to_contact_page" {{ 'checked' if settings.get('navigate_to_contact_page', True) else '' }}>
+                                    <label class="form-check-label" for="navigate_to_contact_page">Navigate to contact page if found</label>
+                                </div>
+                                <div class="form-text">If enabled, the bot will look for links to contact pages and navigate to them if no contact form is found on the current page.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="submit_form" name="submit_form" {{ 'checked' if settings.get('submit_form', True) else '' }}>
+                                    <label class="form-check-label" for="submit_form">Submit form after filling</label>
+                                </div>
+                                <div class="form-text">If enabled, the bot will click the submit button after filling the form. Disable for testing.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">LinkedIn Message Template</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                This template will be used when sending LinkedIn connection requests.
+                                <br>
+                                Available variables from Supabase table and user settings:
+                                <div class="mt-2">
+                                    {% for var in template_variables %}
+                                    <code class="me-2">{{"{" + var + "}"}}</code>
+                                    {% endfor %}
+                                </div>
+                                <div class="mt-2">
+                                    <strong>Note:</strong> LinkedIn limits connection messages to 300 characters.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_template" class="form-label">LinkedIn Message</label>
+                                <textarea class="form-control" id="linkedin_template" name="linkedin_template" rows="4" required>{{ settings.get('linkedin_template', 'Hi {name}, I came across {company} and was impressed by your work. I\'d love to connect and discuss potential opportunities to collaborate. - {your_name}') }}</textarea>
+                                <div id="charCount" class="form-text">0/300 characters</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Message Templates
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Details Modal -->
+<div class="modal fade" id="contactDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="contactDetails">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Basic Information</h6>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Name:</th>
+                                    <td id="modal-name"></td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td id="modal-email"></td>
+                                </tr>
+                                <tr>
+                                    <th>Company:</th>
+                                    <td id="modal-company"></td>
+                                </tr>
+                                <tr>
+                                    <th>Website:</th>
+                                    <td id="modal-website"></td>
+                                </tr>
+                                <tr>
+                                    <th>LinkedIn:</th>
+                                    <td id="modal-linkedin"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Processing Status</h6>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Website Visited:</th>
+                                    <td id="modal-website-visited"></td>
+                                </tr>
+                                <tr>
+                                    <th>Contact Form Found:</th>
+                                    <td id="modal-form-found"></td>
+                                </tr>
+                                <tr>
+                                    <th>Form Submitted:</th>
+                                    <td id="modal-form-submitted"></td>
+                                </tr>
+                                <tr>
+                                    <th>LinkedIn Connected:</th>
+                                    <td id="modal-linkedin-connected"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6>Data Enrichment</h6>
+                            <div id="enrichment-section" class="mb-3">
+                                <div class="alert alert-info" id="loading-enrichment">
+                                    <div class="d-flex align-items-center">
+                                        <div class="spinner-border spinner-border-sm me-2" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <span>Loading enrichment data...</span>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info d-none" id="no-enrichment">
+                                    <i class="bi bi-info-circle-fill"></i> No enrichment data found for this contact.
+                                </div>
+                                <div class="row d-none" id="enrichment-row">
+                                    <div class="col-md-6">
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-envelope"></i> Email Addresses</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-emails">No email addresses found</div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-telephone"></i> Phone Numbers</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-phones">No phone numbers found</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-globe"></i> Social Media</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-social">No social media links found</div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-link"></i> Additional Pages</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-pages">No additional pages found</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Legacy alternative contacts section (for backward compatibility) -->
+                                <div class="row d-none" id="alternative-contacts-row">
+                                    <div class="col-md-6">
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-envelope"></i> Email Addresses (Legacy)</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-alt-emails">No email addresses found</div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-telephone"></i> Phone Numbers (Legacy)</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-alt-phones">No phone numbers found</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-globe"></i> Social Media (Legacy)</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-alt-social">No social media links found</div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-2">
+                                            <div class="card-header bg-light">
+                                                <h6 class="mb-0"><i class="bi bi-link"></i> Additional Pages (Legacy)</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="modal-alt-pages">No additional pages found</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h6>Messages</h6>
+                            <div class="accordion" id="messagesAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWebsite">
+                                            Website Visit Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseWebsite" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-website-message">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm">
+                                            Contact Form Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseForm" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-form-message">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSubmit">
+                                            Form Submission Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSubmit" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-submit-message">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLinkedIn">
+                                            LinkedIn Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseLinkedIn" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-linkedin-message">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Refresh button
+        $('#refreshBtn').click(function() {
+            location.reload();
+        });
+
+        // Auto-refresh status
+        function checkProcessingStatus() {
+            $.getJSON('/api/status', function(data) {
+                if (data.is_processing) {
+                    // If processing, refresh the page every 10 seconds
+                    setTimeout(function() {
+                        location.reload();
+                    }, 10000);
+                }
+            });
+        }
+
+        // Check status initially and set up refresh if needed
+        checkProcessingStatus();
+
+        // View details button
+        $('.view-details-btn').click(function() {
+            const contactId = $(this).data('contact-id');
+            const contact = {{ contacts|tojson }}.find(c => c.id === contactId);
+
+            if (contact) {
+                $('#modal-name').text(contact.name || 'N/A');
+                $('#modal-email').text(contact.email || 'N/A');
+                $('#modal-company').text(contact.company || 'N/A');
+                $('#modal-website').html(contact.website_url ?
+                    `<a href="${contact.website_url}" target="_blank">${contact.website_url}</a>` : 'N/A');
+                $('#modal-linkedin').html(contact.linkedin_url ?
+                    `<a href="${contact.linkedin_url}" target="_blank">${contact.linkedin_url}</a>` : 'N/A');
+
+                $('#modal-website-visited').text(formatStatus(contact.website_visited));
+                $('#modal-form-found').text(formatStatus(contact.contact_form_found));
+                $('#modal-form-submitted').text(formatStatus(contact.contact_form_submitted));
+                $('#modal-linkedin-connected').text(formatStatus(contact.linkedin_connected));
+
+                $('#modal-website-message').text(contact.website_visited_message || 'No message');
+                $('#modal-form-message').text(contact.contact_form_found_message || 'No message');
+                $('#modal-submit-message').text(contact.contact_form_submitted_message || 'No message');
+                $('#modal-linkedin-message').text(contact.linkedin_connected_message || 'No message');
+
+                // Load enrichment data
+                loadEnrichmentData(contactId);
+
+                // Check for alt_ columns
+                const altColumns = Object.keys(contact).filter(key => key.startsWith('alt_'));
+                if (altColumns.length > 0) {
+                    $('#alternative-contacts-row').removeClass('d-none');
+
+                    // Process alt_ columns
+                    let emailFound = false;
+                    let phoneFound = false;
+                    let socialMedia = [];
+                    let additionalPages = [];
+
+                    altColumns.forEach(column => {
+                        if (contact[column]) {
+                            // Email addresses
+                            if (column.includes('email')) {
+                                emailFound = true;
+                                const emails = contact[column].split(',').map(email => email.trim());
+                                const emailHtml = emails.map(email =>
+                                    `<div class="mb-1"><a href="mailto:${email}" class="text-decoration-none">
+                                        <i class="bi bi-envelope-fill text-success me-1"></i>${email}
+                                    </a></div>`
+                                ).join('');
+                                $('#modal-alt-emails').html(emailHtml);
+                            }
+
+                            // Phone numbers
+                            else if (column.includes('phone')) {
+                                phoneFound = true;
+                                const phones = contact[column].split(',').map(phone => phone.trim());
+                                const phoneHtml = phones.map(phone =>
+                                    `<div class="mb-1"><a href="tel:${phone}" class="text-decoration-none">
+                                        <i class="bi bi-telephone-fill text-success me-1"></i>${phone}
+                                    </a></div>`
+                                ).join('');
+                                $('#modal-alt-phones').html(phoneHtml);
+                            }
+
+                            // Social media
+                            else if (column.includes('linkedin')) {
+                                const links = contact[column].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-linkedin text-primary me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+                            else if (column.includes('facebook')) {
+                                const links = contact[column].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-facebook text-primary me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+                            else if (column.includes('twitter')) {
+                                const links = contact[column].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-twitter text-info me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+                            else if (column.includes('instagram')) {
+                                const links = contact[column].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-instagram text-danger me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            // Additional pages
+                            else if (column.includes('contact_pages')) {
+                                const links = contact[column].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-envelope-paper-fill text-warning me-1"></i>Contact Page: ${link}
+                                    </a></div>`);
+                                });
+                            }
+                            else if (column.includes('about_pages') || column.includes('team_pages')) {
+                                const links = contact[column].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-people-fill text-info me-1"></i>About/Team Page: ${link}
+                                    </a></div>`);
+                                });
+                            }
+                        }
+                    });
+
+                    // Update UI with found data
+                    if (!emailFound) {
+                        $('#modal-alt-emails').html('No email addresses found');
+                    }
+
+                    if (!phoneFound) {
+                        $('#modal-alt-phones').html('No phone numbers found');
+                    }
+
+                    if (socialMedia.length > 0) {
+                        $('#modal-alt-social').html(socialMedia.join(''));
+                    } else {
+                        $('#modal-alt-social').html('No social media links found');
+                    }
+
+                    if (additionalPages.length > 0) {
+                        $('#modal-alt-pages').html(additionalPages.join(''));
+                    } else {
+                        $('#modal-alt-pages').html('No additional pages found');
+                    }
+                }
+                // Handle legacy alternative contacts (for backward compatibility)
+                else if (contact.alternative_contacts) {
+                    $('#alternative-contacts-row').removeClass('d-none');
+
+                    // Email addresses
+                    if (contact.alternative_contacts.Email) {
+                        const emails = contact.alternative_contacts.Email.split(',').map(email => email.trim());
+                        const emailHtml = emails.map(email =>
+                            `<div class="mb-1"><a href="mailto:${email}" class="text-decoration-none">
+                                <i class="bi bi-envelope-fill text-success me-1"></i>${email}
+                            </a></div>`
+                        ).join('');
+                        $('#modal-alt-emails').html(emailHtml);
+                    } else {
+                        $('#modal-alt-emails').html('No email addresses found');
+                    }
+
+                    // Phone numbers
+                    if (contact.alternative_contacts.Phone) {
+                        const phones = contact.alternative_contacts.Phone.split(',').map(phone => phone.trim());
+                        const phoneHtml = phones.map(phone =>
+                            `<div class="mb-1"><a href="tel:${phone}" class="text-decoration-none">
+                                <i class="bi bi-telephone-fill text-success me-1"></i>${phone}
+                            </a></div>`
+                        ).join('');
+                        $('#modal-alt-phones').html(phoneHtml);
+                    } else {
+                        $('#modal-alt-phones').html('No phone numbers found');
+                    }
+
+                    // Social media
+                    const socialMedia = [];
+                    if (contact.alternative_contacts.LinkedIn) {
+                        const links = contact.alternative_contacts.LinkedIn.split(',').map(link => link.trim());
+                        links.forEach(link => {
+                            socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-linkedin text-primary me-1"></i>${link}
+                            </a></div>`);
+                        });
+                    }
+                    if (contact.alternative_contacts.Facebook) {
+                        const links = contact.alternative_contacts.Facebook.split(',').map(link => link.trim());
+                        links.forEach(link => {
+                            socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-facebook text-primary me-1"></i>${link}
+                            </a></div>`);
+                        });
+                    }
+                    if (contact.alternative_contacts.Twitter) {
+                        const links = contact.alternative_contacts.Twitter.split(',').map(link => link.trim());
+                        links.forEach(link => {
+                            socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-twitter text-info me-1"></i>${link}
+                            </a></div>`);
+                        });
+                    }
+                    if (contact.alternative_contacts.Instagram) {
+                        const links = contact.alternative_contacts.Instagram.split(',').map(link => link.trim());
+                        links.forEach(link => {
+                            socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-instagram text-danger me-1"></i>${link}
+                            </a></div>`);
+                        });
+                    }
+
+                    if (socialMedia.length > 0) {
+                        $('#modal-alt-social').html(socialMedia.join(''));
+                    } else {
+                        $('#modal-alt-social').html('No social media links found');
+                    }
+
+                    // Additional pages
+                    const additionalPages = [];
+                    if (contact.alternative_contacts['Contact Pages']) {
+                        const links = contact.alternative_contacts['Contact Pages'].split(',').map(link => link.trim());
+                        links.forEach(link => {
+                            additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-envelope-paper-fill text-warning me-1"></i>Contact Page: ${link}
+                            </a></div>`);
+                        });
+                    }
+                    if (contact.alternative_contacts['About/Team Pages']) {
+                        const links = contact.alternative_contacts['About/Team Pages'].split(',').map(link => link.trim());
+                        links.forEach(link => {
+                            additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-people-fill text-info me-1"></i>About/Team Page: ${link}
+                            </a></div>`);
+                        });
+                    }
+
+                    if (additionalPages.length > 0) {
+                        $('#modal-alt-pages').html(additionalPages.join(''));
+                    } else {
+                        $('#modal-alt-pages').html('No additional pages found');
+                    }
+
+                } else {
+                    $('#no-alternative-contacts').removeClass('d-none');
+                    $('#alternative-contacts-row').addClass('d-none');
+                }
+
+                const modal = new bootstrap.Modal(document.getElementById('contactDetailsModal'));
+                modal.show();
+            }
+        });
+
+        // Retry button
+        $('.retry-btn').click(function() {
+            const contactId = $(this).data('contact-id');
+
+            $.getJSON(`/api/retry/${contactId}`, function(data) {
+                if (data.success) {
+                    alert('Contact queued for retry. The page will refresh shortly.');
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            });
+        });
+
+        // Toggle password visibility for LinkedIn
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('linkedin_password');
+
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle eye icon
+                const eyeIcon = this.querySelector('i');
+                eyeIcon.classList.toggle('bi-eye');
+                eyeIcon.classList.toggle('bi-eye-slash');
+            });
+        }
+
+        // Toggle password visibility for Supabase key
+        const toggleSupabaseKey = document.getElementById('toggleSupabaseKey');
+        const supabaseKeyInput = document.getElementById('supabase_key');
+
+        if (toggleSupabaseKey && supabaseKeyInput) {
+            toggleSupabaseKey.addEventListener('click', function() {
+                const type = supabaseKeyInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                supabaseKeyInput.setAttribute('type', type);
+
+                // Toggle eye icon
+                const eyeIcon = this.querySelector('i');
+                eyeIcon.classList.toggle('bi-eye');
+                eyeIcon.classList.toggle('bi-eye-slash');
+            });
+        }
+
+        // Test Supabase connection
+        const testConnectionBtn = document.getElementById('testConnectionBtn');
+        const connectionResult = document.getElementById('connectionResult');
+
+        if (testConnectionBtn && connectionResult) {
+            testConnectionBtn.addEventListener('click', function() {
+                // Get form values
+                const url = document.getElementById('supabase_url').value;
+                const key = document.getElementById('supabase_key').value;
+                const table = document.getElementById('table_name').value;
+
+                if (!url || !key || !table) {
+                    connectionResult.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill"></i> Please fill in all Supabase fields</div>';
+                    connectionResult.classList.remove('d-none');
+                    return;
+                }
+
+                // Show loading state
+                testConnectionBtn.disabled = true;
+                testConnectionBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Testing...';
+                connectionResult.classList.add('d-none');
+
+                // Send test request
+                $.ajax({
+                    url: '/api/test-connection',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        supabase_url: url,
+                        supabase_key: key,
+                        table_name: table
+                    }),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        connectionResult.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle-fill"></i> Connection successful! Found ' + response.count + ' contacts.</div>';
+                        connectionResult.classList.remove('d-none');
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'Connection failed';
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMessage += ': ' + xhr.responseJSON.error;
+                        }
+                        connectionResult.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill"></i> ' + errorMessage + '</div>';
+                        connectionResult.classList.remove('d-none');
+                    },
+                    complete: function() {
+                        testConnectionBtn.disabled = false;
+                        testConnectionBtn.innerHTML = '<i class="bi bi-database-check"></i> Test Connection';
+                    }
+                });
+            });
+        }
+
+        // Character counter for LinkedIn message
+        const linkedinTemplate = document.getElementById('linkedin_template');
+        const charCount = document.getElementById('charCount');
+
+        if (linkedinTemplate && charCount) {
+            function updateCharCount() {
+                const count = linkedinTemplate.value.length;
+                charCount.textContent = `${count}/300 characters`;
+
+                if (count > 300) {
+                    charCount.classList.add('text-danger');
+                } else {
+                    charCount.classList.remove('text-danger');
+                }
+            }
+
+            linkedinTemplate.addEventListener('input', updateCharCount);
+            updateCharCount(); // Initial count
+        }
+
+        // Helper function to format status
+        function formatStatus(status) {
+            if (status === true) return 'Success';
+            if (status === false) return 'Failed';
+            return 'Pending';
+        }
+
+        // Function to load enrichment data
+        function loadEnrichmentData(contactId) {
+            // Reset UI
+            $('#loading-enrichment').removeClass('d-none');
+            $('#no-enrichment').addClass('d-none');
+            $('#enrichment-row').addClass('d-none');
+
+            // Fetch enrichment data
+            $.getJSON(`/api/enrichment/${contactId}`)
+                .done(function(data) {
+                    $('#loading-enrichment').addClass('d-none');
+
+                    if (data.success && data.enrichment) {
+                        $('#enrichment-row').removeClass('d-none');
+                        const enrichment = data.enrichment;
+
+                        // Process emails
+                        if (enrichment.emails && enrichment.emails.length > 0) {
+                            const emailHtml = enrichment.emails.map(email =>
+                                `<div class="mb-1"><a href="mailto:${email}" class="text-decoration-none">
+                                    <i class="bi bi-envelope-fill text-success me-1"></i>${email}
+                                </a></div>`
+                            ).join('');
+                            $('#modal-emails').html(emailHtml);
+                        } else if (enrichment.raw_data && enrichment.raw_data.Email) {
+                            // Legacy format
+                            const emails = enrichment.raw_data.Email.split(',').map(email => email.trim());
+                            const emailHtml = emails.map(email =>
+                                `<div class="mb-1"><a href="mailto:${email}" class="text-decoration-none">
+                                    <i class="bi bi-envelope-fill text-success me-1"></i>${email}
+                                </a></div>`
+                            ).join('');
+                            $('#modal-emails').html(emailHtml);
+                        } else {
+                            $('#modal-emails').html('No email addresses found');
+                        }
+
+                        // Process phone numbers
+                        if (enrichment.phone_numbers && enrichment.phone_numbers.length > 0) {
+                            const phoneHtml = enrichment.phone_numbers.map(phone =>
+                                `<div class="mb-1"><a href="tel:${phone}" class="text-decoration-none">
+                                    <i class="bi bi-telephone-fill text-success me-1"></i>${phone}
+                                </a></div>`
+                            ).join('');
+                            $('#modal-phones').html(phoneHtml);
+                        } else if (enrichment.raw_data && enrichment.raw_data.Phone) {
+                            // Legacy format
+                            const phones = enrichment.raw_data.Phone.split(',').map(phone => phone.trim());
+                            const phoneHtml = phones.map(phone =>
+                                `<div class="mb-1"><a href="tel:${phone}" class="text-decoration-none">
+                                    <i class="bi bi-telephone-fill text-success me-1"></i>${phone}
+                                </a></div>`
+                            ).join('');
+                            $('#modal-phones').html(phoneHtml);
+                        } else {
+                            $('#modal-phones').html('No phone numbers found');
+                        }
+
+                        // Process social media
+                        const socialMedia = [];
+
+                        // New format
+                        if (enrichment.social_media) {
+                            if (enrichment.social_media.linkedin) {
+                                enrichment.social_media.linkedin.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-linkedin text-primary me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.social_media.facebook) {
+                                enrichment.social_media.facebook.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-facebook text-primary me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.social_media.twitter) {
+                                enrichment.social_media.twitter.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-twitter text-info me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.social_media.instagram) {
+                                enrichment.social_media.instagram.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-instagram text-danger me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+                        }
+                        // Legacy format
+                        else if (enrichment.raw_data) {
+                            if (enrichment.raw_data.LinkedIn) {
+                                const links = enrichment.raw_data.LinkedIn.split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-linkedin text-primary me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.raw_data.Facebook) {
+                                const links = enrichment.raw_data.Facebook.split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-facebook text-primary me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.raw_data.Twitter) {
+                                const links = enrichment.raw_data.Twitter.split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-twitter text-info me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.raw_data.Instagram) {
+                                const links = enrichment.raw_data.Instagram.split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    socialMedia.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-instagram text-danger me-1"></i>${link}
+                                    </a></div>`);
+                                });
+                            }
+                        }
+
+                        if (socialMedia.length > 0) {
+                            $('#modal-social').html(socialMedia.join(''));
+                        } else {
+                            $('#modal-social').html('No social media links found');
+                        }
+
+                        // Process additional pages
+                        const additionalPages = [];
+
+                        // New format
+                        if (enrichment.additional_pages) {
+                            if (enrichment.additional_pages.contact) {
+                                enrichment.additional_pages.contact.forEach(link => {
+                                    additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-envelope-fill text-success me-1"></i>Contact Page: ${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.additional_pages.about) {
+                                enrichment.additional_pages.about.forEach(link => {
+                                    additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-info-circle-fill text-info me-1"></i>About Page: ${link}
+                                    </a></div>`);
+                                });
+                            }
+                        }
+                        // Legacy format
+                        else if (enrichment.raw_data) {
+                            if (enrichment.raw_data['Contact Pages']) {
+                                const links = enrichment.raw_data['Contact Pages'].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-envelope-fill text-success me-1"></i>Contact Page: ${link}
+                                    </a></div>`);
+                                });
+                            }
+
+                            if (enrichment.raw_data['About/Team Pages']) {
+                                const links = enrichment.raw_data['About/Team Pages'].split(',').map(link => link.trim());
+                                links.forEach(link => {
+                                    additionalPages.push(`<div class="mb-1"><a href="${link}" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-info-circle-fill text-info me-1"></i>About Page: ${link}
+                                    </a></div>`);
+                                });
+                            }
+                        }
+
+                        if (additionalPages.length > 0) {
+                            $('#modal-pages').html(additionalPages.join(''));
+                        } else {
+                            $('#modal-pages').html('No additional pages found');
+                        }
+
+                    } else {
+                        $('#no-enrichment').removeClass('d-none');
+                    }
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    $('#loading-enrichment').addClass('d-none');
+                    $('#no-enrichment').removeClass('d-none').html(`
+                        <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                        Error loading enrichment data: ${errorThrown || textStatus}
+                    `);
+                });
+        }
+
+        // Main refresh button
+        $('#refreshBtn').click(function() {
+            // Refresh the current tab
+            const activeTab = $('.nav-link.active').attr('id');
+            if (activeTab === 'tracking-tab') {
+                loadFailedFormSubmissions();
+                loadStatistics();
+            } else if (activeTab === 'logs-tab') {
+                fetchLogs();
+            }
+            // Add other tab refresh handlers as needed
+        });
+
+        // Preserve active tab after form submission
+        const hash = window.location.hash;
+        if (hash) {
+            $(`#dashboardTabs a[href="${hash}"]`).tab('show');
+        }
+
+        // Update URL when tab changes
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+            history.pushState(null, null, $(this).attr('data-bs-target'));
+        });
+
+        // View contact list details
+        $('.view-list-btn').click(function() {
+            const listId = $(this).data('list-id');
+            // Switch to contacts tab
+            $('#contacts-tab').tab('show');
+            // TODO: Filter contacts by list ID
+        });
+
+        // Process contact list
+        $('.process-list-btn').click(function() {
+            const listId = $(this).data('list-id');
+
+            if (confirm('Start processing this contact list?')) {
+                $.getJSON(`/api/process-list/${listId}`, function(data) {
+                    if (data.success) {
+                        alert('Contact list processing started. The page will refresh shortly.');
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                });
+            }
+        });
+
+        // Delete contact list
+        $('.delete-list-btn').click(function() {
+            const listId = $(this).data('list-id');
+            const listName = $(this).data('list-name');
+
+            if (confirm(`Are you sure you want to delete the list "${listName}"? This cannot be undone.`)) {
+                $.getJSON(`/api/delete-list/${listId}`, function(data) {
+                    if (data.success) {
+                        alert('Contact list deleted successfully.');
+                        location.reload();
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                });
+            }
+        });
+
+        // Logs functionality
+        let autoRefreshInterval;
+        let currentLogLevel = 'all';
+        const logLevelColors = {
+            'DEBUG': 'text-secondary',
+            'INFO': 'text-info',
+            'WARNING': 'text-warning',
+            'ERROR': 'text-danger',
+            'CRITICAL': 'text-danger fw-bold'
+        };
+
+        // Function to format log entries
+        function formatLogEntry(log) {
+            const timestamp = new Date(log.timestamp).toLocaleTimeString();
+            const levelClass = logLevelColors[log.level] || 'text-light';
+            return `<div class="log-entry">
+                <span class="text-muted">[${timestamp}]</span>
+                <span class="${levelClass}">[${log.level}]</span>
+                <span>${log.message}</span>
+            </div>`;
+        }
+
+        // Function to fetch and display logs
+        function fetchLogs() {
+            const url = currentLogLevel === 'all'
+                ? '/api/logs?limit=100'
+                : `/api/logs?limit=100&level=${currentLogLevel}`;
+
+            $.getJSON(url, function(data) {
+                if (data.success) {
+                    const logContent = $('#logContent');
+                    logContent.empty();
+
+                    if (data.logs.length === 0) {
+                        logContent.html('<div class="text-center text-muted">No logs available</div>');
+                    } else {
+                        // Display logs in reverse order (newest first)
+                        const logs = data.logs.reverse();
+                        logs.forEach(log => {
+                            logContent.append(formatLogEntry(log));
+                        });
+                    }
+
+                    // Scroll to bottom
+                    const logContainer = $('.log-container');
+                    logContainer.scrollTop(logContainer[0].scrollHeight);
+
+                    // Update last updated time
+                    $('#lastUpdated').text(new Date().toLocaleTimeString());
+                } else {
+                    $('#logContent').html(`<div class="text-danger">Error fetching logs: ${data.error}</div>`);
+                }
+            }).fail(function() {
+                $('#logContent').html('<div class="text-danger">Failed to fetch logs. Server may be unavailable.</div>');
+            });
+        }
+
+        // Initial logs fetch
+        fetchLogs();
+
+        // Refresh logs button
+        $('#refreshLogs').click(function() {
+            fetchLogs();
+        });
+
+        // Auto-refresh toggle
+        $('#autoRefreshLogs').click(function() {
+            const button = $(this);
+            if (autoRefreshInterval) {
+                // Turn off auto-refresh
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                button.html('<i class="bi bi-play-fill"></i> Auto-Refresh');
+                button.removeClass('btn-primary').addClass('btn-outline-secondary');
+                $('#autoRefreshStatus').text('Off');
+            } else {
+                // Turn on auto-refresh (every 3 seconds)
+                autoRefreshInterval = setInterval(fetchLogs, 3000);
+                button.html('<i class="bi bi-pause-fill"></i> Pause Refresh');
+                button.removeClass('btn-outline-secondary').addClass('btn-primary');
+                $('#autoRefreshStatus').text('Every 3 seconds');
+            }
+        });
+
+        // Clear logs button
+        $('#clearLogs').click(function() {
+            $('#logContent').html('<div class="text-center text-muted">Logs cleared</div>');
+        });
+
+        // Log level filter buttons
+        $('.log-level-filter').click(function() {
+            const button = $(this);
+            const level = button.data('level');
+
+            // Update active button
+            $('.log-level-filter').removeClass('active');
+            button.addClass('active');
+
+            // Update current log level and fetch logs
+            currentLogLevel = level;
+            fetchLogs();
+        });
+
+        // Clear LinkedIn cookies button
+        $('#clearLinkedInCookies').click(function() {
+            if (confirm('Are you sure you want to clear LinkedIn cookies? You will need to log in again the next time you run the bot.')) {
+                $.post('/api/clear-cookies', { domain: 'linkedin.com' }, function(data) {
+                    if (data.success) {
+                        alert('LinkedIn cookies cleared successfully. You will need to log in again the next time you run the bot.');
+                    } else {
+                        alert('Error clearing LinkedIn cookies: ' + (data.error || 'Unknown error'));
+                    }
+                }).fail(function() {
+                    alert('Error clearing LinkedIn cookies. Please try again later.');
+                });
+            }
+        });
+
+        // Variables for pagination and filtering
+        let currentPage = 1;
+        let recordsPerPage = 5;
+        let totalPages = 1;
+        let totalRecords = 0;
+        let currentStatusFilter = 'all';
+
+        // Load statistics
+        loadStatistics();
+
+        // Load record status
+        loadRecordStatus();
+
+        // Function to update pagination controls
+        function updatePagination(currentPage, totalPages, totalRecords, limit) {
+            // Update pagination info text
+            const startRecord = (currentPage - 1) * limit + 1;
+            const endRecord = Math.min(currentPage * limit, totalRecords);
+            $('#paginationInfo').text(`Showing ${startRecord}-${endRecord} of ${totalRecords} records`);
+
+            // Clear existing page links
+            const pagination = $('#recordStatusPagination');
+            pagination.empty();
+
+            // Add previous button
+            const prevDisabled = currentPage === 1 ? 'disabled' : '';
+            pagination.append(`
+                <li class="page-item ${prevDisabled}">
+                    <a class="page-link" href="#" id="prevPageBtn" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            `);
+
+            // Determine which page links to show
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+
+            // Adjust if we're near the end
+            if (endPage - startPage < 4 && startPage > 1) {
+                startPage = Math.max(1, endPage - 4);
+            }
+
+            // Add page links
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage ? 'active' : '';
+                pagination.append(`
+                    <li class="page-item ${active}">
+                        <a class="page-link page-number" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `);
+            }
+
+            // Add next button
+            const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+            pagination.append(`
+                <li class="page-item ${nextDisabled}">
+                    <a class="page-link" href="#" id="nextPageBtn" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            `);
+
+            // Attach event handlers to pagination controls
+            $('#prevPageBtn').on('click', function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    loadRecordStatus(currentPage - 1, limit, currentStatusFilter);
+                }
+            });
+
+            $('#nextPageBtn').on('click', function(e) {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    loadRecordStatus(currentPage + 1, limit, currentStatusFilter);
+                }
+            });
+
+            $('.page-number').on('click', function(e) {
+                e.preventDefault();
+                const page = $(this).data('page');
+                loadRecordStatus(page, limit, currentStatusFilter);
+            });
+        }
+
+        // Event handler for records per page dropdown
+        $('.records-per-page').on('click', function(e) {
+            e.preventDefault();
+            const limit = parseInt($(this).data('value'));
+            loadRecordStatus(1, limit, currentStatusFilter);
+        });
+
+        // Event handler for status filter dropdown
+        $('.status-filter').on('click', function(e) {
+            e.preventDefault();
+            const status = $(this).data('status');
+            currentStatusFilter = status;
+            $('#currentStatusFilter').text($(this).text());
+            loadRecordStatus(1, recordsPerPage, status);
+        });
+
+        // Refresh record status button
+        $('#refreshRecordStatusBtn').click(function() {
+            loadRecordStatus(currentPage, recordsPerPage, currentStatusFilter);
+            loadStatistics();
+        });
+
+        // Refresh statistics button
+        $('#refreshStatisticsBtn').click(function() {
+            loadStatistics();
+        });
+
+        // Function to load statistics
+        function loadStatistics() {
+            console.log("Loading statistics...");
+
+            $.getJSON('/api/statistics', function(data) {
+                console.log("Statistics API Response:", data);
+
+                if (data.success && data.statistics) {
+                    const stats = data.statistics;
+
+                    // Update summary counts
+                    $('#total-contacts-count').text(stats.total_contacts);
+                    $('#forms-submitted-count').text(stats.forms_submitted);
+                    $('#forms-failed-count').text(stats.form_status.failed.count);
+                    $('#linkedin-connected-count').text(stats.linkedin_connected);
+                    $('#alternative-contacts-count').text(stats.alternative_contacts);
+
+                    // Update form status with more detailed debugging
+                    console.log("Raw form status data:", stats.form_status);
+
+                    // Ultra-simple direct update for inline-styled progress bars
+                    // Update counts and percentages in text
+                    $('#form-submitted-count').text(stats.form_status.submitted.count);
+                    $('#form-submitted-percent').text(stats.form_status.submitted.percent + '%');
+
+                    $('#form-failed-count').text(stats.form_status.failed.count);
+                    $('#form-failed-percent').text(stats.form_status.failed.percent + '%');
+
+                    $('#form-pending-count').text(stats.form_status.pending.count);
+                    $('#form-pending-percent').text(stats.form_status.pending.percent + '%');
+
+                    console.log("Form percentages - Submitted:", stats.form_status.submitted.percent + "%",
+                               "Failed:", stats.form_status.failed.percent + "%",
+                               "Pending:", stats.form_status.pending.percent + "%");
+
+                    // Ensure minimum width for small percentages
+                    var submittedWidth = stats.form_status.submitted.percent;
+                    var failedWidth = stats.form_status.failed.percent;
+                    var pendingWidth = stats.form_status.pending.percent;
+
+                    // Directly update the width of the progress bars with inline styles
+                    $('#form-submitted-progress').attr('style', 'width: ' + submittedWidth + '%; height: 100%; position: absolute; left: 0; top: 0; background-color: #28a745;');
+                    $('#form-failed-progress').attr('style', 'width: ' + failedWidth + '%; height: 100%; position: absolute; left: 0; top: 0; background-color: #dc3545;');
+                    $('#form-pending-progress').attr('style', 'width: ' + pendingWidth + '%; height: 100%; position: absolute; left: 0; top: 0; background-color: #6c757d;');
+
+                    // Update LinkedIn status with more detailed debugging
+                    console.log("Raw LinkedIn status data:", stats.linkedin_status);
+
+                    // Ultra-simple direct update for LinkedIn inline-styled progress bars
+                    // Update counts and percentages in text
+                    $('#linkedin-connected-status-count').text(stats.linkedin_status.connected.count);
+                    $('#linkedin-connected-percent').text(stats.linkedin_status.connected.percent + '%');
+
+                    $('#linkedin-failed-count').text(stats.linkedin_status.failed.count);
+                    $('#linkedin-failed-percent').text(stats.linkedin_status.failed.percent + '%');
+
+                    $('#linkedin-pending-count').text(stats.linkedin_status.pending.count);
+                    $('#linkedin-pending-percent').text(stats.linkedin_status.pending.percent + '%');
+
+                    console.log("LinkedIn percentages - Connected:", stats.linkedin_status.connected.percent + "%",
+                               "Failed:", stats.linkedin_status.failed.percent + "%",
+                               "Pending:", stats.linkedin_status.pending.percent + "%");
+
+                    // Ensure minimum width for small percentages
+                    var connectedWidth = stats.linkedin_status.connected.percent;
+                    var linkedinFailedWidth = stats.linkedin_status.failed.percent;
+                    var linkedinPendingWidth = stats.linkedin_status.pending.percent;
+
+                    // Directly update the width of the LinkedIn progress bars with inline styles
+                    $('#linkedin-connected-progress').attr('style', 'width: ' + connectedWidth + '%; height: 100%; position: absolute; left: 0; top: 0; background-color: #28a745;');
+                    $('#linkedin-failed-progress').attr('style', 'width: ' + linkedinFailedWidth + '%; height: 100%; position: absolute; left: 0; top: 0; background-color: #dc3545;');
+                    $('#linkedin-pending-progress').attr('style', 'width: ' + linkedinPendingWidth + '%; height: 100%; position: absolute; left: 0; top: 0; background-color: #6c757d;');
+
+                    console.log("Statistics updated successfully");
+                } else {
+                    console.log("API returned error or no statistics:", data);
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("AJAX Error:", textStatus, errorThrown);
+                console.log("Response:", jqXHR.responseText);
+            });
+        }
+
+        // Add a function to manually test the API
+        window.testFailedSubmissionsAPI = function() {
+            console.log("Manually testing failed submissions API...");
+            $.getJSON('/api/form-submissions?failed=true&limit=5&page=1', function(data) {
+                console.log("Direct API call response:", data);
+                if (data.success && data.submissions) {
+                    console.log("Found " + data.submissions.length + " failed submissions");
+                    console.log("Pagination info:", data.pagination);
+                    data.submissions.forEach(function(submission, index) {
+                        console.log("Submission " + (index + 1) + ":", submission);
+                    });
+                } else {
+                    console.log("API error or no submissions:", data);
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("API call failed:", textStatus, errorThrown);
+            });
+        };
+
+        // Variables for pagination have been moved to the top of the script
+
+        // Function to load record status with pagination and filtering
+        function loadRecordStatus(page = 1, limit = recordsPerPage, status = 'all') {
+            $('#recordStatusTableBody').html('<tr><td colspan="8" class="text-center"><div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading records...</td></tr>');
+
+            console.log(`Loading record status... Page: ${page}, Limit: ${limit}, Status: ${status}`);
+
+            // Update current page and filter
+            currentPage = page;
+            recordsPerPage = limit;
+            currentStatusFilter = status;
+
+            // Update the records per page dropdown
+            $('#currentRecordsPerPage').text(limit);
+
+            // Build the API URL based on the status filter
+            let apiUrl = `/api/form-submissions?page=${page}&limit=${limit}`;
+            if (status === 'failed') {
+                apiUrl += '&failed=true';
+            } else if (status === 'submitted') {
+                apiUrl += '&submitted=true';
+            } else if (status === 'error') {
+                apiUrl += '&error=true';
+            }
+
+            $.getJSON(apiUrl, function(data) {
+                console.log("API Response:", data);
+
+                if (data.success && data.submissions) {
+                    console.log("Found submissions:", data.submissions.length);
+
+                    // Update pagination info
+                    if (data.pagination) {
+                        totalPages = data.pagination.total_pages;
+                        totalRecords = data.pagination.total_count;
+
+                        // Update pagination display
+                        updatePagination(page, totalPages, totalRecords, limit);
+                    }
+
+                    if (data.submissions.length === 0) {
+                        $('#recordStatusTableBody').html('<tr><td colspan="8" class="text-center">No records found.</td></tr>');
+                        return;
+                    }
+
+                    let html = '';
+                    data.submissions.forEach(function(record) {
+                        console.log("Processing record:", record);
+
+                        // Determine status badge
+                        let statusBadge = '';
+
+                        // Log the record status for debugging
+                        console.log(`Record ${record.id} status:`, {
+                            contact_form_submitted: record.contact_form_submitted,
+                            contact_form_submitted_message: record.contact_form_submitted_message,
+                            website_error: record.website_error,
+                            error: record.error
+                        });
+
+                        // Check for form submission status
+                        if (record.contact_form_submitted === true) {
+                            statusBadge = '<span class="badge bg-success">Form Submitted</span>';
+                        } else if (record.contact_form_submitted === false) {
+                            // Check if it's a website error
+                            if (record.website_error === true ||
+                                (record.error && typeof record.error === 'string' && record.error.toLowerCase().includes('website')) ||
+                                (record.contact_form_submitted_message &&
+                                 typeof record.contact_form_submitted_message === 'string' &&
+                                 (record.contact_form_submitted_message.toLowerCase().includes('website') ||
+                                  record.contact_form_submitted_message.toLowerCase().includes('url')))) {
+                                statusBadge = '<span class="badge bg-warning">Website Error</span>';
+                            } else {
+                                statusBadge = '<span class="badge bg-danger">Form Failed</span>';
+                            }
+                        } else {
+                            statusBadge = '<span class="badge bg-secondary">Pending</span>';
+                        }
+
+                        // Prepare submitted details
+                        let submittedDetails = '';
+                        if (record.contact_form_submitted === true && record.form_data) {
+                            try {
+                                // Try to parse form_data if it's stored as JSON
+                                let formData = record.form_data;
+                                if (typeof formData === 'string') {
+                                    formData = JSON.parse(formData);
+                                }
+
+                                // Create a summary of submitted data
+                                let detailsArray = [];
+                                if (formData.first_name || formData.firstName)
+                                    detailsArray.push(`Name: ${formData.first_name || formData.firstName} ${formData.last_name || formData.lastName || ''}`);
+                                if (formData.email)
+                                    detailsArray.push(`Email: ${formData.email}`);
+                                if (formData.phone)
+                                    detailsArray.push(`Phone: ${formData.phone}`);
+
+                                if (detailsArray.length > 0) {
+                                    submittedDetails = `
+                                        <button class="btn btn-sm btn-outline-info view-details-btn" data-contact-id="${record.id}" data-bs-toggle="tooltip" title="${detailsArray.join(', ')}">
+                                            <i class="bi bi-info-circle"></i> View Details
+                                        </button>
+                                    `;
+                                } else {
+                                    submittedDetails = '<span class="text-muted">No details</span>';
+                                }
+                            } catch (e) {
+                                console.log("Error parsing form data:", e);
+                                submittedDetails = '<span class="text-muted">Data format error</span>';
+                            }
+                        } else if (record.contact_form_submitted === false) {
+                            // Show a truncated error message with a view details button
+                            const errorMessage = record.contact_form_submitted_message || 'Unknown error';
+                            const truncatedMessage = errorMessage.length > 50 ?
+                                errorMessage.substring(0, 50) + '...' :
+                                errorMessage;
+
+                            submittedDetails = `
+                                <div>
+                                    <span class="text-danger">${truncatedMessage}</span>
+                                    <button class="btn btn-sm btn-outline-info ms-2 view-details-btn" data-contact-id="${record.id}" data-bs-toggle="tooltip" title="View full details">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                </div>
+                            `;
+                        } else {
+                            submittedDetails = '<span class="text-muted">N/A</span>';
+                        }
+
+                        html += `
+                            <tr>
+                                <td>${record.name || record.listing_name || record.dentist_name_profile || 'Unknown'}</td>
+                                <td>${record.company || record.listing_business_name || record.business_name_profile || 'Unknown'}</td>
+                                <td>
+                                    ${getWebsiteUrl(record) ?
+                                        `<a href="${getWebsiteUrl(record)}" target="_blank" class="text-truncate d-inline-block" style="max-width: 150px;" title="${getWebsiteUrl(record)}">${getWebsiteUrl(record)}</a>` :
+                                        '<span class="text-muted">N/A</span>'}
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">${record.niche || 'dentist'}</span>
+                                </td>
+                                <td>
+                                    ${statusBadge}
+                                </td>
+                                <td>
+                                    ${submittedDetails}
+                                </td>
+                                <td>
+                                    ${record.contact_form_submitted_timestamp ?
+                                        new Date(record.contact_form_submitted_timestamp).toLocaleString() :
+                                        'Unknown'}
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-warning retry-btn" data-contact-id="${record.id}">
+                                        <i class="bi bi-arrow-repeat"></i> Retry
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+
+                    $('#recordStatusTableBody').html(html);
+
+                    // Initialize tooltips
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+
+                    // Attach event handlers to retry buttons
+                    $('.retry-btn').click(function() {
+                        const contactId = $(this).data('contact-id');
+                        retryContact(contactId);
+                    });
+
+                    // Attach event handlers to view details buttons
+                    $('.view-details-btn').click(function() {
+                        const contactId = $(this).data('contact-id');
+                        viewContactDetails(contactId);
+                    });
+                } else {
+                    console.log("API returned error or no records:", data);
+                    $('#recordStatusTableBody').html('<tr><td colspan="8" class="text-center">Error loading records.</td></tr>');
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("AJAX Error:", textStatus, errorThrown);
+                console.log("Response:", jqXHR.responseText);
+                $('#recordStatusTableBody').html('<tr><td colspan="8" class="text-center text-danger">Failed to load records. Please try again.</td></tr>');
+            });
+        }
+
+        // Function to get website URL from various possible fields
+        function getWebsiteUrl(submission) {
+            // Check all possible website field names
+            const websiteFields = [
+                'website_url_profile', 'website_url', 'listing_website', 'website', 'url',
+                'listing_url', 'business_website', 'practice_website'
+            ];
+
+            // Try each field name
+            for (const field of websiteFields) {
+                if (submission[field]) {
+                    // Make sure URL has http:// or https:// prefix
+                    let url = submission[field];
+                    if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+                        url = 'https://' + url;
+                    }
+                    return url;
+                }
+            }
+
+            // Check if any field contains a URL
+            for (const key in submission) {
+                const value = submission[key];
+                if (typeof value === 'string' &&
+                    (value.includes('http') || value.includes('www.') || value.includes('.com'))) {
+                    // Make sure URL has http:// or https:// prefix
+                    let url = value;
+                    if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+                        url = 'https://' + url;
+                    }
+                    console.log(`Found URL in field ${key}: ${url}`);
+                    return url;
+                }
+            }
+
+            return null;
+        }
+
+        // Function to view contact details
+        function viewContactDetails(contactId) {
+            // Get the contact details from the API
+            $.getJSON(`/api/contact/${contactId}`, function(data) {
+                if (data.success && data.contact) {
+                    const contact = data.contact;
+
+                    // Create a modal to display the details
+                    let modalHtml = `
+                        <div class="modal fade" id="contactDetailsModal" tabindex="-1" aria-labelledby="contactDetailsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="contactDetailsModalLabel">Contact Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h6>Basic Information</h6>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <p><strong>Name:</strong> ${contact.name || contact.listing_name || contact.dentist_name_profile || 'Unknown'}</p>
+                                                <p><strong>Company:</strong> ${contact.company || contact.listing_business_name || contact.business_name_profile || 'Unknown'}</p>
+                                                <p><strong>Website:</strong> ${getWebsiteUrl(contact) ?
+                                                    `<a href="${getWebsiteUrl(contact)}" target="_blank">${getWebsiteUrl(contact)}</a>` :
+                                                    'N/A'}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><strong>Niche:</strong> ${contact.niche || 'dentist'}</p>
+                                                <p><strong>Status:</strong> ${contact.contact_form_submitted === true ?
+                                                    '<span class="badge bg-success">Form Submitted</span>' :
+                                                    contact.contact_form_submitted === false ?
+                                                    '<span class="badge bg-danger">Form Failed</span>' :
+                                                    '<span class="badge bg-secondary">Pending</span>'}</p>
+                                                <p><strong>Timestamp:</strong> ${contact.contact_form_submitted_timestamp ?
+                                                    new Date(contact.contact_form_submitted_timestamp).toLocaleString() :
+                                                    'N/A'}</p>
+                                            </div>
+                                        </div>
+
+                                        <h6>Form Submission Details</h6>
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                ${contact.form_data ?
+                                                    (() => {
+                                                        try {
+                                                            // Try to parse form_data if it's stored as JSON
+                                                            let formData = contact.form_data;
+                                                            if (typeof formData === 'string') {
+                                                                formData = JSON.parse(formData);
+                                                            }
+
+                                                            // Create a table of form data
+                                                            let formHtml = '<table class="table table-sm table-bordered">';
+                                                            formHtml += '<thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>';
+
+                                                            for (const [key, value] of Object.entries(formData)) {
+                                                                formHtml += `<tr><td>${key}</td><td>${value}</td></tr>`;
+                                                            }
+
+                                                            formHtml += '</tbody></table>';
+                                                            return formHtml;
+                                                        } catch (e) {
+                                                            console.log("Error parsing form data:", e);
+                                                            return '<div class="alert alert-warning">Error parsing form data</div>';
+                                                        }
+                                                    })() :
+                                                    '<div class="alert alert-info">No form data available</div>'}
+                                            </div>
+                                        </div>
+
+                                        ${contact.contact_form_submitted === false && contact.contact_form_submitted_message ?
+                                            `<h6>Error Message</h6>
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <div class="alert alert-danger">${contact.contact_form_submitted_message}</div>
+                                                </div>
+                                            </div>` :
+                                            ''}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-warning retry-contact-btn" data-contact-id="${contact.id}">
+                                            <i class="bi bi-arrow-repeat"></i> Retry Contact
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Remove any existing modal
+                    $('#contactDetailsModal').remove();
+
+                    // Add the modal to the page
+                    $('body').append(modalHtml);
+
+                    // Show the modal
+                    const modal = new bootstrap.Modal(document.getElementById('contactDetailsModal'));
+                    modal.show();
+
+                    // Add event listener for retry button
+                    $('.retry-contact-btn').click(function() {
+                        const contactId = $(this).data('contact-id');
+                        modal.hide();
+                        retryContact(contactId);
+                    });
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to load contact details'));
+                }
+            }).fail(function(jqXHR) {
+                alert('Error: ' + (jqXHR.responseJSON ? jqXHR.responseJSON.error : 'Failed to load contact details'));
+            });
+        }
+
+        // Function to retry a contact
+        function retryContact(contactId) {
+            if (confirm('Retry processing this contact?')) {
+                // First try the direct retry endpoint (which bypasses database updates)
+                $.getJSON(`/api/direct-retry/${contactId}`, function(data) {
+                    if (data.success) {
+                        alert('Contact queued for direct retry. Processing will start shortly.');
+                        // Refresh the failed submissions list
+                        setTimeout(function() { loadRecordStatus(currentPage, recordsPerPage, currentStatusFilter); }, 1000);
+                    } else {
+                        // If direct retry fails, fall back to the regular retry endpoint
+                        console.log('Direct retry failed, falling back to regular retry');
+                        $.getJSON(`/api/retry/${contactId}`, function(data) {
+                            if (data.success) {
+                                alert('Contact queued for retry. Processing will start shortly.');
+                                // Refresh the failed submissions list
+                                setTimeout(function() { loadRecordStatus(currentPage, recordsPerPage, currentStatusFilter); }, 1000);
+                            } else {
+                                alert('Error: ' + data.error);
+                            }
+                        }).fail(function(jqXHR) {
+                            alert('Error: ' + (jqXHR.responseJSON ? jqXHR.responseJSON.error : 'Unknown error'));
+                        });
+                    }
+                }).fail(function(jqXHR) {
+                    console.log('Direct retry endpoint failed, falling back to regular retry');
+                    // If direct retry endpoint fails, fall back to the regular retry endpoint
+                    $.getJSON(`/api/retry/${contactId}`, function(data) {
+                        if (data.success) {
+                            alert('Contact queued for retry. Processing will start shortly.');
+                            // Refresh the failed submissions list
+                            setTimeout(function() { loadRecordStatus(currentPage, recordsPerPage, currentStatusFilter); }, 1000);
+                        } else {
+                            alert('Error: ' + data.error);
+                        }
+                    }).fail(function(jqXHR) {
+                        alert('Error: ' + (jqXHR.responseJSON ? jqXHR.responseJSON.error : 'Unknown error'));
+                    });
+                });
+            }
+        }
+
+        // Load alternative contacts
+        function loadAlternativeContacts() {
+            $.ajax({
+                url: '/api/alternative-contacts',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success) {
+                        const contacts = data.alternative_contacts;
+                        const tableBody = $('#alternativeContactsTableBody');
+
+                        if (contacts && contacts.length > 0) {
+                            tableBody.empty();
+
+                            contacts.forEach(function(contact) {
+                                // Determine which fields to use based on available data
+                                const nameField = contact.listing_name || contact.name || contact.dentist_name_profile || contact.full_name || 'N/A';
+                                const companyField = contact.listing_business_name || contact.company || contact.business_name_profile || 'N/A';
+                                const websiteField = contact.website_url_profile || contact.listing_website || contact.website_url || contact.website || contact.url || '';
+
+                                // Check for enriched_ and alt_ columns
+                                const enrichedColumns = Object.keys(contact).filter(key => key.startsWith('enriched_'));
+                                const altColumns = Object.keys(contact).filter(key => key.startsWith('alt_'));
+                                const allEnrichmentColumns = [...enrichedColumns, ...altColumns];
+
+                                // Prepare data for display
+                                let emailFound = false;
+                                let phoneFound = false;
+                                let socialMedia = {
+                                    linkedin: false,
+                                    facebook: false,
+                                    twitter: false,
+                                    instagram: false
+                                };
+
+                                // Check each enriched_ and alt_ column
+                                allEnrichmentColumns.forEach(column => {
+                                    if (contact[column]) {
+                                        if (column.includes('email')) {
+                                            emailFound = true;
+                                        } else if (column.includes('phone')) {
+                                            phoneFound = true;
+                                        } else if (column.includes('linkedin')) {
+                                            socialMedia.linkedin = true;
+                                        } else if (column.includes('facebook')) {
+                                            socialMedia.facebook = true;
+                                        } else if (column.includes('twitter')) {
+                                            socialMedia.twitter = true;
+                                        } else if (column.includes('instagram')) {
+                                            socialMedia.instagram = true;
+                                        }
+                                    }
+                                });
+
+                                // Check enrichment data if available
+                                if (contact.enrichment_data) {
+                                    const enrichment = contact.enrichment_data;
+
+                                    if (enrichment.emails && enrichment.emails.length > 0) {
+                                        emailFound = true;
+                                    }
+
+                                    if (enrichment.phone_numbers && enrichment.phone_numbers.length > 0) {
+                                        phoneFound = true;
+                                    }
+
+                                    if (enrichment.social_media) {
+                                        if (enrichment.social_media.linkedin) socialMedia.linkedin = true;
+                                        if (enrichment.social_media.facebook) socialMedia.facebook = true;
+                                        if (enrichment.social_media.twitter) socialMedia.twitter = true;
+                                        if (enrichment.social_media.instagram) socialMedia.instagram = true;
+                                    }
+                                }
+
+                                // Check raw alternative_contacts if available
+                                if (contact.alternative_contacts) {
+                                    if (contact.alternative_contacts.Email) emailFound = true;
+                                    if (contact.alternative_contacts.Phone) phoneFound = true;
+                                    if (contact.alternative_contacts.LinkedIn) socialMedia.linkedin = true;
+                                    if (contact.alternative_contacts.Facebook) socialMedia.facebook = true;
+                                    if (contact.alternative_contacts.Twitter) socialMedia.twitter = true;
+                                    if (contact.alternative_contacts.Instagram) socialMedia.instagram = true;
+                                }
+
+                                // Create social media badges
+                                let socialMediaHtml = '';
+                                if (socialMedia.linkedin || socialMedia.facebook || socialMedia.twitter || socialMedia.instagram) {
+                                    socialMediaHtml = '<div class="d-flex gap-1">';
+                                    if (socialMedia.linkedin) {
+                                        socialMediaHtml += '<span class="badge bg-primary"><i class="bi bi-linkedin"></i></span>';
+                                    }
+                                    if (socialMedia.facebook) {
+                                        socialMediaHtml += '<span class="badge bg-primary"><i class="bi bi-facebook"></i></span>';
+                                    }
+                                    if (socialMedia.twitter) {
+                                        socialMediaHtml += '<span class="badge bg-info"><i class="bi bi-twitter"></i></span>';
+                                    }
+                                    if (socialMedia.instagram) {
+                                        socialMediaHtml += '<span class="badge bg-danger"><i class="bi bi-instagram"></i></span>';
+                                    }
+                                    socialMediaHtml += '</div>';
+                                } else {
+                                    socialMediaHtml = '<span class="badge bg-secondary">None</span>';
+                                }
+
+                                // Create row
+                                const row = `
+                                    <tr>
+                                        <td>${nameField}</td>
+                                        <td>${companyField}</td>
+                                        <td>
+                                            ${websiteField ?
+                                                `<a href="${websiteField}" target="_blank" class="text-truncate d-inline-block" style="max-width: 150px;" title="${websiteField}">${websiteField}</a>` :
+                                                '<span class="text-muted">N/A</span>'}
+                                        </td>
+                                        <td>
+                                            ${emailFound ?
+                                                '<span class="badge bg-success"><i class="bi bi-envelope-fill"></i> Found</span>' :
+                                                '<span class="badge bg-secondary">None</span>'}
+                                        </td>
+                                        <td>
+                                            ${phoneFound ?
+                                                '<span class="badge bg-success"><i class="bi bi-telephone-fill"></i> Found</span>' :
+                                                '<span class="badge bg-secondary">None</span>'}
+                                        </td>
+                                        <td>${socialMediaHtml}</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary view-details-btn" data-contact-id="${contact.id}">
+                                                <i class="bi bi-info-circle"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+
+                                tableBody.append(row);
+                            });
+                        } else {
+                            tableBody.html('<tr><td colspan="7" class="text-center">No alternative contacts found</td></tr>');
+                        }
+                    } else {
+                        $('#alternativeContactsTableBody').html('<tr><td colspan="7" class="text-center text-danger">Error loading alternative contacts: ' + data.error + '</td></tr>');
+                    }
+                },
+                error: function(jqXHR) {
+                    $('#alternativeContactsTableBody').html('<tr><td colspan="7" class="text-center text-danger">Error loading alternative contacts: ' + (jqXHR.responseJSON ? jqXHR.responseJSON.error : 'Unknown error') + '</td></tr>');
+                }
+            });
+        }
+
+        // Load alternative contacts on page load
+        loadAlternativeContacts();
+
+        // Refresh alternative contacts when button is clicked
+        $('#refreshAlternativeContactsBtn').on('click', function() {
+            $('#alternativeContactsTableBody').html('<tr><td colspan="7" class="text-center">Loading alternative contacts...</td></tr>');
+            loadAlternativeContacts();
+        });
+    });
+</script>
+{% endblock %}

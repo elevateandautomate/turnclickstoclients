@@ -1,0 +1,627 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Dashboard{% endblock %}
+
+{% block head %}
+<style>
+    .status-badge {
+        width: 100px;
+        text-align: center;
+    }
+    .status-true {
+        background-color: #d1e7dd;
+        color: #0f5132;
+    }
+    .status-false {
+        background-color: #f8d7da;
+        color: #842029;
+    }
+    .status-null {
+        background-color: #e2e3e5;
+        color: #41464b;
+    }
+    .refresh-icon {
+        cursor: pointer;
+    }
+    .processing-indicator {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+        0% { background-color: rgba(40, 167, 69, 0.5); }
+        50% { background-color: rgba(40, 167, 69, 1); }
+        100% { background-color: rgba(40, 167, 69, 0.5); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Dashboard</h2>
+        <div>
+            {% if is_processing %}
+            <span class="badge bg-success me-2">
+                <span class="processing-indicator me-1"></span>
+                Processing
+            </span>
+            {% endif %}
+            <button id="refreshBtn" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3" id="dashboardTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="true">
+                    <i class="bi bi-people-fill me-1"></i> Contacts
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="linkedin-tab" data-bs-toggle="tab" data-bs-target="#linkedin" type="button" role="tab" aria-controls="linkedin" aria-selected="false">
+                    <i class="bi bi-linkedin me-1"></i> LinkedIn Settings
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
+                    <i class="bi bi-chat-left-text-fill me-1"></i> Message Templates
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="dashboardTabContent">
+            <!-- Contacts Tab -->
+            <div class="tab-pane fade show active" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Website</th>
+                                <th>Website Visited</th>
+                                <th>Contact Form</th>
+                                <th>Form Submitted</th>
+                                <th>LinkedIn</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTableBody">
+                            {% for contact in contacts %}
+                            <tr>
+                                <td>{{ contact.name }}</td>
+                                <td>{{ contact.company }}</td>
+                                <td>
+                                    {% if contact.website_url %}
+                                    <a href="{{ contact.website_url }}" target="_blank" class="text-truncate d-inline-block" style="max-width: 150px;" title="{{ contact.website_url }}">
+                                        {{ contact.website_url }}
+                                    </a>
+                                    {% else %}
+                                    <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.website_visited == true %}true{% elif contact.website_visited == false %}false{% else %}null{% endif %}">
+                                        {% if contact.website_visited == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Success
+                                        {% elif contact.website_visited == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Failed
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.contact_form_found == true %}true{% elif contact.contact_form_found == false %}false{% else %}null{% endif %}">
+                                        {% if contact.contact_form_found == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Found
+                                        {% elif contact.contact_form_found == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Not Found
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.contact_form_submitted == true %}true{% elif contact.contact_form_submitted == false %}false{% else %}null{% endif %}">
+                                        {% if contact.contact_form_submitted == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Submitted
+                                        {% elif contact.contact_form_submitted == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Failed
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge status-badge status-{% if contact.linkedin_connected == true %}true{% elif contact.linkedin_connected == false %}false{% else %}null{% endif %}">
+                                        {% if contact.linkedin_connected == true %}
+                                        <i class="bi bi-check-circle-fill"></i> Connected
+                                        {% elif contact.linkedin_connected == false %}
+                                        <i class="bi bi-x-circle-fill"></i> Failed
+                                        {% else %}
+                                        <i class="bi bi-dash-circle-fill"></i> Pending
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary view-details-btn" data-contact-id="{{ contact.id }}">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-warning retry-btn" data-contact-id="{{ contact.id }}" {% if is_processing %}disabled{% endif %}>
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- LinkedIn Settings Tab -->
+            <div class="tab-pane fade" id="linkedin" role="tabpanel" aria-labelledby="linkedin-tab">
+                <form id="credentialsForm" action="/settings/credentials" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">LinkedIn Credentials</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                These credentials will be used to log in to LinkedIn for sending connection requests.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_username" class="form-label">LinkedIn Email/Username</label>
+                                <input type="email" class="form-control" id="linkedin_username" name="linkedin_username" value="{{ settings.get('linkedin_username', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_password" class="form-label">LinkedIn Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="linkedin_password" name="linkedin_password" value="{{ settings.get('linkedin_password', '') }}" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Your password is stored securely and only used for LinkedIn automation.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="your_name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="your_name" name="your_name" value="{{ settings.get('your_name', '') }}" required>
+                                <div class="form-text">This will be used to sign your messages.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Supabase Configuration</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                These settings are used to connect to your Supabase database.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supabase_url" class="form-label">Supabase URL</label>
+                                <input type="text" class="form-control" id="supabase_url" name="supabase_url" value="{{ settings.get('supabase_url', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supabase_key" class="form-label">Supabase Key</label>
+                                <input type="text" class="form-control" id="supabase_key" name="supabase_key" value="{{ settings.get('supabase_key', '') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="table_name" class="form-label">Table Name</label>
+                                <input type="text" class="form-control" id="table_name" name="table_name" value="{{ settings.get('table_name', 'contacts') }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Credentials
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Message Templates Tab -->
+            <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                <form id="messagesForm" action="/settings/messages" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Contact Form Message Template</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                This template will be used when filling contact forms on websites.
+                                <br>
+                                <strong>Available variables:</strong><br>
+                                {% if template_variables %}
+                                    {% for var in template_variables %}
+                                        <span class="badge bg-secondary me-1 mb-1">{{ "{" }}{{ var }}{{ "}" }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <code>{name}</code>, <code>{company}</code>, <code>{email}</code>, <code>{your_name}</code>, <code>{your_email}</code>, <code>{phone}</code>
+                                {% endif %}
+                                (if provided in CSV)
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="your_name" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="your_name" name="your_name" value="{{ settings.get('your_name', '') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="your_email" class="form-label">Your Email</label>
+                                        <input type="email" class="form-control" id="your_email" name="your_email" value="{{ settings.get('your_email', '') }}" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contact_form_template" class="form-label">Contact Form Message</label>
+                                <textarea class="form-control" id="contact_form_template" name="contact_form_template" rows="6" required>{{ settings.get('contact_form_template', 'I came across your website and was impressed by your work. I\'d love to connect and discuss potential opportunities to collaborate.\n\nLooking forward to hearing from you,\n{your_name}\n{your_email}\n{phone}') }}</textarea>
+                            </div>
+
+                            <h5 class="mt-4 mb-3">Additional Contact Form Fields</h5>
+                            <p class="text-muted small">These fields will be used to fill in additional form fields if they exist on contact forms.</p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ settings.get('phone', '') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="your_company" class="form-label">Company</label>
+                                        <input type="text" class="form-control" id="your_company" name="your_company" value="{{ settings.get('your_company', '') }}" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-muted small">These fields will be used to fill in contact forms.</p>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Contact Form Detection Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                <strong>How the bot finds contact forms:</strong>
+                                <ol>
+                                    <li>First, it looks for forms with contact-related IDs or classes.</li>
+                                    <li>Then, it looks for forms with email fields and message textareas.</li>
+                                    <li>If no form is found, it looks for links to contact pages and navigates to them.</li>
+                                    <li>As a last resort, it tries to fill any form it finds.</li>
+                                </ol>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="form_detection_priority" class="form-label">Form Detection Priority</label>
+                                <select class="form-select" id="form_detection_priority" name="form_detection_priority">
+                                    <option value="balanced" {% if settings.get('form_detection_priority') == 'balanced' %}selected{% endif %}>Balanced (default)</option>
+                                    <option value="aggressive" {% if settings.get('form_detection_priority') == 'aggressive' %}selected{% endif %}>Aggressive</option>
+                                    <option value="conservative" {% if settings.get('form_detection_priority') == 'conservative' %}selected{% endif %}>Conservative</option>
+                                </select>
+                                <div class="form-text">This setting controls how aggressively the bot tries to find and fill contact forms.</div>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="navigate_to_contact" name="navigate_to_contact" {% if settings.get('navigate_to_contact', True) %}checked{% endif %}>
+                                <label class="form-check-label" for="navigate_to_contact">Navigate to contact page if found</label>
+                                <div class="form-text">If enabled, the bot will look for links to contact pages and navigate to them if no contact form is found on the current page.</div>
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="submit_form" name="submit_form" {% if settings.get('submit_form', True) %}checked{% endif %}>
+                                <label class="form-check-label" for="submit_form">Submit form after filling</label>
+                                <div class="form-text">If enabled, the bot will click the submit button after filling the form. Disable for testing.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">LinkedIn Message Template</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                                This template will be used when sending LinkedIn connection requests.
+                                <br>
+                                <strong>Available variables:</strong><br>
+                                {% if template_variables %}
+                                    {% for var in template_variables %}
+                                        <span class="badge bg-secondary me-1 mb-1">{{ "{" }}{{ var }}{{ "}" }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <code>{name}</code>, <code>{company}</code>, <code>{your_name}</code>
+                                {% endif %}
+                                <br>
+                                Note: LinkedIn limits connection messages to 300 characters.
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="linkedin_template" class="form-label">LinkedIn Message</label>
+                                <textarea class="form-control" id="linkedin_template" name="linkedin_template" rows="4" required>{{ settings.get('linkedin_template', 'Hi {name}, I came across {company} and was impressed by your work. I\'d love to connect and discuss potential opportunities to collaborate. - {your_name}') }}</textarea>
+                                <div id="charCount" class="form-text">0/300 characters</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Message Templates
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Details Modal -->
+<div class="modal fade" id="contactDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="contactDetails">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Basic Information</h6>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Name:</th>
+                                    <td id="modal-name"></td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td id="modal-email"></td>
+                                </tr>
+                                <tr>
+                                    <th>Company:</th>
+                                    <td id="modal-company"></td>
+                                </tr>
+                                <tr>
+                                    <th>Website:</th>
+                                    <td id="modal-website"></td>
+                                </tr>
+                                <tr>
+                                    <th>LinkedIn:</th>
+                                    <td id="modal-linkedin"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Processing Status</h6>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Website Visited:</th>
+                                    <td id="modal-website-visited"></td>
+                                </tr>
+                                <tr>
+                                    <th>Contact Form Found:</th>
+                                    <td id="modal-form-found"></td>
+                                </tr>
+                                <tr>
+                                    <th>Form Submitted:</th>
+                                    <td id="modal-form-submitted"></td>
+                                </tr>
+                                <tr>
+                                    <th>LinkedIn Connected:</th>
+                                    <td id="modal-linkedin-connected"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6>Messages</h6>
+                            <div class="accordion" id="messagesAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWebsite">
+                                            Website Visit Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseWebsite" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-website-message">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm">
+                                            Contact Form Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseForm" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-form-message">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSubmit">
+                                            Form Submission Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSubmit" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-submit-message">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLinkedIn">
+                                            LinkedIn Message
+                                        </button>
+                                    </h2>
+                                    <div id="collapseLinkedIn" class="accordion-collapse collapse" data-bs-parent="#messagesAccordion">
+                                        <div class="accordion-body" id="modal-linkedin-message">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Refresh button
+        $('#refreshBtn').click(function() {
+            location.reload();
+        });
+
+        // Auto-refresh status
+        function checkProcessingStatus() {
+            $.getJSON('/api/status', function(data) {
+                if (data.is_processing) {
+                    // If processing, refresh the page every 10 seconds
+                    setTimeout(function() {
+                        location.reload();
+                    }, 10000);
+                }
+            });
+        }
+
+        // Check status initially and set up refresh if needed
+        checkProcessingStatus();
+
+        // View details button
+        $('.view-details-btn').click(function() {
+            const contactId = $(this).data('contact-id');
+            const contact = {{ contacts|tojson }}.find(c => c.id === contactId);
+
+            if (contact) {
+                $('#modal-name').text(contact.name || 'N/A');
+                $('#modal-email').text(contact.email || 'N/A');
+                $('#modal-company').text(contact.company || 'N/A');
+                $('#modal-website').html(contact.website_url ?
+                    `<a href="${contact.website_url}" target="_blank">${contact.website_url}</a>` : 'N/A');
+                $('#modal-linkedin').html(contact.linkedin_url ?
+                    `<a href="${contact.linkedin_url}" target="_blank">${contact.linkedin_url}</a>` : 'N/A');
+
+                $('#modal-website-visited').text(formatStatus(contact.website_visited));
+                $('#modal-form-found').text(formatStatus(contact.contact_form_found));
+                $('#modal-form-submitted').text(formatStatus(contact.contact_form_submitted));
+                $('#modal-linkedin-connected').text(formatStatus(contact.linkedin_connected));
+
+                $('#modal-website-message').text(contact.website_visited_message || 'No message');
+                $('#modal-form-message').text(contact.contact_form_found_message || 'No message');
+                $('#modal-submit-message').text(contact.contact_form_submitted_message || 'No message');
+                $('#modal-linkedin-message').text(contact.linkedin_connected_message || 'No message');
+
+                const modal = new bootstrap.Modal(document.getElementById('contactDetailsModal'));
+                modal.show();
+            }
+        });
+
+        // Retry button
+        $('.retry-btn').click(function() {
+            const contactId = $(this).data('contact-id');
+
+            $.getJSON(`/api/retry/${contactId}`, function(data) {
+                if (data.success) {
+                    alert('Contact queued for retry. The page will refresh shortly.');
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            });
+        });
+
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('linkedin_password');
+
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle eye icon
+                const eyeIcon = this.querySelector('i');
+                eyeIcon.classList.toggle('bi-eye');
+                eyeIcon.classList.toggle('bi-eye-slash');
+            });
+        }
+
+        // Character counter for LinkedIn message
+        const linkedinTemplate = document.getElementById('linkedin_template');
+        const charCount = document.getElementById('charCount');
+
+        if (linkedinTemplate && charCount) {
+            function updateCharCount() {
+                const count = linkedinTemplate.value.length;
+                charCount.textContent = `${count}/300 characters`;
+
+                if (count > 300) {
+                    charCount.classList.add('text-danger');
+                } else {
+                    charCount.classList.remove('text-danger');
+                }
+            }
+
+            linkedinTemplate.addEventListener('input', updateCharCount);
+            updateCharCount(); // Initial count
+        }
+
+        // Helper function to format status
+        function formatStatus(status) {
+            if (status === true) return 'Success';
+            if (status === false) return 'Failed';
+            return 'Pending';
+        }
+
+        // Preserve active tab after form submission
+        const hash = window.location.hash;
+        if (hash) {
+            $(`#dashboardTabs a[href="${hash}"]`).tab('show');
+        }
+
+        // Update URL when tab changes
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+            history.pushState(null, null, $(this).attr('data-bs-target'));
+        });
+    });
+</script>
+{% endblock %}

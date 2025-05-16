@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Connector Group - Welcome Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            position: relative;
+        }
+
+        .brand-blue {
+            color: #1f89d7;
+        }
+
+        .brand-bg-blue {
+            background-color: #1f89d7;
+        }
+
+        .section-divider {
+            border-top: 2px dashed #1f89d7;
+            margin: 2rem 0;
+            opacity: 0.3;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .shadow-soft {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #1f89d7;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Enhanced styling for a more professional look */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(31, 137, 215, 0.2);
+        }
+
+        .alert-banner {
+            background: linear-gradient(135deg, #1f89d7 0%, #157bbf 100%);
+            border-left: 6px solid #0f5a8e;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-continue {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-continue:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .btn-continue:hover:before {
+            left: 100%;
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(31, 137, 215, 0.4);
+        }
+
+        .sticky-alert {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background-color: white !important;
+            }
+
+            .gradient-bg {
+                background: white !important;
+            }
+
+            .shadow-soft {
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Alert Banner -->
+    <div class="sticky-alert no-print">
+        <div class="alert-banner text-white p-4 shadow-lg mb-4 mx-auto max-w-6xl">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-2xl mr-4"></i>
+                    <div>
+                        <h3 class="font-bold text-lg">Important: Please Read This Guide Completely</h3>
+                        <p>This guide contains essential information about our partnership. After reviewing, click the "Continue Onboarding" button at the bottom to proceed.</p>
+                    </div>
+                </div>
+                <button onclick="this.parentElement.parentElement.style.display='none'" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-1 transition-all">
+                    <i class="fas fa-times text-white p-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cover Page -->
+    <div class="min-h-screen gradient-bg flex flex-col items-center justify-center p-8 page-break">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <img src="https://storage.googleapis.com/msgsndr/C4EL78WQvWpqMgSsv2kE/media/680f685733fee4f1f74411df.png" alt="The Connector Group Logo" class="w-48 mx-auto" style="height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            </div>
+            <h1 class="text-5xl font-bold mb-6 brand-blue">Welcome to The Connector Group</h1>
+            <p class="text-2xl text-gray-600 mb-12">Your Partner in Business Growth & Success</p>
+            <div class="bg-white p-8 rounded-xl shadow-soft max-w-2xl mx-auto">
+                <p class="text-lg mb-4">"Empowering business owners to build sustainable, profitable businesses."</p>
+                <p class="text-gray-600">This guide contains everything you need to know about our partnership and how we'll help grow your business.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-star text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">Introduction: Your Success is Our Mission</h2>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft mb-8">
+            <p class="text-lg mb-4">At The Connector Group, we empower business owners to build sustainable, profitable businesses. Our core values—<span class="font-semibold brand-blue">empowerment, collaboration, and innovation</span>—guide everything we do.</p>
+
+            <p class="text-lg mb-4">With extensive experience in digital marketing and business development, we help you focus on your craft while we handle the business side. Our proven systems generate reliable, high-quality leads, so you don't have to juggle marketing, follow-ups, and client management alone.</p>
+
+            <p class="text-lg mb-4">We're more than a service—we're your partners in success. Whether you're a seasoned professional or just starting out, we provide the support, tools, and guidance you need to grow.</p>
+
+            <p class="text-lg font-semibold brand-blue">This isn't just about more bookings—it's about building a thriving business, a strong brand, and a career that brings success and freedom.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="brand-bg-blue text-white icon-circle mb-4">
+                    <i class="fas fa-hand-holding-heart text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 brand-blue">The Partnership</h3>
+                <p>A relationship built on growth, trust, and mutual success. We're invested in your business as much as you are.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="brand-bg-blue text-white icon-circle mb-4">
+                    <i class="fas fa-users text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 brand-blue">A Team That Has Your Back</h3>
+                <p>You get a personal success manager dedicated to your business through every stage of your journey.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Partnership -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-handshake text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">The Partnership: A Relationship Built on Growth</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 shadow-soft text-center">
+                <div class="brand-bg-blue text-white icon-circle mb-4 mx-auto">
+                    <i class="fas fa-user-tie text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 brand-blue">Personal Success Manager</h3>
+                <p>Dedicated support for troubleshooting, strategy, and celebrating your wins.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft text-center">
+                <div class="brand-bg-blue text-white icon-circle mb-4 mx-auto">
+                    <i class="fas fa-chart-line text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 brand-blue">Custom Growth Plan</h3>
+                <p>Tailored strategies based on your specific business, goals, and challenges.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft text-center">
+                <div class="brand-bg-blue text-white icon-circle mb-4 mx-auto">
+                    <i class="fas fa-tasks text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 brand-blue">Done-For-You Services</h3>
+                <p>We handle marketing, ads, client follow-ups so you can focus on your craft.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">We Handle the Hard Work for You</h3>
+            <p class="mb-4">You no longer have to stress about marketing, ads, or client follow-ups. We take care of those details so you can focus on what you do best—your craft.</p>
+
+            <ul class="grid md:grid-cols-2 gap-4 mb-6">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Client bookings and reminders</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Targeted marketing campaigns</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Lead follow-up and conversion</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Consistent schedule building</span>
+                </li>
+            </ul>
+
+            <p class="font-semibold brand-blue">Our done-for-you services ensure your schedule builds consistently without you having to chase leads.</p>
+        </div>
+    </div>
+
+    <!-- Your Journey -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-route text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">Your Journey With The Connector Group</h2>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft mb-8">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">What to Expect</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 brand-blue">Sustained Growth</h4>
+                    <p>We make sure you stay consistently booked with strategies that bring in a steady stream of clients.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3 brand-blue">Partnership for Success</h4>
+                    <p>You're gaining a partner who will help transform how you run your business.</p>
+                </div>
+            </div>
+
+            <p class="font-semibold brand-blue">From lead generation to client bookings, we handle the essentials so you can focus on delivering outstanding services.</p>
+        </div>
+
+        <h3 class="text-2xl font-bold mb-6 brand-blue text-center">Your First 30 Days</h3>
+
+        <div class="timeline-item">
+            <div class="timeline-dot brand-bg-blue">
+                <i class="fas fa-calendar-week"></i>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h4 class="text-xl font-bold mb-2 brand-blue">Weeks 1-2</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Account integration and setup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Initial consultations with our team</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Marketing campaign launch</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Integration with our lead follow-up system</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot brand-bg-blue">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h4 class="text-xl font-bold mb-2 brand-blue">Weeks 3-4</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Outreach strategy implementation</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Digital presence optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Performance review and analysis</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Marketing strategy adjustments</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft mt-8">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">This is Just the Beginning</h3>
+            <p class="mb-4">You didn't start your business to struggle—you started it to thrive. With The Connector Group by your side, you have the tools, support, and strategies to build a business that works for you.</p>
+
+            <p class="font-semibold brand-blue mb-4">This is more than just marketing—it's about freedom: freedom from chasing clients, financial stress, and the ability to create a business that fits your life.</p>
+
+            <p>As you grow your business, remember to maintain balance and avoid burnout. Schedule personal time, prioritize self-care, and stay healthy to keep your energy and creativity high.</p>
+
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                <p class="text-center font-semibold brand-blue">We're excited to be on this journey with you, and we can't wait to see your business flourish!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brand Building -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-chess-queen text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">How We Build Your Professional Brand (So You Don't Have To)</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="flex items-start">
+                    <div class="brand-bg-blue text-white icon-circle mr-4 flex-shrink-0">
+                        <i class="fas fa-globe text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 brand-blue">We Manage Your Digital Presence</h3>
+                        <p>Our team creates and maintains a cohesive look and message across all your digital platforms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="flex items-start">
+                    <div class="brand-bg-blue text-white icon-circle mr-4 flex-shrink-0">
+                        <i class="fas fa-comments text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 brand-blue">We Handle All Client Communications</h3>
+                        <p>You'll never need to worry about missed messages or delayed responses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="flex items-start">
+                    <div class="brand-bg-blue text-white icon-circle mr-4 flex-shrink-0">
+                        <i class="fas fa-user-friends text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 brand-blue">We Coordinate Your Client Experience</h3>
+                        <p>From first contact to follow-up, we manage the entire client journey.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="flex items-start">
+                    <div class="brand-bg-blue text-white icon-circle mr-4 flex-shrink-0">
+                        <i class="fas fa-lightbulb text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 brand-blue">We Keep You Current in Your Industry</h3>
+                        <p>Our specialists track industry trends to position your business at the cutting edge.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="flex items-start">
+                    <div class="brand-bg-blue text-white icon-circle mr-4 flex-shrink-0">
+                        <i class="fas fa-crown text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 brand-blue">We Build Your Authority in the Market</h3>
+                        <p>We position you as a leader by creating valuable content showcasing your expertise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <div class="flex items-start">
+                    <div class="brand-bg-blue text-white icon-circle mr-4 flex-shrink-0">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 brand-blue">We Implement the Right Technology</h3>
+                        <p>We select and manage all digital tools needed for streamlined operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">The Power of Social Media Ads for Your Local Business</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h4 class="font-bold mb-2 brand-blue">Reach Your Local Market</h4>
+                    <p>Facebook's powerful targeting tools allow us to precisely reach potential clients in your local area.</p>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h4 class="font-bold mb-2 brand-blue">Generate Qualified Leads</h4>
+                    <p>Facebook ads bring in leads interested in your services, providing a steady stream of potential clients.</p>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h4 class="font-bold mb-2 brand-blue">Convert Leads to Booked Appointments</h4>
+                    <p>Our team follows up with each lead, nurturing the relationship and converting them into customers.</p>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-5">
+                    <h4 class="font-bold mb-2 brand-blue">Measure and Optimize</h4>
+                    <p>Detailed analytics help us track performance and make data-driven decisions to optimize your marketing.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white border border-blue-200 rounded-xl p-6">
+                <h4 class="text-xl font-bold mb-3 brand-blue">Facebook Ad Spend ROI Example</h4>
+                <p>Let's say you spend $100 on Facebook ads and generate 10 potential leads. Around 2-3 may book immediately, providing an initial return on investment (ROI). Through consistent follow-ups, our team can help convert more of these potential clients, turning that initial $100 ad spend into a much greater return.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mindset & Resilience -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-brain text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">Thinking Like a Marathoner, Not a Sprinter</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Play the Long Game</h3>
+                <p>Don't worry about slow weeks, focus on the bigger picture and steady, predictable growth.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Consistency Breeds Trust</h3>
+                <p>Provide a seamless, high-quality experience to build a trustworthy brand.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Shift Your Mindset</h3>
+                <p>Success is not about chasing quick wins, but building a sustainable, long-term business.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Small Efforts, Massive Results</h3>
+                <p>Every client interaction and appointment builds the foundation for future success.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft mb-8">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">Embracing Resilience and Sticking to the Game Plan</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Sticking to the Game Plan</h4>
+                    <p>Trust the process and stay consistent, even when results aren't immediate. Consistency is key to long-term success.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">The Power of Consistency</h4>
+                    <p>Don't abandon your strategy when things get tough. Adjust, refine, and keep moving forward.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Problem-Solving Like a Pro</h4>
+                    <p>Every challenge has a solution. We can help you navigate through slow bookings, difficult clients, and feeling overwhelmed.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Embracing Resilience</h4>
+                    <p>Setbacks are opportunities in disguise. See obstacles as stepping stones for growth and improvement.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 rounded-xl p-8 shadow-soft">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">Resilient Business Owners: Thriving Through Challenges</h3>
+
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <i class="fas fa-arrow-right brand-blue mt-1 mr-3"></i>
+                    <div>
+                        <h4 class="font-semibold brand-blue">Adapt and Keep Moving</h4>
+                        <p>When bookings slow down, they don't quit—they refine their strategy. When they face challenges, they adapt and keep moving.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <i class="fas fa-arrow-right brand-blue mt-1 mr-3"></i>
+                    <div>
+                        <h4 class="font-semibold brand-blue">Prioritize Client Experience</h4>
+                        <p>When competition increases, they double down on client experience and service quality.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <i class="fas fa-arrow-right brand-blue mt-1 mr-3"></i>
+                    <div>
+                        <h4 class="font-semibold brand-blue">Trust the Process</h4>
+                        <p>The key to success? Trust the process, follow our game plan, and stay committed. The work you put in today will pay off—but only if you stick with it.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <i class="fas fa-arrow-right brand-blue mt-1 mr-3"></i>
+                    <div>
+                        <h4 class="font-semibold brand-blue">Focus on Long-Term Growth</h4>
+                        <p>Resilient business owners think long-term. They don't chase quick wins or let small setbacks discourage them.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-white rounded-lg border border-blue-200">
+                <p class="text-center font-bold brand-blue text-lg">Success Belongs to Those Who Stay the Course.</p>
+                <p class="text-center mt-2">Most businesses that struggle do so because they give up too soon. The difference between success and failure isn't talent—it's resilience.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Approach -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-chart-network text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">The Connector Group's Approach to Business Growth</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Attract High-Quality Leads</h3>
+                <p>Our expertly managed ad campaigns bring you potential clients who are ready to book your services.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Engage and Nurture Leads</h3>
+                <p>Through personalized follow-ups and strategic nurturing, we ensure potential clients are properly guided toward becoming customers.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Build Strong Client Connections</h3>
+                <p>Strategies to create positive client experiences, including personalized interactions, consistent reliability, exceptional service, and providing a welcoming environment.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Strategic Business Growth</h3>
+                <p>As your business scales, our team works with you to optimize marketing and client management systems that fit your specific needs.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">The Connector Group: Your One-Stop Shop for Success</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">A Team That Works for You</h4>
+                    <p>Our team of experts is dedicated to helping you succeed without the guesswork. We have marketing experts, lead nurturing specialists, and business growth advisors to ensure your business thrives.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Consistent Client Acquisition</h4>
+                    <p>Our team creates and manages ad campaigns that attract high-quality leads and turn them into booked clients. No more wasting money on ads that don't convert.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Hassle-Free Client Follow-Ups</h4>
+                    <p>Our team follows up with potential clients and ensures they book an appointment. You never have to chase clients—our team keeps your schedule full.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Hands-On Support Every Step</h4>
+                    <p>Whether you need technical help, strategy advice, or guidance, our team is always available. We don't just give you tools—we help you integrate them into your business seamlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why We're Better -->
+    <div class="max-w-4xl mx-auto p-8">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-trophy text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">Why We're Better Than Our Competitors</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Use Partner's Own Images</h3>
+                <p>By using your own images in our marketing materials, your brand stays authentic and personal, building trust with potential clients and maintaining a consistent, recognizable identity.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Dedicated Partnership Team</h3>
+                <p>We're more than just a service provider - we're your dedicated team, supporting you in every step of your business journey with personalized advice, strategy, and hands-on help, not just marketing automation.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">100% Partner Revenue</h3>
+                <p>We believe in empowering our partners by allowing them to keep 100% of the revenue from their services, giving them full control over their earnings and the ability to reinvest in their business.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Hassle-Free Booking</h3>
+                <p>We take care of all client communication and booking management, allowing you to focus entirely on delivering exceptional service and expanding your business.</p>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-soft">
+                <h3 class="text-xl font-bold mb-3 brand-blue">Centralized Business Management</h3>
+                <p>Our custom-made management system streamlines your operations. It allows you to manage bookings, communicate with clients, and process payments all in one place.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft">
+            <h3 class="text-2xl font-bold mb-4 brand-blue">Why This is the Best Business Decision You've Made</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">More Bookings, Less Stress</h4>
+                    <p>Get more bookings without the stress of finding clients. We'll provide a steady stream of clients so you can focus on what you do best.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">A Valuable Investment</h4>
+                    <p>You've invested in your success by choosing The Connector Group as your partner, and we're here to make sure that investment pays off.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Dedicated Marketing Team</h4>
+                    <p>Our marketing team works for you every day, freeing you up to focus on perfecting your craft instead of chasing leads.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Sustaining Long-Term Growth</h4>
+                    <p>Our ongoing support ensures you don't plateau. With regular strategy check-ins, we'll keep your business evolving and thriving.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">From Solo Professional to Full-Fledged Business</h4>
+                    <p>Need to hire more staff or expand your services? We'll help you streamline operations and keep bookings flowing as you grow.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-2 brand-blue">Scaling Your Revenue</h4>
+                    <p>Ready to boost your revenue by attracting more high-value clients? We'll adjust your ad strategies and client management systems to support your increased demand.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome & Closing -->
+    <div class="max-w-4xl mx-auto p-8 page-break">
+        <div class="flex items-center mb-8">
+            <div class="brand-bg-blue text-white icon-circle">
+                <i class="fas fa-home text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold ml-4 brand-blue">Welcome to The Connector Group Family</h2>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft mb-8 text-center">
+            <div class="brand-bg-blue rounded-full p-6 w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-heart text-white text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 brand-blue">The Connector Group Family</h3>
+            <p class="mb-4">You've made a great choice by becoming part of our esteemed family. Together, we'll help your business thrive.</p>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mt-8">
+                <div class="bg-blue-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold mb-3 brand-blue">Get More Clients</h4>
+                    <p>We'll guide you every step of the way to help you attract more clients for your business.</p>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold mb-3 brand-blue">Grow Your Business</h4>
+                    <p>With our support, you'll be able to grow your business for the long term and achieve lasting success.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-soft text-center">
+            <p class="text-2xl font-bold mb-6 brand-blue">Remember, success is a journey, not a destination.</p>
+            <p class="text-lg mb-6">Stay committed, trust the process, and watch your business transform.</p>
+            <p class="text-xl font-semibold brand-blue">We can't wait to be a part of your journey to success!</p>
+
+            <div class="mt-8 flex justify-center">
+                <div class="brand-bg-blue text-white p-4 rounded-full">
+                    <i class="fas fa-rocket text-3xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Continue Onboarding Button -->
+    <div class="fixed bottom-6 right-6 z-50 no-print">
+        <a href="javascript:completeOnboarding()" class="btn-continue brand-bg-blue text-white px-8 py-4 rounded-full shadow-lg hover:bg-blue-600 transition-all flex items-center font-semibold text-lg">
+            <i class="fas fa-arrow-right mr-3"></i> Continue Onboarding
+        </a>
+    </div>
+
+    <!-- Floating Navigation -->
+    <div class="fixed left-6 top-1/2 transform -translate-y-1/2 z-50 no-print hidden md:block">
+        <div class="bg-white rounded-xl shadow-lg p-3">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="block p-2 hover:bg-blue-50 rounded-lg mb-2 text-gray-600 hover:text-blue-600" title="Top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="block p-2 hover:bg-blue-50 rounded-lg text-gray-600 hover:text-blue-600" title="Bottom">
+                <i class="fas fa-arrow-down"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to handle printing and onboarding
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any interactive functionality if needed
+
+            // Fix for all close (X) buttons
+            fixCloseButtons();
+        });
+
+        // Function to fix all close buttons
+        function fixCloseButtons() {
+            console.log("Fixing all close buttons...");
+
+            // Get all close buttons (with fa-times or x icon or close text)
+            const closeButtons = document.querySelectorAll('button i.fa-times, button i.fas.fa-times, button.close, button[class*="close"], button:has(i.fa-times)');
+
+            closeButtons.forEach(function(element) {
+                console.log("Found close button:", element);
+
+                // Get the actual button (could be the icon's parent)
+                const button = element.tagName === 'BUTTON' ? element : element.closest('button');
+
+                if (button) {
+                    // Remove existing onclick attribute
+                    button.removeAttribute('onclick');
+
+                    // Add new click event listener
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log("Close button clicked");
+
+                        // Find the closest modal/alert parent
+                        let modal = button.closest('.modal, .alert, .alert-banner, [class*="modal"], [id*="modal"]');
+
+                        if (modal) {
+                            console.log("Found modal to close:", modal);
+                            modal.style.display = 'none';
+                        } else {
+                            // Try common patterns - go up multiple parent levels
+                            let parent = button.parentElement;
+                            for (let i = 0; i < 5; i++) {
+                                if (parent) {
+                                    console.log("Trying parent level", i+1, parent);
+                                    parent.style.display = 'none';
+                                    parent = parent.parentElement;
+                                }
+                            }
+                        }
+                    });
+
+                    console.log("Fixed close button:", button);
+                }
+            });
+
+            // Direct fix for the alert banner close button
+            const alertCloseButton = document.querySelector('.alert-banner button');
+            if (alertCloseButton) {
+                alertCloseButton.addEventListener('click', function() {
+                    const banner = document.querySelector('.alert-banner');
+                    if (banner) banner.style.display = 'none';
+                });
+            }
+        }
+
+        function completeOnboarding() {
+            // Save completion status
+            localStorage.setItem('guide_complete', 'true');
+            localStorage.setItem('guide_timestamp', new Date().toISOString());
+
+            // Mark the step as completed in the onboarding process
+            localStorage.setItem('onboarding_guide_completed', 'true');
+
+            // Update guide step status
+            try {
+                // Get current onboarding progress if it exists
+                let onboardingProgress = JSON.parse(localStorage.getItem('onboarding_progress') || '{}');
+
+                // Update the guide step to completed
+                onboardingProgress.guide = 'Completed';
+
+                // Save back to localStorage
+                localStorage.setItem('onboarding_progress', JSON.stringify(onboardingProgress));
+                console.log('Guide step marked as complete in onboarding progress');
+            } catch (error) {
+                console.error('Error updating onboarding progress:', error);
+            }
+
+            // Alert the user
+            alert('Thank you for reviewing our Welcome Guide! You will now be redirected to continue the onboarding process.');
+
+            // Redirect to the onboarding portal
+            window.location.href = 'onboardingportaltest.html';
+        }
+    </script>
+
+    <!-- Fix for modal close buttons -->
+    <script src="fix-guide-modal.js"></script>
+</body>
+</html>

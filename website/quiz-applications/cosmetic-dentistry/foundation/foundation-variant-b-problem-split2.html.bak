@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Through Cosmetic Dentistry Growth Barriers | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; margin: 0; padding: 0; }
+        .result-container { padding: 40px 25px; max-width: 850px; margin: 30px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 6px 25px rgba(0,0,0,0.07); }
+        .result-container h1 { font-family: 'Montserrat', sans-serif; color: #d9534f; font-size: clamp(2em, 4.5vw, 2.7em); margin-bottom: 20px; text-align: center; line-height: 1.3; }
+        .result-container h2 { font-family: 'Montserrat', sans-serif; color: #c94c4c; font-size: clamp(1.6em, 3.5vw, 2.1em); margin-top: 35px; margin-bottom: 15px; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; }
+        .result-container p { font-size: clamp(1.05em, 2.1vw, 1.12em); color: #3a3a3a; margin-bottom: 18px; line-height: 1.75; }
+        .result-container ul { list-style: none; padding-left: 0; margin-bottom: 20px; }
+        .result-container li { margin-bottom: 12px; padding-left: 28px; position: relative; font-size: clamp(1em, 2vw, 1.08em); }
+        .result-container li::before { content: '⚠️'; color: #d9534f; position: absolute; left: 0; font-weight: bold; font-size: 1.1em; top: 2px; }
+        .empathy-box { background-color: #fff3f3; border-left: 6px solid #d9534f; padding: 25px; margin: 30px 0; border-radius: 6px; }
+        .empathy-box h2 { margin-top: 0; color: #c94c4c; }
+        .cta-section { text-align: center; padding: 40px 25px; background: linear-gradient(135deg, #c94c4c 0%, #a93737 100%); border-radius: 10px; margin-top: 40px; color: #fff; }
+        .cta-button.primary { background-color: #5cb85c; border: none; color: #fff !important; padding: 18px 40px; font-size: 1.3em; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .cta-button.primary:hover { background-color: #4cae4c; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+        .user-name-emphasis { font-weight: 900; color: #d9534f; }
+        .solution-highlight li::before { content: '💡'; color: #5cb85c; left: 3px; top: 0; font-size: 1.3em; }
+        .testimonial { background: #fdf7f7; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.07); border-left: 4px solid #e74c3c; }
+        .testimonial p:first-child { font-style: italic; font-size: 1.1em; color: #555; }
+        .testimonial p:last-child { font-weight: bold; margin-top: 15px; color: #333; text-align: right; }
+
+        .barrier-box {
+            background-color: #fff3f3;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .barrier-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #d9534f;
+        }
+
+        .barrier-box h3 {
+            color: #c94c4c;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .solution-box {
+            background-color: #eaf7ea;
+            border-left: 6px solid #5cb85c;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+
+        .solution-box h2 {
+            margin-top: 0;
+            color: #5cb85c;
+            border-bottom: none;
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="result-container">
+        <div class="personalized-greeting" id="personalized-greeting" style="display: none; text-align: center; margin-bottom: 1.5em; font-size: 1.3em; color: #555;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const firstName = urlParams.get('firstName');
+                const userNameSpan = document.getElementById('user-first-name');
+                const greetingDiv = document.getElementById('personalized-greeting');
+                if (firstName) {
+                    const decodedName = decodeURIComponent(firstName);
+                    if (userNameSpan) userNameSpan.textContent = decodedName;
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Hi <span class="user-name-emphasis">${decodedName}</span>, let's break through your growth barriers.`;
+                        greetingDiv.style.display = 'block';
+                    }
+                } else {
+                    if (userNameSpan) userNameSpan.textContent = "Doctor"; // Fallback
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Hi <span class="user-name-emphasis">Doctor</span>, let's break through your growth barriers.`;
+                        greetingDiv.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+
+        <h1>Breaking Through Your Cosmetic Dentistry Growth Barriers, <span id="user-first-name" class="user-name-emphasis">Doctor</span></h1>
+        <p style="font-size:1.2em; color:#333; font-weight:normal; margin-bottom: 1.8em; text-align:center;">
+           Your quiz responses reveal you're facing specific barriers that are preventing your cosmetic practice from reaching its full potential. Let's identify and overcome them.
+        </p>
+
+        <div class="empathy-box">
+            <h2>The Frustrating Reality of Building a Cosmetic Practice</h2>
+            <p>You've invested in your clinical skills and are passionate about cosmetic dentistry. Yet despite your expertise, you're experiencing challenges that are holding your practice back from the growth you know is possible.</p>
+            <p>This disconnect between your clinical capabilities and your practice's performance isn't your fault - it's the result of specific growth barriers that many cosmetic dentists face when building their foundation.</p>
+        </div>
+
+        <h2>The 4 Critical Barriers Blocking Your Growth</h2>
+
+        <div class="barrier-box">
+            <h3>Barrier #1: Inconsistent Patient Acquisition</h3>
+            <p>You're experiencing unpredictable ups and downs in new patient inquiries, making it impossible to plan staffing, resources, or growth initiatives with confidence. This feast-or-famine cycle creates stress and prevents sustainable practice development.</p>
+        </div>
+
+        <div class="barrier-box">
+            <h3>Barrier #2: Attracting the Wrong Patients</h3>
+            <p>Many of your inquiries come from price shoppers or patients seeking basic services rather than the high-value cosmetic procedures you excel at. This misalignment wastes your time and resources on consultations that rarely convert to the cases you want.</p>
+        </div>
+
+        <div class="barrier-box">
+            <h3>Barrier #3: Ineffective Marketing Approach</h3>
+            <p>Your current marketing efforts aren't consistently reaching the right audience with the right message. Whether you're trying various tactics without a cohesive strategy or relying too heavily on word-of-mouth, the results are underwhelming.</p>
+        </div>
+
+        <div class="barrier-box">
+            <h3>Barrier #4: Competitive Market Positioning</h3>
+            <p>In a crowded market, your practice isn't standing out as the obvious choice for cosmetic dentistry. Without a distinctive position and compelling message, potential patients have no clear reason to choose you over competitors.</p>
+        </div>
+
+        <div class="solution-box">
+            <h2>The Solution: A Systematic Approach to Breaking These Barriers</h2>
+            <p>These barriers aren't insurmountable - they're actually quite common among cosmetic dentists building their practice foundation. The key to breaking through them is implementing a systematic approach specifically designed for cosmetic dental practices.</p>
+            <p>Our "Barrier Breakthrough System" is a comprehensive solution that addresses each of these obstacles with proven strategies and done-for-you implementation.</p>
+        </div>
+
+        <h2>How the Barrier Breakthrough System Works</h2>
+        <ul class="solution-highlight">
+            <li><strong>Targeted Patient Attraction:</strong> We implement precision-targeted campaigns that consistently attract your ideal cosmetic patients - those seeking and valuing high-quality aesthetic procedures.</li>
+            <li><strong>Strategic Positioning:</strong> We develop a distinctive market position that clearly communicates your unique value and expertise, making your practice the obvious choice for cosmetic dentistry.</li>
+            <li><strong>Automated Patient Journey:</strong> We create seamless systems that nurture potential patients from initial awareness through consultation booking, maximizing conversions without consuming your time.</li>
+            <li><strong>Reputation Amplification:</strong> We systematically build and showcase your expertise and results, establishing you as the premier cosmetic dentist in your area.</li>
+        </ul>
+
+         <div class="testimonial">
+            <p>"I was hitting the exact same barriers - inconsistent inquiries, price shoppers, and struggling to stand out. The systematic approach from TurnClicksToClients completely transformed my practice. We now have a steady flow of qualified cosmetic patients and a clear market position that makes us the obvious choice."</p>
+            <p>- Dr. Michael R., Elite Smile Design</p>
+        </div>
+
+        <div class="cta-section">
+            <style>
+                .cta-section p, .cta-section ul, .cta-section h2, .cta-section h3, .cta-section li, .cta-section div { color: #fff !important; }
+                .cta-section .cta-button.primary { background-color: #5cb85c; color: #fff !important; font-weight: bold; text-shadow: none; }
+                .cta-section .cta-button.primary:hover { background-color: #4cae4c; }
+                .cta-section span[style*="color: #5cb85c"] { color: #5cb85c !important; }
+            </style>
+            <h2 style="font-size: 2.2em; margin-bottom: 25px;">Ready to Stop Missing Out on the Success Other Professionals Are Already Enjoying?</h2>
+            
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You're Currently Missing Out On:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you worry about inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day you wait is another day of missed opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p style="font-size: 1.2em; margin: 0 auto 25px auto; max-width: 700px; opacity: 0.95;">Stop struggling with inconsistent results and missed opportunities. Let's implement a proven system to break through the barriers holding your cosmetic practice back.</p>
+
+            <div style="background: rgba(255,255,255,0.08); padding: 25px; border-radius: 8px; margin: 30px 0; display: inline-block; border: 1px solid rgba(255,255,255,0.2);">
+                <h3 style="color: #f0ad4e; margin-bottom: 15px; font-size: 1.6em;">What You Gain by Applying:</h3>
+                 <ul style="list-style: none; padding: 0; text-align: left; max-width: 480px; margin: 0 auto; font-size: 1.1em;">
+                    <li style="margin-bottom: 10px; padding-left: 20px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f0ad4e;">✓</span> A clear strategy to overcome your specific growth barriers.</li>
+                    <li style="margin-bottom: 10px; padding-left: 20px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f0ad4e;">✓</span> A systematic approach to attracting ideal cosmetic patients.</li>
+                    <li style="margin-bottom: 10px; padding-left: 20px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f0ad4e;">✓</span> The foundation for sustainable practice growth and market leadership.</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.15em; margin: 25px 0; font-weight: bold;">Let us help you transform these barriers into stepping stones for success. <span style="color: #f0ad4e;">Spaces are limited to ensure dedicated service.</span></p>
+
+            <a href="../../../universal-application-form.html?niche=cosmetic-dentistry&bucket=foundation&variant=b-problem&split=2&system=BarrierBreakthroughSystem&source_page=foundation-variant-b-problem-split2" class="cta-button primary" id="apply-button" onclick="trackApplicationClick(event)">Apply to Break Through Your Barriers</a>
+             <div style="font-size: 1.1em; color: #fff; margin-top: 15px; font-weight: 600; letter-spacing: 0.5px;">TurnClicksToClients: Your Partner in Foundational Practice Growth</div>
+
+            <div style="margin-top: 30px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; font-size: 0.95em;">🔒 Take the first step. Your application is confidential.</p>
+            </div>
+        </div>
+    
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Solve This Problem (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div></main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <div id="chat-widget-button">
+        <span>💬</span> Experiencing These Issues? Let's Talk Solutions!
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Discuss Your Growth Barriers</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>Struggling with the barriers we've identified?</strong><br>
+                    Our Foundation Specialists can help diagnose your specific challenges and outline solutions.
+                    Mon-Fri, 10am - 5pm EST: Near-immediate response.<br>
+                    After hours & weekends: We'll prioritize your inquiry next business morning.<br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled>Select your industry...</option>
+                             <option value="Cosmetic Dentists" selected>Cosmetic Dentists</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Practice Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone</label>
+                        <input type="tel" id="chat-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Which growth barrier is most challenging for your practice?</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., I'm struggling with inconsistent patient flow. I'm attracting too many price shoppers. My marketing isn't working effectively."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Chat About My Growth Barriers</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Your message has been sent. A specialist will connect with you soon to discuss your growth barriers.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Supabase initialization
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        let supabaseClient = null;
+
+        // Initialize Supabase when document loads
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof supabase !== 'undefined' && supabase.createClient) {
+                    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    console.log("Supabase client initialized for user flow tracking.");
+                } else {
+                    console.error("Supabase client library not loaded for user flow tracking.");
+                }
+            } catch (e) {
+                console.error("Error initializing Supabase client:", e.message);
+            }
+
+            // Parse URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            window.userParams = {
+                firstName: urlParams.get('firstName') || '',
+                lastName: urlParams.get('lastName') || '',
+                businessName: urlParams.get('businessName') || '',
+                score: urlParams.get('score') || '',
+                bucket: urlParams.get('bucket') || 'foundation',
+                variant: urlParams.get('variant') || 'b-problem',
+                split: urlParams.get('split') || '2',
+                source: urlParams.get('source') || '',
+                track_source: urlParams.get('track_source') || ''
+            };
+
+            // Record page view
+            trackPageView();
+        });
+
+        // Track when user views this page
+        function trackPageView() {
+            if (!supabaseClient) return;
+
+            supabaseClient
+                .from('tctc_user_flow')
+                .insert([{
+                    user_first_name: window.userParams.firstName,
+                    user_last_name: window.userParams.lastName,
+                    user_business_name: window.userParams.businessName,
+                    action_type: 'page_view',
+                    page_path: window.location.pathname,
+                    page_bucket: window.userParams.bucket,
+                    page_variant: window.userParams.variant,
+                    page_split: window.userParams.split,
+                    original_source: window.userParams.source,
+                    track_source: window.userParams.track_source,
+                    quiz_score: window.userParams.score,
+                    full_url: window.location.href,
+                    timestamp: new Date().toISOString()
+                }])
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error tracking page view:', error);
+                    } else {
+                        console.log('Page view tracked successfully');
+                    }
+                });
+        }
+
+        // Track when user clicks application button
+        function trackApplicationClick(event) {
+            // Don't prevent default - let the link work normally
+
+            if (!supabaseClient) return;
+
+            supabaseClient
+                .from('tctc_user_flow')
+                .insert([{
+                    user_first_name: window.userParams.firstName,
+                    user_last_name: window.userParams.lastName,
+                    user_business_name: window.userParams.businessName,
+                    action_type: 'application_click',
+                    page_path: window.location.pathname,
+                    page_bucket: window.userParams.bucket,
+                    page_variant: window.userParams.variant,
+                    page_split: window.userParams.split,
+                    original_source: window.userParams.source,
+                    track_source: window.userParams.track_source,
+                    quiz_score: window.userParams.score,
+                    destination_url: event.target.href,
+                    timestamp: new Date().toISOString()
+                }])
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error tracking application click:', error);
+                    } else {
+                        console.log('Application click tracked successfully');
+                    }
+                });
+        }
+
+        // Chat Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatWidgetButton = document.getElementById('chat-widget-button');
+            const chatModal = document.getElementById('chat-modal');
+            const chatModalClose = document.getElementById('chat-modal-close');
+            const chatContactForm = document.getElementById('chat-contact-form');
+            const chatSuccessMessage = document.getElementById('chat-success-message');
+
+            if (chatWidgetButton && chatModal && chatModalClose && chatContactForm && chatSuccessMessage) {
+                chatWidgetButton.addEventListener('click', function() {
+                    chatModal.classList.remove('modal-hidden');
+                    chatModal.classList.add('modal-visible');
+                });
+
+                chatModalClose.addEventListener('click', function() {
+                    chatModal.classList.add('modal-hidden');
+                    chatModal.classList.remove('modal-visible');
+                });
+
+                chatModal.addEventListener('click', function(event) {
+                    if (event.target === chatModal) {
+                        chatModal.classList.add('modal-hidden');
+                        chatModal.classList.remove('modal-visible');
+                    }
+                });
+
+                chatContactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    // Add your form submission logic here (e.g., AJAX call)
+                    // For demo, we'll just show the success message
+                    chatContactForm.style.display = 'none';
+                    chatSuccessMessage.style.display = 'block';
+                });
+            }
+
+            // Populate industry dropdown (excluding Cosmetic Dentists as it's pre-selected)
+            const industrySelect = document.getElementById('chat-industry');
+            const industries = [
+                "Child Care Centers", "PMU Artists", "Non-Surgical Body Contouring",
+                "Weight Loss Clinics", "High-End Chiropractors", "Sleep Apnea & Snoring Clinics",
+                "Hearing Aid & Audiology", "DME Clinics"
+            ];
+            if (industrySelect) {
+                industries.forEach(industry => {
+                    if (industry !== "Cosmetic Dentists") { // Ensure not to add it again if already primary
+                        const option = document.createElement('option');
+                        option.value = industry;
+                        option.textContent = industry;
+                        industrySelect.appendChild(option);
+                    }
+                });
+            }
+        });
+
+        // Navigation Hamburger Script
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.getElementById('main-nav');
+        if (hamburger && navUl) {
+            function closeAllDropdowns() {
+                document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+            }
+            hamburger.addEventListener('click', () => {
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+                navUl.classList.toggle('active');
+                if (!isExpanded) {
+                    hamburger.setAttribute('aria-label', 'Close navigation');
+                } else {
+                    hamburger.setAttribute('aria-label', 'Open navigation');
+                    closeAllDropdowns();
+                }
+            });
+            document.querySelectorAll('.dropdown-parent > a').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    const parentLi = anchor.closest('.dropdown-parent');
+                    if (window.innerWidth <= 768) { // Only enable toggle on mobile
+                        if (e.target.classList.contains('dropdown-arrow') || anchor.getAttribute('href') === '#ideal-clients' || anchor.getAttribute('href').includes('index.html#ideal-clients')) { // Allow toggle if arrow or main link clicked
+                            e.preventDefault();
+                            parentLi.classList.toggle('open');
+                            // Close other open dropdowns
+                            document.querySelectorAll('.dropdown-parent').forEach(li => {
+                                if (li !== parentLi) {
+                                    li.classList.remove('open');
+                                }
+                            });
+                        } else if (!parentLi.classList.contains('open')) { // If a sub-item is clicked and dropdown is closed, open it.
+                             parentLi.classList.add('open');
+                        }
+                        // If a sub-item is clicked and dropdown is open, let the link work.
+                    } else { // Desktop behavior: allow hover/focus to open, click navigates
+                        if (anchor.getAttribute('href') === '#ideal-clients' || anchor.getAttribute('href').includes('index.html#ideal-clients')) {
+                            e.preventDefault(); // Prevent jump for main "Clients We Serve" link on desktop
+                            // Optional: can add hover/focus logic here if pure CSS is not enough
+                        }
+                    }
+                });
+            });
+             document.addEventListener('click', (e) => {
+                if (!e.target.closest('.dropdown-parent') && !e.target.closest('.hamburger')) {
+                    closeAllDropdowns();
+                }
+                if (navUl.classList.contains('active') && !e.target.closest('nav') && !e.target.closest('.hamburger')) {
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.setAttribute('aria-label', 'Open navigation');
+                    navUl.classList.remove('active');
+                    closeAllDropdowns();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

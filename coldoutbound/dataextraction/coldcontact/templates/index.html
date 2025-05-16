@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Contact Bot</h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Automated Contact Form Filling and LinkedIn Outreach</h5>
+                <p class="card-text">
+                    This tool automates the process of:
+                </p>
+                <ul>
+                    <li>Visiting target websites</li>
+                    <li>Finding and filling contact forms</li>
+                    <li>Searching for contacts on LinkedIn</li>
+                    <li>Sending personalized connection requests</li>
+                </ul>
+
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i> 
+                    You can upload a CSV file with contact information or process existing contacts from the database.
+                </div>
+
+                {% if is_processing %}
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    Processing is currently in progress. Please wait until it completes before starting a new job.
+                    <a href="/dashboard" class="btn btn-sm btn-primary ms-2">View Progress</a>
+                </div>
+                {% endif %}
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Upload CSV File</h5>
+                            </div>
+                            <div class="card-body">
+                                <form action="/upload" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="file" class="form-label">Select CSV File</label>
+                                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required {% if is_processing %}disabled{% endif %}>
+                                        <div class="form-text">
+                                            CSV should have columns: name, email, company, website_url, linkedin_url
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" {% if is_processing %}disabled{% endif %}>
+                                        <i class="bi bi-upload"></i> Upload and Process
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Process Existing Contacts</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Process contacts already in the database that haven't been processed yet.</p>
+                                <form action="/process" method="get">
+                                    <div class="mb-3">
+                                        <label for="limit" class="form-label">Number of Contacts to Process</label>
+                                        <input type="number" class="form-control" id="limit" name="limit" value="10" min="1" max="100" required {% if is_processing %}disabled{% endif %}>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" {% if is_processing %}disabled{% endif %}>
+                                        <i class="bi bi-play-fill"></i> Start Processing
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

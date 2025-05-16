@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Data Test</title>
+    <script src="../supabase-client.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .button:hover {
+            background-color: #3a7bc8;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Supabase Data Test</h1>
+        
+        <div class="card">
+            <h2>Available Tables</h2>
+            <button class="button" onclick="listTables()">List Tables</button>
+            <div id="tables-result" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>tctc_user_flow Table</h2>
+            <button class="button" onclick="checkUserFlow()">Check User Flow Data</button>
+            <div id="user-flow-result" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>tctc_user_behavior Table</h2>
+            <button class="button" onclick="checkUserBehavior()">Check User Behavior Data</button>
+            <div id="user-behavior-result" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>tctc_quiz_submission Table</h2>
+            <button class="button" onclick="checkQuizSubmission()">Check Quiz Submission Data</button>
+            <div id="quiz-submission-result" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>Custom Query</h2>
+            <textarea id="custom-query" rows="5" style="width: 100%; margin-bottom: 10px;" placeholder="Enter your SQL query here...">SELECT * FROM tctc_user_flow LIMIT 10;</textarea>
+            <button class="button" onclick="runCustomQuery()">Run Query</button>
+            <div id="custom-query-result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Wait for Supabase client to be initialized
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (!window.tctcSupabaseClient) {
+                    alert('Supabase client not initialized. Please check the console for errors.');
+                }
+            }, 1000);
+        });
+
+        // List all tables in the database
+        async function listTables() {
+            const resultDiv = document.getElementById('tables-result');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const { data, error } = await window.tctcSupabaseClient.rpc('list_tables');
+                
+                if (error) {
+                    resultDiv.innerHTML = `<pre>Error: ${error.message}</pre>`;
+                    return;
+                }
+                
+                resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (err) {
+                resultDiv.innerHTML = `<pre>Error: ${err.message}</pre>`;
+                console.error('Error listing tables:', err);
+                
+                // Try an alternative approach
+                try {
+                    const { data, error } = await window.tctcSupabaseClient
+                        .from('pg_catalog.pg_tables')
+                        .select('schemaname, tablename')
+                        .eq('schemaname', 'public');
+                    
+                    if (error) {
+                        resultDiv.innerHTML += `<pre>Alternative approach error: ${error.message}</pre>`;
+                        return;
+                    }
+                    
+                    resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } catch (altErr) {
+                    resultDiv.innerHTML += `<pre>Alternative approach error: ${altErr.message}</pre>`;
+                }
+            }
+        }
+
+        // Check tctc_user_flow table
+        async function checkUserFlow() {
+            const resultDiv = document.getElementById('user-flow-result');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                // First, check if the table exists
+                const { data: tableInfo, error: tableError } = await window.tctcSupabaseClient
+                    .from('tctc_user_flow')
+                    .select('*')
+                    .limit(1);
+                
+                if (tableError) {
+                    resultDiv.innerHTML = `<pre>Error: ${tableError.message}</pre>`;
+                    return;
+                }
+                
+                // Get the count of records
+                const { count, error: countError } = await window.tctcSupabaseClient
+                    .from('tctc_user_flow')
+                    .select('*', { count: 'exact', head: true });
+                
+                if (countError) {
+                    resultDiv.innerHTML = `<pre>Error getting count: ${countError.message}</pre>`;
+                    return;
+                }
+                
+                // Get a sample of records
+                const { data, error } = await window.tctcSupabaseClient
+                    .from('tctc_user_flow')
+                    .select('*')
+                    .limit(5);
+                
+                if (error) {
+                    resultDiv.innerHTML = `<pre>Error getting sample: ${error.message}</pre>`;
+                    return;
+                }
+                
+                resultDiv.innerHTML = `
+                    <p>Table exists: Yes</p>
+                    <p>Total records: ${count}</p>
+                    <p>Sample data (up to 5 records):</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (err) {
+                resultDiv.innerHTML = `<pre>Error: ${err.message}</pre>`;
+                console.error('Error checking user flow table:', err);
+            }
+        }
+
+        // Check tctc_user_behavior table
+        async function checkUserBehavior() {
+            const resultDiv = document.getElementById('user-behavior-result');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                // First, check if the table exists
+                const { data: tableInfo, error: tableError } = await window.tctcSupabaseClient
+                    .from('tctc_user_behavior')
+                    .select('*')
+                    .limit(1);
+                
+                if (tableError) {
+                    resultDiv.innerHTML = `<pre>Error: ${tableError.message}</pre>`;
+                    return;
+                }
+                
+                // Get the count of records
+                const { count, error: countError } = await window.tctcSupabaseClient
+                    .from('tctc_user_behavior')
+                    .select('*', { count: 'exact', head: true });
+                
+                if (countError) {
+                    resultDiv.innerHTML = `<pre>Error getting count: ${countError.message}</pre>`;
+                    return;
+                }
+                
+                // Get a sample of records
+                const { data, error } = await window.tctcSupabaseClient
+                    .from('tctc_user_behavior')
+                    .select('*')
+                    .limit(5);
+                
+                if (error) {
+                    resultDiv.innerHTML = `<pre>Error getting sample: ${error.message}</pre>`;
+                    return;
+                }
+                
+                resultDiv.innerHTML = `
+                    <p>Table exists: Yes</p>
+                    <p>Total records: ${count}</p>
+                    <p>Sample data (up to 5 records):</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (err) {
+                resultDiv.innerHTML = `<pre>Error: ${err.message}</pre>`;
+                console.error('Error checking user behavior table:', err);
+            }
+        }
+
+        // Check tctc_quiz_submission table
+        async function checkQuizSubmission() {
+            const resultDiv = document.getElementById('quiz-submission-result');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                // First, check if the table exists
+                const { data: tableInfo, error: tableError } = await window.tctcSupabaseClient
+                    .from('tctc_quiz_submission')
+                    .select('*')
+                    .limit(1);
+                
+                if (tableError) {
+                    resultDiv.innerHTML = `<pre>Error: ${tableError.message}</pre>`;
+                    return;
+                }
+                
+                // Get the count of records
+                const { count, error: countError } = await window.tctcSupabaseClient
+                    .from('tctc_quiz_submission')
+                    .select('*', { count: 'exact', head: true });
+                
+                if (countError) {
+                    resultDiv.innerHTML = `<pre>Error getting count: ${countError.message}</pre>`;
+                    return;
+                }
+                
+                // Get a sample of records
+                const { data, error } = await window.tctcSupabaseClient
+                    .from('tctc_quiz_submission')
+                    .select('*')
+                    .limit(5);
+                
+                if (error) {
+                    resultDiv.innerHTML = `<pre>Error getting sample: ${error.message}</pre>`;
+                    return;
+                }
+                
+                resultDiv.innerHTML = `
+                    <p>Table exists: Yes</p>
+                    <p>Total records: ${count}</p>
+                    <p>Sample data (up to 5 records):</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (err) {
+                resultDiv.innerHTML = `<pre>Error: ${err.message}</pre>`;
+                console.error('Error checking quiz submission table:', err);
+            }
+        }
+
+        // Run a custom SQL query
+        async function runCustomQuery() {
+            const resultDiv = document.getElementById('custom-query-result');
+            const query = document.getElementById('custom-query').value;
+            
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const { data, error } = await window.tctcSupabaseClient.rpc('run_sql', { query });
+                
+                if (error) {
+                    resultDiv.innerHTML = `<pre>Error: ${error.message}</pre>`;
+                    return;
+                }
+                
+                resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (err) {
+                resultDiv.innerHTML = `<pre>Error: ${err.message}</pre>`;
+                console.error('Error running custom query:', err);
+            }
+        }
+    </script>
+</body>
+</html>

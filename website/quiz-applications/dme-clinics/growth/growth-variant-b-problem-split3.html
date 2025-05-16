@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empty Calendar? Fix Your DME Client & Consultation Flow | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background-color: #f8f9fa; margin: 0; padding: 0; }
+        .result-container { padding: 40px 28px; max-width: 880px; margin: 30px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 7px 30px rgba(0,0,0,0.07); }
+        .result-container h1 { font-family: 'Montserrat', sans-serif; color: #c0392b; /* Red for problem */ font-size: clamp(2em, 4.6vw, 2.8em); margin-bottom: 20px; text-align: center; line-height: 1.3; }
+        .result-container h2 { font-family: 'Montserrat', sans-serif; color: #d35400; /* Darker Orange/Red for problem subheads */ font-size: clamp(1.6em, 3.6vw, 2.15em); margin-top: 38px; margin-bottom: 18px; border-bottom: 2px solid #e67e22; padding-bottom: 8px; }
+        .solution-intro h2 { color: #16a085; /* Green Sea for solution */ border-bottom-color: #1abc9c; /* Turquoise for solution */ }
+        .result-container p { font-size: clamp(1.05em, 2.2vw, 1.15em); color: #3a3a3a; margin-bottom: 20px; line-height: 1.8; }
+        .result-container ul { list-style: none; padding-left: 0; margin-bottom: 22px; }
+        .result-container li { margin-bottom: 14px; padding-left: 30px; position: relative; font-size: clamp(1.02em, 2.1vw, 1.1em); }
+        .empathy-box li::before { content: '❓'; color: #c0392b; position: absolute; left: 0; font-size: 1.3em; top: 1px; }
+        .empathy-box { background-color: #fdedec; border-left: 6px solid #c0392b; padding: 28px; margin: 30px 0; border-radius: 8px; }
+        .empathy-box h2 { margin-top: 0; color: #96281b; }
+        .solution-highlight li::before { content: '✅'; color: #16a085; left: 3px; top: 0; font-size: 1.4em; }
+        .cta-section { text-align: center; padding: 45px 28px; background: linear-gradient(135deg, #117a65 0%, #16a085 100%); /* Green Sea Gradient for solution CTA */ border-radius: 10px; margin-top: 45px; color: #fff; }
+        .cta-button.primary { background-color: #f39c12; /* Orange */ border: none; color: #fff !important; padding: 18px 45px; font-size: 1.35em; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .cta-button.primary:hover { background-color: #e67e22; /* Darker Orange */ transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0,0,0,0.25); }
+        .user-name-emphasis { font-weight: 900; color: #c0392b; }
+        .testimonial { background: #e0f2f1; padding: 25px; border-radius: 8px; margin-bottom: 22px; box-shadow: 0 3px 7px rgba(0,0,0,0.06); border-left: 5px solid #1abc9c; }
+        .testimonial p:first-child { font-style: italic; font-size: 1.12em; color: #2d3a33; }
+        .testimonial p:last-child { font-weight: bold; margin-top: 18px; color: #117a65; text-align: right; }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="/split-test-redirect.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="result-container">
+        <div class="personalized-greeting" id="personalized-greeting" style="display: none; text-align: center; margin-bottom: 1.4em; font-size: 1.35em; color: #424242;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const firstName = urlParams.get('firstName');
+                const userNameSpan = document.getElementById('user-first-name');
+                const greetingDiv = document.getElementById('personalized-greeting');
+                if (firstName) {
+                    const decodedName = decodeURIComponent(firstName);
+                    if (userNameSpan) userNameSpan.textContent = decodedName;
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Hi <span class="user-name-emphasis">${decodedName}</span>. Is your DME's calendar looking a little too open?`;
+                        greetingDiv.style.display = 'block';
+                    }
+                } else {
+                    if (userNameSpan) userNameSpan.textContent = "DME Owner"; // Fallback
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Hi <span class="user-name-emphasis">DME Owner</span>. Is your calendar looking a little too open?`;
+                        greetingDiv.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+
+        <h1>Frustrated by a Lack of New DME Clients, <span id="user-first-name" class="user-name-emphasis">DME Owner</span>? Are Empty Consultation Slots Stalling Your Business?</h1>
+        <p style="font-size:1.22em; color:#333; font-weight:normal; margin-bottom: 1.8em; text-align:center;">
+           Your quiz responses suggest you're aiming for more clients and consultations, but current efforts aren't delivering the consistent flow your DME business needs to thrive.
+        </p>
+
+        <div class="empathy-box">
+            <h2 style="color: #96281b;">Do These Client Acquisition Nightmares Sound Familiar?</h2>
+            <ul>
+                <li><strong>Inconsistent Lead Flow:</strong> One week your phone rings, the next it's crickets, making it impossible to plan or predict revenue.</li>
+                <li><strong>Low Consultation Booking Rates:</strong> Getting website visitors or inquiries, but struggling to convert that interest into actual booked appointments.</li>
+                <li><strong>Marketing Efforts Not Yielding Clients:</strong> Spending money on advertising or outreach that doesn't translate into new patients walking through your door (or on a video call).</li>
+                <li><strong>Website Isn't a Client Magnet:</strong> Your online presence exists, but it's not actively generating leads or encouraging consultation requests effectively.</li>
+                <li><strong>Wasted Time on Unqualified Leads:</strong> Dealing with inquiries from people who aren't a good fit for your DME services, draining your team's time and energy.</li>
+                <li><strong>Uncertain Where Your Next Client Will Come From:</strong> Lacking a clear, systematic approach to client acquisition, leaving your business vulnerable and growth stagnant.</li>
+            </ul>
+            <p>If these points hit home, you're facing a common but solvable problem. Many DME owners struggle to build a predictable system for attracting and booking new clients. It's a major source of stress and a direct barrier to growing your DME business.</p>
+        </div>
+
+        <h2>The Core Problem: No Effective System for Attracting & Booking DME Clients</h2>
+        <p>
+           The reality is, hoping for clients or relying on outdated, sporadic marketing tactics won't fill your calendar. Without a dedicated system to consistently attract your ideal DME patient and efficiently guide them to a booked consultation, your business will struggle to grow. You're likely losing potential clients to competitors who have a more strategic approach.
+        </p>
+        <p>
+            Ignoring these foundational gaps in your client acquisition process means continued frustration, wasted marketing dollars, and untapped business potential. You deserve a reliable way to bring in new clients and keep your consultation schedule full.
+        </p>
+
+        <div class="solution-intro">
+            <h2>The Pathway to a Full Calendar: Introducing the DME Client Acquisition Engine™</h2>
+            <p>
+                It's time to stop guessing and start systematically attracting and booking the clients your DME needs. The TurnClicksToClients "DME Client Acquisition Engine™" is your comprehensive solution to diagnose and fix the leaks in your client pipeline, implementing a predictable system for generating leads and converting them into booked consultations.
+            </p>
+            <ul class="solution-highlight">
+                <li><strong>Pinpointing Your Ideal Client:</strong> We help you define and locate the exact type of patient who needs your DME services most, ensuring your marketing efforts are laser-focused.</li>
+                <li><strong>Crafting Compelling Offers & Messaging:</strong> Developing clear, attractive reasons for potential clients to choose your DME and book a consultation *now*.</li>
+                <li><strong>Optimizing Your Online Presence for Conversion:</strong> Turning your website and online listings into effective tools that capture leads and drive consultation bookings.</li>
+                <li><strong>Implementing Lead Management & Follow-Up Systems:</strong> Ensuring no potential client falls through the cracks, with automated and manual processes to nurture interest into appointments.</li>
+                <li><strong>Tracking & Measuring for Continuous Improvement:</strong> Providing clarity on what's working so we can double down on effective strategies and refine underperforming ones.</li>
+            </ul>
+        </div>
+
+         <div class="testimonial">
+            <p>"We were getting some leads, but not enough were turning into actual consultations. The DME Client Acquisition Engine™ helped us fix our follow-up process and messaging. Now, our booking rates are way up, and our staff is much less stressed about filling the schedule!"</p>
+            <p>- Maria L., Office Manager, Hometown DME Services</p>
+        </div>
+
+        <div class="cta-section">
+            <style>
+                .cta-section p, .cta-section ul, .cta-section h2, .cta-section h3, .cta-section li, .cta-section div { color: #fff !important; }
+                .cta-section .cta-button.primary { background-color: #f39c12; color: #fff !important; font-weight: bold; text-shadow: none; }
+                .cta-section .cta-button.primary:hover { background-color: #e67e22; }
+                .cta-section span[style*="color: #f39c12"] { color: #f39c12 !important; }
+            </style>
+            
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2018, we've specialized in helping DME providers attract qualified patients who need your solutions and have the proper insurance coverage.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our approach was developed after seeing DME providers struggle with the changing reimbursement landscape and increasing competition from online retailers.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">What began as insurance-focused marketing has evolved into a comprehensive patient acquisition system that pre-qualifies leads and educates them on the value of working with a local provider.</p>
+    </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A DME provider in Texas increased their monthly CPAP setups from 35 to over 90 within 60 days.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A specialized mobility equipment provider doubled their revenue in 6 months while reducing their advertising spend by 20%.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A multi-location DME company increased their insurance-qualified leads by 65% while reducing their cost per acquisition.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> DME providers using our system for 2+ years have built resilient businesses that thrive despite reimbursement challenges and online competition.</p>
+    </div>
+</div>
+<h2 style="font-size: 2.3em; margin-bottom: 25px;">Ready to Create the Success Other Professionals Are Already Enjoying?</h2>
+            
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you prepare for inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> By confidently managing marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day with this system means more opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p style="font-size: 1.25em; margin: 0 auto 30px auto; max-width: 750px; opacity: 0.95;">Don't let a lack of clients hold your DME business back. Let's diagnose your client acquisition challenges and implement a proven system to fill your calendar.</p>
+
+            <div style="background: rgba(255,255,255,0.08); padding: 30px; border-radius: 8px; margin: 35px 0; display: inline-block; border: 1px solid rgba(255,255,255,0.2); text-align:left;">
+                <h3 style="color: #f39c12; margin-bottom: 18px; font-size: 1.7em; text-align:center;">What Your Client Acquisition Diagnostic Unlocks:</h3>
+                 <ul style="list-style: none; padding: 0; max-width: 550px; margin: 0 auto; font-size: 1.12em;">
+                    <li style="margin-bottom: 12px; padding-left: 22px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f39c12;">✓</span> A clear identification of the biggest bottlenecks preventing you from booking more DME consultations.</li>
+                    <li style="margin-bottom: 12px; padding-left: 22px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f39c12;">✓</span> Actionable strategies to immediately improve your lead generation and consultation booking rates.</li>
+                    <li style="margin-bottom: 12px; padding-left: 22px; position: relative;"> <span style="position: absolute; left: -5px; top: 0px; color: #f39c12;">✓</span> An introduction to how the "DME Client Acquisition Engine™" can provide a long-term solution for predictable client growth.</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.18em; margin: 30px 0 25px 0; font-weight: bold;">It's time to take control of your DME's client flow. <span style="color: #f39c12;">This diagnostic session is your first step.</span></p>
+            
+            <a href="../../../universal-application-form.html?niche=dme-clinics&bucket=growth&variant=B_Problem" class="cta-button primary">Apply for a Client Acquisition Diagnostic Session</a>
+             <div style="font-size: 1.15em; color: #fff; margin-top: 18px; font-weight: 600; letter-spacing: 0.5px;">TurnClicksToClients: Your Partner in Filling Your DME's Calendar.</div>
+
+            <div style="margin-top: 35px; padding: 18px; background: rgba(0,0,0,0.22); border-radius: 8px; max-width: 650px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; font-size: 0.98em;">✓ Stop stressing about empty slots. Your application is the first step to a consistently booked DME practice.</p>
+            </div>
+        </div>
+    
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The path to joining these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system now available to you.</strong></p>
+</div></main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+<script src="../../../script.js"></script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>😟</span> Worried About Slow Client Days?
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Fix Your DME Client & Consultation Flow</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>Frustrated by inconsistent client numbers and too many open appointment slots for your DME?</strong><br>
+                    Our specialists can help diagnose why you're not getting enough clients or consultations and show you how the "DME Client Acquisition Engine™" can create a predictable flow.
+                    Mon-Fri, 10am - 5pm EST: Let's pinpoint the problem.<br>
+                    After hours & weekends: We'll follow up promptly next business day.<br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled>Select your industry...</option>
+                             <option value="DME Clinics" selected>DME Clinics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">DME Business Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone</label>
+                        <input type="tel" id="chat-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">What's the biggest frustration with your current client or consultation volume?</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., Too few leads, high no-show rate for consultations, marketing feels like a black hole."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Diagnose My Client Flow Issue</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Your diagnostic request has been submitted. A specialist will be in touch soon to discuss your DME's client acquisition challenges and how we can help you book more consultations.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script> // Chat Modal Script Integration
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatWidgetButton = document.getElementById('chat-widget-button');
+        const chatModal = document.getElementById('chat-modal');
+        const chatModalClose = document.getElementById('chat-modal-close');
+        const chatContactForm = document.getElementById('chat-contact-form');
+        const chatSuccessMessage = document.getElementById('chat-success-message');
+
+        if (chatWidgetButton && chatModal && chatModalClose && chatContactForm && chatSuccessMessage) {
+            chatWidgetButton.addEventListener('click', function() {
+                chatModal.classList.remove('modal-hidden');
+                chatModal.classList.add('modal-visible');
+            });
+
+            chatModalClose.addEventListener('click', function() {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            });
+
+            chatModal.addEventListener('click', function(event) {
+                if (event.target === chatModal) { 
+                    chatModal.classList.add('modal-hidden');
+                    chatModal.classList.remove('modal-visible');
+                }
+            });
+
+            chatContactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+                chatContactForm.querySelectorAll('[required]').forEach(input => {
+                    if (!input.value) {
+                        isValid = false;
+                        input.style.borderColor = 'red'; 
+                    } else {
+                        input.style.borderColor = '#ccc'; // Reset border color
+                    }
+                });
+
+                if (isValid) {
+                    chatContactForm.style.display = 'none';
+                    chatSuccessMessage.style.display = 'block';
+                } else {
+                    alert('Please fill out all required fields.');
+                }
+            });
+        }
+
+        const industrySelect = document.getElementById('chat-industry');
+        const industries = [
+            "Child Care Centers", "Cosmetic Dentists", "PMU Artists", "Non-Surgical Body Contouring", 
+            "Weight Loss Clinics", "High-End Chiropractors", "Sleep Apnea & Snoring Clinics",
+            "Hearing Aid & Audiology Clinics"
+        ];
+        if (industrySelect && industrySelect.options.length <= 2) {
+            industries.forEach(industry => {
+                if (industry !== "DME Clinics") { 
+                    const option = document.createElement('option');
+                    option.value = industry;
+                    option.textContent = industry;
+                    industrySelect.appendChild(option);
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Bot - Home{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Main Action Card -->
+    <div class="card mb-5 border-0 shadow">
+        <div class="card-body p-0">
+            <div class="row g-0">
+                <div class="col-md-6 bg-primary text-white p-5">
+                    <h1 class="display-5 fw-bold mb-4">Automate Your Outreach</h1>
+                    <p class="fs-5 mb-4">
+                        Automatically visit websites, find contact forms, and send personalized messages.
+                        Connect with prospects on LinkedIn with custom connection requests.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex">
+                        <a href="#start-processing" class="btn btn-light btn-lg px-4 me-md-2">
+                            <i class="bi bi-play-fill"></i> Start Processing
+                        </a>
+                        <a href="/dashboard" class="btn btn-outline-light btn-lg px-4">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 p-5">
+                    <h2 class="mb-4">Current Status</h2>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Supabase Connection</h5>
+                            {% if supabase %}
+                            <span class="badge bg-success">Connected</span>
+                            {% else %}
+                            <span class="badge bg-danger">Not Connected</span>
+                            {% endif %}
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-{{ 'success' if supabase else 'danger' }}" role="progressbar" style="width: {{ '100' if supabase else '0' }}%"></div>
+                        </div>
+                        {% if not supabase %}
+                        <small class="text-danger">Please configure your Supabase connection in <a href="/dashboard#linkedin">Settings</a></small>
+                        {% else %}
+                        <small class="text-muted">Connected to table: {{ table_name }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Browser Mode</h5>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="headlessToggle" {{ 'checked' if settings.get('headless_mode', 'true') == 'true' else '' }}>
+                                <label class="form-check-label" for="headlessToggle">Headless</label>
+                            </div>
+                        </div>
+                        <div class="alert alert-{{ 'secondary' if settings.get('headless_mode', 'true') == 'true' else 'info' }} py-2 mb-0">
+                            <small>
+                                <i class="bi bi-{{ 'eye-slash' if settings.get('headless_mode', 'true') == 'true' else 'eye' }}"></i>
+                                {{ 'Browser runs in background (faster)' if settings.get('headless_mode', 'true') == 'true' else 'Browser is visible (good for debugging)' }}
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="mb-0">Processing Status</h5>
+                            {% if is_processing %}
+                            <span class="badge bg-primary">
+                                <span class="spinner-border spinner-border-sm me-1"></span>
+                                Running
+                            </span>
+                            {% else %}
+                            <span class="badge bg-secondary">Idle</span>
+                            {% endif %}
+                        </div>
+                        {% if is_processing %}
+                        <div class="alert alert-primary py-2 mb-0">
+                            <small>
+                                <i class="bi bi-info-circle"></i>
+                                Processing is currently running. <a href="/dashboard#logs">View logs</a> for details.
+                            </small>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Start Processing Section -->
+    <div id="start-processing" class="card shadow mb-5">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Start Processing Contacts</h3>
+        </div>
+        <div class="card-body p-4">
+            <form action="/process" method="get" id="processForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="limit" class="form-label">Number of Contacts</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="limit" name="limit" value="1" min="1" max="100" required {% if is_processing %}disabled{% endif %}>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Presets</button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="1">1 (Test)</a></li>
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="5">5 (Small Batch)</a></li>
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="20">20 (Medium Batch)</a></li>
+                                    <li><a class="dropdown-item preset-limit" href="#" data-value="50">50 (Large Batch)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="filter" class="form-label">Filter Contacts</label>
+                            <select class="form-select" id="filter" name="filter" {% if is_processing %}disabled{% endif %}>
+                                <option value="all" selected>All Contacts</option>
+                                <option value="pending">Pending Only</option>
+                                <option value="failed">Failed Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="browser_mode" class="form-label">Browser Visibility</label>
+                            <select class="form-select" id="browser_mode" name="browser_mode" {% if is_processing %}disabled{% endif %}>
+                                <option value="headless" {{ 'selected' if settings.get('headless_mode', 'true') == 'true' else '' }}>Hidden (Faster)</option>
+                                <option value="visible" {{ 'selected' if settings.get('headless_mode', 'true') != 'true' else '' }}>Visible (For Debugging)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg" {% if is_processing or not supabase %}disabled{% endif %}>
+                        <i class="bi bi-play-fill"></i> Start Processing
+                    </button>
+                </div>
+                
+                {% if not supabase %}
+                <div class="alert alert-warning mt-3">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    You need to configure your Supabase connection before processing contacts.
+                    <a href="/dashboard#linkedin" class="alert-link">Go to Settings</a>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    
+    <!-- Features Section -->
+    <h2 class="text-center mb-5">Key Features</h2>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="bi bi-globe fs-1"></i>
+                    </div>
+                    <h4>Website Contact Forms</h4>
+                    <p class="text-muted">
+                        Automatically finds and fills contact forms on target websites with personalized messages.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="bi bi-linkedin fs-1"></i>
+                    </div>
+                    <h4>LinkedIn Connections</h4>
+                    <p class="text-muted">
+                        Sends personalized connection requests on LinkedIn to expand your network.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3 text-primary">
+                        <i class="bi bi-database fs-1"></i>
+                    </div>
+                    <h4>Supabase Integration</h4>
+                    <p class="text-muted">
+                        Connects directly to your Supabase database to process and update contact records.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Toggle headless mode
+        $('#headlessToggle').change(function() {
+            const isHeadless = $(this).is(':checked');
+            
+            // Update browser mode dropdown
+            $('#browser_mode').val(isHeadless ? 'headless' : 'visible');
+            
+            // Save setting via AJAX
+            $.post('/api/update-setting', {
+                key: 'headless_mode',
+                value: isHeadless ? 'true' : 'false'
+            });
+        });
+        
+        // Preset limits
+        $('.preset-limit').click(function(e) {
+            e.preventDefault();
+            $('#limit').val($(this).data('value'));
+        });
+        
+        // Smooth scroll
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top - 70
+            }, 500);
+        });
+    });
+</script>
+{% endblock %}
