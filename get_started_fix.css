@@ -1,0 +1,13 @@
+/* Direct fix for GET STARTED button */
+.get-started,
+a.get-started,
+.cta-button,
+a.cta-button,
+.nav-cta,
+a.nav-cta,
+a[href="quiz-start.html"],
+[class*="get-started"],
+[class*="cta"] {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+}

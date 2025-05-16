@@ -1,53 +1,56 @@
-// Wait for the DOM to be fully loaded
+// Hamburger menu functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the hamburger button and navigation menu
+    // Get hamburger button and navigation menu
     const hamburger = document.querySelector('.hamburger');
-    const navUl = document.querySelector('#main-nav');
+    const mainNav = document.getElementById('main-nav');
     
-    if (hamburger && navUl) {
-        // Function to close all dropdowns
-        function closeAllDropdowns() {
-            document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
-        }
-        
+    if (hamburger && mainNav) {
         // Add click event listener to hamburger button
         hamburger.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default behavior
-            const open = navUl.classList.toggle('open');
-            hamburger.setAttribute('aria-expanded', open);
-            if (!open) closeAllDropdowns();
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Log for debugging
-            console.log('Hamburger clicked, nav is now: ' + (open ? 'open' : 'closed'));
+            // Toggle active class on hamburger
+            hamburger.classList.toggle('active');
+            
+            // Toggle open class on main navigation
+            mainNav.classList.toggle('open');
+            
+            console.log('Hamburger clicked - Menu toggled');
         });
         
-        // Dropdowns for mobile
-        navUl.querySelectorAll('.dropdown-parent > a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 900) {
-                    e.preventDefault();
-                    const parent = this.parentElement;
-                    
-                    // Close all other dropdowns
-                    document.querySelectorAll('.dropdown-parent').forEach(li => {
-                        if (li !== parent) li.classList.remove('open');
-                    });
-                    
-                    // Toggle this dropdown
-                    parent.classList.toggle('open');
-                }
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !navUl.contains(e.target) && navUl.classList.contains('open')) {
-                navUl.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', false);
-                closeAllDropdowns();
-            }
-        });
+        console.log('Hamburger menu initialized');
     } else {
-        console.error('Hamburger menu or navigation not found');
+        console.error('Hamburger menu or main navigation not found');
+        if (!hamburger) console.error('Hamburger button not found');
+        if (!mainNav) console.error('Main navigation not found');
     }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mainNav.classList.contains('open') && 
+            !mainNav.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            mainNav.classList.remove('open');
+            hamburger.classList.remove('active');
+        }
+    });
 });
+
+// Backup initialization - run after a short delay
+setTimeout(function() {
+    const hamburger = document.querySelector('.hamburger');
+    const mainNav = document.getElementById('main-nav');
+    
+    if (hamburger && mainNav) {
+        hamburger.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            mainNav.classList.toggle('open');
+            console.log('Hamburger clicked (backup handler)');
+        };
+        
+        console.log('Hamburger menu backup initialization complete');
+    }
+}, 1000);
