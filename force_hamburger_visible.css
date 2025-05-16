@@ -1,0 +1,75 @@
+/* Force hamburger menu to be visible on mobile */
+@media (max-width: 900px) {
+  /* Ensure hamburger is visible and positioned correctly */
+  .hamburger {
+    display: block !important;
+    position: absolute !important;
+    right: 15px !important;
+    top: 25px !important;
+    z-index: 9999 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  /* Make hamburger lines more visible */
+  .hamburger span {
+    display: block !important;
+    width: 24px !important;
+    height: 3px !important;
+    margin: 5px 0 !important;
+    background-color: #0078ff !important; /* Blue color for better visibility */
+    transition: all 0.3s ease !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Active state for hamburger */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px) !important;
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0 !important;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px) !important;
+  }
+  
+  /* Hide regular navigation on mobile */
+  #main-nav {
+    display: none !important;
+  }
+  
+  /* Show navigation when open class is applied */
+  #main-nav.open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 70px !important;
+    left: 0 !important;
+    width: 100% !important;
+    background-color: white !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    z-index: 998 !important;
+    padding: 1rem !important;
+  }
+  
+  /* Style navigation items */
+  #main-nav li {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.5rem 0 !important;
+    border-bottom: 1px solid #eee !important;
+  }
+  
+  #main-nav li:last-child {
+    border-bottom: none !important;
+  }
+}
