@@ -151,7 +151,7 @@
             margin-top: 15px;
         }
 
-        #quiz-result { 
+        #quiz-result {
             padding: 20px;
             background-color: #e9f5ff;
             border: 1px solid #b8d6f0;
@@ -165,7 +165,7 @@
         #lead-capture-form {
             margin-top: 30px;
             padding: 30px;
-            background-color: #f0f8ff; 
+            background-color: #f0f8ff;
             border-radius: 8px;
             border: 1px solid #cce5ff;
             text-align: left;
@@ -202,17 +202,17 @@
             border-radius: 4px;
             font-size: 1em;
         }
-        .form-group input:focus { 
+        .form-group input:focus {
              border-color: #007bff;
              outline: none;
              box-shadow: 0 0 0 2px rgba(0,123,255,.25);
         }
-        #lead-capture-form .cta-button { 
+        #lead-capture-form .cta-button {
             width: 100%;
             padding: 12px;
             font-size: 1.2em;
             margin-top: 10px;
-            background-color: #28a745; 
+            background-color: #28a745;
         }
          #lead-capture-form .cta-button:hover {
             background-color: #1e7e34;
@@ -224,14 +224,29 @@
             margin-top: 15px;
         }
 
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
-    <!-- Standard Site Header -->
     <header>
-        <nav>
-            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
-            <ul>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About Us</a></li>
                 <li class="dropdown-parent">
@@ -251,7 +266,7 @@
                 <li><a href="../index.html#core-offer">Our Offer</a></li>
                 <li><a href="../index.html#pricing">Pricing</a></li>
                 <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
             </ul>
         </nav>
     </header>
@@ -285,7 +300,7 @@
                     </div>
                 </div>
                 <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
-                
+
                 <div id="quiz-question" class="quiz-question" style="display:none;">
                     <h2></h2>
                 </div>
@@ -296,7 +311,7 @@
                     <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 </div>
             </div>
-            
+
             <div id="lead-capture-form" style="display:none;">
                 <h3>Unlock Your Clinic Growth Insights!</h3>
                 <p>Provide your details to receive your personalized Body Contouring Clinic growth diagnosis and key recommendations.</p>
@@ -304,22 +319,27 @@
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="firstName" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name:</label>
                         <input type="text" id="lastName" name="lastName" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
                     </div>
                     <div class="form-group">
                         <label for="businessName">Clinic Name:</label>
                         <input type="text" id="businessName" name="businessName" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific body contouring clinic.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your clinic's growth opportunities.</p>
                     </div>
                     <button type="submit" class="cta-button">See My Clinic Potential!</button>
                 </form>
@@ -562,7 +582,7 @@
                 }
 
                 const answersUl = quizAnswersDiv.querySelector('ul');
-                answersUl.innerHTML = ''; 
+                answersUl.innerHTML = '';
 
                 if (questionData.type === "textarea") {
                     const instructionP = document.createElement('p');
@@ -572,6 +592,26 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> We want to understand your specific challenges so we can tailor our recommendations to address your most pressing needs and help you achieve faster results with your body contouring clinic.";
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     const li = document.createElement('li');
                     const textarea = document.createElement('textarea');
@@ -587,7 +627,7 @@
                     answersUl.appendChild(li);
 
                     nextQuestionBtn.textContent = "Next";
-                    nextQuestionBtn.onclick = handleTextareaAnswer; 
+                    nextQuestionBtn.onclick = handleTextareaAnswer;
                     quizNavigationDiv.style.display = 'block';
                     nextQuestionBtn.style.display = 'inline-block';
 
@@ -599,6 +639,64 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation with specific reasons based on question index
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    let whyText = "";
+
+                    // Customize the explanation based on the question
+                    switch(currentQuestionIndex) {
+                        case 0:
+                            whyText = "We're asking because lead generation effectiveness directly impacts your clinic's growth potential. Your answer helps us identify if enhancing your lead generation could be a key opportunity for your practice.";
+                            break;
+                        case 1:
+                            whyText = "We're asking because consultation conversion rates significantly affect your clinic's revenue. Your answer helps us determine if improving your consultation process could increase your client acquisition.";
+                            break;
+                        case 2:
+                            whyText = "We're asking because your online presence and reputation directly impact client trust and acquisition. Your answer helps us assess if enhancing your digital presence could be a growth lever for your clinic.";
+                            break;
+                        case 3:
+                            whyText = "We're asking because client retention and package sales are often hidden profit centers in body contouring clinics. Your answer helps us identify if optimizing these areas could boost your revenue.";
+                            break;
+                        case 4:
+                            whyText = "We're asking because your growth objectives influence which strategies will be most effective for your clinic. Your answer helps us tailor our recommendations to your specific ambitions.";
+                            break;
+                        case 5:
+                            whyText = "We're asking because your technology mix directly impacts your competitive advantage and client results. Your answer helps us understand if upgrading your equipment should be a priority in your growth plan.";
+                            break;
+                        case 6:
+                            whyText = "We're asking because staff training directly impacts client satisfaction and treatment outcomes. Your answer helps us determine if enhancing your team's skills could improve your clinic's performance.";
+                            break;
+                        case 7:
+                            whyText = "We're asking because pricing and packaging strategies significantly affect your clinic's profitability. Your answer helps us identify if optimizing your pricing approach could increase your revenue.";
+                            break;
+                        case 8:
+                            whyText = "We're asking because client education and expectation management directly impact satisfaction and referrals. Your answer helps us assess if improving your client education could boost your clinic's growth.";
+                            break;
+                        case 9:
+                            whyText = "We're asking because client tracking and follow-up systems are often key differentiators between high and average-performing clinics. Your answer helps us determine if enhancing these systems could improve your results.";
+                            break;
+                        default:
+                            whyText = "We're asking to better understand your body contouring clinic and provide more tailored recommendations for growth.";
+                    }
+
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> " + whyText;
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     questionData.answers.forEach((answer) => {
                         const li = document.createElement('li');
@@ -617,7 +715,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function handleTextareaAnswer() {
             const questionData = quizQuestions[currentQuestionIndex];
             const textarea = document.getElementById(questionData.id);
@@ -628,7 +726,7 @@
                 alert("Please provide an answer to this question.");
             }
         }
-        
+
         function selectAnswer(score, selectedButton) {
             const buttons = quizAnswersDiv.querySelectorAll('.answer-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
@@ -651,7 +749,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function updateProgressBar() {
             const progress = (currentQuestionIndex / quizQuestions.length) * 100;
             progressBar.style.width = progress + '%';
@@ -664,18 +762,18 @@
             progressBarContainer.style.display = 'none';
             leadCaptureForm.style.display = 'block';
             totalScore = userAnswers.reduce((acc, score) => acc + (score || 0), 0);
-            console.log("Final Score: ", totalScore); 
+            console.log("Final Score: ", totalScore);
         }
 
         async function handleLeadSubmit() {
             console.log("Starting lead submission process...");
-            
+
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
             const businessName = document.getElementById('businessName').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            
+
             let growth_stifler_response = "";
             const growthStiflerQuestionIndex = quizQuestions.findIndex(q => q.type === "textarea");
             if (growthStiflerQuestionIndex !== -1 && userAnswers[growthStiflerQuestionIndex]) {
@@ -686,7 +784,7 @@
                 alert("Please fill in all required fields in the form.");
                 return;
             }
-            
+
             if (growthStiflerQuestionIndex !== -1 && !userAnswers[growthStiflerQuestionIndex]) {
                  alert("Please ensure all quiz questions, including the open-ended one, are answered.");
                  return;
@@ -706,8 +804,8 @@
                 if (questionData.type === "textarea") {
                     return {
                         question: questionData.question,
-                        answer: answerData, 
-                        score: null 
+                        answer: answerData,
+                        score: null
                     };
                 }
                 const selectedAnswerObject = questionData.answers.find(ans => ans.score === answerData);
@@ -748,7 +846,7 @@
                         .from('tctc_quiz_submission')
                         .insert([submissionData])
                         .select();
-                    
+
                     if (error) {
                         console.error('Non-Surgical Body Contouring Quiz: Error inserting data into Supabase:', error);
                         dbErrorMessage = error.message || 'Unknown DB Error';
@@ -777,27 +875,83 @@
             }
 
             console.log("Proceeding with redirection...");
-            determineOutcomeAndRedirect(firstName, lastName, businessName, dbErrorMessage);
+            determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbErrorMessage, sourceParam, dbErrorMessage);
         }
 
-        function determineOutcomeAndRedirect(firstName, lastName, businessName, dbErrorMessage) {
+        async function determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError) {
             const encodedFirstName = encodeURIComponent(firstName);
             const encodedLastName = encodeURIComponent(lastName);
             const encodedBusinessName = encodeURIComponent(businessName);
-            let url = '';
             const baseParams = `firstName=${encodedFirstName}&lastName=${encodedLastName}&businessName=${encodedBusinessName}&score=${totalScore}`;
-            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}${dbErrorMessage ? `&dbError=${encodeURIComponent(dbErrorMessage)}` : ''}`;
+            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}&track_source=quiz${dbError ? `&dbError=${encodeURIComponent(supabaseInsertError?.message || 'Unknown error')}` : ''}`;
 
+            // Determine the outcome bucket based on the score
             const outcome = determineOutcome(totalScore);
+            const scoreBucket = outcome; // patients, practice, or growth
 
-            if (outcome === "clients") { 
-                url = `../quiz-applications/non-surgical-body-contouring-clients-application.html?${baseParams}${sourceAndDbErrorParams}`;
-            } else if (outcome === "operations") { 
-                url = `../quiz-applications/non-surgical-body-contouring-practice-application.html?${baseParams}${sourceAndDbErrorParams}`;
-            } else { // growth
-                url = `../quiz-applications/non-surgical-body-contouring-growth-application.html?${baseParams}${sourceAndDbErrorParams}`;
+            // Determine which awareness variant to show based on score distribution
+            let awarenessVariant;
+            if (scoreBucket === "patients") {
+                // Lower scores within this bucket get problem variant, higher get solution variant, etc.
+                if (totalScore <= 5) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 6) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
             }
-            console.log("Redirecting to:", url);
+            else if (scoreBucket === "practice") {
+                if (totalScore <= 10) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 12) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+            else { // growth
+                if (totalScore <= 16) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 18) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+
+            // Construct the new URL with bucket and variant
+            const url = `../quiz-applications/non-surgical-body-contouring/${scoreBucket}/non-surgical-body-contouring-${scoreBucket}-variant-${awarenessVariant}.html${baseParams ? '?' + baseParams : '?'}${sourceAndDbErrorParams}&bucket=${scoreBucket}&variant=${awarenessVariant}`;
+
+            // Track the redirection in Supabase before redirecting
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('tctc_quiz_redirections')
+                        .insert([{
+                            user_first_name: firstName,
+                            user_last_name: lastName,
+                            user_business_name: businessName,
+                            quiz_score: totalScore,
+                            outcome_bucket: scoreBucket,
+                            awareness_variant: awarenessVariant,
+                            redirect_url: url,
+                            source: sourceParam || 'organic',
+                            redirected_at: new Date().toISOString()
+                        }]);
+
+                    if (error) {
+                        console.error('Error tracking non-surgical body contouring redirection:', error);
+                    } else {
+                        console.log('Non-surgical body contouring redirection tracking successful:', data);
+                    }
+                } catch (e) {
+                    console.error('Exception during non-surgical body contouring redirection tracking:', e);
+                }
+            }
+
+            // Redirect regardless of tracking success
+            console.log("Non-Surgical Body Contouring: Redirecting to:", url);
             window.location.href = url;
         }
 
@@ -807,5 +961,7 @@
 
     </script>
     <script src="../script.js"></script>
+    <script src="../tracking.js"></script>
+    <script src="../tracking-enhanced.js"></script>
 </body>
-</html> 
+</html>

@@ -22,24 +22,31 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
-                        <li><a href="pmu-artists.html">PMU Artists</a></li> <!-- Current page -->
+                        <li><a href="pmu-artists.html">PMU Artists</a></li>
                         <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
                         <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
                         <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
@@ -48,10 +55,9 @@
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -61,15 +67,13 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Is Your PMU Artistry Lost in the Social Media Noise?</span>
-                    <span>Our System Attracts Your Ideal High-Paying Clients – Automatically.</span>
+                    <span>Is Your PMU Artistry Invisible to Your Ideal Clients?</span>
+                    <span>Discover the #1 Reason Top Artists Fill Their Books—Take the 30-Second Quiz.</span>
                 </h1>
                 <p class="hero-subheadline">
-                    Are you struggling to attract clients who value your skill and are ready to invest in quality? 
-                    Imagine <strong>confidently commanding</strong> a schedule filled with ideal, high-paying clients who seek out your specific artistry. Our Client Magnet System <strong>powers this transformation</strong>, <strong>elevating your brand</strong> and <strong>freeing you</strong> to thrive doing what you love.
-                    <em>Curious how you can consistently attract premium clients like this? Our 30-second quiz provides a quick look.</em>
+                    Are you tired of chasing low-value leads and feeling invisible in a crowded market? Imagine waking up to a calendar filled with high-paying clients who seek you out for your artistry. Our quick quiz reveals the hidden blockages holding you back—and how to unlock a steady stream of premium bookings.
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & See How</a>
+                <a href="../quiz-start.html" class="cta-button">Reveal Your Artistry's Hidden Growth Potential—Take the 30-Second Quiz</a>
             </div>
         </section>
 
@@ -83,7 +87,7 @@
                     <em>If you're curious about a more consistent way to attract your ideal PMU clients, our 30-second quiz can show if this is your answer.</em>
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Discover What's Holding Your PMU Business Back—Start the Quiz Now</a>
                 </div>
                 <p class="key-promise">"Stop Competing on Price. Start Attracting Premium PMU Clients."</p>
             </div>
@@ -98,7 +102,7 @@
                         <em>Curious how this dedicated system could fill your schedule with ideal PMU clients? Our 30-second quiz is the first step.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">See How Top PMU Artists Attract Premium Clients—Take the Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -110,23 +114,20 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Unlock the #1 Strategy to Fill Your Schedule—Start the Quiz</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Lead" alt="Lead Attraction">
                             <h4>The Lead Attraction Team</h4>
                             <p class="team-subtitle">Ideal Client Finders</p>
                             <p>Pinpoints and attracts individuals seeking your specific premium services, delivering qualified inquiries without you needing to master complex marketing.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Book" alt="Booking & Follow-Up">
                             <h4>The Booking & Follow-Up Crew</h4>
                             <p class="team-subtitle">Appointment Securing Experts</p>
                             <p>Manages all lead communication and follow-up, securing booked appointments so you can focus on your artistry, not administrative tasks.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Sys" alt="System Automation">
                             <h4>The System Automation Engine</h4>
                             <p class="team-subtitle">Efficiency & Nurturing Powerhouse</p>
                             <p>Automates crucial client communication and nurturing sequences, ensuring professionalism and saving you significant time and effort daily.</p>
@@ -168,7 +169,6 @@
                             "I was spending hours on Instagram trying to get noticed. TurnClicksToClients brought me qualified leads who were actually ready to book! My schedule is consistently full now, and I'm attracting clients who value my work. The stress relief is amazing."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/c8a2c8/FFFFFF?Text=JA" alt="Artist Photo">
                             <div>
                                 <p class="author-name">Jessica A., PMU Artist</p>
                                 <p class="author-niche">Ethereal Beauty PMU</p>
@@ -181,7 +181,6 @@
                             "Before, bookings were so unpredictable. Now, I have a steady stream of consultations and appointments booked through their system. The automation for reminders and follow-ups saves me so much time. Best investment I've made for my business."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/8a2be2/FFFFFF?Text=MB" alt="Artist Photo">
                             <div>
                                 <p class="author-name">Maria B., Owner & Artist</p>
                                 <p class="author-niche">Precision Aesthetics PMU</p>
@@ -200,7 +199,7 @@
                     <p class="commitment-text" style="text-align: center;">
                         Imagine spending less time worrying about marketing and more time creating beautiful results for happy clients. Predictable bookings mean predictable income and the freedom to grow your skills and reputation.
                     </p>
-                    <a href="../index.html#cta-contact" class="cta-button secondary">Let's Fill Your Calendar</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">LET'S FILL YOUR CALENDAR</a>
                  </div>
             </div>
         </section>
@@ -210,7 +209,7 @@
              <div class="container text-center">
                  <h2 class="mb-1">Ready for a Consistently Booked Schedule?</h2>
                  <p class="pricing-subtext mb-2">Our plans are designed to deliver qualified client bookings for talented PMU Artists. Choose the path that fits your business goals.</p>
-                 <a href="../index.html#pricing" class="cta-button primary-cta">View Our Pricing Plans & Special Offer</a>
+                 <a href="../quiz-start.html" class="cta-button primary-cta">See How Much More You Could Be Booking—Take the 30-Second Quiz</a>
                  <p class="mt-1">(You'll be taken to our main pricing section)</p>
              </div>
         </section>
@@ -219,7 +218,6 @@
          <section id="guarantee-niche" class="section-padding" style="background-color: #e9e6ff;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/8a2be2/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day Premium Client Lead Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We focus on attracting clients who value quality PMU artistry. If you don't see a measurable increase in qualified leads specifically interested in your premium PMU services within the first 30 days, you don't pay our service fee. <strong>This gives you certainty that you'll connect with clients who truly appreciate your skill.</strong> Zero risk. Real high-value client opportunities.
@@ -257,16 +255,12 @@
         <section id="cta-contact-niche" class="section-padding text-center" style="background: linear-gradient(to right, #8a2be2, #4b0082); color: #fff;">
             <div class="container">
                 <h2>Curious if Your PMU Artistry Can Attract a Consistent Flow of Premium Clients?</h2>
-                <p class="cta-subtext mb-2">Stop letting unpredictable bookings control your income. Our 30-second quiz can help you see if our guaranteed system is the right fit to fill your calendar with clients who value your skill, before your competitor claims your city.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
-                <p class="cta-microcopy">(Quick, no-obligation check for eligibility & city availability)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Book a Brief Strategy Call</a>.</p>
-                 <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
-                 <p class="cta-ps mt-1">
-                     <strong>P.S.</strong> You desire a PMU artistry business that thrives on premium clients and predictable income. That success demands a price. Will it be endless hours on social media, the stress of inconsistent bookings, and the fight for recognition? That's a taxing way to build your dream.
-                     Or will you opt for a system refined over 15+ years, designed to elevate your artistry by attracting clients who value your skill <em>for you</em>? 
-                     Our 30-second quiz is your entry to this strategic shortcut – achieving the recognition and income you deserve without the grind. Top artists choose smart systems. What's your choice for your future? See if you qualify for the shortcut.
-                 </p>
+                <p class="cta-subtext mb-2" style="color: #222;">Stop letting unpredictable bookings control your income. Our 30-second quiz can help you see if our guaranteed system is the right fit to fill your calendar with clients who value your skill, before your competitor claims your city.</p>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">Find Out What's Possible for Your Artistry—Take the 30-Second Quiz</a>
+                <p class="cta-microcopy" style="color: #333;">(Quick, no-obligation check for eligibility & city availability)</p>
+                <p class="mt-1" style="font-weight: 500; color: #222;">
+                    Have a burning question? Get instant answers—just click the "Send Us an Instant Message" button below.
+                </p>
             </div>
         </section>
 

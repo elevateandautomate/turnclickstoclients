@@ -19,36 +19,42 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
                         <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
                         <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
                         <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
-                        <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li> <!-- Current page -->
+                        <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
                         <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -58,15 +64,15 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Tired of CPAP Hassles or Endless Snoring Complaints?</span>
-                    <span>Our System Attracts Patients Seeking Your Effective Sleep Apnea & Snoring Solutions.</span>
+                    <span>Why Most Sleep Clinics Struggle to Fill Their Schedule—And the 30-Second Quiz That Reveals the Hidden Blockage in Yours.</span>
+                    <span>Our System Turns Your Expertise into a Profit Engine with Predictable Patient Flow.</span>
                 </h1>
                 <p class="hero-subheadline">
                     Is your clinic struggling to reach undiagnosed sufferers or ensure adherence to effective treatments? 
                     Imagine <strong>consistently connecting</strong> with patients needing care and <strong>effectively guiding</strong> them towards better sleep and health. Our Patient Acquisition & Treatment Engine <strong>powers your clinic's success</strong>, <strong>making it possible</strong> for you to thrive while transforming community well-being.
                     <em>Curious how you can effectively reach and treat more patients? Our 30-second quiz provides quick insights.</em>
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & See How</a>
+                <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
             </div>
         </section>
 
@@ -80,7 +86,7 @@
                     <em>If you're looking to connect with more patients who are serious about finding effective solutions for their sleep issues, our quick 30-second quiz can determine if this system is your answer.</em>
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                 </div>
                 <p class="key-promise">"Stop Managing Symptoms. Start Delivering Restful Nights & Healthy Lives."</p>
             </div>
@@ -95,7 +101,7 @@
                         <em>Curious how this specialized engine could bring a steady stream of qualified sleep patients to your clinic? Our 30-second quiz is the first step.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -107,34 +113,29 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Lead" alt="Lead Generation">
                             <h4>The Lead Generation Team</h4>
                             <p class="team-subtitle">Awareness & Interest Builders</p>
                             <p>Educates and attracts individuals experiencing sleep issues, delivering qualified inquiries without you needing to run complex awareness campaigns.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Consult" alt="Consultation & Diagnosis Support">
                             <h4>The Consultation & Diagnosis Support Crew</h4>
                             <p class="team-subtitle">Patient Navigators & Coordinators</p>
-                            <p>Handles inquiries and guides patients through the initial steps, freeing your clinical staff to focus on assessment and diagnosis.</p>
+                            <p>Handles communication and guides qualified leads toward a consultation or appointment, freeing your clinical staff to focus on patient care, not sales processes.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Manage" alt="Patient Management Automation">
                             <h4>The Patient Management Automation Engine</h4>
                             <p class="team-subtitle">Adherence & Long-Term Care Enhancer</p>
-                            <p>Automates follow-ups and reminders to support treatment adherence, reducing the administrative load on your clinic staff.</p>
+                            <p>Relentlessly follows up with every interested patient who hesitated to book—turning lost opportunities into booked consultations and ensuring no one slips through the cracks. Your team stays focused on care, while our system quietly fills your schedule in the background.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
                         <h4 class="mechanism-headline">The Pathway to Filling Gaps in Sleep, Relationships & Practice Growth</h4>
                         <p>
-                            Why is this effective? The journey to treatment is complex, and this system <strong>fills the lack of patient guidance and support</strong>, letting you feel the success of effective care pathways. 
-                            Outreach <strong>fills the lack of public awareness</strong>, generating leads and a sense of proactive health. The support crew <strong>fills the lack of navigational ease</strong>, creating a feeling of being well-cared-for. 
-                            Automation <strong>fills the lack of ongoing adherence reminders</strong>, fostering partnership. This integrated approach <strong>delivers</strong> consistent volume and outcomes by overcoming these lacks, allowing your clinic to continuously feel its profound impact.
+                            Why does this work so powerfully? Because every step of the patient journey is engineered for action and follow-through. Outreach doesn't just raise awareness—it awakens desire in those suffering silently, drawing them to your door. Our support crew transforms curiosity into commitment, guiding every qualified lead to a booked consultation. And our automation relentlessly pursues every interested patient who hesitated, turning "maybe later" into "booked now." This seamless, integrated system fills your calendar, multiplies your impact, and lets you feel the satisfaction of a clinic that never lets opportunity slip away.
                         </p>
                     </div>
                     <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
@@ -162,7 +163,6 @@
                             "We offer OAT, but getting the word out to CPAP-intolerant patients was tough. TurnClicksToClients specifically targets these individuals. Our OAT consultations have tripled, and patients are so grateful for an alternative that works."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/1E90FF/FFFFFF?Text=DrS" alt="Clinic Owner Photo">
                             <div>
                                 <p class="author-name">Dr. Emily Carter, DDS</p>
                                 <p class="author-niche">Sound Sleep Solutions Clinic</p>
@@ -174,7 +174,6 @@
                             "Educating patients about the risks of untreated sleep apnea and the ease of HSATs was our biggest hurdle. This system provides that education upfront. We're diagnosing and helping more people than ever before, and they come in ready to take action."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/32CD32/FFFFFF?Text=DrM" alt="Clinic Owner Photo">
                             <div>
                                 <p class="author-name">Dr. Ben Miller, MD</p>
                                 <p class="author-niche">Advanced Sleep & Wellness Center</p>
@@ -204,7 +203,7 @@
              <div class="container text-center">
                  <h2 class="mb-1">Ready to Help More Patients Breathe Easier & Sleep Soundly?</h2>
                  <p class="pricing-subtext mb-2">Our plans are designed to attract qualified, motivated patients seeking diagnosis and treatment for sleep apnea and snoring. Choose your path to making a bigger impact.</p>
-                 <a href="../index.html#pricing" class="cta-button primary-cta">View Our Pricing Plans & Special Offer</a>
+                 <a href="../quiz-start.html" class="cta-button primary-cta">Discover How to Fill Your Schedule with High-Value Patients</a>
                  <p class="mt-1">(You'll be taken to our main pricing section)</p>
              </div>
         </section>
@@ -252,10 +251,10 @@
             <div class="container">
                 <h2 class="mb-1">Curious if Your Sleep Clinic Can Consistently Reach & Treat More Patients?</h2>
                 <p class="cta-subtext mb-2">Let's find out if our system can attract a consistent flow of qualified patients, ready for your life-changing sleep solutions. Our 30-second quiz is the first step.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                  <p class="cta-microcopy">(Quick, no-obligation check for eligibility)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link">Book a Brief Strategy Call</a>.</p>
-                 <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
+                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link">Click the Send a Message Button</a>.</p>
+                 <p class="cta-microcopy">(Our team will get back to you ASAP)</p>
                 <p class="cta-ps mt-1">
                      <strong>P.S.</strong> You want your sleep clinic to be a beacon for those suffering, a goal that comes with a price. Will that price be the ongoing struggle to raise awareness, the complexity of patient education, and the inefficiency of reaching those in need one by one? That's a challenging road.
                      Or will you adopt a system honed over 15+ years, designed to connect you with qualified patients and streamline their journey to treatment <em>for you</em>?

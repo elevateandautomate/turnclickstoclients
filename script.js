@@ -1,8 +1,10 @@
 // JavaScript for TurnClicksToClients.com
 
-// Placeholder for future interactivity
 document.addEventListener('DOMContentLoaded', () => {
     console.log('TurnClicksToClients.com website loaded.');
+
+    // Initialize FAQ accordion for enhanced offer page
+    initFaqAccordion();
 
     // Smooth scroll for navigation links
     const navLinks = document.querySelectorAll('header nav ul li a[href^="#"], .cta-button[href^="#"]');
@@ -41,9 +43,46 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll(); // Initial check in case the page is already scrolled
     }
 
+    // Hamburger menu and mobile nav toggle (from index.html)
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.getElementById('main-nav');
+    if (hamburger && navUl) {
+      function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+      }
+      hamburger.addEventListener('click', function() {
+        const open = navUl.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', open);
+        if (!open) closeAllDropdowns();
+      });
+      // Dropdowns for mobile
+      navUl.querySelectorAll('.dropdown-parent > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 900) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            const isOpen = parent.classList.toggle('open');
+            // Close others
+            navUl.querySelectorAll('.dropdown-parent').forEach(li => {
+              if (li !== parent) li.classList.remove('open');
+            });
+          }
+        });
+      });
+      // Close nav on link click (conversion best practice)
+      navUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 900) {
+            navUl.classList.remove('open');
+            closeAllDropdowns();
+          }
+        });
+      });
+    }
+
     // Fade-in elements on scroll
     const observerOptions = {
-        root: null, // relative to document viewport 
+        root: null, // relative to document viewport
         rootMargin: '0px',
         threshold: 0.1 // 10% of the item is visible
     };
@@ -60,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
 
     const fadeElements = document.querySelectorAll('.niche-item, .team-card, .pricing-card, .testimonial-card, .special-promotion-box, .guarantee-box, .unique-mechanism-explanation, .deeper-benefit-explanation, .commitment-box, .transition-to-solution, #core-offer .container > h2, #core-offer .container > p, #ideal-clients .container > h2, #ideal-clients .container > p, #pricing .container > h2, #pricing .container > p, #guarantee .container > h2');
-    
+
     fadeElements.forEach(el => {
         el.classList.add('fade-in-element'); // Add base class for initial state
         intersectionObserver.observe(el);
@@ -87,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateROI() {
-        if (!avgClientValueSlider || !currentClientsSlider || !conversionRateSlider || 
-            !avgClientValueOutput || !currentClientsOutput || !conversionRateOutput || 
+        if (!avgClientValueSlider || !currentClientsSlider || !conversionRateSlider ||
+            !avgClientValueOutput || !currentClientsOutput || !conversionRateOutput ||
             !additionalClientsDisplay || !monthlyRevenueDisplay || !annualRevenueDisplay || !roiValueDisplay) {
             // console.error("One or more ROI calculator elements are missing.");
             return; // Exit if any element is not found
@@ -104,16 +143,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ensure conversion rate output always matches slider value
         conversionRateOutput.textContent = conversionRateSlider.value + '%';
 
-        // --- Calculation Logic (Revised to include Conversion Rate impact) --- 
+        // --- Calculation Logic (Revised to include Conversion Rate impact) ---
         // Scale leads added by system based on current size
         const BASE_NEW_LEADS = 50; // Base new leads for established businesses
         // Scale new leads more appropriately based on current client load
         const NEW_LEADS_FROM_SYSTEM = Math.min(BASE_NEW_LEADS, Math.max(10, currentClients * 7));
-        
+
         const SYSTEM_CONVERSION_UPLIFT_FACTOR = 1.5; // Our system improves current conversion rate by 50%
         const SYSTEM_MIN_CONVERSION_RATE = 20;   // Our system achieves at least 20% conversion
         const SYSTEM_MAX_CONVERSION_RATE = 45;   // Our system's conversion rate is realistically capped at 45%
-        
+
         // Adjust the minimum clients based on current client input
         // This creates a more realistic projection for small businesses
         const MIN_ADDITIONAL_CLIENTS_FLOOR = Math.max(1, Math.floor(currentClients * 0.6));
@@ -146,14 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cap additional clients to a multiple of current clients (2x) or 10, whichever is higher
         const MAX_REASONABLE_ADDITIONAL = Math.max(10, Math.floor(currentClients * 2));
         projectedAdditionalClients = Math.min(projectedAdditionalClients, MAX_REASONABLE_ADDITIONAL);
-        
+
         // Special case for very small businesses (1-5 clients)
         // Makes results more realistic and proportional
         if (currentClients <= 5) {
             // Cap additional clients to not exceed currentClients
             projectedAdditionalClients = Math.min(projectedAdditionalClients, currentClients);
         }
-        
+
         // Ensure it doesn't show negative additional clients if somehow current setup is better than projection inputs
         projectedAdditionalClients = Math.max(0, projectedAdditionalClients);
 
@@ -170,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Or more simply: (Total Gain / Total Investment) = Growth Factor
             roi3Months = gain3Months / investment3Months;
         }
-        
+
 
         // Update result displays
         additionalClientsDisplay.textContent = projectedAdditionalClients;
@@ -207,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function initializeOrUpdateCounter() {
             const now = new Date();
             const currentWeekStartMs = getWeekStartDate(now);
-            
+
             let weeklyTarget = parseInt(localStorage.getItem('tctc_weeklyTarget') || '0', 10);
             let lastStoredWeekStartMs = parseInt(localStorage.getItem('tctc_weekStartMs') || '0', 10);
             let currentDisplayCount = parseInt(localStorage.getItem('tctc_lastDisplayedCount') || '0', 10);
@@ -227,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const dayOfWeek = now.getDay(); // 0 (Sun) to 6 (Sat)
             const adjustedDay = (dayOfWeek === 0) ? 7 : dayOfWeek; // Mon=1, Tue=2, ..., Sun=7
-            
+
             const dailyProgressFactors = [0, 0.15, 0.30, 0.50, 0.70, 0.90, 1, 1]; // Base factors
             let proportionalTodayCount = Math.floor(weeklyTarget * dailyProgressFactors[adjustedDay]);
 
@@ -243,13 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
                  // Ensure that idealTodayCount is at least the last shown count (or a bit more)
                  idealTodayCount = Math.max(idealTodayCount, currentDisplayCount);
             }
-            
+
             // Final check: if it's still below the base min display threshold, set it to that.
             idealTodayCount = Math.max(idealTodayCount, MIN_DISPLAY_THRESHOLD);
 
             // Ensure current display count starts at or above threshold
             currentDisplayCount = Math.max(currentDisplayCount, MIN_DISPLAY_THRESHOLD);
-            appointmentsCountSpan.textContent = currentDisplayCount; 
+            appointmentsCountSpan.textContent = currentDisplayCount;
 
             // Animate towards idealTodayCount
             if (window.tctcBookingInterval) clearInterval(window.tctcBookingInterval);
@@ -276,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 90000); // Update approx every 1.5 mins to simulate activity, adjust as desired
         }
-        
+
         initializeOrUpdateCounter(); // Initialize and start counter animation
         // Optionally re-check/re-animate on visibility change if tab was backgrounded for a long time
         document.addEventListener("visibilitychange", () => {
@@ -323,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-    
+
     // Chat Widget Logic
     const chatButton = document.getElementById('chat-widget-button');
     const chatModal = document.getElementById('chat-modal');
@@ -416,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalButtonText = submitButton.textContent;
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
-            
+
             // Hide any previous success/error messages from the modal
             const successMessageDiv = document.getElementById('chat-success-message');
             const errorMessageDiv = document.getElementById('chat-error-message'); // Assuming you might add one
@@ -520,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checklistForm) {
         checklistForm.addEventListener('change', updateChecklistResults);
         // Initial check in case of browser back/forward preserving state
-        // updateChecklistResults(); 
+        // updateChecklistResults();
         // --> Decided against initial check to avoid showing results before interaction
     }
 
@@ -533,4 +572,29 @@ document.addEventListener('DOMContentLoaded', () => {
             if (chatButton) chatButton.click();
         }
     });
-}); 
+
+    /**
+     * Initialize the FAQ accordion functionality
+     */
+    function initFaqAccordion() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            if (question) {
+                question.addEventListener('click', () => {
+                    // Toggle active class on the clicked item
+                    item.classList.toggle('active');
+
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+    }
+});

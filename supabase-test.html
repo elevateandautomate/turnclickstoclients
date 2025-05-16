@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Connection Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    
+    <div class="test-section">
+        <h2>Connection Test</h2>
+        <button id="test-connection">Test Connection</button>
+        <div id="connection-result" class="test-result">Results will appear here...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Table Existence Test</h2>
+        <button id="test-tables">Test Tables</button>
+        <div id="tables-result" class="test-result">Results will appear here...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Data Retrieval Test</h2>
+        <button id="test-user-behavior">Test tctc_user_behavior</button>
+        <button id="test-quiz-submission">Test tctc_quiz_submission</button>
+        <div id="data-result" class="test-result">Results will appear here...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Create Test Data</h2>
+        <button id="create-test-data">Create Test Data</button>
+        <div id="create-result" class="test-result">Results will appear here...</div>
+    </div>
+
+    <script>
+        // Supabase configuration
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        
+        // Initialize Supabase client
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // Test connection
+        document.getElementById('test-connection').addEventListener('click', async () => {
+            const resultElement = document.getElementById('connection-result');
+            resultElement.className = 'test-result';
+            resultElement.textContent = 'Testing connection...';
+            
+            try {
+                const { data, error } = await supabaseClient.from('tctc_user_behavior').select('count(*)');
+                
+                if (error) {
+                    resultElement.className = 'test-result error';
+                    resultElement.textContent = `Connection error: ${error.message}`;
+                } else {
+                    resultElement.className = 'test-result success';
+                    resultElement.textContent = `Connection successful! Response: ${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultElement.className = 'test-result error';
+                resultElement.textContent = `Exception: ${error.message}`;
+            }
+        });
+        
+        // Test tables
+        document.getElementById('test-tables').addEventListener('click', async () => {
+            const resultElement = document.getElementById('tables-result');
+            resultElement.className = 'test-result';
+            resultElement.textContent = 'Testing tables...';
+            
+            try {
+                // Get all tables
+                const { data: tables, error: tablesError } = await supabaseClient.rpc('get_tables');
+                
+                if (tablesError) {
+                    resultElement.className = 'test-result error';
+                    resultElement.textContent = `Error getting tables: ${tablesError.message}`;
+                    return;
+                }
+                
+                // Check if our tables exist
+                const userBehaviorExists = tables && tables.some(table => table.table_name === 'tctc_user_behavior');
+                const quizSubmissionExists = tables && tables.some(table => table.table_name === 'tctc_quiz_submission');
+                
+                resultElement.className = 'test-result success';
+                resultElement.textContent = `Tables check:\n`;
+                resultElement.textContent += `- tctc_user_behavior: ${userBehaviorExists ? 'EXISTS' : 'MISSING'}\n`;
+                resultElement.textContent += `- tctc_quiz_submission: ${quizSubmissionExists ? 'EXISTS' : 'MISSING'}\n\n`;
+                resultElement.textContent += `All tables: ${JSON.stringify(tables, null, 2)}`;
+                
+            } catch (error) {
+                resultElement.className = 'test-result error';
+                resultElement.textContent = `Exception: ${error.message}`;
+            }
+        });
+        
+        // Test user behavior data
+        document.getElementById('test-user-behavior').addEventListener('click', async () => {
+            const resultElement = document.getElementById('data-result');
+            resultElement.className = 'test-result';
+            resultElement.textContent = 'Testing tctc_user_behavior data...';
+            
+            try {
+                const { data, error, count } = await supabaseClient
+                    .from('tctc_user_behavior')
+                    .select('*', { count: 'exact' })
+                    .limit(5);
+                
+                if (error) {
+                    resultElement.className = 'test-result error';
+                    resultElement.textContent = `Error fetching tctc_user_behavior: ${error.message}`;
+                } else {
+                    resultElement.className = 'test-result success';
+                    resultElement.textContent = `Found ${count} records in tctc_user_behavior.\n\nSample data (up to 5 records):\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultElement.className = 'test-result error';
+                resultElement.textContent = `Exception: ${error.message}`;
+            }
+        });
+        
+        // Test quiz submission data
+        document.getElementById('test-quiz-submission').addEventListener('click', async () => {
+            const resultElement = document.getElementById('data-result');
+            resultElement.className = 'test-result';
+            resultElement.textContent = 'Testing tctc_quiz_submission data...';
+            
+            try {
+                const { data, error, count } = await supabaseClient
+                    .from('tctc_quiz_submission')
+                    .select('*', { count: 'exact' })
+                    .limit(5);
+                
+                if (error) {
+                    resultElement.className = 'test-result error';
+                    resultElement.textContent = `Error fetching tctc_quiz_submission: ${error.message}`;
+                } else {
+                    resultElement.className = 'test-result success';
+                    resultElement.textContent = `Found ${count} records in tctc_quiz_submission.\n\nSample data (up to 5 records):\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultElement.className = 'test-result error';
+                resultElement.textContent = `Exception: ${error.message}`;
+            }
+        });
+        
+        // Create test data
+        document.getElementById('create-test-data').addEventListener('click', async () => {
+            const resultElement = document.getElementById('create-result');
+            resultElement.className = 'test-result';
+            resultElement.textContent = 'Creating test data...';
+            
+            try {
+                // Generate a unique user ID
+                const userId = 'test_' + Math.random().toString(36).substring(2, 10);
+                
+                // Create a test user behavior record
+                const { data: behaviorData, error: behaviorError } = await supabaseClient
+                    .from('tctc_user_behavior')
+                    .insert([
+                        {
+                            user_id: userId,
+                            event_type: 'page_view',
+                            page_type: 'test',
+                            page_url: '/test-page',
+                            niche: 'test-niche',
+                            traffic_source: 'test',
+                            timestamp: new Date().toISOString()
+                        }
+                    ])
+                    .select();
+                
+                // Create a test quiz submission record
+                const { data: quizData, error: quizError } = await supabaseClient
+                    .from('tctc_quiz_submission')
+                    .insert([
+                        {
+                            user_id: userId,
+                            niche: 'test-niche',
+                            score: 75,
+                            result_bucket: 'test-bucket',
+                            submitted_at: new Date().toISOString()
+                        }
+                    ])
+                    .select();
+                
+                if (behaviorError || quizError) {
+                    resultElement.className = 'test-result error';
+                    resultElement.textContent = `Error creating test data:\n`;
+                    if (behaviorError) resultElement.textContent += `- User behavior: ${behaviorError.message}\n`;
+                    if (quizError) resultElement.textContent += `- Quiz submission: ${quizError.message}\n`;
+                } else {
+                    resultElement.className = 'test-result success';
+                    resultElement.textContent = `Test data created successfully with user ID: ${userId}\n\n`;
+                    resultElement.textContent += `User behavior data: ${JSON.stringify(behaviorData, null, 2)}\n\n`;
+                    resultElement.textContent += `Quiz submission data: ${JSON.stringify(quizData, null, 2)}`;
+                }
+            } catch (error) {
+                resultElement.className = 'test-result error';
+                resultElement.textContent = `Exception: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -22,23 +22,30 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
-                        <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li> <!-- Current page -->
+                        <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
                         <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
                         <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
@@ -48,9 +55,8 @@
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
                 <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
             </ul>
         </nav>
@@ -61,29 +67,27 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Stop Filling Chairs, Start Crafting Masterpieces.</span>
-                    <span>Our System Attracts High-Value Cosmetic Patients Who Say YES.</span>
+                    <span style="color: #fff;">Why Most Cosmetic Dentists Struggle to Fill Their Chairs With Dream Cases—</span>
+                    <span style="color: #ffd600;">And the Simple System That Can Flood Yours With High-Value Patients, Month After Month.</span>
                 </h1>
                 <p class="hero-subheadline">
-                    Are you frustrated by a schedule diluted with low-value procedures instead of the high-value cases you excel at? 
-                    Imagine <strong>confidently attracting</strong> a consistent flow of affluent, pre-qualified patients seeking premium treatments. Our Patient Attraction Engine <strong>powers this transformation</strong>, <strong>empowering you</strong> to focus on your artistry and <strong>build</strong> the signature practice of your dreams.
-                    <em>Curious how you can achieve this consistent flow of dream cases? Our 30-second quiz offers quick insights.</em>
+                    Every day, another patient chooses a cheaper, less skilled dentist—while your chair sits empty, your talent underused, and your vision for a signature practice slips further away.<br>
+                    Imagine waking up to a calendar packed with high-value, pre-qualified patients who <em>want</em> your artistry—and are ready to invest in it. This isn't a dream. It's the new reality our Patient Attraction Engine delivers.
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & Find Out</a>
+                <a href="../quiz-start.html" class="cta-button">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
             </div>
         </section>
 
         <!-- Problem/Agitation Section -->
         <section id="niche-problem" class="section-padding">
             <div class="container text-center">
-                <h2 class="mb-2">The Cosmetic Dentist's Paradox: Elite Skills Meet a Lack of Ideal Patients & Wasted Time</h2>
+                <h2 class="mb-2">The Hidden Trap: Why Your Elite Skills Aren't Filling Your Chair</h2>
                 <p class="ideal-clients-subtext mb-2">
-                    You've invested years mastering transformative cosmetic dentistry. Yet, the reality? Your schedule fluctuates, filled with consultations that highlight a lack of genuinely qualified, investment-ready patients. Standing out requires marketing efforts that often attract price-shoppers, showcasing a lack of effective differentiation in a crowded market.
-                    The frustration is palpable: the result is often a lack of the consistent flow of high-value cases your skills deserve. You waste precious chair time educating patients who ultimately reveal a lack of financial readiness or commitment, only to hear "I need to think about it." You see your potential stifled by this lack of ideal patient volume, forced to dilute your focus instead of consistently performing the procedures you excel at. Is your exceptional talent bottlenecked by these critical lacks? 
-                    <em>If you're curious about attracting more of your ideal patients, our quick 30-second quiz can reveal if this system is your solution.</em>
+                    You've spent years perfecting your craft—yet your schedule is a rollercoaster. Too many consults with price-shoppers. Too many "I need to think about it." Too many days where your best work goes unseen, your income unpredictable, and your dream cases go to someone less qualified.<br>
+                    The real problem? It's not your skill. It's the <strong>system</strong> you're using to attract patients. And until you fix it, you'll keep feeling stuck—no matter how talented you are.
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                 </div>
                  <p class="key-promise">"Stop Lacking Dream Cases. Start Building Your Signature Practice."</p>
             </div>
@@ -94,11 +98,10 @@
             <div class="container">
                 <div class="transition-to-solution text-center mb-2 fade-in-element">
                     <p class="transition-text">
-                        We understand this paradox – the <strong>lack of alignment</strong> between your elite skills and typical patient flow. The wasted energy. That's why TurnClicksToClients is your bespoke engine designed to <strong>fill the lack of premium patients</strong>, pre-qualifying and pre-framing value so you can start feeling the satisfaction of a practice reflecting your expertise, and keep feeling it. We deliver...
-                        <em>Curious how this bespoke engine could deliver a consistent flow of your ideal patients? Our 30-second quiz is the first step.</em>
+                        Imagine the relief of never again wondering where your next dream case will come from. Picture a system that quietly works in the background, attracting high-value patients who are already pre-sold on your expertise—so you can finally focus on your craft, not chasing leads. This isn't just marketing. It's the breakthrough Patient Attraction Engine that top cosmetic dentists are using to transform their practices—and it's now available to you.
                     </p>
-                     <div class="text-center mt-1 mb-2">
-                         <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <div class="text-center mt-1 mb-2">
+                        <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -110,34 +113,29 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                         <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                         <a href="../quiz-start.html" class="cta-button secondary">DISCOVER WHAT'S HOLDING YOU BACK</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Surge" alt="Lead Surge Team">
                             <h4>The Lead Surge Team</h4>
-                            <p class="team-subtitle">Premium Patient Magnetizers</p>
-                            <p>Executes targeted campaigns to attract affluent individuals seeking high-value procedures, delivering ideal patient inquiries without you managing the ads.</p>
+                            <p class="team-subtitle">Your Premium Patient Magnet</p>
+                            <p>Imagine a team working behind the scenes, day and night, to put your practice in front of affluent patients who are searching for exactly what you offer. No more guessing, no more wasted effort. The Lead Surge Team fills your calendar so you can focus on your artistry.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Conv" alt="Conversion Crew">
                             <h4>The Conversion Crew</h4>
                             <p class="team-subtitle">Consultation Booking Specialists</p>
-                            <p>Handles all initial lead communication and nurturing, booking qualified consultations so your team focuses purely on patient care, not chasing leads.</p>
+                            <p>Picture every inquiry handled with care and speed—no more missed calls, no more lost opportunities. The Conversion Crew turns interest into booked consults, freeing you from endless follow-ups and letting you focus on delivering stunning results.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Auto" alt="Automation Engineers">
                             <h4>The Automation Engineers</h4>
                             <p class="team-subtitle">Practice Efficiency Enhancers</p>
-                            <p>Sets up automated follow-ups and reminders, ensuring seamless patient communication and maximizing efficiency with minimal effort from your staff.</p>
+                            <p>Feel the relief as automated systems ensure no lead ever slips through the cracks. The Automation Engineers create a seamless, stress-free patient journey, so you can finally step off the hamster wheel and enjoy the growth you've worked so hard for.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
-                        <h4 class="mechanism-headline">The Power of Integrated Expertise (Overcoming Previous Lacks)</h4>
+                        <h4 class="mechanism-headline">The Secret Engine Behind Effortless Patient Flow</h4>
                         <p>
-                            Why does this succeed? Attracting high-value patients requires filling the <strong>lack of sophisticated nurturing</strong> typical marketing ignores. Our system builds trust, allowing you to feel confident. 
-                            Our teams <strong>manage</strong> every step, filling the <strong>lack of specialized focus</strong>, while automation <strong>ensures</strong> flawless communication, filling the <strong>lack of consistent engagement</strong>. 
-                            This synchronized system <strong>delivers</strong> ideal patients by overcoming these lacks, allowing you to continually experience the joy of performing transformative procedures.
+                            This isn't just a collection of services—it's a finely tuned engine, each team a secret weapon working in harmony to fill the gaps that have held you back. While others struggle with piecemeal solutions, you'll have a system that delivers consistent results, restores your confidence, and lets you lead with passion again.
                         </p>
                     </div>
                     <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
@@ -166,7 +164,6 @@
                             "We were struggling to attract consistent, high-value cosmetic cases. TurnClicksToClients changed that. Now, our consultations are for the procedures we love to do, and case acceptance is way up. It's been a game-changer for our practice's bottom line and my professional satisfaction."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/007bff/FFFFFF?Text=Dr.S" alt="Dentist Photo">
                             <div>
                                 <p class="author-name">Dr. Emily Carter, DDS</p>
                                 <p class="author-niche">Prestige Cosmetic Dental</p>
@@ -179,7 +176,6 @@
                             "I used to spend so much time and money on marketing that didn't work. Their system is different. The quality of leads is outstanding, and the automated follow-up means my team isn't bogged down. We're seeing more smile makeover patients than ever before."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/1e90ff/FFFFFF?Text=Dr.A" alt="Dentist Photo">
                             <div>
                                 <p class="author-name">Dr. Michael Chen, DMD</p>
                                 <p class="author-niche">Artistic Smiles Studio</p>
@@ -219,7 +215,6 @@
          <section id="guarantee-niche" class="section-padding" style="background-color: #e9f5ff;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/1e90ff/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day High-Value Lead Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We specialize in attracting patients seeking premium cosmetic procedures. If you don't see a measurable increase in qualified leads specifically inquiring about high-value services like veneers, implants, or full smile makeovers within the first 30 days, you don't pay our service fee. <strong>This provides certainty that you'll connect with the <em>right</em> potential patients.</strong> Zero risk. Real premium patient opportunities.
@@ -257,16 +252,14 @@
         <section id="cta-contact-niche" class="section-padding text-center" style="background: linear-gradient(to right, #007bff, #0056b3); color: #fff;">
             <div class="container">
                 <h2>Curious if Your Practice Can Consistently Attract High-Value Cosmetic Patients?</h2>
-                <p class="cta-subtext mb-2">Stop letting unqualified inquiries dictate your schedule. Our 30-second quiz can help you see if our guaranteed system is the right fit to attract the dream cases you deserve, before your competitor claims your city.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
-                <p class="cta-microcopy">(Quick, no-obligation check for eligibility & city availability)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Book a Brief Strategy Call</a>.</p>
-                 <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
-                 <p class="cta-ps mt-1">
-                     <strong>P.S.</strong> You envision a practice renowned for high-value cosmetic dentistry, and achieving that distinction has a price. Will you pay it with years of inconsistent patient flow, marketing efforts that attract the wrong inquiries, and the frustration of untapped potential? That's a demanding path. 
-                     Or will you choose the efficiency of a system honed over 15+ years, designed to attract your ideal patients <em>for you</em>? 
-                     Our 30-second quiz is the first step to this smarter approach – your shortcut to a calendar filled with dream cases. Elite practitioners invest in proven solutions. How will you invest in your vision? Discover if you qualify for the shortcut.
-                 </p>
+                <p class="cta-subtext mb-2" style="color: #222;">Stop letting unqualified inquiries dictate your schedule. Our 30-second quiz can help you see if our guaranteed system is the right fit to attract the dream cases you deserve, before your competitor claims your city.</p>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">DISCOVER WHAT'S HOLDING YOU BACK</a>
+                <p class="cta-microcopy" style="color: #222;">(Quick, no-obligation check for eligibility & city availability)</p>
+                <p class="mt-1" style="color: #222;">Or, click the "Send Us a Message" button and our team will get back to you as soon as possible.</p>
+                <p class="cta-microcopy" style="color: #222;">(For specific inquiries before taking the quiz)</p>
+                <p class="cta-ps mt-1" style="color: #222;">
+                    <strong>P.S.</strong> You envision a practice renowned for high-value cosmetic dentistry, and achieving that distinction has a price. Will you pay it with years of inconsistent patient flow, marketing efforts that attract the wrong inquiries, and the frustration of untapped potential? That's a demanding path. Or will you choose the efficiency of a system honed over 15+ years, designed to attract your ideal patients for you? Our 30-second quiz is the first step to this smarter approach – your shortcut to a calendar filled with dream cases. Elite practitioners invest in proven solutions. How will you invest in your vision? Discover if you qualify for the shortcut.
+                </p>
             </div>
         </section>
 

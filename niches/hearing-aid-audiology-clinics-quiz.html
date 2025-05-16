@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
     <style>
         /* Basic styles adapted */
         body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f4; }
@@ -43,13 +44,29 @@
         #lead-capture-form .cta-button { width: 100%; padding: 12px; font-size: 1.2em; margin-top: 10px; background-color: #28a745; }
         #lead-capture-form .cta-button:hover { background-color: #1e7e34; }
         .privacy-note { font-size: 0.8em; color: #777; text-align: center; margin-top: 15px; }
+
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <header>
-        <nav>
-            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
-            <ul>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About Us</a></li>
                 <li class="dropdown-parent">
@@ -62,14 +79,14 @@
                         <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
                         <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
                         <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
-                        <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
                 <li><a href="../index.html#core-offer">Our Offer</a></li>
                 <li><a href="../index.html#pricing">Pricing</a></li>
                 <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
             </ul>
         </nav>
     </header>
@@ -103,7 +120,7 @@
                     </div>
                 </div>
                 <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
-                
+
                 <div id="quiz-question" class="quiz-question" style="display:none;">
                     <h2></h2>
                 </div>
@@ -114,7 +131,7 @@
                     <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 </div>
             </div>
-            
+
             <div id="lead-capture-form" style="display:none;">
                 <h3>Unlock Your Audiology Clinic's Growth Insights!</h3>
                 <p>Provide your details to receive your personalized Hearing Aid & Audiology clinic growth diagnosis and key recommendations.</p>
@@ -122,22 +139,27 @@
                     <div class="form-group">
                         <label for="first-name">First Name:</label>
                         <input type="text" id="first-name" name="first-name" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
                     </div>
                     <div class="form-group">
                         <label for="last-name">Last Name:</label>
                         <input type="text" id="last-name" name="last-name" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
                     </div>
                     <div class="form-group">
-                        <label for="business-name">Clinic Name:</label> 
+                        <label for="business-name">Clinic Name:</label>
                         <input type="text" id="business-name" name="business-name" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific audiology clinic.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your clinic's growth opportunities.</p>
                     </div>
                     <button type="submit" class="cta-button">See My Clinic's Potential!</button>
                 </form>
@@ -258,7 +280,7 @@
 
     <script>
         let currentQuestionIndex = 0;
-        let userAnswers = []; 
+        let userAnswers = [];
         let quizStarted = false;
         const sourceParam = new URLSearchParams(window.location.search).get('source');
 
@@ -307,6 +329,52 @@
                     { text: "Gradually increasing patient numbers and possibly adding a new technology or service.", score: 2 },
                     { text: "Significantly expanding our patient reach and enhancing our reputation as a leading local audiology provider.", score: 3 },
                     { text: "Becoming a regional center of excellence for comprehensive hearing healthcare, potentially including specialized audiology services or research.", score: 4 }
+                ]
+            },
+            // Additional questions for more comprehensive assessment
+            {
+                question: "How effectively does your clinic utilize digital marketing channels (Google, Facebook, etc.) to reach potential patients?",
+                answers: [
+                    { text: "Minimally; we have little to no digital marketing presence.", score: 1 },
+                    { text: "Basic; we have some online presence but it's not strategically managed.", score: 2 },
+                    { text: "Good; we actively manage our digital presence and see some results.", score: 3 },
+                    { text: "Excellent; we have a comprehensive digital strategy that consistently brings in new patients.", score: 4 }
+                ]
+            },
+            {
+                question: "How would you rate your clinic's follow-up process after a patient purchases hearing aids?",
+                answers: [
+                    { text: "Basic; we schedule standard follow-ups but don't have a structured process.", score: 1 },
+                    { text: "Moderate; we have a follow-up protocol but it's not consistently implemented.", score: 2 },
+                    { text: "Good; we have a structured follow-up process that most patients complete.", score: 3 },
+                    { text: "Excellent; we have a comprehensive, personalized follow-up system with high compliance rates.", score: 4 }
+                ]
+            },
+            {
+                question: "How effectively does your clinic track and analyze key performance metrics (conversion rates, patient acquisition costs, lifetime value, etc.)?",
+                answers: [
+                    { text: "Minimally; we don't systematically track these metrics.", score: 1 },
+                    { text: "Somewhat; we track basic metrics but don't regularly analyze them.", score: 2 },
+                    { text: "Well; we track and analyze key metrics but could improve our process.", score: 3 },
+                    { text: "Very effectively; we have comprehensive tracking and use data to drive decisions.", score: 4 }
+                ]
+            },
+            {
+                question: "How would you describe your clinic's approach to staff training and development?",
+                answers: [
+                    { text: "Minimal; training is mostly on-the-job with little formal structure.", score: 1 },
+                    { text: "Basic; we provide some training but it's not comprehensive or regular.", score: 2 },
+                    { text: "Good; we have a structured training program but could enhance it.", score: 3 },
+                    { text: "Excellent; we invest heavily in ongoing professional development for all staff.", score: 4 }
+                ]
+            },
+            {
+                question: "How effectively does your clinic leverage patient testimonials and success stories in your marketing?",
+                answers: [
+                    { text: "Rarely; we don't systematically collect or use testimonials.", score: 1 },
+                    { text: "Sometimes; we have some testimonials but don't feature them prominently.", score: 2 },
+                    { text: "Often; we regularly collect and use testimonials in some marketing channels.", score: 3 },
+                    { text: "Consistently; patient success stories are a cornerstone of our marketing strategy.", score: 4 }
                 ]
             },
             // New "Growth-Stifler" question
@@ -364,6 +432,26 @@
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
 
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> We want to understand your specific challenges so we can tailor our recommendations to address your most pressing needs and help you achieve faster results with your audiology clinic.";
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
+
                     const li = document.createElement('li');
                     const textarea = document.createElement('textarea');
                     textarea.id = questionData.id;
@@ -379,7 +467,7 @@
 
                     // Modify Next button behavior for textarea
                     nextQuestionBtn.textContent = "Next";
-                    nextQuestionBtn.onclick = handleTextareaAnswer; 
+                    nextQuestionBtn.onclick = handleTextareaAnswer;
                     quizNavigationDiv.style.display = 'block'; // Show navigation for next button
                     nextQuestionBtn.style.display = 'inline-block'; // Show next button
 
@@ -391,6 +479,64 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation with specific reasons based on question index
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    let whyText = "";
+
+                    // Customize the explanation based on the question
+                    switch(currentQuestionIndex) {
+                        case 0:
+                            whyText = "We're asking because community education directly impacts your clinic's growth potential. Your answer helps us identify if enhancing your educational outreach could be a key opportunity for your practice.";
+                            break;
+                        case 1:
+                            whyText = "We're asking because the patient journey significantly affects satisfaction, outcomes, and referrals. Your answer helps us determine if streamlining this process could improve your clinic's performance.";
+                            break;
+                        case 2:
+                            whyText = "We're asking because long-term care approaches directly impact patient retention and word-of-mouth referrals. Your answer helps us assess if enhancing your follow-up systems could be a growth lever for your clinic.";
+                            break;
+                        case 3:
+                            whyText = "We're asking because referral relationships are often the lifeblood of successful audiology practices. Your answer helps us understand if strengthening your referral network should be a priority in your growth plan.";
+                            break;
+                        case 4:
+                            whyText = "We're asking because your growth objectives influence which strategies will be most effective for your clinic. Your answer helps us tailor our recommendations to your specific ambitions.";
+                            break;
+                        case 5:
+                            whyText = "We're asking because digital marketing effectiveness directly impacts your new patient acquisition. Your answer helps us identify if your marketing approach needs optimization.";
+                            break;
+                        case 6:
+                            whyText = "We're asking because follow-up processes significantly affect patient satisfaction and hearing aid success rates. Your answer helps us determine if improving your follow-up system could increase patient outcomes.";
+                            break;
+                        case 7:
+                            whyText = "We're asking because data-driven decision making is a key differentiator between high and average-performing clinics. Your answer helps us assess your analytical capabilities.";
+                            break;
+                        case 8:
+                            whyText = "We're asking because staff training directly impacts patient experience and hearing aid adoption rates. Your answer helps us identify if professional development could be a growth lever for your clinic.";
+                            break;
+                        case 9:
+                            whyText = "We're asking because patient testimonials are powerful social proof that can significantly boost new patient acquisition. Your answer helps us determine if better leveraging testimonials could increase your clinic's growth.";
+                            break;
+                        default:
+                            whyText = "We're asking to better understand your audiology clinic and provide more tailored recommendations for growth.";
+                    }
+
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> " + whyText;
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     questionData.answers.forEach((answer) => {
                         const li = document.createElement('li');
@@ -409,7 +555,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function handleTextareaAnswer() {
             const questionData = quizQuestions[currentQuestionIndex];
             const textarea = document.getElementById(questionData.id);
@@ -421,7 +567,7 @@
                 alert("Please provide an answer to this question.");
             }
         }
-        
+
         function selectAnswer(score, selectedButton) {
             const buttons = quizAnswersDiv.querySelectorAll('.answer-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
@@ -446,7 +592,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function updateProgressBar() {
             const progress = (currentQuestionIndex / quizQuestions.length) * 100;
             progressBar.style.width = progress + '%';
@@ -458,20 +604,20 @@
             quizNavigationDiv.style.display = 'none';
             progressBarContainer.style.display = 'none';
             leadCaptureForm.style.display = 'block';
-            quizResultDiv.style.display = 'none'; 
+            quizResultDiv.style.display = 'none';
         }
 
         // Outcome Logic for Hearing Aid & Audiology Clinics
         function determineOutcome(score) {
-            if (score <= 7) return "patients"; 
-            if (score <= 14) return "practice"; 
-            return "growth"; 
+            if (score <= 7) return "patients";
+            if (score <= 14) return "practice";
+            return "growth";
         }
 
         async function handleLeadSubmit() {
             const firstName = document.getElementById('first-name').value.trim();
             const lastName = document.getElementById('last-name').value.trim();
-            const businessName = document.getElementById('business-name').value.trim(); 
+            const businessName = document.getElementById('business-name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             // const growth_stifler_response = document.getElementById('growth_stifler_response').value.trim(); // Removed
@@ -487,7 +633,7 @@
                 alert("Please fill in all required fields in the form.");
                 return;
             }
-            
+
             // Also check if the growth stifler (now a quiz question) was answered
             if (growthStiflerQuestionIndex !== -1 && !userAnswers[growthStiflerQuestionIndex]) {
                  alert("Please ensure all quiz questions, including the open-ended one, are answered.");
@@ -502,7 +648,7 @@
             quizResultDiv.style.display = 'block';
 
             let totalScore = userAnswers.reduce((acc, score) => acc + (typeof score === 'number' ? score : 0), 0);
-            
+
             const detailedQuizAnswers = userAnswers.map((answerData, index) => {
                 const questionData = quizQuestions[index];
                 if (questionData.type === "textarea") {
@@ -519,13 +665,13 @@
                     score: answerData
                 };
             });
-            
-            const primaryOutcomeHint = determineOutcome(totalScore); 
-            
+
+            const primaryOutcomeHint = determineOutcome(totalScore);
+
             const submissionData = {
                 first_name: firstName,
                 last_name: lastName,
-                business_name: businessName, 
+                business_name: businessName,
                 email: email,
                 phone: phone,
                 growth_stifler_response: growth_stifler_response,
@@ -536,7 +682,7 @@
                 source: sourceParam || 'organic',
                 submitted_at: new Date().toISOString(),
             };
-            
+
             let dbError = false;
             let supabaseInsertError = null;
 
@@ -545,7 +691,7 @@
                     const { data, error } = await supabaseClient
                         .from('tctc_quiz_submission')
                         .insert([submissionData])
-                        .select(); 
+                        .select();
 
                     if (error) {
                         console.error('Hearing Aid & Audiology: Error inserting data into Supabase:', error);
@@ -576,48 +722,107 @@
                 }
             } else {
                 console.warn("Hearing Aid & Audiology: Supabase client not initialized. Skipping database insert.");
-                if (!supabaseInsertError) { 
+                if (!supabaseInsertError) {
                     supabaseInsertError = { message: 'Supabase client not initialized' };
-                    dbError = true; 
+                    dbError = true;
                 }
             }
-            
-            const outcomeCategory = determineOutcome(totalScore);
 
+            // After quiz submission logic, redirect with tracking
+            determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError);
+        }
+
+        async function determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError) {
             const encodedFirstName = encodeURIComponent(firstName);
             const encodedLastName = encodeURIComponent(lastName);
             const encodedBusinessName = encodeURIComponent(businessName);
             const baseParams = `firstName=${encodedFirstName}&lastName=${encodedLastName}&businessName=${encodedBusinessName}&score=${totalScore}`;
+            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}&track_source=quiz${dbError ? `&dbError=${encodeURIComponent(supabaseInsertError?.message || 'Unknown error')}` : ''}`;
 
-            let url = '';
-            const dbErrorString = dbError ? `&dbError=${encodeURIComponent(supabaseInsertError && supabaseInsertError.message ? supabaseInsertError.message : 'Unknown DB Error')}` : '';
-            const sourceString = sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : '';
+            // Determine the outcome bucket based on the score
+            const outcome = determineOutcome(totalScore);
+            const scoreBucket = outcome; // patients, practice, or growth
 
-            url = `../quiz-applications/hearing-aid-audiology-clinics-${outcomeCategory}-application.html?${baseParams}${sourceString}${dbErrorString}`;
-            
-            if (url.includes("?&")) {
-                url = url.replace("?&", "?");
-            } else if (url.endsWith("?")) {
-                url = url.slice(0, -1);
+            // Determine which awareness variant to show based on score distribution
+            let awarenessVariant;
+            if (scoreBucket === "patients") {
+                // Lower scores within this bucket get problem variant, higher get solution variant, etc.
+                if (totalScore <= 5) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 6) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+            else if (scoreBucket === "practice") {
+                if (totalScore <= 10) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 12) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+            else { // growth
+                if (totalScore <= 16) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 18) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
             }
 
+            // Construct the new URL with bucket and variant
+            const url = `../quiz-applications/hearing-aid-audiology/${scoreBucket}/hearing-aid-audiology-clinics-${scoreBucket}-variant-${awarenessVariant}.html${baseParams ? '?' + baseParams : '?'}${sourceAndDbErrorParams}&bucket=${scoreBucket}&variant=${awarenessVariant}`;
+
+            // Track the redirection in Supabase before redirecting
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('tctc_quiz_redirections')
+                        .insert([{
+                            user_first_name: firstName,
+                            user_last_name: lastName,
+                            user_business_name: businessName,
+                            quiz_score: totalScore,
+                            outcome_bucket: scoreBucket,
+                            awareness_variant: awarenessVariant,
+                            redirect_url: url,
+                            source: sourceParam || 'organic',
+                            redirected_at: new Date().toISOString()
+                        }]);
+
+                    if (error) {
+                        console.error('Error tracking hearing aid & audiology redirection:', error);
+                    } else {
+                        console.log('Hearing aid & audiology redirection tracking successful:', data);
+                    }
+                } catch (e) {
+                    console.error('Exception during hearing aid & audiology redirection tracking:', e);
+                }
+            }
+
+            // Redirect regardless of tracking success
             console.log("Hearing Aid & Audiology: Redirecting to:", url);
             window.location.href = url;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-             if (!supabaseClient) { 
-                console.warn("Hearing Aid & Audiology Quiz: Supabase client was not available on DOMContentLoaded. Check script loading order and initialization.");
+            if (!window.tctcSupabaseClient) {
+                console.warn("Hearing Aid & Audiology Quiz: Shared Supabase client was not available on DOMContentLoaded. Check script loading order and initialization.");
+            } else {
+                console.log("Hearing Aid & Audiology Quiz: Using shared Supabase client.");
             }
         });
 
-        // Initialize Supabase client
-        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        console.log("Hearing Aid & Audiology Quiz: Supabase client initialized inline.");
+        // Use the shared Supabase client
+        const supabaseClient = window.tctcSupabaseClient;
 
     </script>
     <script src="../script.js"></script>
+    <script src="../tracking.js"></script>
+    <script src="../tracking-enhanced.js"></script>
 </body>
-</html> 
+</html>

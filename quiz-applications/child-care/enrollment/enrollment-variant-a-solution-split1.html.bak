@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Enrollment Engine: Fill Your Child Care Center | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .result-container { padding: 30px 20px; max-width: 800px; margin: 20px auto; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .result-container h1 { font-family: 'Montserrat', sans-serif; color: #0056b3; font-size: clamp(1.8em, 4vw, 2.4em); margin-bottom: 15px; text-align: center; }
+        .result-container h2 { font-family: 'Montserrat', sans-serif; color: #006775; font-size: clamp(1.5em, 3vw, 2em); margin-top: 30px; margin-bottom: 10px; }
+        .result-container p { font-size: clamp(1em, 2vw, 1.1em); color: #444; margin-bottom: 15px; line-height: 1.7; }
+        .result-container ul { list-style: disc; margin-left: 20px; margin-bottom: 15px; padding-left: 15px; }
+        .result-container li { margin-bottom: 8px; }
+
+        .highlight-box { background-color: #eef7ff; border-left: 5px solid #007bff; padding: 20px; margin: 25px 0; border-radius: 5px; }
+        .highlight-box h2 { margin-top: 0; color: #0056b3; }
+
+        .solution-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        .solution-box h2 { color: #2e7d32; margin-top: 0; }
+
+        .system-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .component-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .component-card h3 {
+            color: #0056b3;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-section { margin: 30px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .testimonial-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+        .cta-section { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #0056b3 0%, #003d82 100%); color: #fff !important; border-radius: 12px; margin-top: 40px; }
+        .cta-section h2, .cta-section p, .cta-section ul, .cta-section li { color: #fff !important; }
+        .cta-section .cta-button.primary { background-color: #ffd700; color: #003d82 !important; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.15); font-size: 1.3em; padding: 15px 40px; border-radius: 8px; text-decoration: none; display: inline-block; margin: 20px 0; transition: transform 0.2s; }
+        .cta-section .cta-button.primary:hover { transform: scale(1.05); }
+        .cta-section .subtle { color: #fff !important; opacity: 0.9; font-size: 0.9em; margin-top: 15px; }
+
+        .results-summary {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .results-summary h2 {
+            color: #856404;
+            margin-top: 0;
+        }
+
+        .implementation-steps {
+            counter-reset: step-counter;
+            list-style-type: none;
+            padding-left: 0;
+            margin: 30px 0;
+        }
+
+        .implementation-steps li {
+            position: relative;
+            padding: 15px 15px 15px 60px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            counter-increment: step-counter;
+        }
+
+        .implementation-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: #0056b3;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="result-container">
+        <div class="personalized-greeting" id="personalized-greeting" style="display: none; font-size: 1.3em; font-weight: bold; color: #0056b3; margin-bottom: 1em; text-align: center;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const firstName = urlParams.get('firstName');
+                const greetingDiv = document.getElementById('personalized-greeting');
+                if (firstName) {
+                    greetingDiv.textContent = `Hi ${decodeURIComponent(firstName)}!`;
+                    greetingDiv.style.display = 'block';
+                }
+            });
+        </script>
+
+        <h1>The Enrollment Engine: Your Complete System for Filling Every Spot</h1>
+        <p style="font-size:1.2em; color:#0056b3; font-weight:bold; margin-bottom: 1.5em; text-align:center;">
+            Your quiz results show you're ready for a systematic approach to enrollment growth.<br>
+            <span style="color:#4caf50;">Here's the exact solution you need.</span>
+        </p>
+
+        <div class="results-summary">
+            <h2>⚠️ Your Current Enrollment Challenges</h2>
+            <p>Based on your quiz answers, your center is experiencing:</p>
+            <ul>
+                <li><strong>Inconsistent Inquiry Flow:</strong> You're not getting a reliable stream of qualified parent inquiries.</li>
+                <li><strong>Tour Conversion Issues:</strong> Too many tours aren't converting to enrollments.</li>
+                <li><strong>Manual Follow-Up Burden:</strong> Your team is spending too much time on administrative follow-up.</li>
+                <li><strong>Competitive Pressure:</strong> Other centers in your area may be attracting families that should be yours.</li>
+            </ul>
+        </div>
+
+        <div class="solution-box">
+            <h2>🚀 Introducing: The Enrollment Engine</h2>
+            <p>The Enrollment Engine is a complete, done-for-you system that transforms how child care centers attract, engage, and enroll families. Unlike generic marketing approaches, it's specifically designed for the unique needs of child care centers.</p>
+
+            <p>This proven system works by creating a continuous flow of qualified parent inquiries, automating your follow-up process, and maximizing tour-to-enrollment conversions—all while saving your staff hours of administrative work each week.</p>
+        </div>
+
+        <h2>How The Enrollment Engine Works</h2>
+        <p>Our system addresses every stage of the enrollment journey with specialized components that work together seamlessly:</p>
+
+        <div class="system-components">
+            <div class="component-card">
+                <h3>1. Parent Attraction System</h3>
+                <p>Targeted digital campaigns that reach parents actively searching for child care in your specific area, positioning your center as the obvious choice.</p>
+            </div>
+
+            <div class="component-card">
+                <h3>2. Inquiry Capture Framework</h3>
+                <p>Frictionless inquiry forms and landing pages that make it easy for interested parents to connect with your center 24/7.</p>
+            </div>
+
+            <div class="component-card">
+                <h3>3. Automated Follow-Up Sequence</h3>
+                <p>Professional, personalized communication that nurtures leads without requiring staff time, ensuring no potential family falls through the cracks.</p>
+            </div>
+
+            <div class="component-card">
+                <h3>4. Tour Booking Automation</h3>
+                <p>Self-scheduling tools that make it effortless for parents to book tours at times that work for both them and your staff.</p>
+            </div>
+        </div>
+
+        <h2>Your 90-Day Implementation Plan</h2>
+        <p>Here's exactly how we'll implement the Enrollment Engine for your center:</p>
+
+        <ol class="implementation-steps">
+            <li><strong>Strategic Assessment (Week 1):</strong> We'll analyze your current enrollment process, identify specific opportunities, and create your customized implementation plan.</li>
+            <li><strong>System Setup (Weeks 2-3):</strong> We'll build and configure your complete Enrollment Engine, including all digital assets, automation sequences, and tracking systems.</li>
+            <li><strong>Launch & Optimization (Weeks 4-8):</strong> We'll activate your system and continuously optimize based on real-time data to maximize results.</li>
+            <li><strong>Expansion & Refinement (Weeks 9-12):</strong> We'll expand your reach, refine your messaging, and implement advanced strategies to further accelerate your enrollment growth.</li>
+        </ol>
+
+        <div class="testimonial-section">
+            <h2 style="text-align: center; color: #0056b3;">What Other Center Directors Are Saying</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p style="font-style: italic;">"The Enrollment Engine completely transformed our center. We went from struggling at 65% capacity to having a waiting list in just 10 weeks. The system runs in the background while we focus on providing great care."</p>
+                    <p style="font-weight: bold; margin-top: 10px;">- Jennifer Williams, Sunshine Learning Center</p>
+                </div>
+                <div class="testimonial-card">
+                    <p style="font-style: italic;">"I was skeptical at first, but the results speak for themselves. We're now at 100% capacity with a waiting list for the first time in our 12-year history. The best part? My staff spends almost no time on marketing or follow-up."</p>
+                    <p style="font-weight: bold; margin-top: 10px;">- Robert Chen, Little Explorers Academy</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="color: white; font-size: 2em; margin-bottom: 20px;">Ready to Stop Missing Out on the Success Other Professionals Are Already Enjoying?</h2>
+            
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You're Currently Missing Out On:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you worry about inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day you wait is another day of missed opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p style="font-size: 1.1em; margin: 20px 0;">
+                We partner with <strong>only one qualified child care center per city</strong> to ensure market exclusivity. Once your city is claimed, this opportunity is gone forever.
+            </p>
+            <p style="font-size: 1.1em; margin: 20px 0;">
+                <strong>It takes 30 seconds to apply for our partnership.</strong> Find out instantly if you qualify for the Enrollment Engine system.
+            </p>
+
+            <a href="../../../universal-application-form.html?niche=child-care-centers&bucket=enrollment&variant=a-solution&split=1&system=EnrollmentEngine&source_page=enrollment-variant-a-solution-split1" class="cta-button primary" id="apply-button" onclick="trackApplicationClick(event)">Apply Now for Our Partnership</a>
+
+            <div style="font-size: 1.05em; color: #fff; margin-top: 8px; font-weight: 600; letter-spacing: 0.5px;">TurnClicksToClients Partnership Program</div>
+
+            <p class="subtle">
+                ⏰ Application review takes less than 60 seconds. <br>
+                🔒 Your information is secure. No obligation, no hard sell. <br>
+                ✅ If approved, we'll schedule a brief call to discuss your personalized growth plan.
+            </p>
+        </div>
+    
+
+<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 25px; border-radius: 8px; margin: 20px 0;">
+    <h2 style="color: #28a745; margin-top: 0;">What's Possible With This Solution (That You're Missing Out On)</h2>
+    <p>While you're struggling with enrollment challenges, other child care center owners in your exact position have transformed their businesses with remarkable results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-bottom: 0;">
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #28a745;">✓</span>
+            <strong>100% Capacity + Waiting Lists:</strong> Imagine having your center completely full with a waiting list of families eager to enroll as soon as spots open up.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #28a745;">✓</span>
+            <strong>Premium Pricing Power:</strong> Picture being able to charge 15-20% more than competitors because families recognize your value and are willing to pay for quality.
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #28a745;">✓</span>
+            <strong>Stress-Free Operations:</strong> Envision running your center without the constant anxiety about enrollment, allowing you to focus on program quality and staff development.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #28a745;">✓</span>
+            <strong>Predictable Revenue Growth:</strong> Consider what it would be like to have consistent, predictable monthly revenue that grows steadily, allowing for confident business planning and expansion.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin: 30px 0; border-radius: 6px;">
+    <h3 style="color: #856404; margin-top: 0;">The Gap Between You and These Results</h3>
+    <p style="margin-bottom: 10px;">The difference between your current situation and these success stories isn't about:</p>
+    <ul style="margin-bottom: 15px;">
+        <li>Your location or community demographics</li>
+        <li>The quality of your program or staff</li>
+        <li>Your passion or commitment to children</li>
+    </ul>
+    <p style="font-weight: bold; margin-bottom: 0;">The difference is that these successful centers have implemented a systematic approach to enrollment that you haven't yet. <span style="color: #dc3545;">This is what you're missing.</span></p>
+</div></main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <div id="chat-widget-button">
+        <span>💬</span> Have a question?<br>Click Here To Send Us a Message
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Start a Conversation</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    <strong>Connect with Our Team Live!</strong><br>
+                    Mon-Fri, 10am - 5pm EST: Expect a reply within the hour.<br>
+                    After hours & weekends: We'll get back to you first thing next business morning.<br><br>
+                    Let us know how we can help your child care center grow! Please fill out the form below.
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-name">Full Name</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-businessName">Center Name</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">How can we help you?</label>
+                        <textarea id="chat-message" name="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Thank You!</h3>
+                    <p>Our team has been alerted and will get back to you as soon as possible.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Supabase initialization
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        let supabaseClient = null;
+
+        // Initialize Supabase when document loads
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof supabase !== 'undefined' && supabase.createClient) {
+                    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    console.log("Supabase client initialized for user flow tracking.");
+                } else {
+                    console.error("Supabase client library not loaded for user flow tracking.");
+                }
+            } catch (e) {
+                console.error("Error initializing Supabase client:", e.message);
+            }
+
+            // Parse URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            window.userParams = {
+                firstName: urlParams.get('firstName') || '',
+                lastName: urlParams.get('lastName') || '',
+                businessName: urlParams.get('businessName') || '',
+                score: urlParams.get('score') || '',
+                bucket: urlParams.get('bucket') || 'enrollment',
+                variant: urlParams.get('variant') || 'a-solution',
+                split: urlParams.get('split') || '1',
+                source: urlParams.get('source') || '',
+                track_source: urlParams.get('track_source') || ''
+            };
+
+            // Record page view
+            trackPageView();
+        });
+
+        // Track when user views this page
+        function trackPageView() {
+            if (!supabaseClient) return;
+
+            supabaseClient
+                .from('tctc_user_flow')
+                .insert([{
+                    user_first_name: window.userParams.firstName,
+                    user_last_name: window.userParams.lastName,
+                    user_business_name: window.userParams.businessName,
+                    action_type: 'page_view',
+                    page_path: window.location.pathname,
+                    page_bucket: window.userParams.bucket,
+                    page_variant: window.userParams.variant,
+                    page_split: window.userParams.split,
+                    original_source: window.userParams.source,
+                    track_source: window.userParams.track_source,
+                    quiz_score: window.userParams.score,
+                    full_url: window.location.href,
+                    timestamp: new Date().toISOString()
+                }])
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error tracking page view:', error);
+                    } else {
+                        console.log('Page view tracked successfully');
+                    }
+                });
+        }
+
+        // Track when user clicks application button
+        function trackApplicationClick(event) {
+            // Don't prevent default - let the link work normally
+
+            if (!supabaseClient) return;
+
+            supabaseClient
+                .from('tctc_user_flow')
+                .insert([{
+                    user_first_name: window.userParams.firstName,
+                    user_last_name: window.userParams.lastName,
+                    user_business_name: window.userParams.businessName,
+                    action_type: 'application_click',
+                    page_path: window.location.pathname,
+                    page_bucket: window.userParams.bucket,
+                    page_variant: window.userParams.variant,
+                    page_split: window.userParams.split,
+                    original_source: window.userParams.source,
+                    track_source: window.userParams.track_source,
+                    quiz_score: window.userParams.score,
+                    destination_url: event.target.href,
+                    timestamp: new Date().toISOString()
+                }])
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error tracking application click:', error);
+                    } else {
+                        console.log('Application click tracked successfully');
+                    }
+                });
+        }
+
+        // Chat Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatButton = document.getElementById('chat-widget-button');
+            const chatModal = document.getElementById('chat-modal');
+            const closeButton = document.getElementById('chat-modal-close');
+            const chatForm = document.getElementById('chat-contact-form');
+            const successMessage = document.getElementById('chat-success-message');
+
+            if (chatButton && chatModal) {
+                chatButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    chatModal.classList.remove('modal-hidden');
+                    chatModal.classList.add('modal-visible');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
+            }
+
+            if (closeButton && chatModal) {
+                closeButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    chatModal.classList.remove('modal-visible');
+                    chatModal.classList.add('modal-hidden');
+                    document.body.style.overflow = ''; // Restore scrolling
+                });
+            }
+
+            // Close modal when clicking outside content
+            if (chatModal) {
+                chatModal.addEventListener('click', function(e) {
+                    if (e.target === chatModal) {
+                        chatModal.classList.remove('modal-visible');
+                        chatModal.classList.add('modal-hidden');
+                        document.body.style.overflow = ''; // Restore scrolling
+                    }
+                });
+            }
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && chatModal && chatModal.classList.contains('modal-visible')) {
+                    chatModal.classList.remove('modal-visible');
+                    chatModal.classList.add('modal-hidden');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+
+            // Form submission
+            if (chatForm && successMessage) {
+                chatForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Here you would normally send data to server
+                    // For demo purposes, just show success message
+                    chatForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                });
+            }
+
+            // Mobile navigation
+            const hamburger = document.querySelector('.hamburger');
+            const mainNav = document.getElementById('main-nav');
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

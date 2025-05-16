@@ -134,7 +134,9 @@
         }
         .footer-bottom p { margin:0; font-size: 0.85em; color: #AAAAAA;}
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <header>
         <nav aria-label="Main Navigation">
@@ -165,29 +167,30 @@
     </header>
 
     <main aria-label="Main Content">
-        <h1>First, Help Us Understand Your Practice</h1>
-        <p class="subheadline">Please select your primary business area below to start your personalized growth diagnosis. This allows us to tailor the insights specifically for your unique challenges and opportunities.</p>
-        
-        <div class="form-group">
-            <label for="niche-select">Select Your Niche/Industry:</label>
-            <select id="niche-select" name="niche_select">
-                <option value="" disabled selected>-- Please choose an option --</option>
-                <option value="niches/child-care-centers-quiz.html">Child Care Centers</option>
-                <option value="niches/cosmetic-dentists-quiz.html">Cosmetic Dentists</option>
-                <option value="niches/pmu-artists-quiz.html">PMU Artists</option>
-                <option value="niches/non-surgical-body-contouring-quiz.html">Non-Surgical Body Contouring</option>
-                <option value="niches/weight-loss-clinics-quiz.html">Weight Loss Clinics</option>
-                <option value="niches/high-end-chiropractors-quiz.html">High-End Chiropractors</option>
-                <option value="niches/sleep-apnea-snoring-clinics-quiz.html">Sleep Apnea & Snoring Clinics</option>
-                <option value="niches/hearing-aid-audiology-clinics-quiz.html">Hearing Aid & Audiology</option>
-                <option value="niches/dme-clinics-quiz.html">DME Clinics</option>
-                <!-- Add other niches here as needed -->
-                <option value="other-quiz.html">Other / Not Listed</option> 
-            </select>
-        </div>
+        <div class="quiz-hub-container">
+            <h1>First, Help Us Understand Your Practice</h1>
+            <p class="subheadline">Please select your primary business area below to start your personalized growth diagnosis. This allows us to tailor the insights specifically for your unique challenges and opportunities.</p>
+            
+            <div class="form-group">
+                <label for="niche-select">Select Your Niche/Industry:</label>
+                <select id="niche-select" name="niche_select">
+                    <option value="" disabled selected>-- Please choose an option --</option>
+                    <option value="niches/child-care-centers-quiz.html">Child Care Centers</option>
+                    <option value="niches/cosmetic-dentists-quiz.html">Cosmetic Dentists</option>
+                    <option value="niches/pmu-artists-quiz.html">PMU Artists</option>
+                    <option value="niches/non-surgical-body-contouring-quiz.html">Non-Surgical Body Contouring</option>
+                    <option value="niches/weight-loss-clinics-quiz.html">Weight Loss Clinics</option>
+                    <option value="niches/high-end-chiropractors-quiz.html">High-End Chiropractors</option>
+                    <option value="niches/sleep-apnea-snoring-clinics-quiz.html">Sleep Apnea & Snoring Clinics</option>
+                    <option value="niches/hearing-aid-audiology-clinics-quiz.html">Hearing Aid & Audiology</option>
+                    <option value="niches/dme-clinics-quiz.html">DME Clinics</option>
+                    <option value="other-quiz.html">Other / Not Listed</option> 
+                </select>
+            </div>
 
-        <button id="continue-to-quiz-btn" class="cta-button" style="background-color: #28a745; padding: 12px 30px; font-size: 1.2em;">Continue to Diagnosis</button>
-        <p style="font-size:0.9em; color:#666; margin-top:15px;"><em>Your selection ensures you receive the most relevant questions and insights.</em></p>
+            <button id="continue-to-quiz-btn" class="cta-button" style="background-color: #28a745; padding: 12px 30px; font-size: 1.2em;">Continue to Diagnosis</button>
+            <p style="font-size:0.9em; color:#666; margin-top:15px;"><em>Your selection ensures you receive the most relevant questions and insights.</em></p>
+        </div>
     </main>
 
     <!-- Chat Button and Modal -->

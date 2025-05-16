@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solution for Practice Growth: ContourGrowth Blueprint™ | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.8; color: #333; background-color: #f4f7f6; /* Light, hopeful green-tinted background */ margin: 0; padding: 0; }
+        .solution-focused-wrapper { padding: 30px 0; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); /* Light green gradient */ }
+        .solution-container { max-width: 980px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; box-shadow: 0 16px 48px rgba(0,0,0,0.12); overflow: hidden; }
+
+        .solution-header { text-align: center; padding: 55px 30px; background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%); /* Solution-oriented green */ color: #fff; border-bottom: 8px solid #66bb6a; }
+        .solution-header .personalized-greeting { font-size: clamp(1.1em, 2.5vw, 1.4em); font-weight: 700; margin-bottom: 10px; opacity: 0.9; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .solution-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(2.1em, 4.6vw, 3.0em); margin-bottom: 15px; line-height: 1.25; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        .solution-header .sub-headline { font-size: clamp(1.05em, 2.3vw, 1.25em); max-width: 760px; margin: 0 auto 20px; line-height: 1.6; opacity: 0.95; }
+
+        .content-section { padding: 45px 50px; }
+        .content-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.7em, 3.8vw, 2.5em); color: #1b5e20; /* Dark Green */ margin-bottom: 25px; text-align: center; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.35em, 3.1vw, 1.9em); color: #2e7d32; /* Medium Dark Green */ margin-top: 30px; margin-bottom: 18px; border-bottom: 2px solid #a5d6a7; padding-bottom: 8px; }
+
+        .problem-recap { background-color: #fff8e1; /* Light yellow from problem page for connection */ border: 1px solid #ffe0b2; border-left: 5px solid #ffb300; padding: 20px 25px; margin-bottom: 30px; border-radius: 8px; }
+        .problem-recap p { margin: 0; font-size: clamp(1em, 2.1vw, 1.1em); color: #5d4037; }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 25px; }
+        .benefit-card { background-color: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 10px; padding: 25px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 7px 20px rgba(0,0,0,0.09); }
+        .benefit-card .benefit-icon { font-size: 2.6em; color: #388e3c; margin-bottom: 15px; display: block;}
+        .benefit-card h4 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.2em, 2.7vw, 1.45em); color: #1b5e20; margin-bottom: 10px; }
+        .benefit-card p { font-size: clamp(0.9em, 1.9vw, 1.0em); color: #333; line-height: 1.65; text-align: left; }
+
+        .how-it-works-section { background-color: #f1f8e9; /* Very Light Green */ margin: 30px -50px 0 -50px; padding: 40px 50px;}
+        .how-it-works-section ol { list-style: none; padding-left: 0; counter-reset: step-counter; }
+        .how-it-works-section li { position: relative; padding: 15px 15px 15px 50px; margin-bottom: 15px; background-color: #fff; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); font-size: clamp(1em, 2.1vw, 1.1em); }
+        .how-it-works-section li::before { content: counter(step-counter); counter-increment: step-counter; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background-color: #4caf50; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.95em; }
+        .how-it-works-section li strong { color: #2e7d32; }
+
+        .cta-section-solution { text-align: center; padding: 50px 30px; background-color: #e0f2f1; /* Light teal/green */ border-radius: 0 0 16px 16px; margin-top:0; }
+        .cta-section-solution h2 { color: #004d40; /* Dark Teal */ margin-bottom: 20px; font-size: clamp(1.8em, 4vw, 2.6em); }
+        .cta-section-solution p { color: #00695c; margin-bottom: 30px; font-size: clamp(1.05em, 2.2vw, 1.2em); max-width:700px; margin-left:auto; margin-right:auto;}
+        .cta-button.solution-focused { background: linear-gradient(135deg, #26a69a 0%, #00897b 100%); /* Teal to Darker Teal Button */ border: none; color: #fff !important; padding: 18px 40px; font-size: clamp(1.2em, 2.6vw, 1.45em); font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 7px 20px rgba(0,0,0,0.18); }
+        .cta-button.solution-focused:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 9px 25px rgba(0,0,0,0.22); }
+        .user-name-emphasis { font-weight: 900; color: #e0f2f1; }
+
+        @media (max-width: 768px) {
+            .content-section { padding: 30px 20px; }
+            .solution-header { padding: 40px 20px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .how-it-works-section { padding: 30px 20px; margin-left: -20px; margin-right: -20px;}
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="../../../split-test-redirect.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="solution-focused-wrapper">
+    <div class="solution-container">
+        <div class="solution-header">
+            <div class="personalized-greeting" id="personalized-greeting-solution">The Path to Real Growth, <span class="user-name-emphasis">[First Name]</span>!</div>
+            <h1>The Proven Blueprint to Systematically Scale Your Body Contouring Practice: ContourGrowth Blueprint™</h1>
+            <p class="sub-headline">Stop feeling stuck and start strategically expanding. Discover the comprehensive system designed to overcome growth hurdles and unlock your practice's true potential.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="problem-recap">
+                <p><i class="fas fa-exclamation-triangle" style="margin-right:8px; color:#ffa000;"></i><strong>Tired of hitting growth ceilings, operational bottlenecks, and owner burnout?</strong> You know your practice has more potential, but the way forward seems complex. It's time for a proven solution.</p>
+            </div>
+
+            <h2>Introducing the ContourGrowth Blueprint™: Your Framework for Exponential Success</h2>
+            <p style="text-align:center; font-size:clamp(1.05em, 2.2vw, 1.15em); margin-bottom:30px;">The <strong>ContourGrowth Blueprint™</strong> is not just a set of ideas; it's a complete, actionable system meticulously developed for ambitious non-surgical body contouring practices ready to transition from being merely busy to building a scalable, highly profitable, and market-leading enterprise.</p>
+
+            <div style="background-color: #e0f2f1; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #009688; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #00796b; margin-top: 0; margin-bottom: 15px;">Systematic Practice Growth IS Possible in Today's Market</h3>
+                <p style="color: #37474f; margin-bottom: 15px;">The good news is that building a systematized, scalable body contouring practice that grows predictably is absolutely possible in today's market. Recent advances in practice management technology and methodology have created unprecedented opportunities for body contouring practices to scale without the traditional bottlenecks and burnout.</p>
+                <p style="color: #37474f; margin-bottom: 0;">What was once only accessible to large corporate chains with massive resources is now available to independent practitioners like you. The technology, strategies, and systems exist right now to transform your practice into a reliable, predictable engine of growth that doesn't depend solely on your personal time and energy.</p>
+            </div>
+
+            <div style="background-color: #e0f2f1; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #00bcd4; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #00838f; margin-top: 0; margin-bottom: 15px;">The Proven Timeline of Body Contouring Practice Growth</h3>
+
+                <div style="display: flex; justify-content: space-between; margin: 20px 0; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; margin: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #00838f; margin-top: 0;">Evidence From The Past</h4>
+                        <p style="margin-bottom: 0; color: #37474f;">For over 8 years, systematic practice management has been the cornerstone of every successful body contouring practice. The practices that implemented structured systems consistently outperformed those relying on the owner's personal efforts alone by 200-300% in terms of growth and profitability.</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; margin: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #00838f; margin-top: 0;">Evidence In The Present</h4>
+                        <p style="margin-bottom: 0; color: #37474f;">Right now, body contouring practices using our ContourGrowth Blueprint™ are experiencing 35-45% growth in revenue while simultaneously reducing the owner's working hours by 20-25%. The current aesthetic market has created unprecedented opportunities for systematized practices.</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; margin: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #00838f; margin-top: 0;">Evidence For The Future</h4>
+                        <p style="margin-bottom: 0; color: #37474f;">The trajectory is clear: practices with systematic operations will continue to dominate their markets. With AI-enhanced practice management and our continuously optimized systems, your results will not only continue but accelerate over time, creating a sustainable competitive advantage in the growing body contouring market.</p>
+                    
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div></div>
+                </div>
+            </div>
+
+            <h3>Key Pillars of the ContourGrowth Blueprint™: Transform Your Practice from the Inside Out</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-sitemap"></i></span>
+                    <h4>Scalable Service Delivery Model™</h4>
+                    <p>We help you design and implement robust operational systems that ensure consistent, high-quality service delivery, even as your client volume multiplies. Say goodbye to chaos and hello to smooth, efficient scaling.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-hand-holding-usd"></i></span>
+                    <h4>Profit Maximization Framework™</h4>
+                    <p>Move beyond just increasing revenue to dramatically boosting your bottom line. We dive deep into your financial structure, pricing, and service mix to uncover and implement powerful profit-boosting strategies.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-map-marked-alt"></i></span>
+                    <h4>Expansion Strategy & Implementation™</h4>
+                    <p>Whether it's launching new high-margin services, opening new locations, or even exploring franchising, we provide the strategic roadmap and hands-on support to make your expansion goals a reality, minimizing risk and maximizing returns.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-users-cog"></i></span>
+                    <h4>High-Performance Team Blueprint™</h4>
+                    <p>Learn how to attract, train, and empower an A-Team that can drive your practice forward. Delegate effectively, foster a culture of excellence, and free yourself to focus on visionary leadership, not just daily operations.</p>
+                </div>
+            </div>
+
+            <div class="how-it-works-section">
+                <h3>How the ContourGrowth Blueprint™ Delivers Transformative Results: A Phased Approach</h3>
+                <ol>
+                    <li><strong>Deep-Dive Practice Analysis & Growth Audit:</strong> We start by thoroughly understanding your current operations, financials, team structure, market position, and growth aspirations to identify key leverage points and roadblocks.</li>
+                    <li><strong>Customized Blueprint Design:</strong> Based on the audit, we tailor the ContourGrowth Blueprint™ components to your specific needs, creating a clear, actionable roadmap for your practice's transformation.</li>
+                    <li><strong>System Implementation & Team Training:</strong> We guide you step-by-step in implementing the new systems and processes, providing comprehensive training for you and your team to ensure successful adoption and execution.</li>
+                    <li><strong>Performance Monitoring & Optimization:</strong> Growth is an ongoing journey. We establish key performance indicators (KPIs) and provide continuous support to monitor progress, make adjustments, and ensure you achieve and sustain your desired growth trajectory.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="cta-section-solution">
+            <h2>Ready to Unlock Your Practice's Full Growth Potential?</h2>
+
+            <div style="background-color: #e0f2f1; padding: 30px; border-radius: 10px; margin: 25px auto; max-width: 800px; text-align: left; border: 1px solid #b2dfdb; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #00796b; margin-top: 0; text-align: center; margin-bottom: 20px;">The Proven Journey of Body Contouring Practices Using Our System</h3>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #00897b;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #00897b;">9 Months Ago</div>
+                        <p style="font-style: italic; color: #37474f; margin-bottom: 10px;">"I was exactly where you are now - working 70+ hours a week and still hitting growth ceilings. I had tried everything from hiring more staff to expensive marketing consultants, but nothing seemed to create sustainable growth. I was burning out fast and considering downsizing."</p>
+                        <p style="text-align: right; color: #37474f; margin-bottom: 0; font-weight: bold;">- Sarah M., Contour Aesthetics</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #00bcd4;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #00bcd4;">Today & Future</div>
+                        <p style="font-style: italic; color: #37474f; margin-bottom: 10px;">"Within 90 days of implementing the ContourGrowth Blueprint, we increased our monthly revenue by 35% while I reduced my working hours by 20%. For the first time in years, I have a practice that doesn't completely depend on me. We're now projecting 50% growth this year and I'm taking my first real vacation in 3 years. The system continues to deliver better results each month."</p>
+                        <p style="text-align: right; color: #37474f; margin-bottom: 0; font-weight: bold;">- Sarah M., Contour Aesthetics</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #00897b;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #00897b;">1 Year Ago</div>
+                        <p style="font-style: italic; color: #37474f; margin-bottom: 10px;">"As an independent practitioner competing with corporate chains, I never thought this level of systematization was possible for us. We were growing, but it was chaotic and completely dependent on me working 70-hour weeks. I couldn't see a path to expansion without burning out completely."</p>
+                        <p style="text-align: right; color: #37474f; margin-bottom: 0; font-weight: bold;">- Michael T., Elite Body Sculpting</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #00bcd4;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #00bcd4;">Today & Future</div>
+                        <p style="font-style: italic; color: #37474f; margin-bottom: 10px;">"We've gone from chaotic growth to predictable expansion, opening our second location with systems that actually work. The best part is how little time it takes from my day - the system does the heavy lifting. Our third location is already in the planning stages, and I'm working fewer hours than I did with just one practice. The trajectory is clear and exciting."</p>
+                        <p style="text-align: right; color: #37474f; margin-bottom: 0; font-weight: bold;">- Michael T., Elite Body Sculpting</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; color: #00796b; margin-top: 20px; font-style: italic; font-weight: bold;">These aren't isolated success stories. Dozens of independent body contouring practices just like yours have transformed their businesses using this exact system, and their results continue to improve over time.</p>
+            </div>
+
+            <div style="background-color: #e0f2f1; padding: 30px; border-radius: 10px; margin: 25px auto; max-width: 800px; text-align: left; border: 1px solid #b2dfdb; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #00796b; margin-top: 0; text-align: center; margin-bottom: 20px;">We've Removed All The Barriers To Your Success</h3>
+                <p style="color: #37474f; margin-bottom: 15px;">We understand the limitations that have been holding you back:</p>
+                <ul style="color: #37474f; text-align: left; padding-left: 25px; margin-bottom: 15px;">
+                    <li style="margin-bottom: 10px;"><strong>Time:</strong> You're already overwhelmed with client care and can't add "systems expert" to your responsibilities</li>
+                    <li style="margin-bottom: 10px;"><strong>Expertise:</strong> Building effective practice management systems requires specialized knowledge you shouldn't need to master</li>
+                    <li style="margin-bottom: 10px;"><strong>Implementation:</strong> Most consultants give you ideas but leave you to figure out the execution on your own</li>
+                </ul>
+                <p style="color: #37474f; margin-bottom: 0;">Our ContourGrowth Blueprint™ eliminates these barriers by providing a complete, done-for-you solution that requires minimal time investment from you while delivering maximum results.</p>
+            </div>
+
+            <div style="background-color: #e0f2f1; padding: 30px; border-radius: 10px; margin: 25px auto; max-width: 800px; text-align: left; border: 1px solid #b2dfdb; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #00796b; margin-top: 0; text-align: center; margin-bottom: 20px;">Your Path To Practice Transformation Is Clear:</h3>
+
+                <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 15px;">
+                    <h4 style="color: #00796b; margin-top: 0; margin-bottom: 10px; text-align: center;">Horizontal Belief Shift: Across Space</h4>
+                    <ol style="color: #37474f; text-align: left; padding-left: 25px; margin-bottom: 0;">
+                        <li style="margin-bottom: 10px;"><strong>It's possible in today's market</strong> - The technology and strategies exist right now</li>
+                        <li style="margin-bottom: 10px;"><strong>It's possible for other practices</strong> - Body contouring practices just like yours are already achieving these results</li>
+                        <li style="margin-bottom: 10px;"><strong>It's possible for YOU</strong> - Our system removes all the barriers that would normally hold you back</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h4 style="color: #00796b; margin-top: 0; margin-bottom: 10px; text-align: center;">Vertical Belief Shift: Across Time</h4>
+                    <ol style="color: #37474f; text-align: left; padding-left: 25px; margin-bottom: 0;">
+                        <li style="margin-bottom: 10px;"><strong>It has happened before</strong> - For over 8 years, systematic practice management has consistently produced growth for body contouring practices</li>
+                        <li style="margin-bottom: 10px;"><strong>It is happening now</strong> - Practices are currently experiencing 35-45% growth in revenue while reducing owner hours</li>
+                        <li style="margin-bottom: 10px;"><strong>It will happen in the future</strong> - With our continuously optimized systems, your results will not only continue but accelerate over time in the growing aesthetic market</li>
+                    </ol>
+                </div>
+            </div>
+
+            <p>If you're serious about systematically scaling your non-surgical body contouring practice, increasing profitability, and building a business that gives you more freedom, the ContourGrowth Blueprint™ is your answer.</p>
+            <a href="../../../universal-application-form.html?niche=non-surgical-body-contouring&bucket=growth&variant=a-solution&system=ContourGrowthBlueprint&source_page=non-surgical-body-contouring-growth-variant-a-solution" class="cta-button solution-focused" id="apply-button" onclick="trackApplicationClick(event)">Apply for the ContourGrowth Blueprint™</a>
+             <p style="font-size:0.9em; color:#004d40; margin-top:15px;">Take the next step towards building the thriving, scalable practice you've always envisioned.</p>
+        </div>
+    </div>
+</div>
+
+    
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2017, we've been helping body contouring clinics attract qualified clients who are ready to invest in their transformation.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our team developed this system after seeing how traditional marketing approaches failed to properly educate clients about non-surgical options, leading to poor conversion rates.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our approach has evolved from basic lead generation to a sophisticated pre-qualification system that educates clients on the value of your services before they ever walk through your door.</p>
+    </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A body contouring clinic in Miami increased their monthly revenue from $45,000 to over $120,000 within 90 days.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A new clinic in Houston became profitable in their second month and scaled to $80,000+ monthly within their first year.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> An established med spa added body contouring services and generated an additional $35,000 monthly revenue within 60 days.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> Clinics using our system for 3+ years have built sustainable businesses with strong recurring revenue and high client retention rates.</p>
+    </div>
+</div>
+<footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstName = params.get('firstName');
+            const greetingElement = document.getElementById('personalized-greeting-solution');
+
+            if (firstName) {
+                const decodedName = decodeURIComponent(firstName);
+                if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                     greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${decodedName}</span>`);
+                } else if (greetingElement) {
+                    greetingElement.innerHTML = `The Path to Real Growth, <span class="user-name-emphasis">${decodedName}</span>!`;
+                }
+            } else {
+                const defaultName = "Practice Owner";
+                 if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                    greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${defaultName}</span>`);
+                 } else if (greetingElement) {
+                    greetingElement.innerHTML = `The Path to Real Growth, <span class="user-name-emphasis">${defaultName}</span>!`;
+                 }
+            }
+
+            const hamburger = document.querySelector('.hamburger');
+            const mainNav = document.getElementById('main-nav');
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <div id="chat-widget-button">
+        <span>💡</span> Questions About the ContourGrowth Blueprint™?
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Learn More About the ContourGrowth Blueprint™</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>Considering the ContourGrowth Blueprint™ for your practice?</strong><br>
+                    Ask us about specific components, implementation, or how it can address your unique growth challenges.
+                    <br><em>Mon-Fri, 10am - 5pm EST.</em><br>
+                    <em>Evenings & Weekends: We'll prioritize your contact next business day.</em><br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-interest">System of Interest:</label>
+                        <select id="chat-interest" name="systemInterest" required>
+                            <option value="ContourGrowth Blueprint" selected>ContourGrowth Blueprint™</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Practice Name:</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address:</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number (Optional):</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Your Questions about the Blueprint:</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., How does the Profit Maximization Framework work? What kind of support is provided during implementation? Can this help me open a second location?..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Ask About the Blueprint</button>
+                </form>
+                 <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Question Sent!</h3>
+                    <p>Thank you! We'll review your questions about the ContourGrowth Blueprint™ and a growth strategist will be in touch shortly.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../script.js"></script>
+
+    <script>
+        // Initialize Supabase client
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        let supabaseClient;
+
+        try {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log('Supabase client initialized successfully');
+        } catch (error) {
+            console.error('Error initializing Supabase client:', error);
+        }
+
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        window.userParams = {
+            firstName: urlParams.get('firstName') || '',
+            lastName: urlParams.get('lastName') || '',
+            businessName: urlParams.get('businessName') || '',
+            email: urlParams.get('email') || '',
+            bucket: urlParams.get('bucket') || 'growth',
+            variant: urlParams.get('variant') || 'a-solution',
+            split: urlParams.get('split') || '1',
+            score: urlParams.get('score') || '',
+            source: urlParams.get('source') || 'direct',
+            track_source: urlParams.get('track_source') || ''
+        };
+
+        // Track when user clicks application button
+        function trackApplicationClick(event) {
+            // Don't prevent default - let the link work normally
+
+            if (!supabaseClient) return;
+
+            supabaseClient
+                .from('tctc_user_flow')
+                .insert([{
+                    user_first_name: window.userParams.firstName,
+                    user_last_name: window.userParams.lastName,
+                    user_business_name: window.userParams.businessName,
+                    action_type: 'application_click',
+                    page_path: window.location.pathname,
+                    page_bucket: window.userParams.bucket,
+                    page_variant: window.userParams.variant,
+                    page_split: window.userParams.split,
+                    original_source: window.userParams.source,
+                    track_source: window.userParams.track_source,
+                    quiz_score: window.userParams.score,
+                    destination_url: event.target.href,
+                    timestamp: new Date().toISOString()
+                }])
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error tracking application click:', error);
+                    } else {
+                        console.log('Application click tracked successfully');
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

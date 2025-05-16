@@ -243,7 +243,9 @@
             /* margin-right: 5px; vertical-align: middle; */ 
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <header>
          <nav>
@@ -302,6 +304,10 @@
                             <option value="hearing-aid-audiology-clinics">Hearing Aid & Audiology Clinics</option>
                             <option value="dme-clinics">DME Clinics</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="business_name">Business Name *</label>
+                        <input type="text" id="business_name" name="business_name" required>
                     </div>
                 </div>
 
@@ -382,6 +388,76 @@
                             <div class="radio-option">
                                 <input type="radio" id="client_source_walkins" name="client_source" value="Walk-ins" required>
                                 <label for="client_source_walkins" class="radio-label">Walk-ins</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="6.5">
+                    <h2>Marketing Investment</h2>
+                    <div class="form-group">
+                        <label>How much do you currently invest in marketing each month? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_0" name="marketing_investment" value="$0" required>
+                                <label for="marketing_invest_0" class="radio-label">$0</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_1" name="marketing_investment" value="$1 - $499" required>
+                                <label for="marketing_invest_1" class="radio-label">$1 - $499</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_2" name="marketing_investment" value="$500 - $1,999" required>
+                                <label for="marketing_invest_2" class="radio-label">$500 - $1,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_3" name="marketing_investment" value="$2,000 - $4,999" required>
+                                <label for="marketing_invest_3" class="radio-label">$2,000 - $4,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_4" name="marketing_investment" value="$5,000 - $9,999" required>
+                                <label for="marketing_invest_4" class="radio-label">$5,000 - $9,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_5" name="marketing_investment" value="$10,000 - $19,999" required>
+                                <label for="marketing_invest_5" class="radio-label">$10,000 - $19,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="marketing_invest_6" name="marketing_investment" value="$20,000+" required>
+                                <label for="marketing_invest_6" class="radio-label">$20,000+</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="6.6">
+                    <h2>Monthly Revenue</h2>
+                    <div class="form-group">
+                        <label>What is your business's average monthly revenue? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_0" name="monthly_revenue" value="$0 - $4,999" required>
+                                <label for="revenue_0" class="radio-label">$0 - $4,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_1" name="monthly_revenue" value="$5,000 - $9,999" required>
+                                <label for="revenue_1" class="radio-label">$5,000 - $9,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_2" name="monthly_revenue" value="$10,000 - $24,999" required>
+                                <label for="revenue_2" class="radio-label">$10,000 - $24,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_3" name="monthly_revenue" value="$25,000 - $49,999" required>
+                                <label for="revenue_3" class="radio-label">$25,000 - $49,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_4" name="monthly_revenue" value="$50,000 - $99,999" required>
+                                <label for="revenue_4" class="radio-label">$50,000 - $99,999</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="revenue_5" name="monthly_revenue" value="$100,000+" required>
+                                <label for="revenue_5" class="radio-label">$100,000+</label>
                             </div>
                         </div>
                     </div>
@@ -571,23 +647,6 @@
                 </div>
 
                 <div class="form-step" data-step="19">
-                    <h2>Advertising Investment</h2>
-                    <div class="form-group">
-                        <label>Are you able to invest at least $50 per day on your Facebook ads (or similar online advertising)? *</label>
-                        <div class="radio-group">
-                             <div class="radio-option">
-                                <input type="radio" id="ads_invest_yes" name="ads_investment_capacity" value="Yes" required>
-                                <label for="ads_invest_yes" class="radio-label">Yes</label>
-                             </div>
-                             <div class="radio-option">
-                                <input type="radio" id="ads_invest_no" name="ads_investment_capacity" value="No" required>
-                                <label for="ads_invest_no" class="radio-label">No</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-step" data-step="20">
                     <h2>Current Marketing Support</h2>
                     <div class="form-group">
                         <label>Are you currently working with a marketing company to bring in leads & booked appointments? *</label>
@@ -604,7 +663,7 @@
                     </div>
                 </div>
 
-                <div class="form-step" data-step="21">
+                <div class="form-step" data-step="20">
                      <h2>Investment in Success Plan</h2>
                     <div class="form-group">
                         <label for="investment_readiness_plan">Smart business owners understand that acquiring a new client isn't just about the first sale... Are you ready to invest in a proven 90 day success plan that brings in high-paying clients who keep coming back? If NOT tell us why? *</label>
@@ -612,7 +671,7 @@
                     </div>
                 </div>
 
-                <div class="form-step" data-step="22">
+                <div class="form-step" data-step="21">
                     <h2>Handling Business Challenges</h2>
                     <div class="form-group">
                         <label for="handle_challenges">How do you usually handle challenges or problems in your business? *</label>
@@ -620,7 +679,7 @@
                     </div>
                 </div>
 
-                <div class="form-step" data-step="23">
+                <div class="form-step" data-step="22">
                     <h2>Team Assistance Needs</h2>
                     <div class="form-group">
                         <label for="team_assistance_need">If you could bring in a team to assist with one aspect of your <span class="niche-specific-term">business</span> right now, what would it be? *</label>
@@ -628,7 +687,7 @@
                     </div>
                 </div>
 
-                <div class="form-step" data-step="24">
+                <div class="form-step" data-step="23">
                     <h2>Investing in Automation/Growth Tools</h2>
                     <div class="form-group">
                         <label>How ready are you to invest in tools or services that can help automate and grow your business? *</label>
@@ -653,7 +712,7 @@
                     </div>
                 </div>
 
-                <div class="form-step" data-step="25">
+                <div class="form-step" data-step="24">
                     <h2>Streamlining Operations</h2>
                     <div class="form-group">
                         <label>How important is it for you to save time and streamline your business operations? *</label>
@@ -689,6 +748,7 @@
                     <button type="submit" id="submit-btn" class="submit-btn" style="display: none;">Submit Application</button>
                 </div>
                 <p class="privacy-note">We respect your privacy. Your information is kept confidential and will only be used by Turn Clicks To Clients to assess your application.</p>
+                <input type="hidden" name="split_test_quiz_results_variant" id="variant-field">
             </form>
         </div>
     </div>
@@ -1355,7 +1415,7 @@
                     'client_source', 'goal_2025', 'goal_6_months', 'client_flow', 'tools_software',
                     'business_experience', 'biggest_challenge_clients', 'client_retention',
                     'new_clients_per_month', 'income_limitation', 'marketing_beyond_social',
-                    'growth_mindset', 'comfort_new_tools', 'ads_investment_capacity',
+                    'growth_mindset', 'comfort_new_tools',
                     'current_marketing_company', 'investment_readiness_plan', 'handle_challenges',
                     'team_assistance_need', 'readiness_invest_tools', 'importance_streamline',
                     'pmu_services_offered', 'pmu_portfolio_link', 'cd_services_offered', 'cd_ideal_patient',
@@ -1366,7 +1426,8 @@
                     'sleep_diagnostics_offered', 'sleep_treatments_managed', 'sleep_referral_sources',
                     'sleep_compliance_challenge', 'audio_brands_dispensed', 'audio_diagnostics_offered',
                     'audio_avg_pair_price', 'audio_conversion_challenge', 'dme_product_categories',
-                    'dme_referral_sources', 'dme_operational_challenge', 'dme_accreditation_status'
+                    'dme_referral_sources', 'dme_operational_challenge', 'dme_accreditation_status',
+                    'business_name', 'marketing_investment', 'monthly_revenue'
                 ];
 
                 // Populate submissionData only with fields present in the form at submission time
@@ -1401,10 +1462,40 @@
                       submissionData.client_retention = null;
                  }
 
+                // Get URL parameters for tracking
+                const urlParams = new URLSearchParams(window.location.search);
+                const userFlowData = {
+                    user_first_name: submissionData.first_name,
+                    user_last_name: submissionData.last_name,
+                    user_business_name: submissionData.business_name,
+                    user_email: submissionData.email,
+                    action_type: 'application_submitted',
+                    niche: submissionData.niche,
+                    page_bucket: urlParams.get('bucket') || null,
+                    page_variant: urlParams.get('variant') || null,
+                    original_source: urlParams.get('source') || 'direct',
+                    track_source: urlParams.get('track_source') || null,
+                    quiz_score: urlParams.get('score') || null,
+                    source_page: urlParams.get('source_page') || window.location.pathname,
+                    timestamp: new Date().toISOString()
+                };
 
                 console.log('Submitting data to Supabase:', JSON.stringify(submissionData, null, 2));
 
                 try {
+                    // First track the application submission in user flow
+                    const { data: flowData, error: flowError } = await _supabase
+                        .from('tctc_user_flow')
+                        .insert([userFlowData]);
+                        
+                    if (flowError) {
+                        console.error('Error tracking application submission:', flowError);
+                        // Continue with form submission even if tracking fails
+                    } else {
+                        console.log('Application submission tracking successful');
+                    }
+                    
+                    // Then submit the actual application
                     const { data, error: supabaseError } = await _supabase
                         .from('TurnClicksToClientsApplication')
                         .insert([submissionData])
@@ -1417,6 +1508,22 @@
                         submitBtn.textContent = 'Submit Application';
                     } else {
                         console.log('Supabase success:', data);
+                        // Send Slack notification
+                        const slackWebhookUrl = 'https://hooks.slack.com/services/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';
+                        let slackText = '🚨 *New Application Received!*\n';
+                        for (const [key, value] of Object.entries(submissionData)) {
+                          slackText += `*${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:* ${value || '-'}\n`;
+                        }
+                        const slackMessage = { text: slackText };
+                        try {
+                          await fetch(slackWebhookUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(slackMessage)
+                          });
+                        } catch (slackErr) {
+                          console.error('Slack notification error:', slackErr);
+                        }
                         // Redirect to the analysis page with form data as URL parameters
                         const queryString = new URLSearchParams(submissionData).toString();
                         window.location.href = `application-analysis.html?${queryString}`;
@@ -1449,6 +1556,7 @@
             regenerateSteps(); // Initial generation of steps array based on potentially pre-selected niche
             showStep(0); // Start at the niche selection step (index 0)
 
+            document.getElementById('variant-field').value = params.get('variant') || 'N/A';
         });
     </script>
 

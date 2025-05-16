@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most-Aware: Apply Now for The Prestige & Profits PMU Studio System™</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.8; color: #1A202C; /* Darkest Gray */ background-color: #FDFBFB; /* Almost White */ margin: 0; padding: 0; }
+        .pmu-studio-container-wrapper { padding: 30px 0; background: linear-gradient(135deg, #F5F7FA 0%, #E0E5EC 100%); /* Very Light, Elegant Gray gradient */ }
+        .pmu-studio-container { max-width: 950px; /* Slightly more focused */ margin: 40px auto; background-color: #ffffff; border-radius: 16px; box-shadow: 0 25px 70px rgba(0,0,0,0.1); overflow: hidden; border-top: 10px solid #AF9A7D; /* Muted Gold/Bronze accent */ }
+        
+        .pmu-studio-header {
+            text-align: center; padding: 60px 40px;
+            background: linear-gradient(rgba(60, 50, 40, 0.85), rgba(60, 50, 40, 0.95)), url('https://source.unsplash.com/random/1600x900/?luxury-boutique-interior') no-repeat center center; /* Image reflecting exclusivity/decision */
+            background-size: cover; color: #fff;
+        }
+        .pmu-studio-header .personalized-greeting { font-family: 'Montserrat', sans-serif; font-size: clamp(1.2em, 2.8vw, 1.6em); font-weight: 700; margin-bottom: 15px; opacity: 0.9;}
+        .pmu-studio-header h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.3em, 4.8vw, 3.3em); margin-bottom: 20px; line-height: 1.25; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+        .pmu-studio-header .sub-headline { font-size: clamp(1.05em, 2.3vw, 1.3em); max-width: 750px; margin: 0 auto 25px; line-height: 1.7; opacity: 0.95; }
+
+        .content-section { padding: 50px 55px; }
+        .content-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9em, 4vw, 2.7em); color: #3C3229; /* Dark Brown */ margin-bottom: 30px; text-align: center; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-weight:700; font-size: clamp(1.5em, 3.2vw, 2em); color: #5D4037; /* Brown */ margin-top: 35px; margin-bottom: 20px; border-bottom: 3px solid #A1887F; /* Light Brown */ padding-bottom: 10px; }
+        .content-section p, .content-section li { font-size: clamp(1em, 2.1vw, 1.15em); color: #4E342E; /* Darker Brown text */ margin-bottom:15px; line-height:1.8; }
+        
+        .decision-focus-box { background-color: #F9F5F2; /* Very Light Beige */ border: 2px solid #D7CCC8; /* Light Brown-Gray */ padding: 25px; margin: 25px 0; border-radius: 10px; text-align: center;}
+        .decision-focus-box p { color: #5D4037; font-size: clamp(1.1em, 2.4vw, 1.25em); font-weight: 500;}
+        .decision-focus-box strong { color: #3E2723; /* Darkest Brown */ font-weight:700; }
+
+        .key-benefits-list ul { list-style-type: none; padding-left:0; }
+        .key-benefits-list ul li { background-color: #FDFBFB; border-left: 5px solid #AF9A7D; /* Muted Gold/Bronze */ padding: 15px 20px; margin-bottom: 12px; border-radius: 6px; font-size: clamp(1.05em, 2.2vw, 1.18em); box-shadow: 0 3px 8px rgba(0,0,0,0.05);}
+        .key-benefits-list ul li i { margin-right: 10px; color: #8C7B69; /* Darker Muted Gold */}
+
+        .urgency-box { background-color: #FFF8E1; /* Light Yellow/Cream */ border: 1px solid #FFECB3; /* Lighter Yellow */ padding: 20px; margin-top: 30px; border-radius: 8px; text-align:center;}
+        .urgency-box h4 { font-family: 'Montserrat', sans-serif; color: #FFA000; /* Amber */ font-size: clamp(1.3em, 2.8vw, 1.7em); margin-bottom:10px;}
+        .urgency-box p { color: #795548; /* Brown text */ font-size: clamp(1em, 2vw, 1.1em); margin-bottom:0;}
+        
+        .final-cta-pmu-studio { text-align: center; padding: 60px 40px; background-color: #3E2723; /* Darkest Brown */ margin-top: 0; border-radius: 0 0 16px 16px; }
+        .final-cta-pmu-studio h2 { color: #fff; margin-bottom: 25px; font-size: clamp(2em, 4.2vw, 3em); font-family: 'Playfair Display', serif; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
+        .final-cta-pmu-studio p { color: #D7CCC8; /* Light Brown-Gray */ margin-bottom: 35px; font-size: clamp(1.1em, 2.3vw, 1.3em); max-width:700px; margin-left:auto; margin-right:auto;}
+        .cta-button.pmu-studio-most-aware {
+            background: linear-gradient(135deg, #C5A67C 0%, #AF9A7D 100%); /* Muted Gold to Bronze */
+            border: none; color: #fff !important; padding: 28px 65px;
+            font-size: clamp(1.4em, 3.2vw, 1.8em); font-weight: bold; text-decoration: none; border-radius: 12px;
+            display: inline-block; transition: all 0.3s ease; box-shadow: 0 12px 35px rgba(175, 154, 125, 0.4);
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1.2px;
+        }
+        .cta-button.pmu-studio-most-aware:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 40px rgba(175, 154, 125, 0.5); }
+        .user-name-emphasis { font-weight: 900; color: #D7CCC8; /* Light Brown-Gray for emphasis */ }
+
+        @media (max-width: 768px) {
+            .content-section { padding: 40px 25px; }
+            .pmu-studio-header { padding: 50px 20px; }
+            .final-cta-pmu-studio { padding: 50px 25px; }
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="pmu-studio-container-wrapper">
+    <div class="pmu-studio-container">
+        <div class="pmu-studio-header">
+            <div class="personalized-greeting" id="personalized-greeting-pmu-studio-most-aware">Welcome Back, <span class="user-name-emphasis">[First Name]</span>! Ready to Finalize Your Studio Transformation?</div>
+            <h1>Your Path to a Prestige Studio & Increased Profits is Clear: It's Time to Act.</h1>
+            <p class="sub-headline">You've explored The "Prestige & Profits" PMU Studio System™, you understand its power, and you're on the verge of making a decision that will redefine your business. Let's take that final step together.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="decision-focus-box">
+                <p>You know that an exceptional studio isn't just a dream – it's a <strong>strategic imperative</strong> for attracting high-value clients, commanding premium prices, and building an enviable PMU brand. The <strong>"Prestige & Profits" PMU Studio System™</strong> is your direct path to achieving this.</p>
+            </div>
+
+            <h2>You're Ready. Here's a Quick Recap of the Transformation Awaiting You:</h2>
+            <div class="key-benefits-list">
+                <ul>
+                    <li><i class="fas fa-gem"></i><strong>Elevated Brand Prestige:</strong> Craft a studio that screams luxury and professionalism.</li>
+                    <li><i class="fas fa-dollar-sign"></i><strong>Increased Profitability:</strong> Confidently command premium prices and attract higher-spending clients.</li>
+                    <li><i class="fas fa-star"></i><strong>Unforgettable Client Experiences:</strong> Turn every visit into a five-star journey that builds loyalty and referrals.</li>
+                    <li><i class="fas fa-camera-retro"></i><strong>"Insta-Worthy" Appeal:</strong> Create a visually stunning space that generates organic buzz and marketing.</li>
+                    <li><i class="fas fa-cogs"></i><strong>Streamlined Operational Elegance:</strong> Ensure your beautiful studio runs as smoothly as it looks.</li>
+                    <li><i class="fas fa-users"></i><strong>Expert Guidance & Community:</strong> Full support with video modules, live Q&As, and an exclusive artist community.</li>
+                </ul>
+            </div>
+            
+            <h3>The Time to Transform Your Studio is NOW.</h3>
+            <p>Hesitation can be costly. Every day you operate with a sub-optimal studio is a day you might be missing out on higher earnings, more ideal clients, and the pride that comes from a truly exceptional business environment. The system is designed for decisive action and tangible results.</p>
+            
+            <div class="urgency-box">
+                <h4><i class="fas fa-exclamation-triangle"></i> Secure Your Spot & Exclusive Bonuses!</h4>
+                <p>To ensure personalized attention and the highest quality support for every artist, enrollment in The "Prestige & Profits" PMU Studio System™ is limited. By applying today, you also secure access to [Mention a specific, high-value, time-sensitive bonus, e.g., "Our Private Resource Vault of Preferred Luxury Vendors" or "A Bonus Module on Advanced Client Retention Strategies"]. Don't miss out!</p>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; font-size: clamp(1.15em, 2.5vw, 1.3em); color: #3C3229;">You've done your research. You know this is the right move for your PMU business. <br><strong>The only thing left is to take action.</strong></p>
+            
+        </div>
+
+        <div class="final-cta-pmu-studio">
+            <h2>Take Definitive Action: Apply for The "Prestige & Profits" PMU Studio System™ Today!</h2>
+            <p>This is your moment to elevate your PMU studio from ordinary to extraordinary. Click the button below to submit your application and begin your transformation journey.</p>
+            <a href="../../../universal-application-form.html?niche=pmu-artists&bucket=studio&system=PrestigeProfitsPMUStudioSystem&variant=C-MostAware&source_page=pmu-artists-studio-variant-c-most-aware" class="cta-button pmu-studio-most-aware">Yes! I'm Ready to Transform My Studio!</a>
+            <p style="font-size:0.9em; color:#BCAAA4; margin-top:20px;">Your application will be reviewed promptly. We're excited to help you build the studio of your dreams.</p>
+        
+
+<section style="margin: 3rem 0; padding: 2rem; background-color: #f9f9f9; border-radius: 6px; border-left: 5px solid #9370DB;">
+    <h2 style="color: #9370DB; margin-top: 0;">What's Possible (That You're Missing Out On)</h2>
+    <p>While you're struggling with empty chairs and inconsistent bookings, other PMU artists with the same skill level as you are experiencing extraordinary success:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 1.5rem;">
+        <li style="margin-bottom: 1.5rem; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Fully Booked 4-6 Weeks in Advance:</strong> Imagine never worrying about next week's schedule because your calendar is consistently filled with ideal clients who value your artistry.
+        </li>
+        <li style="margin-bottom: 1.5rem; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Premium Pricing Without Pushback:</strong> Picture clients who happily pay your full rates without haggling, because they recognize the value of your expertise and artistry.
+        </li>
+        <li style="margin-bottom: 1.5rem; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Predictable Monthly Income:</strong> Envision knowing exactly how much you'll earn each month, allowing you to plan your life, invest in your business, and enjoy financial security.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Reputation as THE Expert:</strong> Consider what it would feel like to be recognized as the go-to PMU artist in your area, with clients specifically seeking you out based on your reputation.
+        </li>
+    </ul>
+</section>
+
+<section style="margin: 3rem 0; padding: 2rem; background-color: #FFF5F5; border-radius: 6px; border: 1px solid #FFCCCB;">
+    <h2 style="color: #FF6B6B; margin-top: 0;">The Gap Between You and These Successful Artists</h2>
+    
+    <p>The difference between your current struggle and the success stories above is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 1.5rem;">
+        <li>Your artistic talent or technical skills</li>
+        <li>Your passion for permanent makeup</li>
+        <li>Your dedication to your clients</li>
+        <li>The location of your studio</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #FF6B6B;">The real difference is that these successful PMU artists have implemented a systematic client attraction approach that you haven't yet.</p>
+    
+    <p>They're not working harder than you. They're not more talented than you. They simply have access to a proven system that consistently delivers ideal clients to their door - <strong>the exact system you're currently missing.</strong></p>
+</section></div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-main container">
+        <div class="footer-info">
+            <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+            <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+            <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+        </div>
+        <div class="footer-quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../about.html">About Us</a></li>
+                <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+            </ul>
+        </div>
+        <div class="footer-niches">
+            <h4>Our Niche Expertise</h4>
+            <ul>
+                <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Connect With Us</h4>
+            <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const firstName = params.get('firstName');
+        const greetingElement = document.getElementById('personalized-greeting-pmu-studio-most-aware');
+        
+        if (firstName) {
+            const decodedName = decodeURIComponent(firstName);
+            if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                 greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${decodedName}</span>`);
+            } else if (greetingElement) { 
+                greetingElement.innerHTML = `Welcome Back, <span class="user-name-emphasis">${decodedName}</span>! Ready to Finalize Your Studio Transformation?`;
+            }
+        } else {
+            const defaultName = "Future Studio Pro"; 
+             if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${defaultName}</span>`);
+             } else if (greetingElement) {
+                greetingElement.innerHTML = `Welcome Back, <span class="user-name-emphasis">${defaultName}</span>! Ready to Finalize Your Studio Transformation?`;
+             }
+        }
+
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.getElementById('main-nav');
+        if (hamburger && mainNav) {
+            hamburger.addEventListener('click', () => {
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+                mainNav.classList.toggle('active');
+            });
+        }
+
+        // No FAQ for Most-Aware page, so no FAQ script needed.
+    });
+</script>
+
+<div id="chat-widget-button">
+    <span>⭐</span> Ready to Apply? Final Questions?
+</div>
+
+<div id="chat-modal" class="modal-hidden">
+    <div class="chat-modal-content">
+        <div class="chat-modal-header">
+            <h2>Finalizing Your "Prestige & Profits" Decision?</h2>
+            <button id="chat-modal-close" class="chat-close-button">&times;</button>
+        </div>
+        <div class="chat-modal-body">
+            <p>
+                <strong>You're close to making a transformative decision for your PMU studio!</strong><br>
+                Have any last-minute questions before you apply for The "Prestige & Profits" PMU Studio System™? We're here to provide quick answers.
+                <br><em>Immediate assistance during business hours.</em><br><br>
+            </p>
+            <form id="chat-contact-form">
+                <div class="form-group">
+                    <label for="chat-interest">Confirming Interest In:</label>
+                    <select id="chat-interest" name="systemInterest" required>
+                        <option value="Prestige & Profits PMU Studio System - Most Aware" selected>"Prestige & Profits" PMU Studio System™</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-name">Full Name:</label>
+                    <input type="text" id="chat-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-businessName">Studio Name:</label>
+                    <input type="text" id="chat-businessName" name="businessName" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-email">Email Address:</label>
+                    <input type="email" id="chat-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-phone">Phone Number (Optional):</label>
+                    <input type="tel" id="chat-phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="chat-message">My Final Question(s) Before Applying...</label>
+                    <textarea id="chat-message" name="message" rows="3" required placeholder="e.g., What's the exact start date? Can I clarify the payment options? "></textarea>
+                </div>
+                <button type="submit" class="cta-button secondary chat-submit-button">Get My Final Answers!</button>
+            </form>
+            <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                <h3>Inquiry Sent! We'll Be Right With You!</h3>
+                <p>Thank you! We've received your final questions and a specialist will get back to you ASAP to help you finalize your application for the "Prestige & Profits" System™.</p>
+                <p>You can now close this window.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../script.js"></script> 
+</body>
+</html> 

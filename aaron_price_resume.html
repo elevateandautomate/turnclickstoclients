@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Price - Executive Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #f5f5f5;
+            --medium-gray: #95a5a6;
+            --dark-gray: #7f8c8d;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: white;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page {
+            width: 8.5in;
+            height: 11in;
+            padding: 0.5in;
+            margin: 0 auto;
+            background-color: white;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+
+        .name-title {
+            flex: 2;
+        }
+
+        .contact-info {
+            flex: 1;
+            text-align: right;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-info p {
+            font-size: 13px;
+            margin-bottom: 0.3rem;
+            color: var(--dark-gray);
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            margin-right: 0.3rem;
+        }
+
+        .section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--medium-gray);
+            padding-bottom: 0.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary {
+            font-size: 14px;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .tagline {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .experience-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+
+        .company {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--secondary-color);
+        }
+
+        .date {
+            font-size: 14px;
+            color: var(--dark-gray);
+            float: right;
+        }
+
+        .job-description {
+            font-size: 14px;
+            margin-top: 0.5rem;
+            text-align: justify;
+        }
+
+        .achievements {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+
+        .achievements li {
+            font-size: 14px;
+            margin-bottom: 0.3rem;
+            text-align: justify;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .skill-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style-type: none;
+        }
+
+        .skill-list li {
+            font-size: 14px;
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .skill-list li::before {
+            content: "✓";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0.5in;
+            left: 0.5in;
+            right: 0.5in;
+            text-align: center;
+            font-size: 12px;
+            color: var(--medium-gray);
+            border-top: 1px solid var(--light-gray);
+            padding-top: 0.3rem;
+        }
+
+        .availability {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .availability p {
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+        }
+
+        .core-competencies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .competency {
+            background-color: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+
+            .page {
+                width: 100%;
+                height: auto;
+                margin: 0;
+                padding: 0.5in;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="name-title">
+                <h1>AARON PRICE</h1>
+                <h2>Chief Marketing Architect | Full-Stack Growth Strategist | Builder of Scalable Revenue Engines & Teams</h2>
+            </div>
+            <div class="contact-info">
+                <p>📞 (412) 905-9545</p>
+                <p>✉️ ElevateandAutomate@gmail.com</p>
+                <p>🔗 <a href="https://www.linkedin.com/in/aaron-p-813553112/?trk=opento_sprofile_details" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="tagline">"I'm not just a builder — I'm a force multiplier."</p>
+            <p class="summary">I align strategy, execution, and people to drive growth that doesn't break — whether I'm leading the team, fixing the funnel, or building the go-to-market engine from scratch. There are marketers. Coders. Ad buyers. Closers. Then there are operators like me — who've done all four, at scale, under pressure, with real money on the line.</p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">EXECUTIVE SUMMARY</h3>
+            <p class="summary">Strategic Marketing Executive with Deep Operational Fluency. Most marketing teams don't lack talent — they lack leverage. They've got people for content, ads, tech, and ops — but no one tying it all together. They lack the one who understands not just funnels, but friction. They lack the one who knows how to build what others only pitch.</p>
+            <p class="summary">I've spent 15+ years in the trenches — building, scaling, fixing — across B2C, B2B, high-ticket services, and regulated spaces. I don't just lead growth — I wire it into the system. From crafting compelling narratives to aligning pipeline velocity with strategic priorities, I've built revenue systems that withstand the demands of scale.</p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">PROFESSIONAL EXPERIENCE</h3>
+
+            <div class="experience-item">
+                <div class="job-title">Chief Marketing Strategist <span class="date">2018 – Present</span></div>
+                <div class="company">Breakthrough Marketing LLC</div>
+                <ul class="achievements">
+                    <li>Led development of full-funnel marketing systems across B2C and regulated verticals, enabling measurable growth and scalable operations</li>
+                    <li>Delivered highly efficient ROI across Meta and Google campaigns through performance-focused funnel optimization</li>
+                    <li>Improved acquisition efficiency while enhancing customer lifetime value using a retention-first marketing approach</li>
+                    <li>Achieved 322% ROI on paid social campaigns through rigorous message-to-market match</li>
+                    <li>Built automated nurture sequences maintaining 42% open rates and 12% click-through rates</li>
+                    <li>Scaled client acquisition costs down 47% while increasing customer lifetime value by 85%</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Senior Marketing Director <span class="date">2015 – 2018</span></div>
+                <div class="company">Digital Response Partners</div>
+                <ul class="achievements">
+                    <li>Led digital transformation of traditional direct mail business, resulting in 218% revenue growth</li>
+                    <li>Created omnichannel acquisition strategy driving 15,000 qualified leads monthly</li>
+                    <li>Developed proprietary testing framework reducing campaign optimization time by 65%</li>
+                    <li>Managed $5M+ annual marketing budget across search, social, and display channels</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Marketing Automation Specialist <span class="date">2012 – 2015</span></div>
+                <div class="company">Growth Systems Inc</div>
+                <ul class="achievements">
+                    <li>Implemented end-to-end marketing automation systems for 50+ clients</li>
+                    <li>Consistently improved lead-to-sale conversion performance through automation and journey refinement</li>
+                    <li>Optimized funnel structures to support more efficient acquisition and onboarding</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">CORE COMPETENCIES</h3>
+            <div class="core-competencies">
+                <div class="competency">Direct Response Copywriting</div>
+                <div class="competency">Marketing Automation Architecture</div>
+                <div class="competency">Customer Journey Optimization</div>
+                <div class="competency">Conversion Rate Optimization</div>
+                <div class="competency">Paid Media Management</div>
+                <div class="competency">Marketing Analytics & Attribution</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">TECHNICAL EXPERTISE</h3>
+            <div class="two-column">
+                <div class="column">
+                    <div class="skill-category">
+                        <div class="skill-title">Marketing Technology</div>
+                        <ul class="skill-list">
+                            <li>CRM: HubSpot, Salesforce, GoHighLevel</li>
+                            <li>Email: Klaviyo, ActiveCampaign, MailChimp</li>
+                            <li>Analytics: GA4, GTM, Attribution Tools</li>
+                            <li>Advertising: Meta Ads, Google Ads, LinkedIn Ads</li>
+                            <li>Testing: Optimizely, VWO, Google Optimize</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="skill-category">
+                        <div class="skill-title">Development & Integration</div>
+                        <ul class="skill-list">
+                            <li>HTML/CSS, JavaScript, SQL</li>
+                            <li>API Integration & Webhook Management</li>
+                            <li>Custom Analytics Implementation</li>
+                            <li>Marketing Automation Workflows</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">EDUCATION & ACHIEVEMENTS</h3>
+            <p><strong>Education:</strong> B.S. Marketing, University of Pennsylvania</p>
+            <p><strong>Notable Achievements:</strong></p>
+            <ul class="achievements">
+                <li>Helped drive measurable business growth for a wide range of clients through aligned strategy, messaging, and automation</li>
+                <li>Maintained high client satisfaction and retention by focusing on long-term value creation</li>
+                <li>Speaker at Digital Marketing Summit 2023</li>
+                <li>Published Modern Direct Response newsletter (15K subscribers)</li>
+            </ul>
+        </div>
+
+        <div class="availability">
+            <p>"You don't need five people — you need one multi-disciplinary builder who knows how to write code, launch ads, and turn tech into revenue. Whether it's a cold audience or a broken funnel, I don't just fix it. I rebuild it smarter."</p>
+            <p>I'm ready to get started now — remote, hybrid, or in-person. If you need someone who can write the words, build the tech, run the campaigns, and think like a growth operator — I'm your guy.</p>
+        </div>
+
+        <div class="footer">
+            Aaron Price | Chief Marketing Architect | (412) 905-9545 | ElevateandAutomate@gmail.com
+        </div>
+    </div>
+</body>
+</html>

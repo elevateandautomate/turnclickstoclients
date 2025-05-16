@@ -121,7 +121,7 @@
         #quiz-result h3 { color: #0056b3; margin-bottom: 10px;}
         #quiz-result p { color: #333; }
         #lead-capture-form {
-            margin-top: 30px; padding: 30px; background-color: #f0f8ff; 
+            margin-top: 30px; padding: 30px; background-color: #f0f8ff;
             border-radius: 8px; border: 1px solid #cce5ff; text-align: left;
         }
         #lead-capture-form h3 {
@@ -138,13 +138,29 @@
         #lead-capture-form .cta-button { width: 100%; padding: 12px; font-size: 1.2em; margin-top: 10px; background-color: #28a745; }
         #lead-capture-form .cta-button:hover { background-color: #1e7e34; }
         .privacy-note { font-size: 0.8em; color: #777; text-align: center; margin-top: 15px; }
+
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <header>
-        <nav>
-            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
-            <ul>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About Us</a></li>
                 <li class="dropdown-parent">
@@ -164,7 +180,7 @@
                 <li><a href="../index.html#core-offer">Our Offer</a></li>
                 <li><a href="../index.html#pricing">Pricing</a></li>
                 <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
             </ul>
         </nav>
     </header>
@@ -198,7 +214,7 @@
                     </div>
                 </div>
                 <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
-                
+
                 <div id="quiz-question" class="quiz-question" style="display:none;">
                     <h2></h2>
                 </div>
@@ -209,7 +225,7 @@
                     <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 </div>
             </div>
-            
+
             <div id="lead-capture-form" style="display:none;">
                 <h3>Unlock Your Clinic Growth Insights!</h3>
                 <p>Provide your details to receive your personalized Weight Loss Clinic growth diagnosis and key recommendations.</p>
@@ -217,22 +233,27 @@
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" id="firstName" name="firstName" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name:</label>
                         <input type="text" id="lastName" name="lastName" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
                     </div>
                     <div class="form-group">
                         <label for="businessName">Clinic Name:</label>
                         <input type="text" id="businessName" name="businessName" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific clinic.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your clinic growth opportunities.</p>
                     </div>
                     <button type="submit" class="cta-button">See My Clinic Potential!</button>
                 </form>
@@ -423,6 +444,52 @@
                     { text: "To become a leading, highly reputable weight loss center in our community or region.", score: 4 }
                 ]
             },
+            // Additional questions for more comprehensive assessment
+            {
+                question: "How effectively does your clinic utilize digital marketing to attract new weight loss patients?",
+                answers: [
+                    { text: "Minimally; we have little to no digital marketing strategy specifically for weight loss services.", score: 1 },
+                    { text: "Basic; we have some online presence but it's not strategically targeted at weight loss patients.", score: 2 },
+                    { text: "Good; we actively manage digital campaigns focused on weight loss with decent results.", score: 3 },
+                    { text: "Excellent; we have a comprehensive digital strategy that consistently brings in qualified weight loss patients.", score: 4 }
+                ]
+            },
+            {
+                question: "How would you rate your clinic's patient retention and long-term success rates?",
+                answers: [
+                    { text: "Below average; we struggle with patient compliance and long-term retention.", score: 1 },
+                    { text: "Average; we have moderate success but significant room for improvement.", score: 2 },
+                    { text: "Good; most patients achieve their goals and many stay engaged with our programs.", score: 3 },
+                    { text: "Excellent; we have outstanding retention rates and documented long-term patient success.", score: 4 }
+                ]
+            },
+            {
+                question: "How effectively does your clinic track and analyze key performance metrics for your weight loss programs?",
+                answers: [
+                    { text: "Minimally; we don't systematically track program-specific metrics.", score: 1 },
+                    { text: "Somewhat; we track basic numbers but don't regularly analyze them.", score: 2 },
+                    { text: "Well; we track and analyze key metrics but could improve our process.", score: 3 },
+                    { text: "Very effectively; we have comprehensive tracking and use data to drive program improvements.", score: 4 }
+                ]
+            },
+            {
+                question: "How would you describe your clinic's approach to staff training on weight loss protocols and patient communication?",
+                answers: [
+                    { text: "Minimal; staff receive basic training with little ongoing development.", score: 1 },
+                    { text: "Basic; we provide some training but it's not comprehensive or regular.", score: 2 },
+                    { text: "Good; our staff are well-trained on our programs and communication techniques.", score: 3 },
+                    { text: "Excellent; we invest heavily in continuous staff development and have certified specialists.", score: 4 }
+                ]
+            },
+            {
+                question: "How effectively does your clinic leverage patient success stories and testimonials in your marketing?",
+                answers: [
+                    { text: "Rarely; we don't systematically collect or use success stories.", score: 1 },
+                    { text: "Sometimes; we have some testimonials but don't feature them prominently.", score: 2 },
+                    { text: "Often; we regularly collect and use success stories in some marketing channels.", score: 3 },
+                    { text: "Consistently; patient transformations are a cornerstone of our marketing strategy.", score: 4 }
+                ]
+            },
             {
                 question: "Every business has them: those 'invisible chains' of costly overhead or tedious manual processes that secretly stifle growth and sanity. What ONE such chain, if broken, would provide the most immediate and profound boost to your business\'s efficiency and your personal peace of mind? *",
                 type: "textarea",
@@ -472,7 +539,7 @@
                 }
 
                 const answersUl = quizAnswersDiv.querySelector('ul');
-                answersUl.innerHTML = ''; 
+                answersUl.innerHTML = '';
 
                 if (questionData.type === "textarea") {
                     const instructionP = document.createElement('p');
@@ -482,6 +549,26 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> We want to understand your specific challenges so we can tailor our recommendations to address your most pressing needs and help you achieve faster results with your weight loss clinic.";
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     const li = document.createElement('li');
                     const textarea = document.createElement('textarea');
@@ -497,7 +584,7 @@
                     answersUl.appendChild(li);
 
                     nextQuestionBtn.textContent = "Next";
-                    nextQuestionBtn.onclick = handleTextareaAnswer; 
+                    nextQuestionBtn.onclick = handleTextareaAnswer;
                     quizNavigationDiv.style.display = 'block';
                     nextQuestionBtn.style.display = 'inline-block';
 
@@ -509,6 +596,64 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation with specific reasons based on question index
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    let whyText = "";
+
+                    // Customize the explanation based on the question
+                    switch(currentQuestionIndex) {
+                        case 0:
+                            whyText = "We're asking because your patient acquisition strategy directly impacts your clinic's growth. Your answer helps us identify if optimizing your marketing approach could be a key opportunity for your clinic.";
+                            break;
+                        case 1:
+                            whyText = "We're asking because your conversion process is essential for clinic revenue. Your answer helps us determine if enhancing your consultation process could improve enrollment rates.";
+                            break;
+                        case 2:
+                            whyText = "We're asking because patient support systems significantly impact retention and results. Your answer helps us assess if improving your support approach could be a growth lever for your clinic.";
+                            break;
+                        case 3:
+                            whyText = "We're asking because your differentiation directly affects patient choice and referrals. Your answer helps us understand if refining your positioning should be a priority in your growth plan.";
+                            break;
+                        case 4:
+                            whyText = "We're asking because your growth goals influence which strategies will be most effective for your clinic. Your answer helps us tailor our recommendations to your specific ambitions.";
+                            break;
+                        case 5:
+                            whyText = "We're asking because digital marketing effectiveness directly impacts your patient pipeline. Your answer helps us identify if your marketing approach needs optimization.";
+                            break;
+                        case 6:
+                            whyText = "We're asking because patient retention is often a hidden growth opportunity. Your answer helps us determine if improving your retention process could increase lifetime patient value.";
+                            break;
+                        case 7:
+                            whyText = "We're asking because data-driven decision making is a key differentiator between high and average-performing clinics. Your answer helps us assess your analytical capabilities.";
+                            break;
+                        case 8:
+                            whyText = "We're asking because staff training directly impacts patient satisfaction and results. Your answer helps us identify if professional development could be a growth lever for your clinic.";
+                            break;
+                        case 9:
+                            whyText = "We're asking because testimonials are powerful social proof that can significantly boost enrollment. Your answer helps us determine if better leveraging success stories could increase your clinic's growth.";
+                            break;
+                        default:
+                            whyText = "We're asking to better understand your clinic and provide more tailored recommendations for growth.";
+                    }
+
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> " + whyText;
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     questionData.answers.forEach((answer) => {
                         const li = document.createElement('li');
@@ -538,7 +683,7 @@
                 alert("Please provide an answer to this question.");
             }
         }
-        
+
         function selectAnswer(score, selectedButton) {
             const buttons = quizAnswersDiv.querySelectorAll('.answer-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
@@ -561,7 +706,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function updateProgressBar() {
             const progress = (currentQuestionIndex / quizQuestions.length) * 100;
             progressBar.style.width = progress + '%';
@@ -574,16 +719,16 @@
             progressBarContainer.style.display = 'none';
             leadCaptureForm.style.display = 'block';
             totalScore = userAnswers.reduce((acc, score) => acc + (score || 0), 0);
-            console.log("Final Score: ", totalScore); 
+            console.log("Final Score: ", totalScore);
         }
 
         async function handleLeadSubmit() {
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
-            const businessName = document.getElementById('businessName').value.trim(); 
+            const businessName = document.getElementById('businessName').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            
+
             let growth_stifler_response = "";
             const growthStiflerQuestionIndex = quizQuestions.findIndex(q => q.type === "textarea");
             if (growthStiflerQuestionIndex !== -1 && userAnswers[growthStiflerQuestionIndex]) {
@@ -594,7 +739,7 @@
                 alert("Please fill in all required fields in the form.");
                 return;
             }
-            
+
             if (growthStiflerQuestionIndex !== -1 && !userAnswers[growthStiflerQuestionIndex]) {
                  alert("Please ensure all quiz questions, including the open-ended one, are answered.");
                  return;
@@ -610,8 +755,8 @@
                 if (questionData.type === "textarea") {
                     return {
                         question: questionData.question,
-                        answer: answerData, 
-                        score: null 
+                        answer: answerData,
+                        score: null
                     };
                 }
                 const selectedAnswerObject = questionData.answers.find(ans => ans.score === answerData);
@@ -676,24 +821,93 @@
                  dbErrorMessage = 'Database connection not available';
             }
 
-            determineOutcomeAndRedirect(firstName, lastName, businessName, dbErrorMessage);
+            determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbErrorMessage, sourceParam, dbErrorMessage);
         }
 
-        function determineOutcomeAndRedirect(firstName, lastName, businessName, dbErrorMessage) {
+        async function determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError) {
             const encodedFirstName = encodeURIComponent(firstName);
             const encodedLastName = encodeURIComponent(lastName);
             const encodedBusinessName = encodeURIComponent(businessName);
-            let url = '';
             const baseParams = `firstName=${encodedFirstName}&lastName=${encodedLastName}&businessName=${encodedBusinessName}&score=${totalScore}`;
-            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}${dbErrorMessage ? `&dbError=${encodeURIComponent(dbErrorMessage)}` : ''}`;
+            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}&track_source=quiz${dbError ? `&dbError=${encodeURIComponent(supabaseInsertError?.message || 'Unknown error')}` : ''}`;
 
-            if (totalScore <= 7) { 
-                url = `../quiz-applications/weight-loss-clinics-clients-application.html?${baseParams}${sourceAndDbErrorParams}`;
-            } else if (totalScore <= 14) { 
-                url = `../quiz-applications/weight-loss-clinics-practice-application.html?${baseParams}${sourceAndDbErrorParams}`;
-            } else { 
-                url = `../quiz-applications/weight-loss-clinics-growth-application.html?${baseParams}${sourceAndDbErrorParams}`;
+            // Determine the outcome bucket based on the score
+            const outcome = determineOutcome(totalScore);
+            const scoreBucket = outcome; // patients, practice, or growth
+
+            // Determine which awareness variant to show based on score distribution
+            let awarenessVariant;
+            if (scoreBucket === "patients") {
+                // Lower scores within this bucket get problem variant, higher get solution variant, etc.
+                if (totalScore <= 5) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 6) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
             }
+            else if (scoreBucket === "practice") {
+                if (totalScore <= 10) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 12) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+            else { // growth
+                if (totalScore <= 16) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 18) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+
+            // Construct the new URL with bucket and variant
+            let url;
+            if (scoreBucket === "patients") {
+                url = `../quiz-applications/weight-loss-clinics/clients/weight-loss-patient-variant-${awarenessVariant}.html`;
+            } else if (scoreBucket === "practice") {
+                url = `../quiz-applications/weight-loss-clinics/practice/weight-loss-practice-variant-${awarenessVariant}.html`;
+            } else { // growth
+                url = `../quiz-applications/weight-loss-clinics/growth/weight-loss-growth-variant-${awarenessVariant}.html`;
+            }
+
+            // Add query parameters
+            url += `${baseParams ? '?' + baseParams : '?'}${sourceAndDbErrorParams}&bucket=${scoreBucket}&variant=${awarenessVariant}`;
+
+            // Track the redirection in Supabase before redirecting
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('tctc_quiz_redirections')
+                        .insert([{
+                            user_first_name: firstName,
+                            user_last_name: lastName,
+                            user_business_name: businessName,
+                            quiz_score: totalScore,
+                            outcome_bucket: scoreBucket,
+                            awareness_variant: awarenessVariant,
+                            redirect_url: url,
+                            source: sourceParam || 'organic',
+                            redirected_at: new Date().toISOString()
+                        }]);
+
+                    if (error) {
+                        console.error('Error tracking weight loss clinics redirection:', error);
+                    } else {
+                        console.log('Weight loss clinics redirection tracking successful:', data);
+                    }
+                } catch (e) {
+                    console.error('Exception during weight loss clinics redirection tracking:', e);
+                }
+            }
+
+            // Redirect regardless of tracking success
+            console.log("Weight Loss Clinics: Redirecting to:", url);
             window.location.href = url;
         }
 
@@ -703,5 +917,7 @@
 
     </script>
     <script src="../script.js"></script>
+    <script src="../tracking.js"></script>
+    <script src="../tracking-enhanced.js"></script>
 </body>
-</html> 
+</html>

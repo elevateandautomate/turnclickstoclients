@@ -11,7 +11,7 @@
         #hero.niche-hero {
             min-height: 65vh; /* Slightly shorter hero for niche pages */
             /* Body Contouring Specific Hero Image */
-            background: linear-gradient(rgba(0, 100, 150, 0.65), rgba(0, 50, 90, 0.8)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; /* Example body contouring image */
+            background: linear-gradient(rgba(0, 100, 150, 0.65), rgba(0, 50, 90, 0.8)); /* Removed background image */
         }
         /* Adjust main headline size if needed */
          #hero.niche-hero .hero-headline-stack span:last-child {
@@ -22,21 +22,28 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
@@ -48,10 +55,9 @@
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -61,31 +67,29 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Is Your Six-Figure Body Contouring Tech Sitting Idle?</span>
+                    <span>Why Most Body Contouring Practices Struggle to Fill Their Schedule—And the 30-Second Quiz That Reveals the Hidden Blockage in Yours.</span>
                     <span>Our System Turns Your Tech into a Profit Engine with Predictable Package Sales.</span>
                 </h1>
                 <p class="hero-subheadline">
-                    Is your advanced body contouring technology underutilized instead of maximizing your revenue? 
-                    Imagine <strong>consistently attracting</strong> clients ready to commit to transformative treatment packages. Our Client Acquisition Engine <strong>powers your profitability</strong>, <strong>enabling you</strong> to maximize ROI and confidently <strong>grow</strong> your practice.
-                    <em>Curious how you can achieve consistent package sales and ROI? Our 30-second quiz can show you the potential.</em>
+                    Every day, another client chooses a quick fix—while your advanced technology sits idle, your schedule is filled with low-value visits, and your vision for a premium practice slips away.<br>
+                    Imagine waking up to a calendar packed with clients who <em>want</em> your transformative care—and are ready to invest in it. This isn't a dream. It's the new reality our Client Acquisition Engine delivers.
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & See the Potential</a>
+                <a href="../quiz-start.html" class="cta-button">Pinpoint the #1 Reason High-Value Clients Aren't Booking With You—Take the 30-Second Quiz</a>
             </div>
         </section>
 
         <!-- Problem/Agitation Section -->
         <section id="niche-problem" class="section-padding">
             <div class="container text-center">
-                <h2 class="mb-2">The Body Contouring Paradox: Cutting-Edge Tech vs. The Lack of ROI & Package Sales</h2>
+                <h2 class="mb-2">The Hidden Trap: Why Your Advanced Technology Isn't Filling Your Schedule</h2>
                 <p class="ideal-clients-subtext mb-2">
-                    You invested heavily in revolutionary technology, envisioning transformative results and a thriving practice. The reality? That expensive machine sits idle too often, highlighting a painful lack of return on investment. Attracting clients who commit to full treatment packages feels like a battle against competitors hyping single-session miracles, showcasing a lack of client understanding about realistic results and the need for packages. The practice often lacks the consistent flow of <em>committed</em> clients needed to truly succeed.
-                    And YOU are caught in the crossfire: stressing over equipment payments due to this lack of utilization, battling fierce competition, and trying to convert inquiries into package sales despite the widespread lack of patient education. Each consultation with someone unprepared for the investment represents wasted time and fuels the lack of financial predictability. Is this quiet treatment room and the associated lack of revenue hindering your growth? 
-                    <em>If you're looking for a reliable way to attract clients actively seeking body contouring solutions, our quick 30-second quiz can illuminate the path.</em>
+                    You've invested heavily in revolutionary technology—yet your days are a blur of "quick fixes," price-shoppers, and clients who don't value your expertise.<br>
+                    The real problem? It's not your skill. It's the <strong>system</strong> you're using to attract clients. Until you fix it, you'll keep feeling stuck—no matter how advanced your care.
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Clients Aren't Booking With You—Take the 30-Second Quiz</a>
                 </div>
-                <p class="key-promise">"Stop Chasing Trends. Start Building Your Body Contouring Empire."</p>
+                <p class="key-promise">"Stop Patching Symptoms. Start Building a High-Value Care Practice."</p>
             </div>
         </section>
 
@@ -94,11 +98,10 @@
             <div class="container">
                 <div class="transition-to-solution text-center mb-2 fade-in-element">
                     <p class="transition-text">
-                        We recognize the disconnect – your advanced technology versus inconsistent client interest. The untapped potential. That's why TurnClicksToClients is your specialized engine, crafted to bridge this gap, attracting clients ready for transformation, so you can consistently feel the success of a flourishing body contouring practice. We deliver...
-                        <em>Curious how this specialized engine could bring a steady flow of motivated clients to your door? Our 30-second quiz is your first insight.</em>
+                        Imagine the relief of never again having to discount your expertise or explain your value to price-shoppers. Picture a system that quietly works in the background, attracting clients who are already pre-sold on your advanced care—so you can finally focus on delivering transformative results, not chasing leads. This isn't just marketing. It's the breakthrough Client Acquisition Engine that top body contouring practices are using to build thriving, high-value practices—and it's now available to you.
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Clients Aren't Booking With You—Take the 30-Second Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -110,41 +113,37 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Take the 30-Sec Quiz</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Lead" alt="Lead Generation">
                             <h4>The Lead Generation Team</h4>
-                            <p class="team-subtitle">Targeted Prospect Attractors</p>
-                            <p>Reaches and attracts individuals actively researching body contouring solutions, delivering qualified inquiries without you managing the campaigns.</p>
+                            <p class="team-subtitle">Your Ideal Client Locators</p>
+                            <p>Imagine a team working behind the scenes, day and night, to put your practice in front of clients who are searching for exactly what you offer. No more guessing, no more wasted effort. The Lead Generation Team fills your calendar so you can focus on your expertise.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Book" alt="Consultation Booking">
                             <h4>The Consultation Booking Crew</h4>
-                            <p class="team-subtitle">Appointment Setting Specialists</p>
-                            <p>Handles lead communication and pre-education, booking consultations focused on packages, freeing your staff for higher-value interactions.</p>
+                            <p class="team-subtitle">New Client Coordinators</p>
+                            <p>Picture every inquiry handled with care and speed—no more missed calls, no more lost opportunities. The Consultation Booking Crew turns interest into booked appointments, freeing you from endless follow-ups and letting you focus on delivering results.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Sys" alt="System Automation">
-                            <h4>The System Automation Engine</h4>
-                            <p class="team-subtitle">Efficiency and Nurturing Maximizer</p>
-                            <p>Automates follow-up and nurturing processes, maximizing package acceptance rates while minimizing manual effort from your team.</p>
+                            <h4>The Client Journey Automation</h4>
+                            <p class="team-subtitle">Care Plan Adherence Maximizer</p>
+                            <p>Feel the relief as automated systems ensure no client ever slips through the cracks. The Client Journey Automation creates a seamless, stress-free experience, so you can finally step off the hamster wheel and enjoy the growth you've worked so hard for.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
-                        <h4 class="mechanism-headline">The Science of Consistent Client Flow & Filling the Package Gap</h4>
+                        <h4 class="mechanism-headline">The Secret Engine Behind Effortless Client Flow</h4>
                         <p>
-                            Why is this effective? Acquiring package clients requires filling the <strong>lack of nuanced value-building</strong> in typical marketing. Our system builds value so you can feel the assurance of high conversion rates. 
-                            We <strong>manage</strong> the journey, filling the <strong>lack of targeted education</strong>. Ads <strong>attract</strong> the right prospects, our crew <strong>nurtures</strong> them, and automation <strong>ensures</strong> engagement, filling the <strong>lack of consistent follow-through</strong>. This approach <strong>delivers</strong> reliable client flow by overcoming these lacks, allowing you to continually experience the financial rewards of your investment.
+                            This isn't just a collection of services—it's a finely tuned engine, each team a secret weapon working in harmony to fill the gaps that have held you back. While others struggle with piecemeal solutions, you'll have a system that delivers consistent results, restores your confidence, and lets you lead with passion again.
                         </p>
                     </div>
                     <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
                         <p>
-                            This isn't just bookings; it <strong>transforms you into a provider whose high-tech investments consistently generate high-value revenue.</strong> It fills the lack of predictable package sales, enabling you to <em>be</em> the leader of a practice where growth and ROI are sustained realities. <strong>It eliminates</strong> the stress of underutilized equipment, freeing you to operate with the financial confidence and pride that comes from delivering transformative results with a profitable business model.
+                            This system transforms you from a provider chasing volume into a sought-after expert whose schedule is filled with committed, high-value clients. It eliminates unpredictability, fills the gaps in client quality and consistency, and replaces daily stress with a proven, automated process. You become the practitioner who dominates your market, runs a thriving practice, and finally enjoys the freedom and professional pride you deserve.
                         </p>
                     </div>
-                     <div class="text-center mt-2">
+                    <div class="text-center mt-2">
                         <a href="#pricing-niche" class="cta-button secondary">See Package Sales Plans</a>
                     </div>
                 </div>
@@ -159,26 +158,22 @@
                     Hear from providers who transformed their consultation conversion rates and equipment utilization.
                 </p>
                 <div class="testimonials-grid">
-                    <!-- Placeholder Testimonial 1 for Body Contouring -->
                     <div class="testimonial-card fade-in-element">
                         <p class="testimonial-quote">
                             "We invested heavily in the best body contouring tech, but filling the schedule consistently was tough. TurnClicksToClients delivers leads who are already educated and interested in packages. Our consultation conversion rate for packages has skyrocketed, and our machines are finally busy!"
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/00ced1/FFFFFF?Text=MS" alt="MedSpa Owner Photo">
                             <div>
                                 <p class="author-name">Sarah Chen, Owner</p>
                                 <p class="author-niche">Elite Body Sculpting MedSpa</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Placeholder Testimonial 2 for Body Contouring -->
                     <div class="testimonial-card fade-in-element">
                         <p class="testimonial-quote">
                             "Marketing body contouring felt like shouting into the void. This system targets the right people and nurtures them effectively. We spend less time educating during consults and more time closing package deals. The quality of clients and the focus on ROI is exactly what we needed."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/4682b4/FFFFFF?Text=DrP" alt="Practice Manager Photo">
                             <div>
                                 <p class="author-name">Dr. David Patel, Medical Director</p>
                                 <p class="author-niche">Renew Aesthetics & Wellness</p>
@@ -192,23 +187,23 @@
         <!-- ROI Teaser Section -->
         <section id="roi-teaser-niche" class="section-padding">
             <div class="container text-center">
-                 <div class="commitment-box fade-in-element" style="border-left-color: #4682b4;"> <!-- Steel Blue border color -->
+                <div class="commitment-box fade-in-element" style="border-left-color: #4682b4;"> <!-- Steel Blue border color -->
                     <h2 class="mb-1">Calculate Your True Body Contouring ROI</h2>
                     <p class="commitment-text" style="text-align: center;">
-                         Predictable package sales are the key to maximizing the return on your technology investment. See how attracting qualified, package-ready clients can transform your practice's profitability.
+                        Predictable package sales are the key to maximizing the return on your technology investment. See how attracting qualified, package-ready clients can transform your practice's profitability.
                     </p>
                     <a href="../index.html#roi-calculator" class="cta-button secondary">Calculate Your Potential ROI Now</a>
                     <p class="cta-microcopy mt-1">(Factor in higher package conversion rates)</p>
-                 </div>
+                </div>
             </div>
         </section>
         
         <!-- Pricing Section (Link back to main) -->
         <section id="pricing-niche" class="section-padding">
              <div class="container text-center">
-                 <h2 class="mb-1">Ready to Maximize Your Equipment Utilization & Revenue?</h2>
-                 <p class="pricing-subtext mb-2">Our plans are designed to deliver qualified, package-ready clients for leading Body Contouring providers. Choose the path to predictable growth.</p>
-                 <a href="../index.html#pricing" class="cta-button primary-cta">View Our Pricing Plans & Special Offer</a>
+                 <h2 class="mb-1">Ready to Transform Your Practice into a High-Value Client Magnet?</h2>
+                 <p class="pricing-subtext mb-2">Our system is designed to deliver qualified, package-ready clients for leading Body Contouring providers. Choose the path to predictable growth and professional satisfaction.</p>
+                 <a href="../index.html#pricing" class="cta-button primary-cta">Discover How to Fill Your Schedule with High-Value Clients</a>
                  <p class="mt-1">(You'll be taken to our main pricing section)</p>
              </div>
         </section>
@@ -217,12 +212,10 @@
          <section id="guarantee-niche" class="section-padding" style="background-color: #e0f7fa;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/4682b4/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day Qualified Package Lead Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We focus on attracting clients serious about achieving results with body contouring packages. If you don't see a measurable increase in qualified leads specifically interested in multi-session treatment plans for your services within the first 30 days, you don't pay our service fee. <strong>This gives you certainty you'll attract leads ready for packages, not just single sessions.</strong> Zero risk. Real package-ready opportunities.
                     </p>
-                    <!-- START DOUBT CLOSE INTEGRATION -->
                     <div class="doubt-close-snippet" style="margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; background-color: #f8f9fa; border-left: 4px solid #007bff; border-radius: 5px; text-align: left;">
                         <p style="font-style: italic; color: #495057; margin-bottom: 1em;">
                             You might be wondering: will this system *actually* help me sell more packages? Can it make my expensive technology truly profitable? Is it different from other marketing that didn't deliver on package sales? These are fair doubts.
@@ -237,7 +230,6 @@
                             The real question is, should you doubt your potential to maximize ROI, or the hesitation to try a system built to achieve exactly that?
                         </p>
                     </div>
-                    <!-- END DOUBT CLOSE INTEGRATION -->
                     <p class="guarantee-text mb-2">
                         But true confidence comes from knowing you have options. We want you to feel completely secure stepping forward. That's why we also want to be clear: if, for any reason down the line, you feel our system isn't the right long-term fit, <strong>you can always return to managing your marketing the way you did before.</strong> The systems and strategies you were using aren't going anywhere. Nothing is lost, and the insights gained are yours forever.
                     </p>
@@ -256,10 +248,10 @@
             <div class="container">
                 <h2>Curious if Your Body Contouring Practice Can Achieve Consistent Package Sales & ROI?</h2>
                 <p class="cta-subtext mb-2">Stop letting valuable equipment sit idle. Our 30-second quiz can help you see if our guaranteed system is the right fit to attract clients ready for transformative packages, before your competitor claims your city.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
                 <p class="cta-microcopy">(Quick, no-obligation check for eligibility & city availability)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Book a Brief Strategy Call</a>.</p>
-                 <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
+                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Click the Send a Message Button</a>.</p>
+                <p class="cta-microcopy">(Our team will get back to you ASAP)</p>
                  <p class="cta-ps mt-1">
                      <strong>P.S.</strong> You aim for a body contouring practice where high-tech equipment translates directly to high-value package sales and impressive ROI. Achieving this has its price. Will you pay with inconsistent client flow, the struggle to sell packages, and underutilized technology? That's a costly route.
                      Or will you leverage a system perfected over 15+ years, built to deliver package-ready clients and maximize your investment <em>for you</em>? 

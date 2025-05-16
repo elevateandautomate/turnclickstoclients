@@ -19,36 +19,42 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
                         <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
                         <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
-                        <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li> <!-- Current page -->
+                        <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
                         <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
                         <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -58,29 +64,27 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Stop Competing on Price & Start Attracting Patients Who Value Your Expertise.</span>
-                    <span>Our System Fills Your Practice with Ideal Patients for Premium Chiropractic Care.</span>
+                    <span style="color: #fff;">Why Most Top Chiropractors Are Stuck Competing With "Quick Fix" Clinics—</span>
+                    <span style="color: #ffd600;">And the Proven System That Can Fill Your Practice With High-Value Patients Who Happily Pay for Your Expertise.</span>
                 </h1>
                 <p class="hero-subheadline">
-                    Are you finding your schedule diluted with low-value appointments instead of patients seeking your specialized expertise? 
-                    Imagine <strong>consistently attracting</strong> committed, qualified patients ready to invest in your high-value care. Our New Patient Engine <strong>powers your ideal practice</strong>, <strong>enabling you</strong> to focus on delivering impactful results and <strong>building</strong> the thriving, expert practice you envision.
-                    <em>Curious how you can make attracting ideal patients your consistent reality? Our 30-second quiz offers a quick check.</em>
+                    Every day, another patient chooses a discount clinic—while your skills go underappreciated, your schedule is filled with low-value visits, and your vision for a premium practice slips away.<br>
+                    Imagine waking up to a calendar packed with patients who <em>want</em> your advanced care—and are ready to invest in it. This isn't a dream. It's the new reality our Ideal Patient Engine delivers.
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz to See How</a>
+                <a href="../quiz-start.html" class="cta-button">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
             </div>
         </section>
 
         <!-- Problem/Agitation Section -->
         <section id="niche-problem" class="section-padding">
             <div class="container text-center">
-                <h2 class="mb-2">The High-End Chiropractor's Frustration: Advanced Skills Meet a Lack of Ideal Patients</h2>
+                <h2 class="mb-2">The Hidden Trap: Why Your Advanced Skills Aren't Filling Your Schedule</h2>
                 <p class="ideal-clients-subtext mb-2">
-                    You dedicated yourself to mastering advanced chiropractic techniques or building a truly patient-centered wellness practice. But the market reality? You're often lumped in with volume clinics, attracting patients showcasing a lack of understanding or appreciation for the depth and value you offer beyond a quick adjustment. Communicating the investment required feels like a battle due to this lack of alignment. Furthermore, standard marketing platforms often represent a lack of precision, failing to effectively attract your niche, premium clientele.
-                    The result? Deep frustration. The practice often lacks the steady flow of committed, high-value patients your expertise warrants. You waste time educating individuals who reveal a lack of readiness for comprehensive care, or feel pressured to discount your skills. Your marketing feels generic, highlighting a lack of focus in attracting the specific patients—athletes, executives, complex cases—who would truly benefit and happily invest. Is this mismatch and the resulting lack of ideal patients stifling your potential? 
-                    <em>If you're aiming to attract more patients who value and can afford your comprehensive care plans, our quick 30-second quiz can clarify if this system is your solution.</em>
+                    You've spent years perfecting your craft—yet your days are a blur of "quick cracks," price-shoppers, and patients who don't value your expertise.<br>
+                    The real problem? It's not your skill. It's the <strong>system</strong> you're using to attract patients. Until you fix it, you'll keep feeling stuck—no matter how advanced your care.
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                 </div>
                 <p class="key-promise">"Stop Patching Symptoms. Start Building a High-Value Care Practice."</p>
             </div>
@@ -91,11 +95,10 @@
             <div class="container">
                 <div class="transition-to-solution text-center mb-2 fade-in-element">
                     <p class="transition-text">
-                        We see the disparity – your advanced skills versus a patient base often seeking quick fixes. The unfulfilled potential. That's why TurnClicksToClients is your dedicated engine, engineered to bridge this gap, attracting patients who understand and invest in long-term wellness, so you can consistently feel the satisfaction of delivering transformative care. We deliver...
-                        <em>Curious how this dedicated engine could bring a steady flow of ideal, high-value patients to your clinic? Our 30-second quiz is your first insight.</em>
+                        Imagine the relief of never again having to discount your expertise or explain your value to price-shoppers. Picture a system that quietly works in the background, attracting patients who are already pre-sold on your advanced care—so you can finally focus on delivering transformative results, not chasing leads. This isn't just marketing. It's the breakthrough Ideal Patient Engine that top chiropractors are using to build thriving, high-value practices—and it's now available to you.
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -107,39 +110,34 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Take the 30-Sec Quiz</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Lead" alt="Lead Generation">
                             <h4>The Lead Generation Team</h4>
-                            <p class="team-subtitle">Ideal Patient Locators</p>
-                            <p>Targets and attracts individuals specifically seeking your specialized care, delivering qualified inquiries without generic marketing efforts on your part.</p>
+                            <p class="team-subtitle">Your Ideal Patient Locators</p>
+                            <p>Imagine a team working behind the scenes, day and night, to put your practice in front of patients who are searching for exactly what you offer. No more guessing, no more wasted effort. The Lead Generation Team fills your calendar so you can focus on your expertise.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Appt" alt="Appointment Setting">
                             <h4>The Appointment Setting Crew</h4>
                             <p class="team-subtitle">New Patient Coordinators</p>
-                            <p>Manages initial communications and books confirmed appointments with qualified leads, streamlining your front desk operations significantly.</p>
+                            <p>Picture every inquiry handled with care and speed—no more missed calls, no more lost opportunities. The Appointment Setting Crew turns interest into booked appointments, freeing you from endless follow-ups and letting you focus on delivering results.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Sys" alt="Patient Journey Automation">
                             <h4>The Patient Journey Automation</h4>
                             <p class="team-subtitle">Care Plan Adherence Maximizer</p>
-                            <p>Automates key patient communications and reminders, supporting care plan adherence and saving your team valuable time.</p>
+                            <p>Feel the relief as automated systems ensure no patient ever slips through the cracks. The Patient Journey Automation creates a seamless, stress-free experience, so you can finally step off the hamster wheel and enjoy the growth you've worked so hard for.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
-                        <h4 class="mechanism-headline">The Science of Filling the High-Value Patient Gap</h4>
+                        <h4 class="mechanism-headline">The Secret Engine Behind Effortless Patient Flow</h4>
                         <p>
-                            Why is this effective? Attracting patients who value specialized care requires filling the <strong>lack of targeted, educational marketing</strong> common elsewhere. Our system lets you feel the confidence of premium positioning. 
-                            We <strong>manage</strong> the journey, filling the <strong>lack of focus</strong> in patient acquisition. Ads <strong>attract</strong> specific needs, our crew <strong>qualifies</strong> them (filling the <strong>lack of pre-consultation screening</strong>), ensuring you experience productive consultations. 
-                            Automation fills the <strong>lack of consistent follow-up</strong>. This system <strong>delivers</strong> committed patients by overcoming these lacks, allowing your practice to continually thrive on the rewarding feeling of exceptional care.
+                            This isn't just a collection of services—it's a finely tuned engine, each team a secret weapon working in harmony to fill the gaps that have held you back. While others struggle with piecemeal solutions, you'll have a system that delivers consistent results, restores your confidence, and lets you lead with passion again.
                         </p>
                     </div>
                     <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
                         <p>
-                            This isn't just new patients; it <strong>transforms you into the chiropractor whose expertise consistently attracts committed, high-value patients.</strong> It fills the lack of ideal clientele, enabling you to <em>be</em> the practitioner focused on transformative care, not volume. <strong>It eliminates</strong> the stress of unpredictable flow, allowing you to operate with the financial predictability and professional pride that comes from building a practice around your specialized skills.
+                            This system transforms you from a chiropractor chasing volume into a sought-after expert whose schedule is filled with committed, high-value patients. It eliminates unpredictability, fills the gaps in patient quality and consistency, and replaces daily stress with a proven, automated process. You become the practitioner who dominates your market, runs a thriving practice, and finally enjoys the freedom and professional pride you deserve.
                         </p>
                     </div>
                     <div class="text-center mt-2">
@@ -162,7 +160,6 @@
                             "We specialize in corrective care, but our marketing kept bringing in people wanting a quick crack. TurnClicksToClients changed the game. We now consistently see patients who understand the process and are ready to invest in getting real results. It's allowed us to truly focus on our expertise."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/4682B4/FFFFFF?Text=DrJ" alt="Chiropractor Photo">
                             <div>
                                 <p class="author-name">Dr. Amanda Chen, DC</p>
                                 <p class="author-niche">AlignWell Chiropractic Specialists</p>
@@ -174,7 +171,6 @@
                             "Attracting cash-paying wellness patients was always a challenge. This system targets the right demographic and clearly communicates the value we offer. Our consultations are more productive, care plan acceptance is higher, and we're building the wellness practice I dreamed of."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/5F9EA0/FFFFFF?Text=DrR" alt="Chiropractor Photo">
                             <div>
                                 <p class="author-name">Dr. David Rodriguez, DC</p>
                                 <p class="author-niche">Peak Performance & Wellness</p>
@@ -188,14 +184,14 @@
         <!-- ROI Teaser Section -->
         <section id="roi-teaser-niche" class="section-padding">
             <div class="container text-center">
-                 <div class="commitment-box fade-in-element" style="border-left-color: #4682B4;"> <!-- Steel Blue border color -->
+                <div class="commitment-box fade-in-element" style="border-left-color: #4682B4;"> <!-- Steel Blue border color -->
                     <h2 class="mb-1">Calculate the Value of Your Ideal Chiropractic Patient</h2>
                     <p class="commitment-text" style="text-align: center;">
-                         Attracting patients who commit to comprehensive care plans transforms your practice economics. See the potential impact of filling your schedule with patients who value long-term health and your specialized expertise.
+                        Attracting patients who commit to comprehensive care plans transforms your practice economics. See the potential impact of filling your schedule with patients who value long-term health and your specialized expertise.
                     </p>
                     <a href="../index.html#roi-calculator" class="cta-button secondary">Calculate Your Potential ROI Now</a>
                     <p class="cta-microcopy mt-1">(Factor in higher care plan value & patient retention)</p>
-                 </div>
+                </div>
             </div>
         </section>
         
@@ -213,12 +209,10 @@
          <section id="guarantee-niche" class="section-padding" style="background-color: #f0f8ff;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/4682B4/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day Ideal Patient Lead Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We are confident in our ability to attract patients specifically seeking the high-value, specialized, or comprehensive care you provide. If you don't see a measurable increase in qualified leads matching your ideal patient profile within the first 30 days, you don't pay our service fee. This gives you certainty you'll connect with patients who truly value your expertise. Zero risk. Real ideal patient opportunities.
                     </p>
-                    <!-- START DOUBT CLOSE INTEGRATION -->
                     <div class="doubt-close-snippet" style="margin-top: 1.5rem; margin-bottom: 1.5rem; padding: 1.5rem; background-color: #f8f9fa; border-left: 4px solid #007bff; border-radius: 5px; text-align: left;">
                         <p style="font-style: italic; color: #495057; margin-bottom: 1em;">
                             Doubts might linger. Will this system *really* attract patients who value and invest in my specialized care, unlike past experiences? Is it truly different from generic chiropractic marketing? Can it elevate *my* practice to the next level? Understandable questions.
@@ -233,7 +227,6 @@
                             The most significant doubt to conquer is whether continuing to let uncertainty prevent you from building your ideal practice is the right choice.
                         </p>
                     </div>
-                    <!-- END DOUBT CLOSE INTEGRATION -->
                     <p class="guarantee-text mb-2">
                         But true confidence comes from knowing you have options. We want you to feel completely secure stepping forward. That's why we also want to be clear: if, for any reason down the line, you feel our system isn't the right long-term fit, <strong>you can always return to managing your marketing the way you did before.</strong> The systems and strategies you were using aren't going anywhere. Nothing is lost, and the insights gained are yours forever.
                     </p>
@@ -251,12 +244,14 @@
          <section id="cta-contact-niche" class="section-padding text-center" style="background-color: #004085;">
             <div class="container">
                 <h2 class="cta-headline" style="color: #fff; font-size: clamp(2em, 5vw, 3em);">Ready to Consistently Attract Your Ideal Chiropractic Patients?</h2>
-                <p class="cta-subheadline" style="color: #e9ecef; font-size: clamp(1em, 2.5vw, 1.3em); margin-bottom: 30px;">
-                    Let's discuss how our dedicated New Patient Engine can transform your practice, filling it with patients who value your expertise and are ready to invest in their well-being. 
-                    Book your no-obligation Discovery Call today and see if we're the right fit to help you achieve your practice goals.
+                <p class="cta-subtext mb-2" style="color: #222;">Stop letting unpredictable flow and price-shoppers dictate your practice. Our 30-second quiz can help you see if our system is the right fit to fill your schedule with high-value patients who value your expertise.</p>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">Pinpoint the #1 Reason High-Value Patients Aren't Booking With You—Take the 30-Second Quiz</a>
+                <p class="cta-microcopy" style="color: #000;">(Quick, no-obligation check for eligibility)</p>
+                <p class="mt-1" style="color: #000;">Or, click the "Send Us a Message" button and our team will get back to you as soon as possible.</p>
+                <p class="cta-microcopy" style="color: #000;">(For specific inquiries before taking the quiz)</p>
+                <p class="cta-ps mt-1" style="color: #000;">
+                    <strong>P.S.</strong> You want a practice filled with patients who value your expertise, and achieving that always has a price. Will you pay it with years of unpredictable flow, price competition, and the frustration of untapped potential? Or will you choose a system built on 15+ years of experience, designed to attract your ideal patients <em>for you</em>? Our 30-second quiz is your shortcut to a thriving, high-value practice. Successful chiropractors invest in proven systems. What will your choice say about your vision? See if you qualify for the shortcut.
                 </p>
-                <a href="https://calendly.com/aaronparr" class="cta-button primary-cta-alt" target="_blank">Book Your Free Discovery Call Now</a>
-                <p class="cta-microcopy" style="color: #ced4da; margin-top: 15px;">Limited spots available. Let's build your dream practice.</p>
             </div>
         </section>
 

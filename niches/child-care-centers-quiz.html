@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
     <style>
         body {
             font-family: 'Lato', sans-serif;
@@ -85,19 +86,35 @@
         #lead-capture-form .cta-button { width: 100%; padding: 12px; font-size: 1.2em; margin-top: 10px; background-color: #28a745; }
         #lead-capture-form .cta-button:hover { background-color: #1e7e34; }
         .privacy-note { font-size: 0.8em; color: #777; text-align: center; margin-top: 15px; }
+
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
         /* Standard Header from style.css might need adjustments if paths are different */
         header nav ul li a { text-decoration:none; }
 
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
-                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent" style="margin-right: 8px;">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent">
                     <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
@@ -111,10 +128,10 @@
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li style="margin-right: 8px;"><a href="../index.html#core-offer">Our Offer</a></li>
-                <li style="margin-right: 8px;"><a href="../index.html#pricing">Pricing</a></li>
-                <li style="margin-right: 8px;"><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+                <li><a href="../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+                <li><a href="../index.html#guarantee">Guarantee</a></li>
+                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
             </ul>
         </nav>
     </header>
@@ -148,7 +165,7 @@
                     </div>
                 </div>
                 <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
-                
+
                 <div id="quiz-question" class="quiz-question" style="display:none;">
                     <h2></h2>
                 </div>
@@ -159,7 +176,7 @@
                     <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 </div>
             </div>
-            
+
             <div id="lead-capture-form" style="display:none;">
                 <h3>Just One More Step to Your Personalized Results!</h3>
                 <p>Provide your details below to see your center's growth diagnosis and unlock your tailored recommendations.</p>
@@ -167,22 +184,27 @@
                     <div class="form-group">
                         <label for="first-name">First Name:</label>
                         <input type="text" id="first-name" name="first-name" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
                     </div>
                     <div class="form-group">
                         <label for="last-name">Last Name:</label>
                         <input type="text" id="last-name" name="last-name" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
                     </div>
                     <div class="form-group">
                         <label for="business-name">Center Name:</label>
                         <input type="text" id="business-name" name="business-name" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific child care center.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your center's growth opportunities.</p>
                     </div>
                     <button type="submit" class="cta-button">Get My Results Now!</button>
                 </form>
@@ -302,24 +324,17 @@
     </div>
 
     <script>
-        // Supabase Client Initialization
-        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        // Use the shared Supabase client
+        let supabaseClient = window.tctcSupabaseClient;
 
-        let supabaseClient = null; 
-        try {
-            if (typeof supabase !== 'undefined' && supabase.createClient) {
-                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                console.log("Supabase client initialized for Child Care Centers Quiz.");
-            } else {
-                console.error("Supabase client library (supabase.js) is not loaded. Make sure it\\'s included in your HTML head for Child Care Centers Quiz.");
-            }
-        } catch (e) {
-            console.error("Error initializing Supabase client for Child Care Centers Quiz:", e.message);
+        if (!supabaseClient) {
+            console.error("Shared Supabase client not available for Child Care Centers Quiz.");
+        } else {
+            console.log("Using shared Supabase client for Child Care Centers Quiz.");
         }
 
         let currentQuestionIndex = 0;
-        let userAnswers = []; 
+        let userAnswers = [];
         let quizStarted = false;
         const sourceParam = new URLSearchParams(window.location.search).get('source');
 
@@ -370,6 +385,52 @@
                     { text: "Opening an additional location or becoming a recognized leader in early childhood education in our community.", score: 4 }
                 ]
             },
+            // Additional questions for more comprehensive assessment
+            {
+                question: "How effectively does your center utilize digital marketing to attract new families?",
+                answers: [
+                    { text: "Minimally; we rely primarily on word-of-mouth and perhaps a basic website.", score: 1 },
+                    { text: "Basic; we have some online presence but it's not strategically managed.", score: 2 },
+                    { text: "Good; we actively manage our online presence and see some results.", score: 3 },
+                    { text: "Excellent; we have a comprehensive digital strategy that consistently brings in new enrollment inquiries.", score: 4 }
+                ]
+            },
+            {
+                question: "How would you rate your center's waitlist management and enrollment conversion process?",
+                answers: [
+                    { text: "Basic; we keep a simple list but don't have a structured follow-up process.", score: 1 },
+                    { text: "Moderate; we have a system but it's not consistently implemented.", score: 2 },
+                    { text: "Good; we have a structured process that works reasonably well.", score: 3 },
+                    { text: "Excellent; we have a comprehensive system that maximizes enrollment from our waitlist.", score: 4 }
+                ]
+            },
+            {
+                question: "How effectively does your center track and analyze key performance metrics (enrollment rates, retention, revenue per child, etc.)?",
+                answers: [
+                    { text: "Minimally; we don't systematically track these metrics.", score: 1 },
+                    { text: "Somewhat; we track basic numbers but don't regularly analyze them.", score: 2 },
+                    { text: "Well; we track and analyze key metrics but could improve our process.", score: 3 },
+                    { text: "Very effectively; we have comprehensive tracking and use data to drive decisions.", score: 4 }
+                ]
+            },
+            {
+                question: "How would you describe your center's approach to staff professional development?",
+                answers: [
+                    { text: "Minimal; training is mostly on-the-job with little formal structure.", score: 1 },
+                    { text: "Basic; we provide required training but don't have a comprehensive development program.", score: 2 },
+                    { text: "Good; we have a structured training program and encourage professional growth.", score: 3 },
+                    { text: "Excellent; we invest heavily in ongoing professional development and career advancement for all staff.", score: 4 }
+                ]
+            },
+            {
+                question: "How effectively does your center leverage parent testimonials and success stories in your marketing?",
+                answers: [
+                    { text: "Rarely; we don't systematically collect or use testimonials.", score: 1 },
+                    { text: "Sometimes; we have some testimonials but don't feature them prominently.", score: 2 },
+                    { text: "Often; we regularly collect and use testimonials in some marketing channels.", score: 3 },
+                    { text: "Consistently; parent testimonials are a cornerstone of our marketing strategy.", score: 4 }
+                ]
+            },
             // New "Growth-Stifler" question
             {
                 question: "Every business has them: those 'invisible chains' of costly overhead or tedious manual processes that secretly stifle growth and sanity. What ONE such chain, if broken, would provide the most immediate and profound boost to your business\'s efficiency and your personal peace of mind? *",
@@ -414,7 +475,7 @@
                 }
 
                 const answersUl = quizAnswersDiv.querySelector('ul');
-                answersUl.innerHTML = ''; 
+                answersUl.innerHTML = '';
 
                 if (questionData.type === "textarea") {
                     const instructionP = document.createElement('p');
@@ -424,6 +485,26 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> We want to understand your specific challenges so we can tailor our recommendations to address your most pressing needs and help you achieve faster results with your child care center.";
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     const li = document.createElement('li');
                     const textarea = document.createElement('textarea');
@@ -439,7 +520,7 @@
                     answersUl.appendChild(li);
 
                     nextQuestionBtn.textContent = "Next";
-                    nextQuestionBtn.onclick = handleTextareaAnswer; 
+                    nextQuestionBtn.onclick = handleTextareaAnswer;
                     quizNavigationDiv.style.display = 'block';
                     nextQuestionBtn.style.display = 'inline-block';
 
@@ -451,6 +532,64 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation with specific reasons based on question index
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    let whyText = "";
+
+                    // Customize the explanation based on the question
+                    switch(currentQuestionIndex) {
+                        case 0:
+                            whyText = "We're asking because your enrollment process directly impacts your center's growth and parent satisfaction. Your answer helps us identify if streamlining this process could be a key opportunity for your center.";
+                            break;
+                        case 1:
+                            whyText = "We're asking because effectively communicating your unique programs is essential for attracting the right families. Your answer helps us determine if enhancing your messaging could improve enrollment rates.";
+                            break;
+                        case 2:
+                            whyText = "We're asking because parent communication systems significantly impact retention and referrals. Your answer helps us assess if improving your communication approach could be a growth lever for your center.";
+                            break;
+                        case 3:
+                            whyText = "We're asking because staff satisfaction directly affects the quality of care and parent satisfaction. Your answer helps us understand if staff retention strategies should be a priority in your growth plan.";
+                            break;
+                        case 4:
+                            whyText = "We're asking because your growth goals influence which strategies will be most effective for your center. Your answer helps us tailor our recommendations to your specific ambitions.";
+                            break;
+                        case 5:
+                            whyText = "We're asking because digital marketing effectiveness directly impacts your enrollment pipeline. Your answer helps us identify if your marketing approach needs optimization.";
+                            break;
+                        case 6:
+                            whyText = "We're asking because waitlist management is often a hidden growth opportunity. Your answer helps us determine if improving your conversion process could increase enrollments.";
+                            break;
+                        case 7:
+                            whyText = "We're asking because data-driven decision making is a key differentiator between high and average-performing centers. Your answer helps us assess your analytical capabilities.";
+                            break;
+                        case 8:
+                            whyText = "We're asking because staff development directly impacts program quality and parent satisfaction. Your answer helps us identify if professional development could be a growth lever for your center.";
+                            break;
+                        case 9:
+                            whyText = "We're asking because parent testimonials are powerful social proof that can significantly boost enrollment. Your answer helps us determine if better leveraging testimonials could increase your center's growth.";
+                            break;
+                        default:
+                            whyText = "We're asking to better understand your center and provide more tailored recommendations for growth.";
+                    }
+
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> " + whyText;
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     questionData.answers.forEach((answer) => {
                         const li = document.createElement('li');
@@ -480,12 +619,12 @@
                 alert("Please provide an answer to this question.");
             }
         }
-        
+
         function selectAnswer(score, selectedButton) {
             const buttons = quizAnswersDiv.querySelectorAll('.answer-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
             selectedButton.classList.add('selected');
-            userAnswers[currentQuestionIndex] = score; 
+            userAnswers[currentQuestionIndex] = score;
             setTimeout(nextQuestion, 500);
         }
 
@@ -503,7 +642,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function updateProgressBar() {
             const progress = (currentQuestionIndex / quizQuestions.length) * 100;
             progressBar.style.width = progress + '%';
@@ -515,23 +654,23 @@
             quizNavigationDiv.style.display = 'none';
             progressBarContainer.style.display = 'none';
             leadCaptureForm.style.display = 'block';
-            quizResultDiv.style.display = 'none'; 
+            quizResultDiv.style.display = 'none';
         }
 
         // Outcome Logic for Child Care Centers Quiz
         function determineOutcome(score) {
-            if (score <= 10) return "enrollment"; 
-            if (score <= 15) return "operations"; 
-            return "future"; 
+            if (score <= 10) return "enrollment";
+            if (score <= 15) return "operations";
+            return "future";
         }
 
         async function handleLeadSubmit() {
             const firstName = document.getElementById('first-name').value.trim();
             const lastName = document.getElementById('last-name').value.trim();
-            const businessName = document.getElementById('business-name').value.trim(); 
+            const businessName = document.getElementById('business-name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            
+
             let growth_stifler_response = "";
             const growthStiflerQuestionIndex = quizQuestions.findIndex(q => q.type === "textarea");
             if (growthStiflerQuestionIndex !== -1 && userAnswers[growthStiflerQuestionIndex]) {
@@ -542,7 +681,7 @@
                 alert("Please fill in all required fields in the form.");
                 return;
             }
-            
+
             if (growthStiflerQuestionIndex !== -1 && !userAnswers[growthStiflerQuestionIndex]) {
                  alert("Please ensure all quiz questions, including the open-ended one, are answered.");
                  return;
@@ -554,14 +693,14 @@
 
             let totalScore = userAnswers.reduce((acc, score) => acc + (typeof score === 'number' ? score : 0), 0);
             console.log("Child Care Centers Total score calculated:", totalScore);
-            
+
             const detailedQuizAnswers = userAnswers.map((answerData, index) => {
                 const questionData = quizQuestions[index];
                 if (questionData.type === "textarea") {
                     return {
                         question: questionData.question,
-                        answer: answerData, 
-                        score: null 
+                        answer: answerData,
+                        score: null
                     };
                 }
                 const selectedAnswerObject = questionData.answers.find(ans => ans.score === answerData);
@@ -573,13 +712,13 @@
             });
             console.log("Child Care Centers Detailed quiz answers constructed:", detailedQuizAnswers);
 
-            const primaryOutcomeHint = determineOutcome(totalScore); 
+            const primaryOutcomeHint = determineOutcome(totalScore);
             console.log("Child Care Centers Primary outcome hint:", primaryOutcomeHint);
 
             const submissionData = {
                 first_name: firstName,
                 last_name: lastName,
-                business_name: businessName, 
+                business_name: businessName,
                 email: email,
                 growth_stifler_response: growth_stifler_response,
                 phone: phone,
@@ -601,7 +740,7 @@
                     const { data, error } = await supabaseClient
                         .from('tctc_quiz_submission')
                         .insert([submissionData])
-                        .select(); 
+                        .select();
 
                     if (error) {
                         console.error('Child Care Centers: Error inserting data into Supabase:', error);
@@ -634,30 +773,110 @@
             } else {
                 console.warn("Child Care Centers: Supabase client not initialized. Skipping database insert.");
             }
-            
-            const outcomeCategory = determineOutcome(totalScore); 
-            const sourceQueryParam = sourceParam ? `source=${encodeURIComponent(sourceParam)}` : '';
-            
-            let dbErrorQueryParam = '';
-            if (dbError) {
-                const errorMessage = supabaseInsertError ? (supabaseInsertError.message || 'Unknown DB Error') : 'DB Insert Failed';
-                dbErrorQueryParam = `${sourceQueryParam ? '&' : ''}dbError=${encodeURIComponent(errorMessage)}`;
+
+            // After quiz submission logic, redirect with tracking
+            determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError);
+        }
+
+        async function determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError) {
+            const encodedFirstName = encodeURIComponent(firstName);
+            const encodedLastName = encodeURIComponent(lastName);
+            const encodedBusinessName = encodeURIComponent(businessName);
+            const baseParams = `firstName=${encodedFirstName}&lastName=${encodedLastName}&businessName=${encodedBusinessName}&score=${totalScore}`;
+            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}&track_source=quiz${dbError ? `&dbError=${encodeURIComponent(supabaseInsertError?.message || 'Unknown error')}` : ''}`;
+
+            // Determine the outcome bucket based on the score
+            const outcome = determineOutcome(totalScore);
+            const scoreBucket = outcome; // families, center, or growth
+
+            // Determine which awareness variant to show based on score distribution
+            let awarenessVariant;
+            if (scoreBucket === "enrollment") {
+                // Lower scores within this bucket get problem variant, higher get solution variant, etc.
+                if (totalScore <= 5) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 6) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-mostaware-long"; // Most Aware - changed to match actual filename
+                }
+            }
+            else if (scoreBucket === "operations") {
+                if (totalScore <= 10) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 12) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-mostaware-long"; // Most Aware - changed to match actual filename
+                }
+            }
+            else { // future
+                if (totalScore <= 16) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 18) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-mostaware-long"; // Most Aware - changed to match actual filename
+                }
             }
 
-            quizResultDiv.style.display = 'none'; 
-            
-            const targetResultPage = `../quiz-applications/child-care-${outcomeCategory}-application.html?${sourceQueryParam}${dbErrorQueryParam}`;
-            
-            console.log("Child Care Centers: Redirecting to:", targetResultPage);
-            window.location.href = targetResultPage;
+            // Randomly select one of the three split test variations
+            const splitVariation = Math.floor(Math.random() * 3) + 1; // Random number between 1 and 3
+
+            // Debug logging to help troubleshoot
+            console.log(`Child Care Centers: Redirecting to ${scoreBucket} bucket, variant: ${awarenessVariant}, split test variation: ${splitVariation}`);
+
+            let url;
+
+            // If it's the solution-aware variant, use the split test variations
+            if (awarenessVariant === "a-solution") {
+                url = `../quiz-applications/child-care/${scoreBucket}/${scoreBucket}-variant-${awarenessVariant}-split${splitVariation}.html${baseParams ? '?' + baseParams : '?'}${sourceAndDbErrorParams}&bucket=${scoreBucket}&variant=${awarenessVariant}&split=${splitVariation}`;
+            } else {
+                // For other awareness variants, use the original pages
+                url = `../quiz-applications/child-care/${scoreBucket}/${scoreBucket}-variant-${awarenessVariant}.html${baseParams ? '?' + baseParams : '?'}${sourceAndDbErrorParams}&bucket=${scoreBucket}&variant=${awarenessVariant}`;
+            }
+
+            // Track the redirection in Supabase before redirecting
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('tctc_quiz_redirections')
+                        .insert([{
+                            user_first_name: firstName,
+                            user_last_name: lastName,
+                            user_business_name: businessName,
+                            quiz_score: totalScore,
+                            outcome_bucket: scoreBucket,
+                            awareness_variant: awarenessVariant,
+                            split_variation: awarenessVariant === "a-solution" ? splitVariation : null,
+                            redirect_url: url,
+                            source: sourceParam || 'organic',
+                            redirected_at: new Date().toISOString()
+                        }]);
+
+                    if (error) {
+                        console.error('Error tracking child care centers redirection:', error);
+                    } else {
+                        console.log('Child care centers redirection tracking successful:', data);
+                    }
+                } catch (e) {
+                    console.error('Exception during child care centers redirection tracking:', e);
+                }
+            }
+
+            // Redirect regardless of tracking success
+            console.log("Child Care Centers: Redirecting to:", url);
+            window.location.href = url;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-             if (!supabaseClient) { 
+             if (!supabaseClient) {
                 console.warn("Child Care Centers Quiz: Supabase client was not available on DOMContentLoaded. Check script loading order and initialization.");
             }
         });
     </script>
     <script src="../script.js"></script>
+    <script src="../tracking.js"></script>
+    <script src="../tracking-enhanced.js"></script>
 </body>
-</html> 
+</html>

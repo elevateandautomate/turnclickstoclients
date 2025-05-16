@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Solution: Scale Your Sleep Clinic with Automatic Appointments | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Assuming a common style.css in the parent directory -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.7; color: #333; background-color: #f9f9f9; margin: 0; padding: 0; }
+        .solution-page-container { padding-top: 20px; padding-bottom: 40px; }
+        .main-content-container { max-width: 900px; margin: 20px auto; padding: 30px 40px; background-color: #fff; border-radius: 12px; box-shadow: 0 12px 35px rgba(0,0,0,0.1); border-top: 10px solid #28a745; /* Growth Green */ }
+        .page-header { text-align: center; margin-bottom: 35px; padding-bottom: 25px; border-bottom: 2px solid #e0e0e0; }
+        .page-header .tagline { font-family: 'Lato', sans-serif; font-size: clamp(1.1em, 2.5vw, 1.3em); color: #1e7e34; /* Darker Growth Green */ font-weight: 700; margin-bottom: 0.5em; text-transform: uppercase; letter-spacing: 0.5px; }
+        .page-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2em, 4.5vw, 3em); color: #28a745; margin-bottom: 0.3em; }
+        .page-header .sub-headline { font-size: clamp(1.05em, 2.2vw, 1.25em); color: #555; max-width: 750px; margin: 0 auto; line-height:1.65; }
+
+        .content-section { margin-bottom: 30px; padding: 20px 0; }
+        .content-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5em, 3.5vw, 2.1em); color: #1e7e34; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e9ecef; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.3em, 3vw, 1.8em); color: #28a745; margin-top: 25px; margin-bottom: 15px; }
+        .content-section p, .content-section ul li { font-size: clamp(1em, 2vw, 1.1em); color: #444; margin-bottom: 15px; line-height: 1.8; }
+        .content-section ul { list-style: none; padding-left: 0; }
+        .content-section ul li { position: relative; padding-left: 35px; margin-bottom: 12px; }
+        .content-section ul li::before { content: '\\2714'; /* Checkmark */ position: absolute; left: 0; color: #28a745; font-weight: bold; font-size: 1.4em; top: 0px; }
+
+        .highlight-box { background-color: #e6ffed; border-left: 5px solid #28a745; padding: 20px 25px; margin: 25px 0; border-radius: 8px; }
+        .highlight-box p { margin-bottom: 10px; font-size: clamp(1.05em, 2.2vw, 1.2em); color:#1e7e34; }
+        .highlight-box p strong { color: #155724; }
+
+        .testimonial-section { background-color: #f0f9f2; padding: 30px; margin: 30px 0; border-radius: 8px; border: 1px solid #d4edda; }
+        .testimonial-section h3 { color: #1e7e34; text-align: center; }
+        .testimonial-quote { font-style: italic; font-size: clamp(1.1em, 2.3vw, 1.25em); color: #333; line-height: 1.7; margin-bottom: 10px; text-align: center; }
+        .testimonial-author { text-align: right; font-weight: bold; color: #155724; font-size: clamp(1em, 2vw, 1.1em); }
+
+        .guarantee-section { background-color: #1e7e34; color: #fff; padding: 30px; text-align: center; border-radius: 8px; margin: 30px 0; }
+        .guarantee-section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6em, 3.8vw, 2.3em); margin-bottom: 15px; }
+        .guarantee-section p { font-size: clamp(1.1em, 2.4vw, 1.3em); margin-bottom: 0; line-height:1.7; }
+
+        .cta-section { text-align: center; padding: 35px; background-color: #28a745; color: #fff; border-radius: 8px; margin-top: 35px; }
+        .cta-section h2 { font-family: 'Montserrat', sans-serif; margin-bottom: 15px; font-size: clamp(1.7em, 4vw, 2.4em); }
+        .cta-section p { margin-bottom: 25px; font-size: clamp(1.1em, 2.3vw, 1.3em); max-width:700px; margin-left:auto; margin-right:auto; line-height:1.7; }
+        .cta-button.main-cta { background-color: #ffc107; /* Warning Yellow for contrast */ color: #333 !important; padding: 18px 40px; font-size: clamp(1.2em, 2.8vw, 1.5em); text-decoration:none; border-radius:8px; font-weight:bold; transition: background-color 0.3s ease, transform 0.2s ease; display: inline-block; }
+        .cta-button.main-cta:hover { background-color: #e0a800; transform: translateY(-2px); }
+
+        /* Chat Widget Styles */
+        #chat-widget-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #007bff, #0056b3); color: white; padding: 12px 20px; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-size: 1em; z-index: 1000; display: flex; align-items: center; }
+        #chat-widget-button span { margin-right: 8px; font-size: 1.2em; }
+        #chat-modal { position: fixed; bottom: 90px; right: 20px; width: 350px; background-color: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.25); z-index: 1000; overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; transform-origin: bottom right; }
+        #chat-modal.modal-hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
+        #chat-modal.modal-visible { opacity: 1; transform: scale(1); pointer-events: auto; }
+        .chat-modal-header { background: linear-gradient(135deg, #0056b3, #003f80); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .chat-modal-header h2 { margin: 0; font-size: 1.3em; }
+        .chat-close-button { background: none; border: none; color: white; font-size: 1.8em; cursor: pointer; line-height: 1; padding: 0 5px;}
+        .chat-modal-body { padding: 15px; max-height: 400px; overflow-y: auto; }
+        .chat-modal-body p { font-size: 0.95em; line-height: 1.6; margin-bottom:15px; }
+        .chat-modal-body .form-group { margin-bottom: 15px; }
+        .chat-modal-body label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9em; }
+        .chat-modal-body input[type="text"], .chat-modal-body input[type="email"], .chat-modal-body select, .chat-modal-body textarea { width: calc(100% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 0.95em; }
+        .chat-modal-body textarea { resize: vertical; min-height: 70px; }
+        .chat-modal-body .chat-submit-button { background-color: #007bff; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; width: 100%; transition: background-color 0.3s; }
+        .chat-modal-body .chat-submit-button:hover { background-color: #0056b3; }
+        #chat-success-message { text-align: center; padding: 20px; background-color: #e6ffed; border: 1px solid #b8dec8; border-radius: 5px; margin-top: 15px; }
+        #chat-success-message h3 { color: #155724; margin-bottom: 8px; }
+        #chat-success-message p { color: #333; font-size: 0.9em; }
+
+
+        @media (max-width: 768px) {
+            .main-content-container { margin: 20px 15px; padding: 25px 20px; }
+            .content-section { padding: 15px 0; }
+            .page-header h1 {font-size: 2.2em;}
+            .page-header .sub-headline {font-size: 1.1em;}
+            .cta-section h2 {font-size: 1.8em;}
+            #chat-modal { width: calc(100% - 40px); bottom: 70px; right: 20px; left:20px; }
+
+        }
+    </style>
+    <!-- Font Awesome for icons if needed, or use SVGs -->
+
+    <script src="/tracking.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+<body>
+    <header>
+        <!-- Consistent Navigation Header -->
+        <nav>
+            <div class="logo"><a href="../../../index.html">TurnClicksToClients.com</a></div>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                         <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../practice/sleep-practice-accelerator-variant-a-solution.html">For Sleep Clinics</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="solution-page-container">
+        <div class="main-content-container">
+            <div class="page-header">
+                <div class="tagline" id="personalized-greeting-growth-solution">For Growth-Focused Sleep Clinic Owners</div>
+                <h1>Unlock Explosive Growth: The Automatic Appointment Engine™ for Sleep Apnea Clinics</h1>
+                <p class="sub-headline">You're ready to significantly expand your sleep apnea patient base and dominate your market. Discover how our proven system delivers a consistent stream of booked, high-value patient appointments, fueling predictable and scalable growth for your clinic.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Stop Chasing Leads, Start Attracting Booked Appointments & Real Growth</h2>
+                <p>As an ambitious Sleep Clinic Owner, you know that sustainable growth isn't just about getting more "leads." It's about consistently filling your schedule with qualified patients ready for high-value sleep apnea treatments. Traditional marketing, internal efforts, or generic agencies often fall short, leaving you with inconsistent results, wasted ad spend, and a team bogged down in follow-up.</p>
+                <p>The <strong>Automatic Appointment Engine™</strong> is our specialized solution engineered to solve this exact challenge. We don't just generate interest; we deliver <strong>booked appointments directly onto your calendar</strong>, allowing you to focus on patient care and strategic expansion.</p>
+
+                <div style="background-color: #e6f7ff; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #0077cc; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 style="color: #0056b3; margin-top: 0; margin-bottom: 15px;">Consistent Sleep Clinic Growth IS Possible in Today's Market</h3>
+                    <p style="color: #333; margin-bottom: 15px;">The good news is that building a high-performing, systematized sleep apnea practice that grows predictably is absolutely possible in today's market. Recent advances in patient acquisition technology and methodology have created unprecedented opportunities for sleep clinics to scale without the traditional bottlenecks and burnout.</p>
+                    <p style="color: #333; margin-bottom: 0;">What was once only accessible to large corporate chains with massive resources is now available to independent practitioners like you. The technology, strategies, and systems exist right now to transform your practice into a reliable, predictable engine of growth that doesn't depend solely on your personal time and energy.</p>
+                </div>
+
+                <div style="background-color: #f0f7ff; padding: 25px; border-radius: 10px; margin: 25px 0; border-left: 5px solid #0056b3; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 style="color: #0056b3; margin-top: 0; margin-bottom: 15px;">The Proven Timeline of Sleep Clinic Growth</h3>
+
+                    <div style="display: flex; justify-content: space-between; margin: 20px 0; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; margin: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4 style="color: #0056b3; margin-top: 0;">Evidence From The Past</h4>
+                            <p style="margin-bottom: 0; color: #333;">For over a decade, systematic patient acquisition has been the cornerstone of every successful sleep apnea practice. The clinics that implemented structured systems consistently outperformed those relying on referrals alone by 300-400% in terms of new patient volume and revenue growth.</p>
+                        </div>
+
+                        <div style="flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; margin: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4 style="color: #0056b3; margin-top: 0;">Evidence In The Present</h4>
+                            <p style="margin-bottom: 0; color: #333;">Right now, sleep clinics using our Automatic Appointment Engine™ are experiencing 25-35 new booked appointments monthly with 80%+ show rates. The current healthcare landscape has created unprecedented opportunities for clinics with systematic patient acquisition approaches.</p>
+                        </div>
+
+                        <div style="flex: 1; min-width: 200px; background: #fff; padding: 15px; border-radius: 8px; margin: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4 style="color: #0056b3; margin-top: 0;">Evidence For The Future</h4>
+                            <p style="margin-bottom: 0; color: #333;">The trajectory is clear: with sleep disorders increasingly recognized as serious health concerns, clinics with systematic patient acquisition will continue to dominate their markets. With our continuously optimized systems, your results will not only continue but accelerate over time.</p>
+                        
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The path to joining these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">Your opportunity is to implement a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>You have all the talent and dedication needed. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system now available to you.</strong></p>
+</div></div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>The Core Problem We Solve for Growth:</strong> Your clinic has the capacity and ambition to treat more sleep apnea patients, but lacks a predictable, scalable system to consistently attract and book them without overwhelming your current resources.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>How the Automatic Appointment Engine™ Fuels Your Clinic's Growth:</h3>
+                <ul>
+                    <li><strong>Consistent Flow of Qualified Appointments:</strong> We target, attract, and pre-qualify patients actively seeking sleep apnea solutions, then book them directly into your schedule. This means predictable patient volume week after week.</li>
+                    <li><strong>Scalable Patient Acquisition:</strong> As you're ready to grow, our system scales with you. We can increase the volume of booked appointments to match your clinic's capacity and expansion goals.</li>
+                    <li><strong>Maximized ROI on Marketing Spend:</strong> By focusing on booked appointments, not just clicks or leads, every dollar spent is geared towards tangible results – patients in your clinic.</li>
+                    <li><strong>Reduced Staff Burden:</strong> Our team handles the intensive lead nurturing and appointment setting, freeing your staff to focus on delivering excellent patient care and managing increased patient flow.</li>
+                    <li><strong>Enhanced Profitability:</strong> More high-value sleep apnea patients mean increased revenue and profitability, providing the financial fuel for further growth and investment.</li>
+                    <li><strong>Market Leadership:</strong> Consistently attract more patients than your competitors, establishing your clinic as the go-to provider for sleep apnea treatment in your area.</li>
+                </ul>
+            </div>
+
+            <div class="testimonial-section" style="background-color: #f0f9ff; padding: 30px; margin: 30px 0; border-radius: 8px; border: 1px solid #d4e6f1;">
+                <h3 style="color: #0056b3; text-align: center; margin-bottom: 25px;">The Proven Journey of Sleep Clinics Using Our System</h3>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #0077cc;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #0077cc;">8 Months Ago</div>
+                        <p style="font-style: italic; color: #333; margin-bottom: 10px;">"We wanted to take our sleep practice to the next level, but finding a consistent stream of new patients was our biggest hurdle. We tried traditional marketing, physician referrals, and even hired a general healthcare marketing agency, but results were inconsistent at best."</p>
+                        <p style="text-align: right; color: #333; margin-bottom: 0; font-weight: bold;">- Dr. Emily Carter, Owner, Advanced Sleep Solutions</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #28a745;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #28a745;">Today & Future</div>
+                        <p style="font-style: italic; color: #333; margin-bottom: 10px;">"The Automatic Appointment Engine changed everything. We're now seeing a steady 25-30 new booked sleep apnea consults every month with an 85% show rate. Our growth has been phenomenal, and my team can finally focus on what they do best! We're projecting 40% revenue growth this year and planning to add another clinician to handle the increased patient volume."</p>
+                        <p style="text-align: right; color: #333; margin-bottom: 0; font-weight: bold;">- Dr. Emily Carter, Owner, Advanced Sleep Solutions</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #0077cc;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #0077cc;">1 Year Ago</div>
+                        <p style="font-style: italic; color: #333; margin-bottom: 10px;">"As a sleep specialist competing with larger hospital systems, I was struggling to maintain a steady flow of new patients. My staff was spending hours on marketing and follow-up calls, with minimal results. I was considering scaling back rather than expanding."</p>
+                        <p style="text-align: right; color: #333; margin-bottom: 0; font-weight: bold;">- Dr. Michael Brennan, SleepWell Specialists</p>
+                    </div>
+
+                    <div style="flex: 1; min-width: 300px; background: #fff; padding: 20px; border-radius: 8px; margin: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 3px solid #28a745;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #28a745;">Today & Future</div>
+                        <p style="font-style: italic; color: #333; margin-bottom: 10px;">"Since implementing the Automatic Appointment Engine, we've gone from struggling to thriving. We're consistently seeing 20-25 new sleep apnea patients monthly, our revenue has increased by 45%, and we've expanded our treatment options. The best part is that this growth continues to accelerate as the system optimizes over time."</p>
+                        <p style="text-align: right; color: #333; margin-bottom: 0; font-weight: bold;">- Dr. Michael Brennan, SleepWell Specialists</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; color: #0056b3; margin-top: 20px; font-style: italic; font-weight: bold;">These aren't isolated success stories. Dozens of independent sleep clinics just like yours have transformed their practices using this exact system, and their results continue to improve over time.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Ready to Stop Worrying About Growth and Start Experiencing It?</h2>
+                <p>The "Automatic Appointment Engine™" isn't just another marketing service; it's your dedicated growth partner. We provide the system, the expertise, and the execution to ensure your clinic achieves its ambitious growth targets.</p>
+                <p>Imagine your schedule consistently full with pre-qualified sleep apnea patients, your revenue climbing, and your clinic recognized as a leading provider. This is the reality we help create.</p>
+            </div>
+
+            <div class="guarantee-section">
+                <h3>Our Growth Guarantee: At Least 20 Booked Sleep Apnea Patient Appointments in 90 Days</h3>
+                <p>We are so confident in our ability to fuel your growth that we guarantee a minimum of 20 booked, qualified sleep apnea patient appointments directly onto your calendar within the first 90 days of our partnership. If we don't hit this mark, you don't pay for that period. It's that simple. We deliver real growth, or it's on us.</p>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Create the Success Other Professionals Are Already Enjoying?</h2>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin-bottom: 25px; text-align: left; max-width: 750px; margin-left: auto; margin-right: auto;">
+                    <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px;">
+                        <h4 style="color: #fff; margin-top: 0; margin-bottom: 10px; text-align: center;">Horizontal Belief Shift: Across Space</h4>
+                        <ol style="color: #fff; text-align: left; padding-left: 25px; margin-bottom: 0;">
+                            <li style="margin-bottom: 10px;"><strong>It's possible in today's market</strong> - The technology and strategies exist right now</li>
+                            <li style="margin-bottom: 10px;"><strong>It's possible for other sleep clinics</strong> - Practitioners just like you are already achieving these results</li>
+                            <li style="margin-bottom: 10px;"><strong>It's possible for YOU</strong> - Our system removes all the barriers that would normally hold you back</li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h4 style="color: #fff; margin-top: 0; margin-bottom: 10px; text-align: center;">Vertical Belief Shift: Across Time</h4>
+                        <ol style="color: #fff; text-align: left; padding-left: 25px; margin-bottom: 0;">
+                            <li style="margin-bottom: 10px;"><strong>It has happened before</strong> - For over a decade, systematic patient acquisition has consistently produced growth for sleep clinics</li>
+                            <li style="margin-bottom: 10px;"><strong>It is happening now</strong> - Clinics are currently experiencing 25-35 new booked appointments monthly with 80%+ show rates</li>
+                            <li style="margin-bottom: 10px;"><strong>It will happen in the future</strong> - With our continuously optimized systems, your results will not only continue but accelerate over time</li>
+                        </ol>
+                    
+
+
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you prepare for inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day with this system means more opportunities and making steady progress toward your goals those who have already implemented this system.</p>
+        </div>
+                </div>
+
+                <div style="background-color: rgba(255,255,255,0.15); padding: 25px; border-radius: 10px; margin: 0 auto 25px auto; max-width: 750px; text-align: left;">
+                    <h3 style="color: #fff; margin-top: 0; margin-bottom: 15px; text-align: center; font-weight: bold;">A Note for Forward-Thinking Sleep Clinic Owners</h3>
+                    <p style="margin-bottom: 15px;">It's worth noting that implementing a growth system like our Automatic Appointment Engine™ isn't about fixing a broken practice. In fact, the most successful sleep clinics in the country all use systematic approaches to patient acquisition.</p>
+                    <p style="margin-bottom: 15px;">Your interest in optimizing your patient flow demonstrates your commitment to helping more people overcome sleep disorders and improving more lives. It's a sign of leadership and excellence in your field.</p>
+                    <p style="margin-bottom: 0;">This isn't about addressing shortcomings - it's about amplifying what's already working and creating even more impact in your community while building a more profitable, sustainable practice.</p>
+                </div>
+
+                <p>If you're serious about growing your sleep apnea practice and want a proven system to make it happen, it's time to talk. Let's explore how the Automatic Appointment Engine™ can become your most powerful growth asset.</p>
+                <a href="../../../universal-application-form.html?niche=sleep-apnea&bucket=growth&variant=a-solution&system=AutomaticAppointmentEngine&source_page=sleep-apnea-snoring-clinics-growth-variant-a-solution" class="cta-button main-cta" id="apply-button" onclick="trackApplicationClick(event)">Join Our Growth Partnership Program</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Consistent Footer -->
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee\">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients\">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>💡</span> Questions About Growth?
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Considering Growth Options?</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    Scaling your clinic effectively requires the right strategy. If you have questions about how the <strong>Automatic Appointment Engine™</strong> fuels growth, or how it compares to other approaches, our specialists can provide clear answers.
+                </p>
+                <form id="chat-contact-form-growth-solution"> <!-- Unique ID for this form -->
+                    <div class="form-group">
+                        <label for="chat-growth-inquiry-type">My inquiry is about:</label>
+                        <select id="chat-growth-inquiry-type" name="inquiryType" required>
+                            <option value="">-- Select Topic --</option>
+                            <option value="how_engine_scales">How the Engine Scales Operations</option>
+                            <option value="vs_other_growth_methods">Comparison to Other Growth Methods</option>
+                            <option value="roi_for_growth">Understanding ROI for Growth</option>
+                            <option value="integration_speed">Speed of Integration & Results</option>
+                            <option value="custom_growth_plan">Customizing a Growth Plan</option>
+                            <option value="other">Other Growth Question...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name-growth">Your Name:</label>
+                        <input type="text" id="chat-name-growth" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName-growth">Clinic Name:</label>
+                        <input type="text" id="chat-businessName-growth" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email-growth">Your Email:</label>
+                        <input type="email" id="chat-email-growth" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message-growth">Your Specific Question for Growth:</label>
+                        <textarea id="chat-message-growth" name="message" rows="3" required placeholder="e.g., How quickly can we expect to see an increase in patient volume?"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Ask My Growth Question</button>
+                </form>
+                <div id="chat-success-message-growth" style="display: none;"> <!-- Unique ID -->
+                    <h3>Thank You!</h3>
+                    <p>Your growth question has been submitted. A specialist will be in touch shortly to discuss how we can help scale your clinic.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Basic Chat Widget Toggle Functionality (Example)
+        const chatButton = document.getElementById('chat-widget-button');
+        const chatModal = document.getElementById('chat-modal');
+        const closeModalButton = document.getElementById('chat-modal-close');
+
+        if (chatButton && chatModal && closeModalButton) {
+            chatButton.addEventListener('click', () => {
+                chatModal.classList.toggle('modal-hidden');
+                chatModal.classList.toggle('modal-visible');
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            });
+
+            // Optional: Close modal if clicked outside of it
+            // window.addEventListener('click', (event) => {
+            //     if (event.target === chatModal) {
+            //         chatModal.classList.add('modal-hidden');
+            //         chatModal.classList.remove('modal-visible');
+            //     }
+            // });
+        }
+
+        // Handle Chat Form Submission (Example)
+        const chatForm = document.getElementById('chat-contact-form-growth-solution');
+        if (chatForm) {
+            chatForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Add your form submission logic here (e.g., send data via AJAX)
+                // For now, just show success message and hide form
+                this.style.display = 'none';
+                document.getElementById('chat-success-message-growth').style.display = 'block';
+                console.log('Chat form submitted with data:', {
+                    inquiryType: this.inquiryType.value,
+                    name: this.name.value,
+                    businessName: this.businessName.value,
+                    email: this.email.value,
+                    message: this.message.value
+                });
+                // setTimeout(() => { // Optionally hide modal after a delay
+                //    if(chatModal) {
+                //        chatModal.classList.add('modal-hidden');
+                //        chatModal.classList.remove('modal-visible');
+                //    }
+                //    this.style.display = 'block'; // Show form again
+                //    document.getElementById('chat-success-message-growth').style.display = 'none'; // Hide success
+                //    this.reset();
+                // }, 5000);
+            });
+        }
+
+        // Initialize Supabase client
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        let supabaseClient;
+
+        try {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log('Supabase client initialized successfully');
+        } catch (error) {
+            console.error('Error initializing Supabase client:', error);
+        }
+
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        window.userParams = {
+            firstName: urlParams.get('firstName') || '',
+            lastName: urlParams.get('lastName') || '',
+            businessName: urlParams.get('businessName') || '',
+            email: urlParams.get('email') || '',
+            bucket: urlParams.get('bucket') || 'growth',
+            variant: urlParams.get('variant') || 'a-solution',
+            split: urlParams.get('split') || '1',
+            score: urlParams.get('score') || '',
+            source: urlParams.get('source') || 'direct',
+            track_source: urlParams.get('track_source') || ''
+        };
+
+        // Track when user clicks application button
+        function trackApplicationClick(event) {
+            // Don't prevent default - let the link work normally
+
+            if (!supabaseClient) return;
+
+            supabaseClient
+                .from('tctc_user_flow')
+                .insert([{
+                    user_first_name: window.userParams.firstName,
+                    user_last_name: window.userParams.lastName,
+                    user_business_name: window.userParams.businessName,
+                    action_type: 'application_click',
+                    page_path: window.location.pathname,
+                    page_bucket: window.userParams.bucket,
+                    page_variant: window.userParams.variant,
+                    page_split: window.userParams.split,
+                    original_source: window.userParams.source,
+                    track_source: window.userParams.track_source,
+                    quiz_score: window.userParams.score,
+                    destination_url: event.target.href,
+                    timestamp: new Date().toISOString()
+                }])
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error tracking application click:', error);
+                    } else {
+                        console.log('Application click tracked successfully');
+                    }
+                });
+        }
+    </script>
+
+</body>
+</html>

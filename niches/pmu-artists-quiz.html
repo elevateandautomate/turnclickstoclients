@@ -229,8 +229,19 @@
             margin-top: 15px;
         }
 
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <!-- Standard Site Header -->
     <header>
@@ -292,7 +303,7 @@
                     </div>
                 </div>
                 <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
-                
+
                 <!-- Questions will be loaded here by JavaScript -->
                 <div id="quiz-question" class="quiz-question" style="display:none;">
                     <h2></h2> <!-- Question text will be set here -->
@@ -306,7 +317,7 @@
                     <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 </div>
             </div>
-            
+
             <div id="lead-capture-container" style="display:none;">
                 <h3>Unlock Your PMU Business Growth Insights!</h3>
                 <p>Provide your details to receive your personalized PMU business growth diagnosis and key recommendations.</p>
@@ -314,22 +325,27 @@
                     <div class="form-group">
                         <label for="firstName">First Name*</label>
                         <input type="text" id="firstName" name="firstName" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name*</label>
                         <input type="text" id="lastName" name="lastName" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
                     </div>
                     <div class="form-group">
                         <label for="businessName">Studio Name*</label>
                         <input type="text" id="businessName" name="businessName" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific PMU business.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email*</label>
                         <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number*</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your PMU business growth opportunities.</p>
                     </div>
                     <button type="button" class="cta-button" onclick="handleLeadSubmit()">See My Studio Potential!</button>
                     <p class="privacy-note">We respect your privacy. Your information is kept confidential.</p>
@@ -544,7 +560,7 @@
         const progressBar = document.getElementById('progress-bar');
 
         function determineOutcome(score) {
-            if (score <= 7) return "clients"; 
+            if (score <= 7) return "clients";
             if (score <= 14) return "studio";
             return "growth";
         }
@@ -573,7 +589,7 @@
                 }
 
                 const answersUl = quizAnswersDiv.querySelector('ul');
-                answersUl.innerHTML = ''; 
+                answersUl.innerHTML = '';
 
                 if (questionData.type === "textarea") {
                     const instructionP = document.createElement('p');
@@ -583,6 +599,26 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> We want to understand your specific challenges so we can tailor our recommendations to address your most pressing needs and help you achieve faster results with your PMU business.";
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     const li = document.createElement('li');
                     const textarea = document.createElement('textarea');
@@ -598,7 +634,7 @@
                     answersUl.appendChild(li);
 
                     nextQuestionBtn.textContent = "Next";
-                    nextQuestionBtn.onclick = handleTextareaAnswer; 
+                    nextQuestionBtn.onclick = handleTextareaAnswer;
                     quizNavigationDiv.style.display = 'block';
                     nextQuestionBtn.style.display = 'inline-block';
 
@@ -610,6 +646,64 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation with specific reasons based on question index
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    let whyText = "";
+
+                    // Customize the explanation based on the question
+                    switch(currentQuestionIndex) {
+                        case 0:
+                            whyText = "We're asking because your booking and consultation process directly impacts client experience and your efficiency. Your answer helps us identify if streamlining these systems could be a key opportunity for your business.";
+                            break;
+                        case 1:
+                            whyText = "We're asking because your portfolio quality and accessibility significantly affect client acquisition. Your answer helps us determine if enhancing your portfolio presentation could increase your bookings.";
+                            break;
+                        case 2:
+                            whyText = "We're asking because pricing strategy directly impacts your profitability and client perception. Your answer helps us assess if optimizing your pricing approach could be a growth lever for your business.";
+                            break;
+                        case 3:
+                            whyText = "We're asking because client retention and referrals are often the most cost-effective ways to grow a PMU business. Your answer helps us identify if improving your follow-up systems could boost your revenue.";
+                            break;
+                        case 4:
+                            whyText = "We're asking because your social media strategy directly impacts your visibility and client acquisition. Your answer helps us understand if enhancing your social presence should be a priority in your growth plan.";
+                            break;
+                        case 5:
+                            whyText = "We're asking because your website effectiveness significantly affects client trust and conversion. Your answer helps us determine if improving your online presence could increase your client bookings.";
+                            break;
+                        case 6:
+                            whyText = "We're asking because your growth objectives influence which strategies will be most effective for your business. Your answer helps us tailor our recommendations to your specific ambitions.";
+                            break;
+                        case 7:
+                            whyText = "We're asking because your training and skill development directly impact client results and satisfaction. Your answer helps us identify if additional training could enhance your service offerings.";
+                            break;
+                        case 8:
+                            whyText = "We're asking because your business systems and processes significantly affect your efficiency and scalability. Your answer helps us determine if streamlining your operations could improve your profitability.";
+                            break;
+                        case 9:
+                            whyText = "We're asking because client education and expectation management directly impact satisfaction and referrals. Your answer helps us assess if improving your client communication could boost your business growth.";
+                            break;
+                        default:
+                            whyText = "We're asking to better understand your PMU business and provide more tailored recommendations for growth.";
+                    }
+
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> " + whyText;
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     questionData.answers.forEach((answer) => {
                         const li = document.createElement('li');
@@ -639,7 +733,7 @@
                 alert("Please provide an answer to this question.");
             }
         }
-        
+
         function selectAnswer(score, selectedButton) {
             const buttons = quizAnswersDiv.querySelectorAll('.answer-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
@@ -662,7 +756,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function updateProgressBar() {
             const progress = (currentQuestionIndex / quizQuestions.length) * 100;
             progressBar.style.width = progress + '%';
@@ -681,10 +775,10 @@
         async function handleLeadSubmit() {
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
-            const businessName = document.getElementById('businessName').value.trim(); 
+            const businessName = document.getElementById('businessName').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            
+
             let growth_stifler_response = "";
             const growthStiflerQuestionIndex = quizQuestions.findIndex(q => q.type === "textarea");
             if (growthStiflerQuestionIndex !== -1 && userAnswers[growthStiflerQuestionIndex]) {
@@ -695,7 +789,7 @@
                 alert("Please fill in all required fields in the form.");
                 return;
             }
-            
+
             if (growthStiflerQuestionIndex !== -1 && !userAnswers[growthStiflerQuestionIndex]) {
                  alert("Please ensure all quiz questions, including the open-ended one, are answered.");
                  return;
@@ -708,8 +802,8 @@
                 if (questionData.type === "textarea") {
                     return {
                         question: questionData.question,
-                        answer: answerData, 
-                        score: null 
+                        answer: answerData,
+                        score: null
                     };
                 }
                 const selectedAnswerObject = questionData.answers.find(ans => ans.score === answerData);
@@ -762,7 +856,7 @@
                         .from('tctc_quiz_submission')
                         .insert([submissionData])
                         .select();
-                    
+
                     if (error) {
                         console.error('Error inserting data into Supabase:', error);
                         dbErrorMessage = error.message || 'Unknown DB Error';
@@ -803,18 +897,122 @@
             const encodedBusinessName = encodeURIComponent(businessName);
             let url = '';
             const baseParams = `firstName=${encodedFirstName}&lastName=${encodedLastName}&businessName=${encodedBusinessName}&score=${totalScore}`;
-            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}${dbErrorMessage ? `&dbError=${encodeURIComponent(dbErrorMessage)}` : ''}`;
-            
-            // URLs from the original file, now with new params
-            const outcome = determineOutcome(totalScore); // Ensure outcome is determined
-            if (outcome === "clients") { 
-                url = `../quiz-applications/pmu-artists-clients-application.html?${baseParams}${sourceAndDbErrorParams}`;
-            } else if (outcome === "studio") { 
-                url = `../quiz-applications/pmu-artists-studio-application.html?${baseParams}${sourceAndDbErrorParams}`;
-            } else { // growth
-                url = `../quiz-applications/pmu-artists-growth-application.html?${baseParams}${sourceAndDbErrorParams}`;
+            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}&track_source=quiz${dbErrorMessage ? `&dbError=${encodeURIComponent(dbErrorMessage)}` : ''}`;
+
+            // Determine the awareness level based on the score
+            const outcome = determineOutcome(totalScore);
+            const scoreBucket = outcome; // clients, studio, or growth
+
+            // New URLs with variant tracking
+            if (outcome === "clients") {
+                // Determine which awareness variant to show based on score distribution
+                // Lower scores get the "Problem" variant, middle get the "Solution" variant, higher get the "Most Aware" variant
+                let awarenessVariant;
+                if (totalScore <= 5) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 6) {
+                    awarenessVariant = "a-solution-aware"; // Solution Aware - Note the "-aware" suffix
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+
+                // Debug logging to help troubleshoot
+                console.log(`Redirecting to clients variant: ${awarenessVariant}`);
+                url = `../quiz-applications/pmu-artists/clients/pmu-artists-clients-variant-${awarenessVariant}.html?${baseParams}&bucket=${scoreBucket}&variant=${awarenessVariant}${sourceAndDbErrorParams}`;
             }
-            window.location.href = url;
+            else if (outcome === "studio") {
+                // Determine which awareness variant to show for studio outcome
+                let awarenessVariant;
+                if (totalScore <= 10) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 12) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+
+                // Debug logging to help troubleshoot
+                console.log(`Redirecting to studio variant: ${awarenessVariant}`);
+                url = `../quiz-applications/pmu-artists/studio/pmu-artists-studio-variant-${awarenessVariant}.html?${baseParams}&bucket=${scoreBucket}&variant=${awarenessVariant}${sourceAndDbErrorParams}`;
+            }
+            else { // growth
+                // Determine which awareness variant to show for growth outcome
+                let awarenessVariant;
+                if (totalScore <= 16) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 18) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+
+                // Randomly select one of the three split test variations
+                const splitVariation = Math.floor(Math.random() * 3) + 1; // Random number between 1 and 3
+
+                // Debug logging to help troubleshoot
+                console.log(`Redirecting to growth variant: ${awarenessVariant}, split test variation: ${splitVariation}`);
+
+                // Use split test variations for all awareness variants
+                url = `../quiz-applications/pmu-artists/growth/pmu-artists-growth-variant-${awarenessVariant}-split${splitVariation}.html?${baseParams}&bucket=${scoreBucket}&variant=${awarenessVariant}&split=${splitVariation}${sourceAndDbErrorParams}`;
+            }
+
+            // Verify that the URL is valid before redirecting
+            console.log("Final redirect URL:", url);
+
+            // Add fallback URL in case the target page doesn't exist
+            const fallbackUrl = "../index.html?error=invalid_quiz_outcome&bucket=" + scoreBucket + "&variant=" + awarenessVariant;
+
+            // Function to handle the actual redirect
+            function performRedirect(targetUrl) {
+                try {
+                    // Check if URL is valid
+                    new URL(targetUrl, window.location.href);
+                    window.location.href = targetUrl;
+                } catch (e) {
+                    console.error("Invalid URL format:", e);
+                    window.location.href = fallbackUrl;
+                }
+            }
+
+            // Track the redirection in Supabase before redirecting
+            if (supabaseClient) {
+                try {
+                    supabaseClient
+                        .from('tctc_quiz_redirections')
+                        .insert([{
+                            user_first_name: firstName,
+                            user_last_name: lastName,
+                            user_business_name: businessName,
+                            quiz_score: totalScore,
+                            outcome_bucket: scoreBucket,
+                            awareness_variant: awarenessVariant,
+                            split_variation: splitVariation,
+                            redirect_url: url,
+                            source: sourceParam || 'organic',
+                            redirected_at: new Date().toISOString()
+                        }])
+                        .then(({ data, error }) => {
+                            if (error) {
+                                console.error('Error tracking redirection:', error);
+                            } else {
+                                console.log('Redirection tracking successful:', data);
+                            }
+                            // Redirect regardless of tracking success
+                            performRedirect(url);
+                        })
+                        .catch(err => {
+                            console.error("Exception during redirection tracking:", err);
+                            performRedirect(url);
+                        });
+                } catch (e) {
+                    console.error("Critical error during redirection tracking:", e);
+                    performRedirect(url);
+                }
+            } else {
+                // If Supabase client is not available, just redirect
+                console.log("Supabase client not available, redirecting directly");
+                performRedirect(url);
+            }
         }
 
         // Ensure the startQuiz function is globally accessible if called from HTML onclick
@@ -824,5 +1022,7 @@
 
     </script>
     <script src="../script.js"></script>
+    <script src="../tracking.js"></script>
+    <script src="../tracking-enhanced.js"></script>
 </body>
-</html> 
+</html>

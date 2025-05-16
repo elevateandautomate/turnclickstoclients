@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution-Aware: The Ultimate System to Elevate Your PMU Studio - Prestige & Profits™</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.8; color: #2C3E50; background-color: #F8F9FA; margin: 0; padding: 0; }
+        .pmu-studio-container-wrapper { padding: 30px 0; background: linear-gradient(135deg, #D4E6F1 0%, #A9CCE3 100%); /* Clear Sky Blue gradient */ }
+        .pmu-studio-container { max-width: 1050px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; box-shadow: 0 25px 70px rgba(0,0,0,0.15); overflow: hidden; border-top: 10px solid #2E86C1; /* Confident Blue accent */ }
+        
+        .pmu-studio-header {
+            text-align: center; padding: 70px 40px;
+            background: linear-gradient(rgba(30, 80, 130, 0.85), rgba(30, 80, 130, 0.95)), url('https://source.unsplash.com/random/1600x900/?modern-office-design') no-repeat center center; /* Image reflecting solutions/clarity */
+            background-size: cover; color: #fff;
+        }
+        .pmu-studio-header .personalized-greeting { font-family: 'Montserrat', sans-serif; font-size: clamp(1.3em, 3vw, 1.7em); font-weight: 700; margin-bottom: 15px; opacity: 0.9;}
+        .pmu-studio-header h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.5em, 5.2vw, 3.6em); margin-bottom: 20px; line-height: 1.25; }
+        .pmu-studio-header .sub-headline { font-size: clamp(1.1em, 2.5vw, 1.35em); max-width: 850px; margin: 0 auto 30px; line-height: 1.7; opacity: 0.95; }
+
+        .content-section { padding: 55px 60px; }
+        .content-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2em, 4.2vw, 2.9em); color: #1B4F72; /* Darker Blue */ margin-bottom: 35px; text-align: center; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-weight:700; font-size: clamp(1.6em, 3.5vw, 2.1em); color: #21618C; /* Medium Dark Blue */ margin-top: 40px; margin-bottom: 25px; border-bottom: 4px solid #5DADE2; /* Medium Blue */ padding-bottom: 12px; }
+        .content-section p, .content-section li { font-size: clamp(1.05em, 2.2vw, 1.18em); color: #34495E; /* Dark Blue-Gray */ margin-bottom:18px; line-height:1.85; }
+        
+        .solution-focus-intro { background-color: #EBF5FB; /* Very Light Blue */ border-left: 6px solid #3498DB; /* Bright Blue */ padding: 25px 30px; margin-bottom: 30px; border-radius: 8px; }
+        .solution-focus-intro p { color: #2874A6; /* Strong Blue text */ font-size: clamp(1.1em, 2.3vw, 1.2em); }
+
+        .comparison-table-pmu-studio { width: 100%; margin: 40px 0; border-collapse: separate; border-spacing: 0; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-radius:12px; overflow:hidden;}
+        .comparison-table-pmu-studio th, .comparison-table-pmu-studio td { border: 1px solid #AED6F1; /* Light Blue border */ padding: 20px; text-align: left; font-size: clamp(1em, 2.1vw, 1.1em); }
+        .comparison-table-pmu-studio th { background-color: #21618C; /* Medium Dark Blue */ color: #fff; font-weight: 700; font-family: 'Montserrat', sans-serif; }
+        .comparison-table-pmu-studio td.pmu-studio-advantage { background-color: #D6EAF8; /* Lighter Blue */ font-weight: bold; color: #1B4F72;}
+        .comparison-table-pmu-studio td.pmu-studio-advantage::before { content: '\f00c '; /* fa-check */ font-family: 'Font Awesome 6 Free'; font-weight:900; color: #27AE60; /* Green for positive solution */ margin-right: 8px;}
+        
+        .pmu-studio-pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 35px; }
+        .pillar-card-pmu-studio { background-color: #F4F9FF; /* palest blue */ border: 1px solid #D4E6F1; border-top: 8px solid #3498DB; /* Bright Blue accent */ border-radius: 12px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.07); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .pillar-card-pmu-studio:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .pillar-card-pmu-studio .pillar-icon-pmu-studio { font-size: 3em; color: #3498DB; margin-bottom: 20px; display: block; text-align:center; } 
+        .pillar-card-pmu-studio h4 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.4em, 3vw, 1.8em); color: #1B4F72; margin-bottom: 18px; text-align:center; }
+        .pillar-card-pmu-studio p { font-size: clamp(1em, 2vw, 1.08em); color: #34495E; line-height: 1.8; text-align:left;}
+
+        .testimonial-section-pmu-studio { background-color: #21618C; color: #fff; padding: 60px; margin-top:50px;}
+        .testimonial-section-pmu-studio h2 { color: #fff; border-bottom: 2px solid #5DADE2; display:inline-block; padding-bottom:12px; margin-bottom:40px;}
+        .testimonial-card-pmu-studio { background-color: rgba(255,255,255,0.08); border-left: 6px solid #5DADE2; padding: 30px; margin-bottom: 30px; border-radius: 10px;}
+        .testimonial-card-pmu-studio p.quote { font-style: italic; font-size: clamp(1.1em, 2.3vw, 1.25em); margin-bottom: 20px; line-height:1.75; color: #D6EAF8;}
+        .testimonial-card-pmu-studio p.author { font-weight: bold; text-align: right; color: #AED6F1; font-size: clamp(1.05em, 2.1vw, 1.15em); }
+
+        .what-included-section ul li::before { content: '\f058'; /* fa-check-circle */ color: #2E86C1; /* Confident Blue check */ font-family: 'Font Awesome 6 Free'; font-weight: 900; margin-right: 10px;}
+
+        .faq-section-pmu-studio { margin-top: 50px; }
+        .faq-item-pmu-studio { margin-bottom: 25px; border: 1px solid #AED6F1; border-radius: 10px; overflow: hidden; background-color:#fff;}
+        .faq-question-pmu-studio { background-color: #D6EAF8; padding: 22px 30px; font-weight: 700; color: #1B4F72; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: clamp(1.15em, 2.5vw, 1.3em); }
+        .faq-question-pmu-studio::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight:900; transition: transform 0.3s ease; color: #21618C; }
+        .faq-answer-pmu-studio { padding: 28px 30px; background-color: #F4F9FF; display: none; font-size: clamp(1em, 2.1vw, 1.12em); line-height:1.85; border-top: 1px solid #D4E6F1; color: #34495E;}
+        .faq-item-pmu-studio.active .faq-question-pmu-studio::after { transform: rotate(180deg); }
+        .faq-item-pmu-studio.active .faq-answer-pmu-studio { display: block; }
+        
+        .final-cta-pmu-studio { text-align: center; padding: 70px 40px; background-color: #1B4F72; margin-top: 0; border-radius: 0 0 16px 16px; }
+        .final-cta-pmu-studio h2 { color: #fff; margin-bottom: 30px; font-size: clamp(2.1em, 4.5vw, 3em); font-family: 'Playfair Display', serif;}
+        .final-cta-pmu-studio p { color: #D6EAF8; margin-bottom: 40px; font-size: clamp(1.15em, 2.4vw, 1.35em); max-width:800px; margin-left:auto; margin-right:auto;}
+        .cta-button.pmu-studio-solution {
+            background: linear-gradient(135deg, #5DADE2 0%, #2E86C1 100%); /* Medium Blue to Confident Blue */
+            border: none; color: #fff !important; padding: 25px 55px;
+            font-size: clamp(1.3em, 2.8vw, 1.6em); font-weight: bold; text-decoration: none; border-radius: 12px;
+            display: inline-block; transition: all 0.3s ease; box-shadow: 0 12px 35px rgba(46, 134, 193, 0.35);
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .cta-button.pmu-studio-solution:hover { transform: translateY(-5px) scale(1.04); box-shadow: 0 15px 40px rgba(46, 134, 193, 0.45); }
+        .user-name-emphasis { font-weight: 900; color: #AED6F1; }
+
+        @media (max-width: 768px) {
+            .content-section { padding: 40px 25px; }
+            .pmu-studio-header { padding: 50px 20px; }
+            .pmu-studio-pillars-grid { grid-template-columns: 1fr; }
+            .final-cta-pmu-studio, .testimonial-section-pmu-studio { padding: 50px 25px; }
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="pmu-studio-container-wrapper">
+    <div class="pmu-studio-container">
+        <div class="pmu-studio-header">
+            <div class="personalized-greeting" id="personalized-greeting-pmu-studio-solution">Hi <span class="user-name-emphasis">[First Name]</span>, Searching for the Right Solution to Elevate Your PMU Studio?</div>
+            <h1>You've Found It: The "Prestige & Profits" PMU Studio System™ is Your Blueprint for Success.</h1>
+            <p class="sub-headline">You understand the importance of an exceptional studio environment and you're ready to invest in a proven system. Discover why the "Prestige & Profits" PMU Studio System™ is the comprehensive solution PMU artists choose for lasting transformation.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="solution-focus-intro">
+                <h2>Stop Searching, Start Transforming: Why This System is Different.</h2>
+                <p>You've likely seen various ideas or partial solutions for studio improvement. The "Prestige & Profits" PMU Studio System™ isn't just about a new coat of paint or some fancy furniture. It's a <strong>holistic, strategic framework</strong> that integrates every aspect of your studio – from design psychology and client journey to operational elegance and profit generation – into one cohesive, powerful system.</p>
+            </div>
+
+            <h3>The Clear Choice for a Transformed PMU Studio</h3>
+            <p>You're looking for more than just tips; you need a complete roadmap. Here's why discerning PMU artists who are serious about upgrading their studio choose the "Prestige & Profits" System™:</p>
+            
+            <h3>See the Difference: Ordinary Approaches vs. Our Systemic Solution</h3>
+            <table class="comparison-table-pmu-studio">
+                <thead>
+                    <tr>
+                        <th>Typical Approaches You Might Be Considering</th>
+                        <th>The "Prestige & Profits" System™ Advantage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hiring a general interior designer (may not understand PMU specifics or client flow).</td>
+                        <td class="pmu-studio-advantage">PMU-Specific Expertise: Designed by experts who understand the unique needs, workflow, and client psychology of a high-end PMU studio.</td>
+                    </tr>
+                    <tr>
+                        <td>DIY efforts using Pinterest boards (often leads to a piecemeal, uncohesive look).</td>
+                        <td class="pmu-studio-advantage">Strategic Cohesion: Provides a complete, integrated blueprint ensuring every element works together for maximum impact and brand consistency.</td>
+                    </tr>
+                    <tr>
+                        <td>Focusing only on aesthetics (ignoring client experience or operational efficiency).</td>
+                        <td class="pmu-studio-advantage">Holistic Transformation: Combines stunning design with premium client journey mapping and streamlined operations for true prestige AND profit.</td>
+                    </tr>
+                    <tr>
+                        <td>Expensive one-off purchases (without a clear ROI or overall strategy).</td>
+                        <td class="pmu-studio-advantage">Results-Driven Framework: Every component is designed to contribute to tangible outcomes like higher client attraction, premium pricing justification, and increased revenue.</td>
+                    </tr>
+                    <tr>
+                        <td>Short-term fixes (that don't address underlying issues or create lasting change).</td>
+                        <td class="pmu-studio-advantage">Sustainable Success: Equips you with the knowledge and systems to maintain and continually enhance your studio's prestige and profitability long-term.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>The Five Pillars: Your Comprehensive Solution Framework</h3>
+            <p>The "Prestige & Profits" System™ delivers its transformative results through five interconnected pillars, ensuring no aspect of your studio upgrade is overlooked:</p>
+            <div class="pmu-studio-pillars-grid">
+                <div class="pillar-card-pmu-studio">
+                    <span class="pillar-icon-pmu-studio"><i class="fas fa-drafting-compass"></i></span>
+                    <h4>The Signature Studio Blueprint™</h4>
+                    <p>The core solution for a unique, branded, and hyper-functional studio design that actively attracts your ideal clientele.</p>
+                </div>
+                <div class="pillar-card-pmu-studio">
+                    <span class="pillar-icon-pmu-studio"><i class="fas fa-concierge-bell"></i></span>
+                    <h4>The Premium Client Experience Protocol™</h4>
+                    <p>Your key to crafting an unforgettable, five-star client journey that builds loyalty and justifies premium service fees.</p>
+                </div>
+                <div class="pillar-card-pmu-studio">
+                    <span class="pillar-icon-pmu-studio"><i class="fas fa-camera-retro"></i></span>
+                    <h4>The "Insta-Worthy" Ambiance Activator™</h4>
+                    <p>The definitive method for creating a visually stunning space that clients love to share, turning your studio into an organic marketing asset.</p>
+                </div>
+                <div class="pillar-card-pmu-studio">
+                    <span class="pillar-icon-pmu-studio"><i class="fas fa-cash-register"></i></span>
+                    <h4>The Profit-Amplifying Environment™</h4>
+                    <p>The strategic solution to using your physical space to enhance perceived value and confidently command higher prices.</p>
+                </div>
+                <div class="pillar-card-pmu-studio">
+                    <span class="pillar-icon-pmu-studio"><i class="fas fa-gem"></i></span>
+                    <h4>The Studio Operations & Elegance Guide™</h4>
+                    <p>The essential framework for ensuring your studio runs as smoothly and elegantly as it looks, reinforcing its prestigious image daily.</p>
+                
+
+<section style="margin: 3rem 0; padding: 2rem; background-color: #f9f9f9; border-radius: 6px; border-left: 5px solid #9370DB;">
+    <h2 style="color: #9370DB; margin-top: 0;">What's Possible With This Solution (That You're Missing Out On)</h2>
+    <p>While you're struggling with empty chairs and inconsistent bookings, other PMU artists with the same skill level as you are experiencing extraordinary success:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 1.5rem;">
+        <li style="margin-bottom: 1.5rem; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Fully Booked 4-6 Weeks in Advance:</strong> Imagine never worrying about next week's schedule because your calendar is consistently filled with ideal clients who value your artistry.
+        </li>
+        <li style="margin-bottom: 1.5rem; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Premium Pricing Without Pushback:</strong> Picture clients who happily pay your full rates without haggling, because they recognize the value of your expertise and artistry.
+        </li>
+        <li style="margin-bottom: 1.5rem; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Predictable Monthly Income:</strong> Envision knowing exactly how much you'll earn each month, allowing you to plan your life, invest in your business, and enjoy financial security.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 2rem; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #9370DB; font-weight: bold;">✓</span>
+            <strong style="color: #9370DB;">Reputation as THE Expert:</strong> Consider what it would feel like to be recognized as the go-to PMU artist in your area, with clients specifically seeking you out based on your reputation.
+        </li>
+    </ul>
+</section>
+
+<section style="margin: 3rem 0; padding: 2rem; background-color: #FFF5F5; border-radius: 6px; border: 1px solid #FFCCCB;">
+    <h2 style="color: #FF6B6B; margin-top: 0;">The Gap Between You and These Successful Artists</h2>
+    
+    <p>The difference between your current struggle and the success stories above is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 1.5rem;">
+        <li>Your artistic talent or technical skills</li>
+        <li>Your passion for permanent makeup</li>
+        <li>Your dedication to your clients</li>
+        <li>The location of your studio</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #FF6B6B;">The real difference is that these successful PMU artists have implemented a systematic client attraction approach that you haven't yet.</p>
+    
+    <p>They're not working harder than you. They're not more talented than you. They simply have access to a proven system that consistently delivers ideal clients to their door - <strong>the exact system you're currently missing.</strong></p>
+</section></div>
+            </div>
+            
+            <div class="content-section what-included-section" style="padding-top: 20px;">
+                <h3 style="margin-top:50px;">The Complete Solution Package You've Been Looking For:</h3>
+                <ul style="list-style-type:none; padding-left:0;">
+                    <li>In-depth Video Modules for each pillar, providing clear, step-by-step implementation guidance.</li>
+                    <li>Practical Downloadable Studio Design Guides, Layout Templates, and Mood Board Starters for easy application.</li>
+                    <li>The comprehensive Premium Client Experience Checklist & ready-to-use Service Scripts.</li>
+                    <li>Resource lists of recommended vendors for quality furniture, decor, and supplies (smart investments).</li>
+                    <li>The "Insta-Worthy" Hotspot Creation Guide & studio photography best practices.</li>
+                    <li>Access to Bi-Weekly Live Q&A and Studio Strategy Sessions with our system experts.</li>
+                    <li>Membership in the Exclusive "Prestige & Profits" PMU Artists Private Community for ongoing support.</li>
+                    <li>Bonus: [Example: Advanced Guide to Lighting Design for PMU Studios]</li>
+                    <li>Bonus: [Example: Client Welcome Packet Templates for a Luxe First Impression]</li>
+                </ul>
+            </div>
+
+            <div class="testimonial-section-pmu-studio">
+                <h2 style="text-align:center;">Why Smart PMU Artists Choose THIS System (Placeholders)</h2>
+                <div class="testimonial-card-pmu-studio">
+                    <p class="quote">"I researched a lot of options for my studio revamp. Nothing felt as complete or PMU-focused as the 'Prestige & Profits' System. It covered everything I was worried about and more. Best investment I've made!"
+                    </p>
+                    <p class="author">- Chloe Davis, Aura Brows & Beauty (Placeholder)</p>
+                </div>
+                <div class="testimonial-card-pmu-studio">
+                    <p class="quote">"I knew I needed *something* but was overwhelmed by where to start. This system gave me the structure and clarity I was missing. It's not just theory; it's actionable steps that get results. My new studio is incredible!"
+                    </p>
+                    <p class="author">- Marcus Green, Elevate PMU Artistry (Placeholder)</p>
+                </div>
+            </div>
+
+            <div class="faq-section-pmu-studio">
+                <h3>Your Questions About The Ideal Studio Solution, Answered:</h3>
+                <div class="faq-item-pmu-studio">
+                    <div class="faq-question-pmu-studio">How is this system better than just hiring an interior designer?</div>
+                    <div class="faq-answer-pmu-studio">While a good designer can make a space pretty, our system is specifically tailored for PMU studios. We understand client flow, treatment-specific needs, hygiene standards, and how to create an environment that actively enhances your brand and profitability – specialized knowledge a general designer likely won't have.</div>
+                </div>
+                <div class="faq-item-pmu-studio">
+                    <div class="faq-question-pmu-studio">I've tried some DIY improvements that didn't work. How is this different?</div>
+                    <div class="faq-answer-pmu-studio">DIY efforts often lack a cohesive strategy and can result in a piecemeal look. Our system provides a comprehensive, integrated framework. Every element is chosen for its contribution to the overall goals of prestige and profit, ensuring a professional, harmonious result rather than a collection of unrelated ideas.</div>
+                </div>
+                <div class="faq-item-pmu-studio">
+                    <div class="faq-question-pmu-studio">Is this system adaptable if I have specific ideas for my studio's style?</div>
+                    <div class="faq-answer-pmu-studio">Absolutely! The system provides a powerful framework and proven principles, not a rigid, one-size-fits-all design. We guide you on *how* to apply these principles to achieve *your* desired aesthetic, whether it's minimalist chic, boho luxe, or modern glam, ensuring it aligns with your brand.</div>
+                </div>
+                 <div class="faq-item-pmu-studio">
+                    <div class="faq-question-pmu-studio">What kind of ongoing support is there if I choose this solution?</div>
+                    <div class="faq-answer-pmu-studio">We offer robust support, including bi-weekly live Q&A and strategy sessions with our experts, and access to an exclusive private community of fellow PMU artists implementing the system. You're not alone on this transformation journey.</div>
+                </div>
+                <div class="faq-item-pmu-studio">
+                    <div class="faq-question-pmu-studio">How do I know this is the right *long-term* solution for my studio?</div>
+                    <div class="faq-answer-pmu-studio">The "Prestige & Profits" System™ is built on timeless principles of good design, exceptional client experience, and smart business strategy. It equips you not just to transform your studio now, but to adapt and evolve it as your business grows, ensuring lasting prestige and profitability.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="final-cta-pmu-studio">
+            <h2>Ready to Implement The Premier Solution for Your PMU Studio Transformation?</h2>
+            <p>You're looking for the best way to create an exceptional studio – and you've found it. The "Prestige & Profits" PMU Studio System™ is the definitive choice for artists serious about achieving unparalleled results.</p>
+            <a href="../../../universal-application-form.html?niche=pmu-artists&bucket=studio&system=PrestigeProfitsPMUStudioSystem&variant=A-Solution&source_page=pmu-artists-studio-variant-a-solution" class="cta-button pmu-studio-solution">Apply for The Ultimate Studio Solution Now!</a>
+            <p style="font-size:0.95em; color:#D6EAF8; margin-top:25px;">Choose the proven system. Choose lasting success. Elevate your studio with confidence.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-main container">
+        <div class="footer-info">
+            <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+            <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+            <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+        </div>
+        <div class="footer-quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../about.html">About Us</a></li>
+                <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+            </ul>
+        </div>
+        <div class="footer-niches">
+            <h4>Our Niche Expertise</h4>
+            <ul>
+                <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Connect With Us</h4>
+            <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const firstName = params.get('firstName');
+        const greetingElement = document.getElementById('personalized-greeting-pmu-studio-solution');
+        
+        if (firstName) {
+            const decodedName = decodeURIComponent(firstName);
+            if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                 greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${decodedName}</span>`);
+            } else if (greetingElement) { 
+                greetingElement.innerHTML = `Hi <span class="user-name-emphasis">${decodedName}</span>, Searching for the Right Solution to Elevate Your PMU Studio?`;
+            }
+        } else {
+            const defaultName = "Artist"; 
+             if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${defaultName}</span>`);
+             } else if (greetingElement) {
+                greetingElement.innerHTML = `Hi <span class="user-name-emphasis">${defaultName}</span>, Searching for the Right Solution to Elevate Your PMU Studio?`;
+             }
+        }
+
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.getElementById('main-nav');
+        if (hamburger && mainNav) {
+            hamburger.addEventListener('click', () => {
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+                mainNav.classList.toggle('active');
+            });
+        }
+
+        const faqItems = document.querySelectorAll('.faq-item-pmu-studio');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question-pmu-studio');
+            question.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-item-pmu-studio.active');
+                if (currentlyActive && currentlyActive !== item) {
+                    currentlyActive.classList.remove('active');
+                }
+                item.classList.toggle('active');
+            });
+        });
+    });
+</script>
+
+<div id="chat-widget-button">
+    <span>💡</span> Found Your Studio Solution? Inquire Here!
+</div>
+
+<div id="chat-modal" class="modal-hidden">
+    <div class="chat-modal-content">
+        <div class="chat-modal-header">
+            <h2>Ready to Implement The "Prestige & Profits" System™?</h2>
+            <button id="chat-modal-close" class="chat-close-button">&times;</button>
+        </div>
+        <div class="chat-modal-body">
+            <p>
+                <strong>You've seen how our system can transform your PMU studio.</strong><br>
+                Have specific questions before you apply? Let our specialists provide the clarity you need.
+                <br><em>Mon-Fri, 10am - 5pm EST.</em><br>
+                <em>Evenings & Weekends: We'll respond promptly next business day.</em><br><br>
+            </p>
+            <form id="chat-contact-form">
+                <div class="form-group">
+                    <label for="chat-interest">I'm considering this solution for my studio:</label>
+                    <select id="chat-interest" name="systemInterest" required>
+                        <option value="Prestige & Profits PMU Studio System - Solution Aware" selected>"Prestige & Profits" PMU Studio System™</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-name">Full Name:</label>
+                    <input type="text" id="chat-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-businessName">Studio Name:</label>
+                    <input type="text" id="chat-businessName" name="businessName" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-email">Email Address:</label>
+                    <input type="email" id="chat-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-phone">Phone Number (Optional):</label>
+                    <input type="tel" id="chat-phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="chat-message">My Questions About This Solution Are...</label>
+                    <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., How does this compare to X solution? What are the first steps after applying? Can you clarify X feature?"></textarea>
+                </div>
+                <button type="submit" class="cta-button secondary chat-submit-button">Get My Solution Questions Answered</button>
+            </form>
+            <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                <h3>Solution Inquiry Sent!</h3>
+                <p>Great! We've received your questions about the "Prestige & Profits" PMU Studio System™. A transformation specialist will be in touch shortly to provide detailed answers.</p>
+                <p>You can now close this window.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../script.js"></script> 
+</body>
+</html> 

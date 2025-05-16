@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Proven System to Fill Your Weight Loss Clinic with High-Intent Clients | TurnClicksToClients Partnership</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Main stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #333; background-color: #f7f9fc; margin: 0; padding: 0; }
+        .patient-focused-container { padding-top: 20px; padding-bottom: 40px; }
+        .content-container { max-width: 900px; margin: 20px auto; padding: 30px 40px; background-color: #fff; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+        .page-header { text-align: center; margin-bottom: 40px; padding-bottom: 25px; border-bottom: 2px solid #eef2f7; }
+        .page-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2em, 4.5vw, 3em); color: #2c74b3; /* Professional Blue */ margin-bottom: 0.3em; }
+        .page-header .personalized-greeting { font-size: clamp(1.1em, 2.5vw, 1.3em); color: #1a5276; font-weight: 700; margin-bottom: 0.5em; }
+        .page-header .sub-headline { font-size: clamp(1em, 2.2vw, 1.2em); color: #555; max-width: 750px; margin: 0 auto; }
+
+        .section { margin-bottom: 35px; padding: 25px; background-color: #ffffff; border-radius: 8px; border-left: 5px solid #5dade2; /* Lighter, inviting blue */ }
+        .section.highlight-section { background-color: #eaf6ff; }
+        .section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5em, 3.5vw, 2.1em); color: #1a5276; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #dfe9f5; }
+        .section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.2em, 2.8vw, 1.6em); color: #2c74b3; margin-top: 25px; margin-bottom: 15px; }
+        .section p, .section ul li { font-size: clamp(0.95em, 1.9vw, 1.1em); color: #484848; margin-bottom: 12px; line-height: 1.75; }
+        .section ul { list-style: none; padding-left: 0; }
+        .section ul li { position: relative; padding-left: 30px; margin-bottom: 10px; }
+        .section ul li.benefit-item::before { content: '\2714'; /* Checkmark */ position: absolute; left: 0; color: #28a745; /* Success Green */ font-size: 1.3em; top: 1px; }
+        .section ul li.program-feature::before { content: '\2605'; /* Star */ position: absolute; left: 0; color: #f1c40f; /* Feature Yellow */ font-size: 1.3em; top: 1px; }
+
+        .testimonial-section { background-color: #f0f8ff; padding: 30px; border-radius: 8px; text-align: center; }
+        .testimonial-section h2 { color: #1a5276; }
+        .testimonial-placeholder { font-style: italic; color: #555; font-size: 1.1em; margin-bottom: 15px; }
+        .testimonial-placeholder strong { display: block; margin-top: 10px; color: #2c74b3; }
+
+        .cta-section { text-align: center; padding: 35px 20px; background-color: #2c74b3; /* Main CTA Blue */ border-radius: 8px; margin-top: 40px; }
+        .cta-section h2 { font-family: 'Montserrat', sans-serif; color: #ffffff; margin-bottom: 15px; font-size: clamp(1.7em, 4vw, 2.3em); }
+        .cta-section p { color: #eaf6ff; margin-bottom: 25px; font-size: clamp(1em, 2.2vw, 1.2em); }
+        .cta-button.patient-cta { background-color: #5cb85c; /* Green for positive action */ border: none; padding: 15px 35px; font-size: 1.25em; color: white; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; transition: background-color 0.3s ease, transform 0.2s ease; border-radius: 5px; }
+        .cta-button.patient-cta:hover { background-color: #4cae4c; transform: translateY(-2px); }
+
+        /* Styles for Clinic Owner Focused Page (copied from problem page, adjust as needed) */
+        .clinic-owner-focus .page-header h1 { color: #27AE60; /* Solution-oriented Green */ }
+        .clinic-owner-focus .page-header .sub-headline { font-size: clamp(1.1em, 2.3vw, 1.25em); color: #555; }
+        .clinic-owner-focus .section h2 { color: #16A085; /* Strong Teal/Green */ }
+        .clinic-owner-focus .section.solution-mechanism { background-color: #e8f6f3; border-left-color: #1ABC9C; }
+        .clinic-owner-focus .section.benefits-transformation { background-color: #e6fefc; border-left-color: #13c2b8; }
+        .clinic-owner-focus .cta-section { background-color: #2c7a6b; }
+        .clinic-owner-focus .cta-section h2 { color: #ffffff; }
+        .clinic-owner-focus .cta-section p { color: #f0f0f0; }
+        .clinic-owner-focus .cta-button.partner-cta {
+            background-color: #E67E22; /* Action-oriented orange */
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 35px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .clinic-owner-focus .cta-button.partner-cta:hover { background-color: #D35400; transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .content-container { margin: 20px 15px; padding: 25px 20px; }
+            .section { padding: 20px; }
+            .clinic-owner-focus .page-header h1 {font-size: 1.8em;} /* Ensure responsive adjustments for new class */
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body class="clinic-owner-focus">
+<header>
+    <nav aria-label="Main Navigation">
+        <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+        <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="main-nav">
+            <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+            <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+            <li class="dropdown-parent" style="margin-right: 8px;">
+                <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </li>
+            <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+            <li><a href="file:///C:/Users/Eleva/Desktop/todo/contactlead/universal-application-form.html" class="cta-button nav-cta">Apply for Partnership</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="patient-focused-container">
+        <div class="content-container">
+            <div class="page-header">
+                <h1>Finally! A Predictable System to Attract a Steady Stream of Your IDEAL Weight Loss Clients (Without Wasting Money on Ads That Don't Work!)</h1>
+                <p class="sub-headline">Tired of the marketing rollercoaster? Discover the 'Done-For-You' Client Acquisition Engine that fills your appointment book with genuinely committed, high-value individuals ready for your transformative weight loss programs.</p>
+            </div>
+
+            <div class="section" style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin-bottom: 40px; border-left: 5px solid #4CAF50;">
+                <h2 style="color: #2E7D32;">What's Possible When You Implement This System</h2>
+                <p>You're ready to transform inconsistent client flow and marketing challenges, other weight loss clinics are experiencing extraordinary results:</p>
+
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+                    <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+                        <strong style="color: #2E7D32;">Fully Booked Consultation Calendar:</strong> Imagine having your appointment book filled with 15-20 qualified, pre-sold weight loss consultations every week, with clients who are already convinced of your value before they walk through your door.
+                    </li>
+                    <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+                        <strong style="color: #2E7D32;">80%+ Conversion Rates:</strong> Picture converting 8 out of 10 consultations into paying clients because they're perfectly pre-qualified and ready to commit to your premium programs.
+                    </li>
+                    <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+                        <strong style="color: #2E7D32;">Predictable Monthly Revenue:</strong> Envision knowing exactly how much new client revenue you'll generate each month, allowing you to confidently invest in your clinic's growth and expansion.
+                    </li>
+                    <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+                        <strong style="color: #2E7D32;">Recognized Market Leadership:</strong> Consider what it would feel like to be the undisputed weight loss authority in your area, with clients specifically seeking you out based on your reputation.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin-bottom: 40px; border: 1px solid #FFD54F;">
+                <h2 style="color: #FF8F00;">Your Path to Joining These Results</h2>
+
+                <p>The path to joining these success stories is <strong>not</strong> about:</p>
+                <ul style="margin-bottom: 20px;">
+                    <li>The quality of your weight loss programs</li>
+                    <li>Your expertise or credentials</li>
+                    <li>Your dedication to client results</li>
+                    <li>The location or size of your clinic</li>
+                </ul>
+
+                <p style="font-weight: bold; font-size: 1.2em; color: #FF8F00;">The real difference is that these successful clinics have implemented a systematic client acquisition approach that you haven't yet.</p>
+
+                <p>They're not working harder than you. They're not more qualified than you. They simply have access to a proven system that consistently delivers ideal clients to their door - <strong>the exact system now available to you.</strong></p>
+            </div>
+
+            <div class="section solution-mechanism">
+                <h2>Introducing: The TurnClicksToClients 'High-Intent Accelerator' Partnership Program</h2>
+                <p>Imagine this: Instead of wrestling with complex marketing funnels, baffling ad platforms, or sifting through endless unqualified inquiries, you have a dedicated system working tirelessly in the background, delivering a consistent flow of prospective clients who are <strong>already convinced of your value and eager to start their journey with you.</strong></p>
+                <p>Our Partnership Program isn't just another marketing service; it's a <strong>comprehensive, managed client acquisition engine</strong> specifically designed for growth-focused weight loss clinics like yours. We handle the heavy lifting of attracting and nurturing high-intent leads, so you can focus on what you do best – changing lives.</p>
+                <h3>How Our Unique Mechanism Works For You (The 'Secret Sauce'):</h3>
+                <ul>
+                    <li class="benefit-item"><strong>Precision Targeting & Laser-Focused Messaging:</strong> We identify and attract individuals actively searching for the specific, high-value weight loss solutions you offer. No more casting a wide net and hoping for the best.</li>
+                    <li class="benefit-item"><strong>Automated 'Commitment-Filtering' System:</strong> Our intelligent pre-qualification process sifts out the tire-kickers and price-shoppers, ensuring only genuinely motivated and suitable prospects reach your consultation stage.</li>
+                    <li class="benefit-item"><strong>Persuasive 'Done-For-You' Lead Nurturing:</strong> We engage potential clients with compelling, educational content that builds trust and positions your clinic as the undeniable expert and the ONLY logical choice.</li>
+                    <li class="benefit-item"><strong>Seamless Appointment Booking Integration:</strong> Qualified leads are effortlessly guided to book consultations directly into your calendar, minimizing friction and maximizing your conversion rates.</li>
+                    <li class="benefit-item"><strong>Dedicated Partnership Support:</strong> You get ongoing strategic guidance and transparent reporting, so you always know exactly how your client acquisition engine is performing.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section benefits-transformation">
+                <h2>Stop Guessing, Start Growing: The Transformation Awaits Your Clinic</h2>
+                <p>Partnering with TurnClicksToClients means saying goodbye to client acquisition stress and hello to predictable, sustainable growth:</p>
+                <ul>
+                    <li class="program-feature"><strong>Fill Your Calendar Consistently:</strong> Enjoy a steady stream of pre-qualified, high-intent consultations and new client sign-ups.</li>
+                    <li class="program-feature"><strong>Increase Your Revenue & Profitability:</strong> Attract more of the right clients who value your premium services and are ready to invest.</li>
+                    <li class="program-feature"><strong>Free Up Your Valuable Time:</strong> Delegate the complexities of marketing and lead generation, allowing you to focus on client care and business development.</li>
+                    <li class="program-feature"><strong>Become the Go-To Weight Loss Authority:</strong> Our system enhances your reputation and positions you as the leading expert in your area.</li>
+                    <li class="program-feature"><strong>Scale Your Impact:</strong> Help more people achieve their weight loss goals and live healthier, happier lives, all while building a more successful and fulfilling practice.</li>
+                </ul>
+                <p>This isn't just about getting more leads; it's about transforming your clinic into a thriving, efficient, and highly impactful business that practically runs itself when it comes to client attraction.</p>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Create the Success Other Clinics Are Already Enjoying?</h2>
+
+                <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+                    <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+                    <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                        <li style="margin-bottom: 15px;"><strong>The Proven Client Acquisition System:</strong> While you're struggling to find clients, other weight loss clinics are leveraging a system that automatically brings ideal clients to their door.</li>
+                        <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you worry about inconsistent revenue, clinics with our system enjoy predictable, growing income month after month.</li>
+                        <li style="margin-bottom: 15px;"><strong>The Market Leadership Position:</strong> Instead of fighting for visibility, these clinics are recognized as the go-to weight loss authorities in their areas.</li>
+                        <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these clinic owners sleep well knowing their client pipeline is consistently full.</li>
+                    </ul>
+                </div>
+
+                <p style="font-size: 1.2em; font-weight: bold; color: #FFC107; margin: 25px 0;">Every day you wait is another day of missed consultations, lost revenue, and falling further behind those who have already implemented this system.</p>
+
+                <p>If you're tired of the feast-or-famine cycle and ready for a proven, 'done-for-you' solution that delivers consistent, high-quality client flow, then it's time to explore the TurnClicksToClients Partnership Program. Stop leaving your growth to chance. Take control and build the thriving weight loss clinic you've always envisioned.</p>
+
+                <a href="../../../universal-application-form.html?system=HighIntentAccelerator&source=WeightLossSolutionPage&interest=PartnershipApplication" class="cta-button partner-cta">YES! I Want to Start Succeeding – Apply for the Partnership Program Now!</a>
+
+                <p style="margin-top: 15px; font-size: 0.9em; color: #e0e0e0;">(Limited partnership spots available to ensure dedicated results. Apply now to see if your clinic is a fit.)</p>
+            </div>
+        </div>
+    </div>
+
+<footer>
+    <div class="footer-main container">
+        <div class="footer-info">
+            <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+            <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+            <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+        </div>
+        <div class="footer-quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../about.html">About Us</a></li>
+                <li><a href="../../../services/overview.html">Our Offer</a></li>
+                <li><a href="../../../services/pricing.html">Pricing</a></li>
+                <li><a href="../../../services/guarantee.html">Guarantee</a></li>
+                <li><a href="../../../clients/overview.html">Clients We Serve</a></li>
+            </ul>
+        </div>
+        <div class="footer-niches">
+            <h4>Our Niche Expertise</h4>
+            <ul>
+                <li><a href="../../../clients/child-care-centers.html">Child Care Centers</a></li>
+                <li><a href="../../../clients/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                <li><a href="../../../clients/pmu-artists.html">PMU Artists</a></li>
+                <li><a href="../../../clients/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                <li><a href="../../../clients/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                <li><a href="../../../clients/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                <li><a href="../../../clients/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                <li><a href="../../../clients/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                <li><a href="../../../clients/dme-clinics.html">DME Clinics</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Connect With Us</h4>
+            <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                LinkedIn <!-- Replace with actual icon/SVG if available -->
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+    </div>
+</footer>
+
+<div id="chat-widget-button">
+    <span>💬</span> Questions? Chat with Us!
+</div>
+
+<div id="chat-modal" class="modal-hidden">
+    <div class="chat-modal-content">
+        <div class="chat-modal-header">
+            <h2>Questions? We're Here to Help!</h2>
+            <button id="chat-modal-close" class="chat-close-button">&times;</button>
+        </div>
+        <div class="chat-modal-body">
+            <p>
+                Have a question about how our <strong>Weight Loss Programs</strong> can help you achieve your goals? Fill out the form below, and we'll get back to you ASAP!
+            </p>
+            <form id="chat-contact-form">
+                <div class="form-group">
+                    <label for="chat-name">Full Name:</label>
+                    <input type="text" id="chat-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-email">Email Address:</label>
+                    <input type="email" id="chat-email" name="email" required>
+                </div>
+                 <div class="form-group">
+                    <label for="chat-phone">Phone Number (Optional):</label>
+                    <input type="tel" id="chat-phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="chat-message">Your Question:</label>
+                    <textarea id="chat-message" name="message" rows="3" required placeholder="e.g., What is the typical duration of the program?"></textarea>
+                </div>
+                <button type="submit" class="cta-button secondary chat-submit-button">Send My Question</button>
+            </form>
+            <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                <h3>Thanks!</h3>
+                <p>We'll get back to you ASAP with an answer!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../script.js"></script>
+<script>
+    // Mobile nav toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.getElementById('main-nav');
+    if (hamburger && navUl) {
+      function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+      }
+      hamburger.style.display = 'block'; // This line makes the hamburger button visible
+      hamburger.addEventListener('click', function() {
+        const open = navUl.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', open);
+        if (!open) closeAllDropdowns();
+      });
+      // Dropdowns for mobile
+      navUl.querySelectorAll('.dropdown-parent > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 900) { // Mobile breakpoint from your script
+            e.preventDefault();
+            const parent = this.parentElement;
+            const isOpen = parent.classList.toggle('open');
+            // Close other dropdowns when one is opened
+            navUl.querySelectorAll('.dropdown-parent').forEach(li => {
+              if (li !== parent) li.classList.remove('open');
+            });
+          }
+        });
+      });
+      // Close nav on any link click inside the nav menu on mobile
+      navUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 900) {
+            navUl.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false'); // Ensure aria attribute is updated
+            closeAllDropdowns();
+          }
+        });
+      });
+    }
+
+    // Chat Widget Script
+    const chatButton = document.getElementById('chat-widget-button');
+    const chatModal = document.getElementById('chat-modal');
+    const chatCloseButton = document.getElementById('chat-modal-close');
+    const chatForm = document.getElementById('chat-contact-form');
+    const chatSuccessMessage = document.getElementById('chat-success-message');
+    // Chat Widget Specific: Modify form for patient context (remove industry select)
+    const chatIndustryGroup = document.querySelector('#chat-contact-form .form-group select[name="industry"]');
+    if (chatIndustryGroup) {
+        chatIndustryGroup.parentElement.style.display = 'none'; // Hide industry field
+        chatIndustryGroup.removeAttribute('required');
+    }
+    const chatBusinessNameGroup = document.querySelector('#chat-contact-form .form-group input[name="businessName"]');
+    if (chatBusinessNameGroup) {
+        chatBusinessNameGroup.parentElement.style.display = 'none'; // Hide business name field
+        chatBusinessNameGroup.removeAttribute('required');
+    }
+    const chatModalBodyParagraph = document.querySelector('#chat-modal .chat-modal-body p');
+    if (chatModalBodyParagraph) {
+        chatModalBodyParagraph.innerHTML = 'Have a question about how our <strong>Weight Loss Programs</strong> can help you achieve your goals? Fill out the form below, and we\'ll get back to you ASAP!';
+    }
+
+    if (chatButton && chatModal) {
+        chatButton.addEventListener('click', () => {
+            let wasOpen = chatModal.classList.contains('modal-visible');
+            chatModal.classList.toggle('modal-visible');
+            chatModal.classList.toggle('modal-hidden');
+            if (!wasOpen) {
+                chatForm.style.display = 'block';
+                chatForm.reset();
+                chatSuccessMessage.style.display = 'none';
+             }
+        });
+    }
+
+    if (chatCloseButton && chatModal) {
+        chatCloseButton.addEventListener('click', () => {
+            chatModal.classList.add('modal-hidden');
+            chatModal.classList.remove('modal-visible');
+        });
+    }
+    if (chatModal) {
+        window.addEventListener('click', (event) => {
+            if (event.target === chatModal) {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            }
+        });
+    }
+    if (chatForm) {
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+            chatForm.querySelectorAll('[required]').forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = '#ccc';
+                }
+            });
+
+            if (isValid) {
+                console.log('Chat form submitted by patient');
+                chatForm.style.display = 'none';
+                chatSuccessMessage.style.display = 'block';
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        });
+    }
+
+    // Personalized Greeting Script for Patient Variant A Page
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let firstName = urlParams.get('firstName');
+        const greetingSpan = document.getElementById('personalized-greeting');
+
+        if (firstName && greetingSpan) {
+            firstName = decodeURIComponent(firstName);
+            firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase(); // Capitalize first letter
+            greetingSpan.textContent = 'Hello, ' + firstName + '!';
+        } else if (greetingSpan) {
+            greetingSpan.textContent = 'Take the First Step!'; // Fallback if no name
+        }
+    });
+</script>
+</body>
+</html>

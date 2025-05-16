@@ -19,21 +19,28 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
@@ -42,13 +49,12 @@
                         <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
                         <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
                         <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
-                        <li><a href="dme-clinics.html">DME Clinics</a></li> <!-- Current page -->
+                        <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -58,29 +64,27 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Tired of Reimbursement Roadblocks & Referral Roulette?</span>
-                    <span>Our System Delivers Qualified Referrals & Streamlines Your DME Intake for Growth.</span>
+                    <span style="color: #fff;">Why Most DME Providers Are Drowning in Denials, Paperwork, and Empty Referrals—</span>
+                    <span style="color: #ffd600;">And the Proven System That Can Flood Your Business With Qualified Orders, Month After Month.</span>
                 </h1>
                 <p class="hero-subheadline">
-                    Are you battling inconsistent referrals, complex intake, and the constant pressure of compliance? 
-                    Imagine <strong>achieving</strong> streamlined referrals and efficient intake processes that <strong>drive predictable growth</strong>. Our Patient Referral & Order Engine <strong>powers your operational success</strong>, <strong>freeing you</strong> to focus on expanding your services and serving more patients effectively.
-                    <em>Curious how you can achieve this level of efficiency and growth? Our 30-second quiz offers a quick assessment.</em>
+                    Every day, another claim is denied, another referral falls through, and another hour is lost to paperwork—while your shelves stay full and your revenue slips away.<br>
+                    Imagine waking up to a steady stream of qualified orders, a team that handles the admin chaos, and the freedom to focus on growth—not survival. This isn't a dream. It's the new reality our DME Growth Engine delivers.
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & See the Difference</a>
+                <a href="../quiz-start.html" class="cta-button">Pinpoint the #1 Reason Your DME Business Isn't Growing—Take the 30-Second Quiz</a>
             </div>
         </section>
 
         <!-- Problem/Agitation Section -->
         <section id="niche-problem" class="section-padding">
             <div class="container text-center">
-                <h2 class="mb-2">The DME Provider's Grind: Battling a Lack of Referrals, Efficiency & Predictable Payments</h2>
+                <h2 class="mb-2">The Hidden Trap: Why Your DME Business Is Stuck in a Cycle of Denials and Missed Revenue</h2>
                 <p class="ideal-clients-subtext mb-2">
-                    You provide essential equipment, but the reality is tough. Navigating payer rules highlights a lack of streamlined processes. Chasing documentation and appealing denials drains resources, showcasing a lack of efficient intake and reliable reimbursement. Maintaining compliance adds stress. Securing a steady stream of referrals is a constant challenge due to a lack of consistent partner engagement, leaving inventory underutilized and revenue unpredictable. Does this daily battle against these lacks feel familiar?
-                    Marketing often feels like a gamble due to this lack of targeted strategy, yielding unqualified leads or failing to build the strong referral relationships needed. You're left spending too much time on administrative tasks because many providers lack automated systems, hindering growth and profitability. 
-                    <em>If you're looking for a more effective way to connect with patients and referral sources who need your specific DME solutions, our quick 30-second quiz can highlight if this system is your answer.</em>
+                    You work hard to provide life-changing equipment—yet your days are a blur of chasing paperwork, fighting denials, and hoping for referrals that rarely come.<br>
+                    The real problem? It's not your dedication. It's the <strong>system</strong> you're using. Until you fix it, you'll keep drowning in admin, missing out on growth, and watching competitors win the business you deserve.
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason Your DME Business Isn't Growing—Take the 30-Second Quiz</a>
                 </div>
                 <p class="key-promise">"Stop Navigating Complexity Alone. Start Streamlining Your DME Success."</p>
             </div>
@@ -91,11 +95,10 @@
             <div class="container">
                 <div class="transition-to-solution text-center mb-2 fade-in-element">
                     <p class="transition-text">
-                        We recognize the operational maze – the intricate regulations, the demanding documentation, the critical need for reliable patient and referral pipelines. The constant pressure. That's why TurnClicksToClients is your specialized engine, engineered to simplify these complexities, attracting the right patients and streamlining referral processes, so you can consistently feel the stability of a well-managed, growing DME operation. We deliver...
-                        <em>Curious how this specialized engine could bring more clarity and consistency to your patient acquisition and referral network? Our 30-second quiz is the first step.</em>
+                        Imagine the relief of never again worrying about denied claims, missed referrals, or endless paperwork. Picture a system that quietly works in the background, bringing you qualified orders and handling the admin chaos—so you can finally focus on growth, not survival. This isn't just another marketing service. It's the breakthrough DME Growth Engine that top providers are using to transform their businesses—and it's now available to you.
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Pinpoint the #1 Reason Your DME Business Isn't Growing—Take the 30-Second Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -107,39 +110,34 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Unlock the #1 Strategy to Fill Your Programs—Start the Quiz</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Ref" alt="Referral Partner Outreach">
                             <h4>The Referral Partner Outreach Team</h4>
-                            <p class="team-subtitle">Physician & Clinic Network Builders</p>
-                            <p>Identifies and engages referral partners, building a consistent pipeline without requiring your constant networking effort.</p>
+                            <p class="team-subtitle">Your Referral Pipeline Builders</p>
+                            <p>Imagine a team working behind the scenes, day and night, to put your business in front of the right partners—physicians and clinics who are ready to send you qualified orders. No more cold calls, no more wasted effort. The Referral Partner Outreach Team fills your pipeline so you can focus on serving patients.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Order" alt="Patient Onboarding & Fulfillment">
                             <h4>The Patient Onboarding & Fulfillment Crew</h4>
                             <p class="team-subtitle">Order Processing & Patient Support Specialists</p>
-                            <p>Handles the complexities of patient intake and order processing, freeing your team from burdensome administrative tasks.</p>
+                            <p>Picture every order handled with care and speed—no more lost paperwork, no more missed opportunities. The Fulfillment Crew turns referrals into completed orders, freeing your team from endless admin and letting you focus on growth.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Sys" alt="System & Compliance Automation">
                             <h4>The System & Compliance Automation Engine</h4>
-                            <p class="team-subtitle">Efficiency & Regulatory Adherence Powerhouse</p>
-                            <p>Automates workflows and aids compliance, providing operational control and security with minimal manual oversight needed from you.</p>
+                            <p class="team-subtitle">Efficiency & Regulatory Powerhouse</p>
+                            <p>Feel the relief as automated systems ensure no claim ever slips through the cracks. The Automation Engine creates a seamless, stress-free workflow, so you can finally step off the hamster wheel and enjoy the growth you've worked so hard for.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
-                        <h4 class="mechanism-headline">The Power of Filling DME Gaps for Your Peace of Mind</h4>
+                        <h4 class="mechanism-headline">The Secret Engine Behind Effortless DME Growth</h4>
                         <p>
-                            Why is this effective? Success requires filling the <strong>lack of strong referral systems and efficient compliance</strong> that plague the industry. You deserve to feel the confidence of a well-oiled machine. 
-                            Our system <strong>manages</strong> critical functions. Outreach fills the <strong>lack of consistent partner communication</strong>. Fulfillment fills the <strong>lack of smooth onboarding</strong>. 
-                            Automation fills the <strong>lack of streamlined compliance and efficiency</strong>. This integrated approach <strong>delivers</strong> reliable flow by overcoming these lacks, making it possible for your business to grow and for you to keep that feeling of sustainable success.
+                            This isn't just a collection of services—it's a finely tuned engine, each team a secret weapon working in harmony to fill the gaps that have held you back. While others struggle with piecemeal solutions, you'll have a system that delivers consistent results, restores your confidence, and lets you lead with vision again.
                         </p>
                     </div>
                     <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
                         <p>
-                            This isn't just orders; it <strong>transforms you into the DME provider who operates with streamlined efficiency and predictable profitability.</strong> It fills the lack of scalable operations, enabling you to <em>be</em> the leader focused on strategic growth, not daily operational fires. <strong>It eliminates</strong> referral and workflow stress, freeing you to operate with the stability and strategic empowerment that comes from running a well-managed, growing DME business.
+                            This system transforms you from an overwhelmed DME provider into a confident leader whose focus is on growth, not paperwork. It eliminates the unpredictability, fills the gaps in referrals and efficiency, and replaces daily firefighting with a proven, automated process. You become the provider who dominates your market, runs a smooth operation, and finally enjoys the freedom and profitability you deserve.
                         </p>
                     </div>
                     <div class="text-center mt-2">
@@ -162,7 +160,6 @@
                             "Referrals were hit or miss, and intake was a constant headache. TurnClicksToClients built relationships with our key hospitals and their intake team handles the initial verification. It's saved us countless hours and our denial rate has dropped significantly."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/4682B4/FFFFFF?Text=Ownr" alt="DME Owner Photo">
                             <div>
                                 <p class="author-name">Michael Chen, Owner</p>
                                 <p class="author-niche">Regional Home Medical Supply</p>
@@ -174,7 +171,6 @@
                             "Chasing down documentation and dealing with insurance eligibility was killing our efficiency. Handing off the upfront intake process to TurnClicksToClients was the best move. Orders come in cleaner, and our team can focus on fulfillment and patient setup."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/20B2AA/FFFFFF?Text=Mgr" alt="Operations Manager Photo">
                             <div>
                                 <p class="author-name">Sarah Jenkins, Operations Manager</p>
                                 <p class="author-niche">Community DME Solutions</p>
@@ -213,7 +209,6 @@
          <section id="guarantee-niche" class="section-padding" style="background-color: #e6eaf0;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/4682B4/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day DME Results Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We're confident our system, tailored for DME complexities, will deliver tangible results. If you don't see a measurable increase in qualified referral volume OR a significant improvement in your intake efficiency (e.g., reduced documentation errors, faster verification times, fewer denials related to intake) within the first 30 days, you don't pay our service fee. Zero risk. Real operational improvement, guaranteed.
@@ -251,16 +246,14 @@
         <section id="cta-contact-niche" class="section-padding text-center" style="background-color: #f0f4f8;">
             <div class="container">
                 <h2 class="mb-1">Curious if Your DME Business Can Achieve Smoother Referrals & Intake?</h2>
-                <p class="cta-subtext mb-2">Stop letting operational headaches dictate your success. Our 30-second quiz can help you see if our system is the right fit to deliver consistent, qualified referrals and simplify your complex intake process.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
-                <p class="cta-microcopy">(Quick, no-obligation check for eligibility)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link">Book a Brief Strategy Call</a>.</p>
-                <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
-                <p class="cta-ps mt-1">
-                     <strong>P.S.</strong> You need your DME business to operate efficiently and profitably, and achieving that in this complex industry always comes at a price. Will it be the high cost of operational drag, inconsistent referrals, denied claims, and the constant administrative firefighting? That's a path of ongoing expense and stress.
-                     Or will you choose a system meticulously built over 15+ years, designed to streamline your specific DME challenges and drive referrals <em>for you</em>?
-                     Our 30-second quiz is your entry to this smarter operational model – a shortcut to reduced headaches and improved cash flow. Successful DME providers invest in efficiency. What is your strategy for success? Check if you qualify for the shortcut.
-                 </p>
+                <p class="cta-subtext mb-2" style="color: #222;">Stop letting operational headaches dictate your success. Our 30-second quiz can help you see if our system is the right fit to deliver consistent, qualified referrals and simplify your complex intake process.</p>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">Find Out What's Possible for Your Clinic—Take the 30-Second Quiz</a>
+                <p class="cta-microcopy" style="color: #222;">(Quick, no-obligation check for eligibility)</p>
+                <p class="mt-1" style="color: #222;">Or, click the "Send Us a Message" button and our team will get back to you as soon as possible.</p>
+                <p class="cta-microcopy" style="color: #222;">(For specific inquiries before taking the quiz)</p>
+                <p class="cta-ps mt-1" style="color: #222;">
+                    <strong>P.S.</strong> You need your DME business to operate efficiently and profitably, and achieving that in this complex industry always comes at a price. Will it be the high cost of operational drag, inconsistent referrals, denied claims, and the constant administrative firefighting? That's a path of ongoing expense and stress. Or will you choose a system meticulously built over 15+ years, designed to streamline your specific DME challenges and drive referrals <em>for you</em>? Our 30-second quiz is your entry to this smarter operational model – a shortcut to reduced headaches and improved cash flow. Successful DME providers invest in efficiency. What is your strategy for success? Check if you qualify for the shortcut.
+                </p>
             </div>
         </section>
     </main>

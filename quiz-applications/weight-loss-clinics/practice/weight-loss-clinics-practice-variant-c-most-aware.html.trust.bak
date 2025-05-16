@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Final Step to Practice Mastery: Apply for the 'Practice Performance' Partnership | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background-color: #f8f9fa; margin: 0; padding: 0; }
+        .clinic-owner-focus .page-header h1 { color: #1A237E; font-size: clamp(1.9em, 4.2vw, 2.9em); }
+        .clinic-owner-focus .page-header .sub-headline { font-size: clamp(1.1em, 2.3vw, 1.3em); color: #455A64; max-width: 800px; }
+        .clinic-owner-focus .section h2 { color: #0D47A1; font-size: clamp(1.5em, 3.5vw, 2.2em); text-align:left; }
+        .clinic-owner-focus .section h3 { color: #1565C0; font-size: clamp(1.3em, 3vw, 1.8em); }
+        .clinic-owner-focus .section p, .clinic-owner-focus .section ul li { font-size: clamp(1em, 2vw, 1.1em); color: #37474F; line-height: 1.75; text-align:left; }
+        .clinic-owner-focus .section ul.final-push-item-list li::before { content: '\2705'; position: absolute; left: 0; color: #388E3C; font-size: 1.4em; top: 2px; }
+        
+        .clinic-owner-focus .content-container { max-width: 900px; margin: 20px auto; padding: 30px 40px; background-color: #fff; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border-top: 8px solid #0D47A1;}
+        .clinic-owner-focus .long-form-section { padding: 25px 15px; margin-bottom:20px; background-color: #ffffff; border-radius: 8px;}
+        .clinic-owner-focus .testimonial-block { background-color: #e3f2fd; border-left: 5px solid #2196F3; padding: 20px; margin: 25px 0; border-radius: 5px;}
+        .clinic-owner-focus .testimonial-block p { font-style: italic; color: #1E88E5;}
+        .clinic-owner-focus .testimonial-block strong { color: #0D47A1; display: block; margin-top:10px;}
+        .clinic-owner-focus .guarantee-emphasis { background-color: #E8F5E9; border: 2px dashed #4CAF50; padding: 25px; text-align:center; margin: 30px 0; border-radius: 8px;}
+        .clinic-owner-focus .guarantee-emphasis h3 { color: #2E7D32; }
+        .clinic-owner-focus .urgency-section { background-color: #FFF3E0; border: 2px solid #FF9800; padding: 20px; text-align:center; margin-top:30px; border-radius: 8px;}
+        .clinic-owner-focus .urgency-section h3 {color: #E65100;}
+
+        .clinic-owner-focus .cta-section { background-color: #0D47A1; color:white; padding: 40px 20px; text-align:center; margin-top:20px; border-radius:0 0 8px 8px; }
+        .clinic-owner-focus .cta-section h2 { color: #ffffff; font-size: clamp(1.8em, 4vw, 2.6em); }
+        .clinic-owner-focus .cta-section p { color: #e3f2fd; font-size: clamp(1.1em, 2.2vw, 1.25em); text-align:center;}
+        .clinic-owner-focus .cta-button.final-cta { background-color: #FFC107; color: #212121; font-size: 1.35em; padding: 18px 40px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration:none; display:inline-block; border-radius:5px;}
+        .clinic-owner-focus .cta-button.final-cta:hover { background-color: #FFB300; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .clinic-owner-focus .cta-button.final-cta .arrow { margin-left: 10px; transition: transform 0.3s ease; display: inline-block; }
+        .clinic-owner-focus .cta-button.final-cta:hover .arrow { transform: translateX(5px); }
+
+        .clinic-owner-focus .next-steps-info { margin-top: 20px; padding: 20px; background-color: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 5px; text-align: left; }
+        .clinic-owner-focus .next-steps-info h3 { font-family: 'Montserrat', sans-serif; color: #2E7D32; margin-bottom: 10px; font-size: 1.4em; }
+        .clinic-owner-focus .next-steps-info p { font-size: 1.05em; color: #333; margin-bottom: 8px; }
+        
+        .clinic-owner-focus .page-header { text-align: center; margin-bottom: 40px; padding-bottom: 25px; border-bottom: 2px solid #eef2f7; }
+        @media (max-width: 768px) {
+            .clinic-owner-focus .content-container { margin: 20px 15px; padding: 20px; }
+            .clinic-owner-focus .section, .clinic-owner-focus .long-form-section { padding: 20px 10px; }
+            .clinic-owner-focus .page-header h1 {font-size: 1.8em;}
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body class="clinic-owner-focus">
+<header>
+    <nav aria-label="Main Navigation">
+        <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+        <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="main-nav">
+            <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+            <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+            <li class="dropdown-parent" style="margin-right: 8px;">
+                <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </li>
+            <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+            <li><a href="file:///C:/Users/Eleva/Desktop/todo/contactlead/universal-application-form.html" class="cta-button nav-cta">Apply for Partnership</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content-container clinic-owner-focus">
+    <div class="page-header">
+        <h1>The Decision is Clear. The Time is NOW. Secure Your 'Practice Performance' Partnership.</h1>
+        <p class="sub-headline">You've explored the problems, understood the solution, and envisioned the transformation. This is your moment to convert insight into action and build the hyper-efficient, scalable, and deeply rewarding weight loss practice you've always aimed for.</p>
+    </div>
+
+    <div class="long-form-section">
+        <h2>You Are One Step Away From Unlocking True Operational Freedom & Growth</h2>
+        <p>The TurnClicksToClients 'Practice Performance' Partnership isn't just a service; it's a comprehensive system designed to permanently resolve the operational bottlenecks that cap your growth and drain your resources. You're not just buying back your time; you're investing in a future where your practice runs like a well-oiled machine, empowering your team and delighting your clients, with or without your constant oversight.</p>
+        <h3>Reconfirm Your Path to a Transformed Practice:</h3>
+        <ul class="final-push-item-list" style="list-style: none; padding-left: 0;">
+            <li style="position: relative; padding-left: 30px; margin-bottom: 12px;"><strong>Systemized Efficiency:</strong> Say goodbye to chaotic workflows, manual drudgery, and inconsistent client experiences.</li>
+            <li style="position: relative; padding-left: 30px; margin-bottom: 12px;"><strong>Scalable Growth:</strong> Confidently handle more clients and expand your services without the usual growing pains or a drop in quality.</li>
+            <li style="position: relative; padding-left: 30px; margin-bottom: 12px;"><strong>Enhanced Profitability:</strong> Optimize resource allocation, reduce waste, and improve client retention for a healthier bottom line.</li>
+            <li style="position: relative; padding-left: 30px; margin-bottom: 12px;"><strong>Empowered Team:</strong> Equip your staff with the tools and processes they need to excel, boosting morale and reducing turnover.</li>
+            <li style="position: relative; padding-left: 30px; margin-bottom: 12px;"><strong>Owner Liberation:</strong> Free yourself from the daily operational grind to focus on strategic growth, innovation, or simply enjoying the fruits of your labor.</li>
+        </ul>
+    </div>
+
+    <div class="testimonial-block">
+        <h2>Don't Just Take Our Word For It...</h2>
+        <p><em>"Before the 'Practice Performance' Partnership, I felt like I was constantly juggling. Now, our systems are so smooth, I can actually focus on strategic expansion. Our patient satisfaction is up, and my stress levels are way down. Applying was the turning point for my clinic."</em></p>
+        <strong>- Dr. [Placeholder Name], Owner of [Placeholder Clinic Name] Who Optimized for Growth</strong>
+    </div>
+
+    <div class="guarantee-emphasis">
+        <h3>Our Unwavering Commitment to Your Practice's Transformation.</h3>
+        <p>We partner with you to achieve clearly defined operational improvements and measurable results. Your success in creating a more efficient, profitable, and manageable practice is our primary objective. This partnership is an investment in a sustainable, thriving future for your clinic.</p>
+    </div>
+    
+    <div class="urgency-section">
+        <h3>The Optimal Time to Systemize Your Practice is NOW – Before Growth Overwhelms You.</h3>
+        <p>The demand for quality weight loss services is undeniable. Position your practice to capture this growth effectively. Due to the intensive, personalized nature of the 'Practice Performance' Partnership, we onboard a limited number of clinics each quarter to ensure maximum impact.</p>
+        <p><strong>Secure your dedicated support slot and start building a practice that serves your ambitions, not one that limits them.</strong></p>
+
+<div class="section" style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin-bottom: 40px; border-left: 5px solid #4CAF50;">
+    <h2 style="color: #2E7D32;">What's Possible When You Implement This System</h2>
+    <p>You're ready to transform inconsistent client flow and marketing challenges, other weight loss clinics are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #2E7D32;">Fully Booked Consultation Calendar:</strong> Imagine having your appointment book filled with 15-20 qualified, pre-sold weight loss consultations every week, with clients who are already convinced of your value before they walk through your door.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #2E7D32;">80%+ Conversion Rates:</strong> Picture converting 8 out of 10 consultations into paying clients because they're perfectly pre-qualified and ready to commit to your premium programs.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #2E7D32;">Predictable Monthly Revenue:</strong> Envision knowing exactly how much new client revenue you'll generate each month, allowing you to confidently invest in your clinic's growth and expansion.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #4CAF50; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #2E7D32;">Recognized Market Leadership:</strong> Consider what it would feel like to be the undisputed weight loss authority in your area, with clients specifically seeking you out based on your reputation.
+        </li>
+    </ul>
+</div>
+
+<div class="section" style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin-bottom: 40px; border: 1px solid #FFD54F;">
+    <h2 style="color: #FF8F00;">Your Path to Joining These Results</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>The quality of your weight loss programs</li>
+        <li>Your expertise or credentials</li>
+        <li>Your dedication to client results</li>
+        <li>The location or size of your clinic</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #FF8F00;">The real difference is that these successful clinics have implemented a systematic client acquisition approach that you haven't yet.</p>
+    
+    <p>They're not working harder than you. They're not more qualified than you. They simply have access to a proven system that consistently delivers ideal clients to their door - <strong>the exact system now available to you.</strong></p>
+</div>
+    </div>
+
+    <div class="next-steps-info">
+        <h3>What Happens After You Apply? It's Simple:</h3>
+        <p><strong>1. Submit Your Application:</strong> Click the button below to access our straightforward universal application form. It helps us understand your clinic's current state and goals.</p>
+        <p><strong>2. Partnership Review:</strong> Our team will carefully review your application (typically within 24-48 business hours) to ensure our 'Practice Performance' Partnership is the ideal fit to achieve your objectives.</p>
+        <p><strong>3. Onboarding & Kickoff:</strong> If your application is successful, you'll receive your welcome packet and we'll schedule your personalized onboarding and strategy kickoff call. This is where the transformation begins!</p>
+    </div>
+
+    <div class="cta-section">
+        <h2>Ready to Create the Success Other Professionals Are Already Enjoying?</h2>
+        
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you prepare for inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day you wait is another day of missed opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p>Take the definitive step towards operational mastery, sustainable growth, and lasting success. The 'Practice Performance' Partnership is your key.</p>
+        <a href="file:///C:/Users/Eleva/Desktop/todo/contactlead/universal-application-form.html" class="cta-button final-cta">Apply for the 'Practice Performance' Partnership NOW <span class="arrow">➔</span></a>
+        <p style="margin-top: 20px; font-size: 0.9em; color: #bbdefb;">(This isn't just an application; it's a declaration of your commitment to building an exceptional practice. Act now.)</p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-main container">
+        <div class="footer-info">
+            <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+            <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+            <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+            <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+        </div>
+        <div class="footer-quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../about.html">About Us</a></li>
+                <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+            </ul>
+        </div>
+        <div class="footer-niches">
+            <h4>Our Niche Expertise</h4>
+            <ul>
+                <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Connect With Us</h4>
+            <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                LinkedIn <!-- Replace with actual icon/SVG if available -->
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom text-center">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+    </div>
+</footer>
+
+<!-- Chat Button and Modal -->
+<div id="chat-widget-button">
+    <span>💬</span> Ready to Apply? Questions First?
+</div>
+
+<div id="chat-modal" class="modal-hidden">
+    <div class="chat-modal-content">
+        <div class="chat-modal-header">
+            <h2>Final Questions Before You Transform Your Practice?</h2>
+            <button id="chat-modal-close" class="chat-close-button">&times;</button>
+        </div>
+        <div class="chat-modal-body">
+            <p>
+                You're on the verge of a significant upgrade for your clinic with the 'Practice Performance' Partnership. If you have any last-minute questions before applying, ask us now!
+            </p>
+            <form id="chat-contact-form">
+                <div class="form-group">
+                    <label for="chat-industry">Your Industry:</label>
+                    <select id="chat-industry" name="industry" required>
+                        <option value="">Select Your Industry</option>
+                        <option value="Child Care Centers">Child Care Centers</option>
+                        <option value="Cosmetic Dentists">Cosmetic Dentists</option>
+                        <option value="PMU Artists">PMU Artists</option>
+                        <option value="Non-Surgical Body Contouring">Non-Surgical Body Contouring</option>
+                        <option value="Weight Loss Clinics" selected>Weight Loss Clinics</option>
+                        <option value="High-End Chiropractors">High-End Chiropractors</option>
+                        <option value="Sleep Apnea & Snoring Clinics">Sleep Apnea & Snoring Clinics</option>
+                        <option value="Hearing Aid & Audiology Clinics">Hearing Aid & Audiology</option>
+                        <option value="DME Clinics">DME Clinics</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chat-name">Full Name:</label>
+                    <input type="text" id="chat-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-businessName">Business Name:</label>
+                    <input type="text" id="chat-businessName" name="businessName" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-email">Email Address:</label>
+                    <input type="email" id="chat-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="chat-message">Your Question:</label>
+                    <textarea id="chat-message" name="message" rows="3" required placeholder="e.g., What's the typical timeframe for the onboarding process?"></textarea>
+                </div>
+                <button type="submit" class="cta-button secondary chat-submit-button">Send My Question</button>
+            </form>
+            <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                <h3>Thanks!</h3>
+                <p>We'll get back to you ASAP with an answer!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../script.js"></script>
+<script>
+    // Mobile nav toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.getElementById('main-nav');
+    if (hamburger && navUl) {
+      function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+      }
+      hamburger.style.display = 'block';
+      hamburger.addEventListener('click', function() {
+        const open = navUl.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', open);
+        if (!open) closeAllDropdowns();
+      });
+      navUl.querySelectorAll('.dropdown-parent > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 900) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            const isOpen = parent.classList.toggle('open');
+            navUl.querySelectorAll('.dropdown-parent').forEach(li => {
+              if (li !== parent) li.classList.remove('open');
+            });
+          }
+        });
+      });
+      navUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 900) {
+            navUl.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            closeAllDropdowns();
+          }
+        });
+      });
+    }
+
+    // Chat Widget Script
+    const chatButton = document.getElementById('chat-widget-button');
+    const chatModal = document.getElementById('chat-modal');
+    const chatCloseButton = document.getElementById('chat-modal-close');
+    const chatForm = document.getElementById('chat-contact-form');
+    const chatSuccessMessage = document.getElementById('chat-success-message');
+
+    if (chatButton && chatModal) {
+        chatButton.addEventListener('click', () => {
+            let wasOpen = chatModal.classList.contains('modal-visible');
+            chatModal.classList.toggle('modal-visible');
+            chatModal.classList.toggle('modal-hidden');
+            if (!wasOpen) { 
+                chatForm.style.display = 'block';
+                chatForm.reset(); 
+                chatSuccessMessage.style.display = 'none';
+             }
+        });
+    }
+
+    if (chatCloseButton && chatModal) {
+        chatCloseButton.addEventListener('click', () => {
+            chatModal.classList.add('modal-hidden');
+            chatModal.classList.remove('modal-visible');
+        });
+    }
+    if (chatModal) { 
+        window.addEventListener('click', (event) => {
+            if (event.target === chatModal) {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            }
+        });
+    }
+    if (chatForm) {
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+            chatForm.querySelectorAll('[required]').forEach(input => {
+                if (!input.value.trim()) { 
+                    isValid = false;
+                    input.style.borderColor = 'red'; 
+                } else {
+                    input.style.borderColor = '#ccc'; 
+                }
+            });
+
+            if (isValid) {
+                console.log('Chat form submitted'); 
+                chatForm.style.display = 'none';
+                chatSuccessMessage.style.display = 'block';
+            }
+        });
+    }
+</script>
+</body>
+</html> 

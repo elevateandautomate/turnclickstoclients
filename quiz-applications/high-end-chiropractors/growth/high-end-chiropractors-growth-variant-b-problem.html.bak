@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stuck in Your Practice? Overcoming Growth Hurdles | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background-color: #f9f9f9; margin: 0; padding: 0; }
+        .problem-focus-container { max-width: 850px; margin: 40px auto; background-color: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
+        
+        .problem-header { background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); /* Problem-focused Red */ color: #fff; padding: 45px 30px; text-align: center; border-bottom: 6px solid #ffc107; /* Warning Yellow accent */}
+        .problem-header .status-indicator { font-size: 1.1em; font-weight: 700; margin-bottom: 10px; opacity: 0.9; letter-spacing: 0.5px; }
+        .problem-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(2em, 4vw, 2.8em); margin-bottom: 15px; line-height: 1.3; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .problem-header .sub-problem { font-size: clamp(1.05em, 2.2vw, 1.25em); max-width: 700px; margin: 0 auto; line-height: 1.6; opacity: 0.95; }
+
+        .problem-content { padding: 40px 45px; }
+        .problem-content h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.7em, 3.5vw, 2.3em); color: #c82333; /* Dark Red */ margin-bottom: 20px; text-align: center; }
+        .problem-content .section-intro { text-align: center; font-size: 1.1em; color: #555; margin-bottom: 30px; max-width: 700px; margin-left:auto; margin-right:auto;}
+        
+        .symptom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .symptom-card { background-color: #fff3cd; /* Light Yellow warning */ border: 1px solid #ffeeba; border-left: 5px solid #ffc107; /* Yellow accent */ border-radius: 8px; padding: 20px; }
+        .symptom-card .symptom-icon { font-size: 2.2em; color: #ffc107; margin-bottom: 12px; display: block; text-align: center; }
+        .symptom-card h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.2em, 2.8vw, 1.45em); color: #856404; /* Dark Yellow/Brown */ margin-bottom: 10px; }
+        .symptom-card p { font-size: clamp(0.95em, 1.9vw, 1.0em); color: #66512c; margin-bottom: 0; line-height: 1.6; }
+        
+        .consequences-list { margin-bottom: 30px; padding-left: 20px; }
+        .consequences-list h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.3em, 3vw, 1.6em); color: #721c24; /* Darker Red for consequence titles */ margin-bottom: 15px; }
+        .consequences-list ul { list-style: none; padding-left: 0; }
+        .consequences-list li { background-color: #f8d7da; /* Light Red */ border: 1px solid #f5c6cb; color: #721c24; padding: 12px 18px; margin-bottom: 10px; border-radius: 6px; font-size: clamp(0.95em, 2vw, 1.05em); display: flex; align-items: center; }
+        .consequences-list li .fa-exclamation-triangle { margin-right: 10px; color: #c82333; font-size: 1.2em; }
+
+        .pain-point-highlight { background-color: #fdfdfe; border: 2px dashed #dc3545; padding: 25px; margin: 30px 0; border-radius: 8px; text-align: center; }
+        .pain-point-highlight h3 { color: #dc3545; font-family: 'Montserrat', sans-serif; font-size: 1.5em; margin-bottom: 10px; }
+        .pain-point-highlight p { font-size: 1.1em; color: #555; margin-bottom: 0; }
+        
+        .transition-to-solution { text-align: center; padding: 30px 20px; background-color: #e9ecef; margin-top: 30px; border-radius: 0 0 12px 12px; }
+        .transition-to-solution h2 { color: #28a745; /* Hint of Solution Green */ font-size: clamp(1.6em, 3.3vw, 2.1em); margin-bottom: 15px; }
+        .transition-to-solution p { font-size: clamp(1.05em, 2.1vw, 1.2em); color: #495057; margin-bottom: 25px; max-width: 650px; margin-left:auto; margin-right:auto;}
+        .cta-button.problem-variant { background: linear-gradient(135deg, #28a745 0%, #218838 100%); /* Solution Green */ border: none; color: #fff !important; padding: 18px 40px; font-size: clamp(1.2em, 2.5vw, 1.4em); font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(40,167,69,0.3); }
+        .cta-button.problem-variant:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(40,167,69,0.4); }
+
+        @media (max-width: 768px) {
+            .problem-content { padding: 30px 20px; }
+            .problem-header { padding: 35px 20px; }
+            .symptom-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                 <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="problem-focus-container">
+    <div class="problem-header">
+        <div class="status-indicator" id="personalized-status">Based on Your Quiz, <span style="font-weight:900;">[First Name]</span>...</div>
+        <h1>Is Your Chiropractic Practice Hitting a Growth Ceiling?</h1>
+        <p class="sub-problem">Many successful chiropractors reach a point where working harder isn't translating into significant growth. Are these challenges familiar?</p>
+    </div>
+
+    <div class="problem-content">
+        <h2>The Common Roadblocks to Scaling Your High-End Practice</h2>
+        <p class="section-intro">You've built something great, but now you're facing the classic symptoms of a practice that's outgrown its current systems and strategies. This isn't failure; it's a critical growth juncture.</p>
+        
+        <div class="symptom-grid">
+            <div class="symptom-card">
+                <span class="symptom-icon"><i class="fas fa-hourglass-half"></i></span>
+                <h3>Owner Overwhelm & Burnout</h3>
+                <p>Are you constantly pulled in a million directions, the last to leave and first to arrive? Is your passion being overshadowed by operational drag?</p>
+            </div>
+            <div class="symptom-card">
+                <span class="symptom-icon"><i class="fas fa-chart-line-down"></i></span>
+                <h3>Stagnant Revenue or Profit</h3>
+                <p>Despite being busy, are your financials flat? Are you struggling to increase take-home pay without simply working more hours yourself?</p>
+            </div>
+            <div class="symptom-card">
+                <span class="symptom-icon"><i class="fas fa-users-slash"></i></span>
+                <h3>Team Bottlenecks & Drama</h3>
+                <p>Finding it hard to attract, train, and retain A-player staff? Does team management feel like a constant fire-drill, hindering service delivery?</p>
+            </div>
+             <div class="symptom-card">
+                <span class="symptom-icon"><i class="fas fa-door-closed"></i></span>
+                <h3>Inability to Scale Services</h3>
+                <p>Want to add associates, new services, or even new locations, but your current model feels too dependent on *you* to expand effectively?</p>
+            </div>
+        </div>
+
+        <div class="consequences-list">
+            <h3>The Hidden Costs of Staying Stuck:</h3>
+            <ul>
+                <li><i class="fas fa-exclamation-triangle"></i><strong>Lost Income Potential:</strong> Every month you operate below your potential is revenue left on the table.</li>
+                <li><i class="fas fa-exclamation-triangle"></i><strong>Diminished Impact:</strong> Fewer patients helped than you're truly capable of reaching.</li>
+                <li><i class="fas fa-exclamation-triangle"></i><strong>Increased Stress & Reduced Fulfillment:</strong> Your practice becomes a source of stress, not joy.</li>
+                <li><i class="fas fa-exclamation-triangle"></i><strong>Market Vulnerability:</strong> Competitors with better systems can gain an edge.</li>
+            </ul>
+        </div>
+        
+        <div class="pain-point-highlight">
+            <h3>If You're Thinking: "There MUST Be a Better Way to Grow..."</h3>
+            <p>You're right. Continuing with the same strategies that got you *here* won't get you *there*. True scalability requires a fundamental shift in how your practice operates.</p>
+        </div>
+    </div>
+
+    <div class="transition-to-solution">
+        <h2>Ready to Break Free From These Growth Traps?</h2>
+        <p>Acknowledging these challenges is the first step. The good news? There are proven systems designed to help high-end chiropractors like you overcome these hurdles and build a practice that not only grows but also gives you back your time and freedom.</p>
+        <a href="../../../universal-application-form.html?niche=high-end-chiropractors&bucket=growth&variant=B-Problem&system=PeakPerformancePracticeSystem&source_page=growth-variant-b-problem" class="cta-button problem-variant">Discover a System for Predictable Growth</a>
+        <p style="font-size:0.9em; color:#666; margin-top:15px;">Let's explore how to transform these problems into stepping stones for your Peak Performance.</p>
+    </div>
+</div>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Solve This Problem (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div>
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Solve This Problem (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div>
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Solve This Problem (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div>
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Solve This Problem (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                 <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstName = params.get('firstName');
+            const statusElement = document.getElementById('personalized-status');
+            
+            if (firstName && statusElement) {
+                const decodedName = decodeURIComponent(firstName);
+                statusElement.innerHTML = `Based on Your Quiz, <span style="font-weight:900;">${decodedName}</span>...`;
+            } else if (statusElement) {
+                statusElement.innerHTML = `Based on Your Quiz...`; 
+            }
+
+            const hamburger = document.querySelector('.hamburger');
+            const mainNav = document.getElementById('main-nav');
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <!-- Chat Button and Modal for Problem-Aware Variant -->
+    <div id="chat-widget-button">
+        <span>💬</span> Feeling These Growth Pains? Let's Talk Solutions!
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Experiencing Practice Growth Challenges?</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>If these growth roadblocks resonate with you, we can help.</strong><br>
+                    Ask us how the Peak Performance Practice System™ addresses these specific issues.
+                    <br><em>Mon-Fri, 10am - 5pm EST.</em><br>
+                    <em>Evenings & Weekends: We'll prioritize your contact next business day.</em><br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-interest">Primary Concern:</label>
+                        <select id="chat-interest" name="systemInterest" required>
+                            <option value="Practice Growth Challenges" selected>Practice Growth Challenges (General)</option>
+                            <option value="Owner Overwhelm">Owner Overwhelm/Burnout</option>
+                            <option value="Stagnant Revenue">Stagnant Revenue/Profit</option>
+                            <option value="Team Bottlenecks">Team Bottlenecks/Drama</option>
+                            <option value="Inability to Scale">Inability to Scale Services</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Practice Name:</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address:</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number (Optional):</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Briefly Describe Your Biggest Growth Challenge:</label>
+                        <textarea id="chat-message" name="message" rows="3" required placeholder="e.g., I'm struggling to delegate effectively, my profits haven't increased despite being busier..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Discuss My Growth Challenges</button>
+                </form>
+                 <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Inquiry Sent!</h3>
+                    <p>Thank you for reaching out. We understand these challenges and a strategist will be in touch shortly to discuss potential solutions.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../script.js"></script> 
+</body>
+</html> 

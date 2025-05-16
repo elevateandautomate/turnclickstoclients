@@ -43,13 +43,29 @@
         #lead-capture-form .cta-button { width: 100%; padding: 12px; font-size: 1.2em; margin-top: 10px; background-color: #28a745; }
         #lead-capture-form .cta-button:hover { background-color: #1e7e34; }
         .privacy-note { font-size: 0.8em; color: #777; text-align: center; margin-top: 15px; }
+
+        /* Field explanation styling */
+        .field-explanation {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: 0;
+            font-style: italic;
+        }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <header>
-        <nav>
-            <div class="logo"><a href="../index.html">TurnClicksToClients.com</a></div>
-            <ul>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About Us</a></li>
                 <li class="dropdown-parent">
@@ -103,7 +119,7 @@
                     </div>
                 </div>
                 <button class="cta-button" id="start-quiz-btn" onclick="startQuiz()">Start the Quiz &rarr;</button>
-                
+
                 <div id="quiz-question" class="quiz-question" style="display:none;">
                     <h2></h2>
                 </div>
@@ -114,7 +130,7 @@
                     <button id="next-question-btn" class="cta-button" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 </div>
             </div>
-            
+
             <div id="lead-capture-form" style="display:none;">
                 <h3>Unlock Your DME Business Growth Potential!</h3>
                 <p>Provide your details to receive your personalized DME Provider growth assessment and key strategic recommendations.</p>
@@ -122,22 +138,27 @@
                     <div class="form-group">
                         <label for="first-name">First Name:</label>
                         <input type="text" id="first-name" name="first-name" required>
+                        <p class="field-explanation">We're asking so we can personalize your growth plan and recommendations.</p>
                     </div>
                     <div class="form-group">
                         <label for="last-name">Last Name:</label>
                         <input type="text" id="last-name" name="last-name" required>
+                        <p class="field-explanation">We're asking to create your complete profile in our system.</p>
                     </div>
                     <div class="form-group">
                         <label for="business-name">Business Name:</label>
                         <input type="text" id="business-name" name="business-name" required>
+                        <p class="field-explanation">We're asking so we can tailor our recommendations to your specific DME business.</p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required>
+                        <p class="field-explanation">We're asking so we can send you your personalized growth plan and follow-up resources.</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number:</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <p class="field-explanation">We're asking so our team can reach out with specific insights about your DME business growth opportunities.</p>
                     </div>
                     <button type="submit" class="cta-button">See My DME Growth Plan!</button>
                 </form>
@@ -257,6 +278,96 @@
     </div>
 
     <script>
+        // Supabase Client Initialization
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+        let supabaseClient = null;
+
+        // Initialize Supabase client when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DME Quiz: DOMContentLoaded event fired");
+            console.log("DME Quiz: Checking for Supabase library...");
+            console.log("DME Quiz: typeof supabase =", typeof supabase);
+            console.log("DME Quiz: supabase object available =", typeof supabase !== 'undefined');
+            console.log("DME Quiz: createClient method available =", typeof supabase !== 'undefined' && typeof supabase.createClient === 'function');
+
+            try {
+                if (typeof supabase !== 'undefined' && supabase.createClient) {
+                    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    console.log("Supabase client initialized for DME Clinics Quiz:", supabaseClient);
+
+                    // Test the connection
+                    supabaseClient.auth.getSession().then(response => {
+                        console.log("DME Quiz: Supabase connection test - getSession response:", response);
+                    }).catch(error => {
+                        console.error("DME Quiz: Supabase connection test failed:", error);
+                    });
+
+                    // Test table access - try to select from redirections table
+                    testSupabaseTableAccess();
+                } else {
+                    console.error("Supabase client library (supabase.js) is not loaded for DME Clinics Quiz.");
+                }
+            } catch (e) {
+                console.error("Error initializing Supabase client for DME Clinics Quiz:", e.message);
+                console.error("Error stack:", e.stack);
+            }
+        });
+
+        // Function to test Supabase table access
+        async function testSupabaseTableAccess() {
+            console.log("DME Quiz: Testing Supabase table access...");
+            if (!supabaseClient) {
+                console.error("DME Quiz: Cannot test table access - supabaseClient not initialized");
+                return;
+            }
+
+            try {
+                // Test SELECT on redirections table
+                console.log("DME Quiz: Testing SELECT on tctc_quiz_redirections table...");
+                const { data: selectData, error: selectError } = await supabaseClient
+                    .from('tctc_quiz_redirections')
+                    .select('*')
+                    .limit(1);
+
+                if (selectError) {
+                    console.error("DME Quiz: SELECT test failed:", selectError);
+                } else {
+                    console.log("DME Quiz: SELECT test successful:", selectData);
+                }
+
+                // Test INSERT to redirections table
+                console.log("DME Quiz: Testing INSERT to tctc_quiz_redirections table...");
+                const testData = {
+                    user_first_name: "Test",
+                    user_last_name: "Init",
+                    user_business_name: "Table Test",
+                    quiz_score: 0,
+                    outcome_bucket: "test",
+                    awareness_variant: "test",
+                    redirect_url: "test",
+                    source: "test",
+                    redirected_at: new Date().toISOString()
+                };
+
+                const { data: insertData, error: insertError } = await supabaseClient
+                    .from('tctc_quiz_redirections')
+                    .insert([testData])
+                    .select();
+
+                if (insertError) {
+                    console.error("DME Quiz: INSERT test failed:", insertError);
+                    console.error("DME Quiz: Error code:", insertError.code);
+                    console.error("DME Quiz: Error message:", insertError.message);
+                    console.error("DME Quiz: Error details:", insertError.details);
+                } else {
+                    console.log("DME Quiz: INSERT test successful:", insertData);
+                }
+            } catch (e) {
+                console.error("DME Quiz: Exception during table access test:", e);
+            }
+        }
+
         let currentQuestionIndex = 0;
         let userAnswers = []; // DME: Array of scores
         let quizStarted = false;
@@ -353,7 +464,7 @@
                 }
 
                 const answersUl = quizAnswersDiv.querySelector('ul');
-                answersUl.innerHTML = ''; 
+                answersUl.innerHTML = '';
 
                 if (questionData.type === "textarea") {
                     const instructionP = document.createElement('p');
@@ -363,6 +474,26 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> We want to understand your specific challenges so we can tailor our recommendations to address your most pressing needs and help you achieve faster results with your DME business.";
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     const li = document.createElement('li');
                     const textarea = document.createElement('textarea');
@@ -378,7 +509,7 @@
                     answersUl.appendChild(li);
 
                     nextQuestionBtn.textContent = "Next";
-                    nextQuestionBtn.onclick = handleTextareaAnswer; 
+                    nextQuestionBtn.onclick = handleTextareaAnswer;
                     quizNavigationDiv.style.display = 'block';
                     nextQuestionBtn.style.display = 'inline-block';
 
@@ -390,6 +521,49 @@
                     instructionP.style.color = '#666';
                     instructionP.style.marginTop = '5px';
                     h2.after(instructionP);
+
+                    // Remove any existing "why we're asking" explanation
+                    const existingWhyAskingP = quizQuestionDiv.querySelector('.why-asking-explanation');
+                    if (existingWhyAskingP) {
+                        existingWhyAskingP.remove();
+                    }
+
+                    // Add "why we're asking" explanation with specific reasons based on question index
+                    const whyAskingP = document.createElement('p');
+                    whyAskingP.className = 'why-asking-explanation'; // Add a class for easy identification
+                    let whyText = "";
+
+                    // Customize the explanation based on the question
+                    switch(currentQuestionIndex) {
+                        case 0:
+                            whyText = "We're asking because your referral network directly impacts your DME business growth. Your answer helps us identify if strengthening referral relationships should be a priority in your growth plan.";
+                            break;
+                        case 1:
+                            whyText = "We're asking because efficient intake and verification processes significantly affect cash flow and patient satisfaction. Your answer helps us determine if operational improvements could increase your profitability.";
+                            break;
+                        case 2:
+                            whyText = "We're asking because patient education and support directly impact compliance, satisfaction, and referrals. Your answer helps us assess if enhancing your support systems could be a growth lever for your business.";
+                            break;
+                        case 3:
+                            whyText = "We're asking because inventory management and resupply processes are often hidden profit centers in DME businesses. Your answer helps us identify if optimizing these systems could boost your revenue.";
+                            break;
+                        case 4:
+                            whyText = "We're asking because your growth objectives influence which strategies will be most effective for your DME business. Your answer helps us tailor our recommendations to your specific ambitions.";
+                            break;
+                        default:
+                            whyText = "We're asking to better understand your DME business and provide more tailored recommendations for growth.";
+                    }
+
+                    whyAskingP.innerHTML = "<strong>Why we're asking:</strong> " + whyText;
+                    whyAskingP.style.fontSize = '0.85em';
+                    whyAskingP.style.color = '#555';
+                    whyAskingP.style.backgroundColor = '#f8f9fa';
+                    whyAskingP.style.padding = '10px';
+                    whyAskingP.style.borderRadius = '4px';
+                    whyAskingP.style.marginTop = '10px';
+                    whyAskingP.style.marginBottom = '15px';
+                    whyAskingP.style.borderLeft = '3px solid #007bff';
+                    instructionP.after(whyAskingP);
 
                     questionData.answers.forEach((answer) => {
                         const li = document.createElement('li');
@@ -419,7 +593,7 @@
                 alert("Please provide an answer to this question.");
             }
         }
-        
+
         function selectAnswer(score, selectedButton) {
             const buttons = quizAnswersDiv.querySelectorAll('.answer-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
@@ -442,7 +616,7 @@
                 showLeadCaptureForm();
             }
         }
-        
+
         function updateProgressBar() {
             const progress = (currentQuestionIndex / quizQuestions.length) * 100;
             progressBar.style.width = progress + '%';
@@ -454,24 +628,24 @@
             quizNavigationDiv.style.display = 'none';
             progressBarContainer.style.display = 'none';
             leadCaptureForm.style.display = 'block';
-            quizResultDiv.style.display = 'none'; 
+            quizResultDiv.style.display = 'none';
         }
 
         // DME Specific Outcome Logic - REINSTATED
         function determineOutcome(score) {
             if (score >= 5 && score <= 8) return "referrals";
             if (score >= 9 && score <= 12) return "operations";
-            if (score >= 13 && score <= 20) return "growth"; 
-            return "general"; 
+            if (score >= 13 && score <= 20) return "growth";
+            return "general";
         }
 
         async function handleLeadSubmit() {
             const firstName = document.getElementById('first-name').value.trim();
             const lastName = document.getElementById('last-name').value.trim();
-            const businessName = document.getElementById('business-name').value.trim(); 
+            const businessName = document.getElementById('business-name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            
+
             let growth_stifler_response = "";
             const growthStiflerQuestionIndex = quizQuestions.findIndex(q => q.type === "textarea");
             if (growthStiflerQuestionIndex !== -1 && userAnswers[growthStiflerQuestionIndex]) {
@@ -482,7 +656,7 @@
                 alert("Please fill in all required fields in the form.");
                 return;
             }
-            
+
             if (growthStiflerQuestionIndex !== -1 && !userAnswers[growthStiflerQuestionIndex]) {
                  alert("Please ensure all quiz questions, including the open-ended one, are answered.");
                  return;
@@ -494,15 +668,15 @@
 
             let totalScore = userAnswers.reduce((acc, score) => acc + (typeof score === 'number' ? score : 0), 0);
             console.log("DME Total score calculated:", totalScore);
-            
+
             // DME: Construct detailedQuizAnswers - REINSTATED
             const detailedQuizAnswers = userAnswers.map((answerData, index) => {
                 const questionData = quizQuestions[index];
                 if (questionData.type === "textarea") {
                     return {
                         question: questionData.question,
-                        answer: answerData, 
-                        score: null 
+                        answer: answerData,
+                        score: null
                     };
                 }
                 const selectedAnswerObject = questionData.answers.find(ans => ans.score === answerData);
@@ -520,7 +694,7 @@
             const submissionData = {
                 first_name: firstName,
                 last_name: lastName,
-                business_name: businessName, 
+                business_name: businessName,
                 email: email,
                 phone: phone,
                 growth_stifler_response: growth_stifler_response,
@@ -581,34 +755,109 @@
                     dbError = true; // Ensure redirection logic knows there was an issue.
                 }
             }
-            
+
             // await sendQuizSubmissionToSlack(submissionData); // Removed old direct Slack call
 
             // DME Specific Redirection Logic - ADJUSTED
-            const outcomeCategory = determineOutcome(totalScore);
+            determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError);
+        }
 
+        async function determineOutcomeAndRedirect(firstName, lastName, businessName, totalScore, supabaseClient, dbError, sourceParam, supabaseInsertError) {
             const encodedFirstName = encodeURIComponent(firstName);
             const encodedLastName = encodeURIComponent(lastName);
             const encodedBusinessName = encodeURIComponent(businessName);
             const baseParams = `firstName=${encodedFirstName}&lastName=${encodedLastName}&businessName=${encodedBusinessName}&score=${totalScore}`;
+            const sourceAndDbErrorParams = `${sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : ''}&track_source=quiz${dbError ? `&dbError=${encodeURIComponent(supabaseInsertError?.message || 'Unknown error')}` : ''}`;
 
-            let url = '';
-            // Use the supabaseInsertError.message for more specific error reporting
-            const dbErrorString = dbError ? `&dbError=${encodeURIComponent(supabaseInsertError && supabaseInsertError.message ? supabaseInsertError.message : 'Unknown DB Error')}` : '';
-            const sourceString = sourceParam ? `&source=${encodeURIComponent(sourceParam)}` : '';
+            // Determine the outcome bucket based on the score
+            const outcomeCategory = determineOutcome(totalScore);
+            const scoreBucket = outcomeCategory; // referrals, operations, or growth
 
-            url = `../quiz-applications/dme-clinics-${outcomeCategory}-application.html?${baseParams}${sourceString}${dbErrorString}`;
-            
-            // Clean up query string if it starts with an extra '&' after '?'.
-            // This can happen if baseParams is empty (not expected here) or if logic changes.
-            // A more robust way is to build query params array and join.
-            // For now, simple replace for common cases:
-            if (url.includes("?&")) {
-                url = url.replace("?&", "?");
-            } else if (url.endsWith("?")) { // If no params at all, remove trailing ?
-                url = url.slice(0, -1);
+            // Determine which awareness variant to show based on score distribution
+            let awarenessVariant;
+            if (scoreBucket === "referrals") {
+                // Lower scores within this bucket get problem variant, higher get solution variant, etc.
+                if (totalScore <= 6) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 7) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+            else if (scoreBucket === "operations") {
+                if (totalScore <= 10) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 11) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
+            }
+            else { // growth
+                if (totalScore <= 16) {
+                    awarenessVariant = "b-problem"; // Problem Aware
+                } else if (totalScore <= 18) {
+                    awarenessVariant = "a-solution"; // Solution Aware
+                } else {
+                    awarenessVariant = "c-most-aware"; // Most Aware
+                }
             }
 
+            // Construct the new URL with bucket and variant
+            const url = `../quiz-applications/dme-clinics/${scoreBucket}/${scoreBucket}-variant-${awarenessVariant}.html${baseParams ? '?' + baseParams : '?'}${sourceAndDbErrorParams}&bucket=${scoreBucket}&variant=${awarenessVariant}`;
+
+            // Track the redirection in Supabase before redirecting
+            if (supabaseClient) {
+                try {
+                    console.log("DME: About to insert redirection tracking data:", {
+                        user_first_name: firstName,
+                        user_last_name: lastName,
+                        user_business_name: businessName,
+                        quiz_score: totalScore,
+                        outcome_bucket: scoreBucket,
+                        awareness_variant: awarenessVariant,
+                        redirect_url: url,
+                        source: sourceParam || 'organic',
+                        redirected_at: new Date().toISOString()
+                    });
+
+                    const { data, error } = await supabaseClient
+                        .from('tctc_quiz_redirections')
+                        .insert([{
+                            user_first_name: firstName,
+                            user_last_name: lastName,
+                            user_business_name: businessName,
+                            quiz_score: totalScore,
+                            outcome_bucket: scoreBucket,
+                            awareness_variant: awarenessVariant,
+                            redirect_url: url,
+                            source: sourceParam || 'organic',
+                            redirected_at: new Date().toISOString()
+                        }])
+                        .select();
+
+                    if (error) {
+                        console.error('Error tracking DME clinics redirection:', error);
+                        console.error('Error code:', error.code);
+                        console.error('Error message:', error.message);
+                        console.error('Error details:', error.details);
+                        console.error('Error hint:', error.hint);
+                    } else {
+                        console.log('DME clinics redirection tracking successful:', data);
+                    }
+                } catch (e) {
+                    console.error('Exception during DME redirection tracking:', e);
+                    console.error('Exception name:', e.name);
+                    console.error('Exception message:', e.message);
+                    console.error('Exception stack:', e.stack);
+                }
+            } else {
+                console.error('DME: supabaseClient is not initialized for redirection tracking');
+                console.log('DME: Current supabaseClient value:', supabaseClient);
+            }
+
+            // Redirect regardless of tracking success
             console.log("DME: Redirecting to:", url);
             window.location.href = url;
         }
@@ -623,5 +872,7 @@
         });
     </script>
     <script src="../script.js"></script>
+    <script src="../tracking.js"></script>
+    <script src="../tracking-enhanced.js"></script>
 </body>
-</html> 
+</html>

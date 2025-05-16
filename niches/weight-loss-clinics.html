@@ -19,36 +19,42 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
                         <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
-                        <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li> <!-- Current page -->
+                        <li><a href="weight-loss-clinics.html">Weight Loss Clinics</a></li>
                         <li><a href="high-end-chiropractors.html">High-End Chiropractors</a></li>
                         <li><a href="sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
                         <li><a href="hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -66,7 +72,7 @@
                     Imagine <strong>confidently guiding</strong> full programs of motivated clients towards lasting transformation. Our Client Enrollment Engine <strong>powers your impact</strong>, <strong>freeing you</strong> to focus on delivering exceptional care and <strong>achieving</strong> outstanding outcomes.
                     <em>Curious how you can consistently enroll committed clients like this? Our 30-second quiz offers valuable insights.</em>
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz to Learn More</a>
+                <a href="../quiz-start.html" class="cta-button">Reveal Your Clinic's Hidden Growth Potential—Take the 30-Second Quiz</a>
             </div>
         </section>
 
@@ -80,7 +86,7 @@
                     <em>If you're ready to attract more committed clients genuinely seeking sustainable weight loss, our quick 30-second quiz can show you if this is your next best step.</em>
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Discover What's Holding Your Clinic Back—Start the Quiz Now</a>
                 </div>
                 <p class="key-promise">"Stop Dealing with Tire-Kickers. Start Attracting Committed Weight Loss Clients."</p>
             </div>
@@ -95,7 +101,7 @@
                         <em>Curious how this dedicated engine could connect you with more clients committed to their weight loss journey? Our 30-second quiz is the first step.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">See How Top Clinics Attract Committed Clients—Take the Quiz</a>
                     </div>
                 </div>
                 <div class="container mt-3 mb-3">
@@ -107,26 +113,23 @@
                         <em>Take our quick 30-sec quiz to see how.</em>
                     </p>
                     <div class="text-center mt-1 mb-2">
-                        <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Unlock the #1 Strategy to Fill Your Programs—Start the Quiz</a>
                     </div>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Lead" alt="Lead Generation">
                             <h4>The Lead Generation Team</h4>
-                            <p class="team-subtitle">Motivated Prospect Finders</p>
+                            <p class="team-subtitle">MOTIVATED PROSPECT FINDERS</p>
                             <p>Connects you with individuals actively seeking effective weight loss solutions, delivering qualified leads without you navigating the noisy market.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Enroll" alt="Enrollment & Follow-Up">
                             <h4>The Enrollment & Follow-Up Crew</h4>
-                            <p class="team-subtitle">Program Enrollment Specialists</p>
-                            <p>Handles communication and guides qualified leads toward enrollment, freeing your clinical staff to focus on patient care, not sales processes.</p>
+                            <p class="team-subtitle">PROGRAM ENROLLMENT SPECIALISTS</p>
+                            <p>Handles communication and guides qualified leads toward a consultation or appointment, freeing your clinical staff to focus on patient care, not sales processes.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Sys" alt="System Automation">
                             <h4>The System Automation Engine</h4>
-                            <p class="team-subtitle">Efficiency & Engagement Maximizer</p>
-                            <p>Automates patient communication and engagement touchpoints, fostering adherence and saving your team significant administrative time.</p>
+                            <p class="team-subtitle">EFFICIENCY & ENGAGEMENT MAXIMIZER</p>
+                            <p>Relentlessly follows up with every interested lead who hesitated to book—turning "maybe later" into scheduled consultations and ensuring no one slips through the cracks. Your team stays focused on care, while our system quietly fills your programs in the background.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
@@ -143,7 +146,7 @@
                         </p>
                     </div>
                     <div class="text-center mt-2">
-                        <a href="#pricing-niche" class="cta-button secondary">See Our Client Commitment Plans</a>
+                        <a href="../quiz-start.html" class="cta-button secondary">Reveal Your Clinic's Hidden Growth Potential—Take the 30-Second Quiz</a>
                     </div>
                 </div>
             </div>
@@ -162,7 +165,6 @@
                             "We were drowning in leads looking for a magic pill. TurnClicksToClients delivers people who are serious about making a change and understand the commitment involved. Our program completion rates have soared, and so has our reputation!"
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/28a745/FFFFFF?Text=DrW" alt="Clinic Director Photo">
                             <div>
                                 <p class="author-name">Dr. Alisha Khan, Director</p>
                                 <p class="author-niche">Wellness Journey Clinic</p>
@@ -174,7 +176,6 @@
                             "Marketing used to be a constant headache. This system attracts the right clients and helps us keep them engaged throughout their program. We're finally seeing consistent growth and spending less time chasing leads, more time helping patients."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/007bff/FFFFFF?Text=MP" alt="Practice Manager Photo">
                             <div>
                                 <p class="author-name">Mark Jennings, Practice Manager</p>
                                 <p class="author-niche">Vitality Weight Loss Center</p>
@@ -193,7 +194,7 @@
                     <p class="commitment-text" style="text-align: center;">
                          Consistent enrollment of committed clients is key to sustainable clinic growth and impactful patient outcomes. See how attracting the right individuals can revolutionize your practice.
                     </p>
-                    <a href="../index.html#roi-calculator" class="cta-button secondary">Calculate Your Potential ROI Now</a>
+                    <a href="../index.html#roi-calculator" class="cta-button secondary">Reveal Your Clinic's Hidden Growth Potential—Take the 30-Second Quiz</a>
                     <p class="cta-microcopy mt-1">(Factor in higher program completion & client lifetime value)</p>
                  </div>
             </div>
@@ -204,7 +205,7 @@
              <div class="container text-center">
                  <h2 class="mb-1">Ready for Predictable Growth & Impactful Transformations?</h2>
                  <p class="pricing-subtext mb-2">Our plans are designed to deliver qualified, committed clients for leading Weight Loss Clinics. Choose the path to sustainable success.</p>
-                 <a href="../index.html#pricing" class="cta-button primary-cta">View Our Pricing Plans & Special Offer</a>
+                 <a href="../index.html#pricing" class="cta-button primary-cta">Reveal Your Clinic's Hidden Growth Potential—Take the 30-Second Quiz</a>
                  <p class="mt-1">(You'll be taken to our main pricing section)</p>
              </div>
         </section>
@@ -213,7 +214,6 @@
          <section id="guarantee-niche" class="section-padding" style="background-color: #f0fff0;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/28a745/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day Committed Client Lead Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We focus on attracting clients ready for a sustainable weight loss journey. If you don't see a measurable increase in qualified leads genuinely interested in committing to your comprehensive weight loss programs within the first 30 days, you don't pay our service fee. <strong>This provides certainty you'll connect with individuals seeking real guidance, not quick fixes.</strong> Zero risk. Real commitment-ready clients.
@@ -248,19 +248,15 @@
         </section>
 
          <!-- Final CTA Section -->
-        <section id="cta-contact-niche" class="section-padding text-center" style="background: linear-gradient(to right, #28a745, #218838); color: #fff;">
+        <section id="cta-contact-niche" class="section-padding text-center" style="background: linear-gradient(to right, #28a745, #218838); color: #222;">
             <div class="container">
-                <h2>Curious if Your Clinic Can Attract a Steady Stream of Committed Weight Loss Clients?</h2>
-                <p class="cta-subtext mb-2">Stop battling patient churn and ineffective marketing. Our 30-second quiz can help you see if our guaranteed system is the right fit to fill your programs with motivated individuals, before your competitor claims your city.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
-                <p class="cta-microcopy">(Quick, no-obligation check for eligibility & city availability)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Book a Brief Strategy Call</a>.</p>
-                 <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
-                 <p class="cta-ps mt-1">
-                     <strong>P.S.</strong> You're dedicated to guiding clients to lasting weight loss transformations, a success that invariably comes with a price. Will that price be more cycles of patient churn, battling fad diets for attention, and the frustration of programs not reaching their potential? That's a draining way forward.
-                     Or will you choose a system refined over 15+ years, designed to attract committed individuals and support their journey <em>for you</em>?
-                     Our 30-second quiz opens the door to this strategic advantage – a shortcut to impactful outcomes and a thriving clinic. Leaders in wellness build on proven foundations. What will you build on? See if you qualify for the shortcut.
-                 </p>
+                <h2 style="color: #222;">Curious if Your Clinic Can Attract a Steady Stream of Committed Weight Loss Clients?</h2>
+                <p class="cta-subtext mb-2" style="color: #222;">Stop battling patient churn and ineffective marketing. Our 30-second quiz can help you see if our guaranteed system is the right fit to fill your programs with motivated individuals, before your competitor claims your city.</p>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">Find Out What's Possible for Your Clinic—Take the 30-Second Quiz</a>
+                <p class="cta-microcopy" style="color: #333;">(Quick, no-obligation check for eligibility & city availability)</p>
+                <p class="mt-1" style="font-weight: 500;">
+                    Have a burning question? Get instant answers—just click the "Send Us an Instant Message" button below.
+                </p>
             </div>
         </section>
 
@@ -367,5 +363,19 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var chatLinks = document.querySelectorAll('.open-chat-link');
+      var chatModal = document.getElementById('chat-modal');
+      chatLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (chatModal) {
+            chatModal.classList.remove('modal-hidden');
+          }
+        });
+      });
+    });
+    </script>
 </body>
 </html> 

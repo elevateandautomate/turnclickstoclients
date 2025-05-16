@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Offer | TurnClicksToClients.com</title>
+    <meta name="description" content="Your personalized offer based on your application and quiz results.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Special Promotion Box Styles */
+        .special-promotion-box {
+            background-color: #f8f9fa;
+            border: 2px solid #4a90e2;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-promotion-box::before {
+            content: "PERSONALIZED OFFER";
+            position: absolute;
+            top: 10px;
+            right: -35px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8em;
+            font-weight: bold;
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+
+        .promotion-headline {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .promotion-subheadline {
+            font-size: 1.2em;
+            color: #34495e;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .promotion-details {
+            background-color: #f1f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .promotion-scarcity {
+            font-size: 1.1em;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .highlight-strong {
+            background-color: #ffe082;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .promotion-cta {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .promotion-cta:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .promotion-expiry {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .emphasis {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* Pricing Grid Styles */
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .growth-plan {
+            border-top: 5px solid #28a745;
+        }
+
+        .accelerate-plan {
+            border-top: 5px solid #007bff;
+        }
+
+        .fast-track-plan {
+            border-top: 5px solid #6f42c1;
+        }
+
+        .popular {
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .plan-header h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-size: 1.5em;
+        }
+
+        .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .price span {
+            font-size: 0.5em;
+            color: #7f8c8d;
+        }
+
+        .plan-description {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+
+        .pricing-card li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .checkmark {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .primary-cta-pricing {
+            background-color: #007bff;
+        }
+
+        .primary-cta-pricing:hover {
+            background-color: #0069d9;
+        }
+
+        .secondary {
+            background-color: #6f42c1;
+        }
+
+        .secondary:hover {
+            background-color: #5e37a6;
+        }
+
+        .tertiary {
+            background-color: #28a745;
+        }
+
+        .tertiary:hover {
+            background-color: #218838;
+        }
+
+        .pricing-subtext {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        .pricing-tagline {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 30px;
+        }
+
+        .key-promise {
+            font-weight: bold;
+            color: #343a40;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Loading and Error States */
+        .offer-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .offer-error {
+            display: none;
+            background-color: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        /* Fade-in Animation - Disabled for now */
+        /*
+        .fade-in-element {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        */
+    </style>
+</head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <ul>
+                <li style="margin-right: 8px;"><a href="index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="about.html">About Us</a></li>
+                <li style="margin-right: 8px;"><a href="index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="index.html#guarantee">Guarantee</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main aria-label="Main Content">
+        <section id="pricing" class="section-padding" style="padding-top: 40px; padding-bottom: 40px;">
+            <div class="container">
+                <!-- Loading State -->
+                <div id="offer-loading" class="offer-loading">
+                    <div class="spinner"></div>
+                    <p>Generating your personalized offer...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="offer-error" class="offer-error">
+                    <h3>Something went wrong</h3>
+                    <p class="error-message">We couldn't generate your personalized offer. Please try again later.</p>
+                    <button onclick="window.location.reload()" class="cta-button secondary">Try Again</button>
+                </div>
+
+                <!-- Offer Content -->
+                <div id="offer-content" style="display: none;">
+                    <div class="container text-center" style="margin-bottom: 2rem; padding: 1rem; background-color: #e9f5ff; border: 1px solid #add8e6; border-radius: 8px;">
+                        <h3 style="color: #0056b3; font-size: 1.4em; margin-bottom: 0.5rem;">Important Note on Investment:</h3>
+                        <p style="font-size: 1.1em; color: #333;">Our monthly plan fees cover our dedicated teams, strategic work, and system management. <strong>Your advertising spend (e.g., on Facebook Ads) is a separate, client-funded budget that you control.</strong> We'll guide you on optimizing this for the best results. This ensures transparency and allows you to scale your ad investment based on your growth.</p>
+                    </div>
+
+                    <h2 id="offer-headline" class="text-center mb-1">Your Personalized Growth Plan</h2>
+                    <p class="text-center pricing-subtext mb-2">
+                        Prepared exclusively for <span class="business-name business-name-placeholder">your business</span>. Based on your application, we've crafted a custom client attraction strategy designed specifically for your needs and goals.
+                    </p>
+
+                    <!-- Special Promotion Box -->
+                    <div class="special-promotion-box">
+                        <h3 id="offer-subheadline" class="promotion-headline">Your Custom Client Attraction System</h3>
+
+                        <!-- Opening Hook -->
+                        <p id="offer-opening-hook" class="promotion-subheadline"></p>
+
+                        <!-- Problem Agitation -->
+                        <div class="promotion-details">
+                            <p id="offer-problem-agitation"></p>
+                        </div>
+
+                        <!-- Solution Introduction -->
+                        <p id="offer-solution-introduction"></p>
+
+                        <!-- Bullet Points -->
+                        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                            <h4 style="text-align: center; margin-bottom: 15px;">What You'll Get:</h4>
+                            <ul id="offer-bullet-points" style="padding-left: 20px;"></ul>
+                        </div>
+
+                        <!-- Social Proof -->
+                        <p id="offer-social-proof"></p>
+
+                        <!-- Scarcity -->
+                        <p id="offer-scarcity" class="promotion-scarcity">
+                            <span class="icon">⏳</span> <span id="offer-scarcity-text"></span>
+                        </p>
+
+                        <!-- CTA -->
+                        <div style="text-align: center;">
+                            <button id="offer-cta-button" class="promotion-cta">Claim Your City Now</button>
+                            <p id="offer-cta-subtext" class="promotion-expiry"></p>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Grid -->
+                    <div class="pricing-grid">
+                        <div class="pricing-card growth-plan">
+                            <div class="plan-header">
+                                <h3>🚀 Growth Plan</h3>
+                                <p class="price-framed" style="font-size: 1.5em; font-weight: bold; color: #28a745; margin-bottom: 0.25em;">Just $50/day</p>
+                                <p class="price">$1,500<span>/month</span></p>
+                            </div>
+                            <p class="plan-description">Perfect for businesses ready to start booking more appointments now.</p>
+                            <ul>
+                                <li><span class="checkmark">✅</span> Up to $50/day Facebook Ad Spend (Client-Funded)</li>
+                                <li><span class="checkmark">✅</span> Core Lead Generation System</li>
+                                <li><span class="checkmark">✅</span> CRM Setup & Automation Lite</li>
+                                <li><span class="checkmark">✅</span> Dedicated Onboarding Architect</li>
+                                <li><span class="checkmark">✅</span> Monthly Strategy Call</li>
+                            </ul>
+                            <a href="quiz-start.html?source=offerpage-growthplan" class="cta-button tertiary">Apply for Growth Plan</a>
+                            <p class="total-commitment-clarification" style="font-size: 0.8em; margin-top: 0.5em; color: #666;">(Approx. $50/day, billed at $1,500 monthly. Full terms disclosed before payment.)</p>
+                        </div>
+
+                        <div class="pricing-card accelerate-plan popular">
+                            <div class="popular-badge">Most Popular</div>
+                            <div class="plan-header">
+                                <h3>⚡ Accelerate Plan</h3>
+                                <p class="price-framed" style="font-size: 1.5em; font-weight: bold; color: #28a745; margin-bottom: 0.25em;">Only $83/day</p>
+                                <p class="price">$2,500<span>/month</span></p>
+                            </div>
+                            <p class="plan-description">For businesses scaling up with more leads & faster bookings.</p>
+                            <ul>
+                                <li><span class="checkmark">✅</span> Up to $100/day Facebook Ad Spend (Client-Funded)</li>
+                                <li><span class="checkmark">✅</span> Advanced Lead Generation & Nurturing</li>
+                                <li><span class="checkmark">✅</span> Full CRM Automation Suite</li>
+                                <li><span class="checkmark">✅</span> Conversion Crew Access</li>
+                                <li><span class="checkmark">✅</span> Bi-Weekly Strategy Calls</li>
+                            </ul>
+                            <a href="quiz-start.html?source=offerpage-accelerateplan" class="cta-button primary-cta-pricing">Apply for Accelerate Plan</a>
+                            <p class="total-commitment-clarification" style="font-size: 0.8em; margin-top: 0.5em; color: #666;">(Approx. $83/day, billed at $2,500 monthly. Full terms disclosed before payment.)</p>
+                        </div>
+
+                        <div class="pricing-card fast-track-plan">
+                            <div class="plan-header">
+                                <h3>💼 Fast Track Plan</h3>
+                                <p class="price-framed" style="font-size: 1.5em; font-weight: bold; color: #28a745; margin-bottom: 0.25em;">As little as $117/day</p>
+                                <p class="price">$3,500<span>/month</span></p>
+                            </div>
+                            <p class="plan-description">Full-throttle growth, VIP access, and maximum appointment volume.</p>
+                            <ul>
+                                <li><span class="checkmark">✅</span> $100+/day Facebook Ad Spend (Client-Funded)</li>
+                                <li><span class="checkmark">✅</span> All-Inclusive Lead System & Management</li>
+                                <li><span class="checkmark">✅</span> VIP CRM & Automation Customization</li>
+                                <li><span class="checkmark">✅</span> Dedicated Profit Strategist & Loyalty Builders</li>
+                                <li><span class="checkmark">✅</span> Weekly VIP Calls & Reporting</li>
+                            </ul>
+                            <a href="quiz-start.html?source=offerpage-fasttrackplan" class="cta-button secondary">Apply for Fast Track Plan</a>
+                            <p class="total-commitment-clarification" style="font-size: 0.8em; margin-top: 0.5em; color: #666;">(Approx. $117/day, billed at $3,500 monthly. Full terms disclosed before payment.)</p>
+                        </div>
+                    </div>
+
+                    <!-- Offer Details -->
+                    <div id="offer-details-section" style="margin: 2rem 0; background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                        <h3 style="font-size: 1.2rem; color: #1a202c; margin-bottom: 1rem; text-align: center;">Here's Exactly What You Get</h3>
+                        <div id="offer-details" class="offer-description"></div>
+                    </div>
+
+                    <!-- Price Justification -->
+                    <div id="offer-price-section" style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.2rem; color: #1a202c; margin-bottom: 0.5rem; text-align: center;">Investment & Return</h3>
+                        <div id="offer-price-justification" class="offer-description"></div>
+                    </div>
+
+                    <!-- Guarantee -->
+                    <div class="offer-guarantee" style="margin-bottom: 2rem; background-color: #f0fff4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #48bb78;">
+                        <h3 style="font-size: 1.2rem; color: #1a202c; margin-bottom: 0.5rem; text-align: center;">Our Guarantee</h3>
+                        <div id="offer-guarantee" class="offer-description"></div>
+                    </div>
+
+                    <p class="text-center pricing-tagline mt-2">
+                        "More Ad Spend = More Leads → More Booked Appointments → More Clients."
+                    </p>
+                    <p class="text-center mt-2 key-promise">"Your Team. Your System. Your Growth — Done For You."</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="index.html#core-offer">Our Offer</a></li>
+                    <li><a href="index.html#guarantee">Guarantee</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <!-- Supabase Configuration -->
+    <script src="js/supabase-config.js"></script>
+
+    <!-- AI Integration -->
+    <script src="js/openai-integration.js"></script>
+
+    <!-- Offer Variations -->
+    <script src="js/offer-variations.js"></script>
+
+    <!-- ChatGPT Follow-up System -->
+    <script src="js/chatgpt-followup.js"></script>
+
+    <!-- Post-Application Offer Script -->
+    <script src="js/post-application-offer.js"></script>
+
+    <!-- ChatGPT Interface -->
+    <script src="js/chatgpt-interface.js"></script>
+</body>
+</html>

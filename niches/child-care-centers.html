@@ -22,22 +22,29 @@
             line-height: 1.6;
         }
     </style>
-</head>
+
+    <script src="/tracking.js"></script>
+  </head>
 <body>
     <div id="dynamic-booking-banner">
         <p>TurnClicksToClients booked <span id="booked-appointments-count">...</span> appointments this week!</p>
     </div>
     <!-- Consistent Header -->
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                     <ul class="dropdown-menu">
-                        <li><a href="child-care-centers.html">Child Care Centers</a></li> <!-- Current page -->
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
                         <li><a href="non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
@@ -48,10 +55,9 @@
                         <li><a href="dme-clinics.html">DME Clinics</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html#core-offer">Our Offer</a></li>
-                <li><a href="../index.html#pricing">Pricing</a></li>
-                <li><a href="../index.html#guarantee">Guarantee</a></li>
-                <li><a href="#cta-contact-niche" class="cta-button nav-cta">Book a Call</a></li>
+                <li style="margin-right: 8px;"><a href="#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="#guarantee">Guarantee</a></li>
+                <li><a href="../universal-application-form.html" class="cta-button nav-cta">Apply Now</a></li>
             </ul>
         </nav>
     </header>
@@ -61,15 +67,12 @@
         <section id="hero" class="niche-hero section-padding text-center">
             <div class="container">
                 <h1 class="hero-headline-stack">
-                    <span>Drowning in Admin Instead of Nurturing Children?</span>
-                    <span>Our System Fills Your Center & Lets You Reclaim Your Passion – Guaranteed.</span>
+                    <span>Why Most Child Care Centers Struggle to Stay Full—And the 30-Second Quiz That Reveals the Hidden Blockage in Yours</span>
                 </h1>
                 <p class="hero-subheadline">
-                    Is your passion for child care overshadowed by the struggle to keep enrollments high? 
-                    Imagine <strong>stepping into</strong> the joy and confidence of <strong>leading</strong> a center with a thriving waitlist, free from marketing overwhelm. Our dedicated Enrollment Growth Engine <strong>powers this transformation</strong>, allowing you to <strong>achieve and sustain</strong> your focus on nurturing children and making a difference. 
-                    <em>Curious how you can make this your center's reality? Our 30-second quiz offers quick clarity.</em>
+                    Every day, another family drives past your center—unaware that you could give their child the best start in life. Instead, they settle for less, while your classrooms have empty spots and your vision is put on hold. Meanwhile, your passion is buried under admin, and your impact is limited.
                 </p>
-                <a href="#quiz-start" class="cta-button">Take the 30-Sec Quiz & Find Out</a>
+                <a href="../quiz-start.html" class="cta-button">Discover the #1 Reason Parents Aren't Enrolling—Take the 30-Second Quiz</a>
             </div>
         </section>
 
@@ -78,12 +81,10 @@
             <div class="container text-center">
                 <h2 class="mb-2">The Child Care Director's Dilemma: Passion Buried Under the Pressure of What You Lack</h2>
                 <p class="ideal-clients-subtext mb-2">
-                    You poured your heart into creating a nurturing space for children, driven by a passion for early education. But the reality? Unpredictable enrollment dips trigger waves of financial anxiety, highlighting a <strong>lack of stability</strong> that makes payroll stressful and planned improvements impossible. Fierce competition often thrives on marketing systems you <em>lack</em>, forcing you onto a treadmill that feels draining and ineffective.
-                    And YOU are the epicenter, constantly pulled between tasks because you lack the dedicated support systems others might have. Giving tours, endless follow-ups, soothing parent concerns, juggling staff—it all falls on you, burying your strategic vision. Marketing feels like frustrating <strong>guesswork</strong> because many directors lack the proven strategy and specialized team, leaving you feeling overwhelmed, exhausted, and wondering if the dream is fading due to these critical lacks. Is this your reality? 
-                    <em>If you're curious about a more predictable path, our quick 30-second quiz can highlight key opportunities for your center.</em>
+                    You built your center to nurture children, not to worry about empty spots and unpredictable enrollment. But every month, you feel the pressure—wondering if next week's numbers will cover payroll, if you'll have to cut back, or if your dream will slip away. You see other centers with waitlists, but your passion is buried under admin, follow-ups, and the constant stress of not knowing where the next family will come from. You know you can give children the best start, but how do you reach the parents who need you most—before they settle for less?
                 </p>
                 <div class="text-center mt-1 mb-2">
-                    <a href="#quiz-start" class="cta-button secondary">Take the 30-Sec Quiz</a>
+                    <a href="../quiz-start.html" class="cta-button secondary">Find Out What's Holding Your Center Back—Start the Quiz Now</a>
                 </div>
                  <p class="key-promise">"Stop the Enrollment Panic. Fill the Gaps. Start Building Your Thriving, Joyful Center.”</p>
             </div>
@@ -104,42 +105,34 @@
                 <div class="container mt-3 mb-3">
                     <h2 class="text-center mb-1 section-headline">Your Dedicated Enrollment Growth Engine (Filling the Gaps)</h2>
                     <p class="text-center core-offer-subtext mb-2">
-                        Imagine no longer worrying because you <strong>lack</strong> consistent tours. This isn't just marketing; 
-                        it's your dedicated Engine, built to <strong>fill the lack of stability and create a lasting sense of security and freedom for you.</strong> 
-                        Our specialized teams work in concert to eliminate those lacks and help you achieve and maintain this peace of mind:
+                        Imagine waking up and knowing—truly knowing—that your classrooms will be full, your payroll covered, and your vision for your center finally within reach. This isn't just another marketing service. It's a breakthrough system, built to erase the uncertainty and overwhelm that's been holding you back. Our Enrollment Growth Engine is the missing piece—the dedicated team and proven process that transforms you from anxious and overworked to confident, in control, and free to focus on what matters most: nurturing children and growing your legacy.
                     </p>
                     <div class="service-teams-grid">
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/28a745/FFFFFF?Text=Surge" alt="Lead Surge Team">
                             <h4>The Lead Surge Team</h4>
-                            <p class="team-subtitle">Parent Attraction Experts</p>
-                            <p>We handle the targeted advertising to reach families actively seeking quality care, filling your pipeline without you needing to manage ads.</p>
+                            <p class="team-subtitle">Your Parent Attraction Experts</p>
+                            <p>Imagine a team working behind the scenes, day and night, to put your center in front of the right families—parents who are searching for exactly what you offer. No more guessing, no more wasted effort. The Lead Surge Team fills your pipeline so you can focus on what you do best.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/ffc107/333333?Text=Conv" alt="Conversion Crew">
                             <h4>The Conversion Crew</h4>
                             <p class="team-subtitle">Tour Booking & Follow-Up Pros</p>
-                            <p>Manages all lead communication and follow-up, scheduling qualified tours directly for you, freeing up your valuable administrative time.</p>
+                            <p>Picture every inquiry handled with care and speed—no more missed calls, no more lost opportunities. The Conversion Crew turns interest into booked tours, freeing you from endless follow-ups and letting you focus on welcoming new families.</p>
                         </div>
                         <div class="team-card">
-                            <img src="https://via.placeholder.com/60/007bff/FFFFFF?Text=Auto" alt="Automation Engineers">
                             <h4>The Automation Engineers</h4>
                             <p class="team-subtitle">Enrollment System Optimizers</p>
-                            <p>Implements automated communication workflows to ensure no lead falls through the cracks, streamlining your enrollment process effortlessly.</p>
+                            <p>Feel the relief as automated systems ensure no lead ever slips through the cracks. The Automation Engineers create a seamless, stress-free enrollment process, so you can finally step off the hamster wheel and enjoy the growth you've worked so hard for.</p>
                         </div>
                     </div>
                     <div class="unique-mechanism-explanation text-center mt-2 mb-2 fade-in-element">
                         <h4 class="mechanism-headline">The Synergy That Fills Your Gaps & Fuels Your Passion</h4>
                         <p>
-                            Why is this so effective? Because attracting families requires consistent effort that fills the <strong>lack of dedicated marketing focus</strong> many directors face. 
-                            Our teams <strong>handle</strong> the crucial steps, filling the <strong>lack of manpower</strong> and allowing you to feel supported and confident. 
-                            Our automation <strong>ensures</strong> seamless communication, filling the <strong>lack of consistent follow-through</strong> and providing a lasting sense of order. 
-                            This synergy <strong>delivers</strong> consistent results by filling these critical lacks, <strong>making it possible for you</strong> to focus on exceptional care and keep feeling the passion that led you here.
+                            This isn't just a collection of services—it's a finely tuned engine, each team a secret weapon working in harmony to fill the gaps that have held you back. While others struggle with piecemeal solutions, you'll have a system that delivers consistent results, restores your confidence, and lets you lead with passion again.
                         </p>
                     </div>
                     <div class="deeper-benefit-explanation text-center mt-1 mb-2 fade-in-element">
                         <p>
-                            This system <strong>transforms you from an overwhelmed director into a confident leader</strong> whose focus is on nurturing children and staff, not chasing enrollment. It eliminates the lack of predictability, filling the gaps in financial stability and support. <strong>It replaces guesswork with a proven system</strong>, making it possible for you to <em>be</em> the passionate, impactful director of the thriving center you envisioned, operating with joy and purpose, not constant anxiety.
+                            This system transforms you from an overwhelmed director into a confident leader whose focus is on nurturing children and staff, not chasing enrollment. It eliminates the lack of predictability, filling the gaps in financial stability and support. It replaces guesswork with a proven system, making it possible for you to be the passionate, impactful director of the thriving center you envisioned, operating with joy and purpose, not constant anxiety.
                         </p>
                     </div>
                      <div class="text-center mt-2">
@@ -157,26 +150,22 @@
                     Don't just take our word for it – see the real results we deliver for Child Care Directors and Owners.
                 </p>
                 <div class="testimonials-grid">
-                    <!-- Placeholder Testimonial 1 -->
                     <div class="testimonial-card fade-in-element">
                         <p class="testimonial-quote">
-                            "Our waitlist used to be wishful thinking. Since partnering with TurnClicksToClients, we have a *real*, growing waitlist for the first time! The stress relief is incredible, knowing enrollment is handled."
+                            "Our waitlist used to be wishful thinking. Since partnering with TurnClicksToClients, we have a real, growing waitlist for the first time! The stress relief is incredible, knowing enrollment is handled."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/007bff/FFFFFF?Text=Dir" alt="Director Photo">
                             <div>
                                 <p class="author-name">Sarah L., Director</p>
                                 <p class="author-niche">Bright Futures Child Care</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Placeholder Testimonial 2 -->
                     <div class="testimonial-card fade-in-element">
                         <p class="testimonial-quote">
                             "I finally feel like I can focus on my team and the children again. Handing off lead follow-up and tour scheduling to their system was the best decision. We're getting more qualified tours than ever."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://via.placeholder.com/70/28a745/FFFFFF?Text=Owner" alt="Owner Photo">
                             <div>
                                 <p class="author-name">David M., Owner</p>
                                 <p class="author-niche">Little Learners Academy</p>
@@ -190,11 +179,10 @@
         <!-- ROI Teaser Section -->
         <section id="roi-teaser-niche" class="section-padding">
             <div class="container text-center">
-                 <div class="commitment-box fade-in-element" style="border-left-color: #28a745;"> <!-- Using commitment-box style for consistency, green border -->
+                 <div class="commitment-box fade-in-element" style="border-left-color: #28a745;">
                     <h2 class="mb-1">Calculate the Impact: <span class="text-highlight-green">What's Your Center's Growth Potential?</span></h2>
                     <p class="commitment-text" style="text-align: center;">
-                        Beyond the relief of a full schedule, predictable enrollment delivers significant, measurable revenue growth for your center. 
-                        Curious about the potential financial return for your specific situation?
+                        Beyond the relief of a full schedule, predictable enrollment delivers significant, measurable revenue growth for your center. Curious about the potential financial return for your specific situation?
                     </p>
                     <a href="../index.html#roi-calculator" class="cta-button secondary">Calculate Your Potential ROI Now</a>
                     <p class="cta-microcopy mt-1">(See potential revenue increases based on your numbers)</p>
@@ -204,19 +192,18 @@
         
         <!-- Pricing Section (Can link back to main or have tailored view) -->
         <section id="pricing-niche" class="section-padding">
-             <div class="container text-center">
-                 <h2 class="mb-1">Ready to Achieve Predictable Enrollment?</h2>
-                 <p class="pricing-subtext mb-2">Our plans are designed to deliver consistent growth for ambitious Child Care Centers. Choose the path that fits your goals.</p>
-                 <a href="../index.html#pricing" class="cta-button primary-cta">View Our Pricing Plans & Special Offer</a>
-                 <p class="mt-1">(You'll be taken to our main pricing section)</p>
-             </div>
+            <div class="container text-center">
+                <h2 class="mb-1">Ready to See If Your Center Qualifies for Predictable Enrollment?</h2>
+                <p class="pricing-subtext mb-2">Before you even think about pricing, discover if your center is eligible for our Enrollment Growth System. Take the 30-second quiz to reveal your growth potential and see if your city is still available.</p>
+                <a href="../quiz-start.html" class="cta-button secondary">DISCOVER WHAT’S HOLDING YOU BACK</a>
+                <p class="mt-1">(Quick, no-obligation check for eligibility & city availability)</p>
+            </div>
         </section>
 
         <!-- Guarantee Section -->
          <section id="guarantee-niche" class="section-padding" style="background-color: #e9f5ff;">
             <div class="container text-center">
                  <div class="guarantee-box">
-                    <img src="https://via.placeholder.com/100/28a745/FFFFFF?Text=Shield" alt="Guarantee Shield" class="guarantee-icon">
                     <h2 class="mb-1">Our 30-Day Qualified Tour Guarantee + Your Peace of Mind</h2>
                     <p class="guarantee-text mb-2">
                         We're confident our system will bring qualified families to your door. If you don't see a measurable increase in scheduled tours from genuinely interested families actively seeking care within the first 30 days, you don't pay our service fee. <strong>This gives you complete certainty to move forward.</strong> Zero risk. Tangible results for your center.
@@ -254,12 +241,12 @@
         <section id="cta-contact-niche" class="section-padding text-center" style="background: linear-gradient(to right, #007bff, #0056b3); color: #fff;">
             <div class="container">
                 <h2>Curious if Your Center Can Achieve Predictable, Stress-Free Enrollment Growth?</h2>
-                <p class="cta-subtext mb-2">Stop letting empty spots and administrative burdens dictate your center's future. Our 30-second quiz can help you see if our guaranteed system is the right fit before your competitor claims your city.</p>
-                <a href="#quiz-start" class="cta-button primary-cta large-cta">Take the 30-Sec Quiz & See If You Qualify</a>
+                <p class="cta-subtext mb-2" style="color: #222;">Stop letting empty spots and administrative burdens dictate your center's future. Our 30-second quiz can help you see if our guaranteed system is the right fit before your competitor claims your city.</p>
+                <a href="../quiz-start.html" class="cta-button primary-cta large-cta">DISCOVER WHAT’S HOLDING YOU BACK</a>
                 <p class="cta-microcopy">(Quick, no-obligation check for eligibility & city availability)</p>
-                <p class="mt-1">Or, if you have immediate questions: <a href="#" class="book-call-link" style="color: #ffc107;">Book a Brief Strategy Call</a>.</p>
+                <p class="mt-1">Or, click the "Send Us a Message" button and our team will get back to you as soon as possible.</p>
                  <p class="cta-microcopy">(For specific inquiries before taking the quiz)</p>
-                 <p class="cta-ps mt-1">
+                 <p class="cta-ps mt-1" style="color: #222;">
                      <strong>P.S.</strong> You want a thriving child care center, and significant success always has its price. How will you pay it? 
                      Through more seasons of enrollment uncertainty, stressful marketing experiments, and the energy drain of constant worry? That's a heavy price for any director. 
                      Or, will you leverage a system built on 15+ years of expertise, where the complex groundwork has already been laid <em>for you</em>? 

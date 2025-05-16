@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Connection Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <div id="results">Testing connection...</div>
+
+    <script>
+        // Supabase configuration
+        const SUPABASE_URL = 'https://eumhqssfvkyuepyrtlqj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1bWhxc3Nmdmt5dWVweXJ0bHFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1NjE0MDEsImV4cCI6MjA2MjEzNzQwMX0.w-UzQq1G6GIinBdlIcW34KBSoeaAK-knNs4AvL8ct64';
+
+        // Initialize the Supabase client
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('Supabase client created:', supabaseClient);
+
+        // Test the connection
+        async function testConnection() {
+            try {
+                // Test 1: Count records in tctc_user_behavior
+                const { count: behaviorCount, error: behaviorError } = await supabaseClient
+                    .from('tctc_user_behavior')
+                    .select('*', { count: 'exact', head: true });
+
+                if (behaviorError) {
+                    console.error('Error counting tctc_user_behavior:', behaviorError);
+                    document.getElementById('results').innerHTML += `<p>Error counting tctc_user_behavior: ${behaviorError.message}</p>`;
+                } else {
+                    console.log('tctc_user_behavior count:', behaviorCount);
+                    document.getElementById('results').innerHTML += `<p>tctc_user_behavior count: ${behaviorCount}</p>`;
+                }
+
+                // Test 2: Get the most recent records from tctc_user_behavior
+                const { data: recentData, error: recentError } = await supabaseClient
+                    .from('tctc_user_behavior')
+                    .select('*')
+                    .order('timestamp', { ascending: false })
+                    .limit(5);
+
+                if (recentError) {
+                    console.error('Error fetching recent records:', recentError);
+                    document.getElementById('results').innerHTML += `<p>Error fetching recent records: ${recentError.message}</p>`;
+                } else {
+                    console.log('Recent records:', recentData);
+                    document.getElementById('results').innerHTML += `<p>Recent records: ${recentData.length}</p>`;
+                    
+                    if (recentData.length > 0) {
+                        const recordsHtml = recentData.map(record => 
+                            `<li>Event: ${record.event_type}, Time: ${new Date(record.timestamp).toLocaleString()}, User: ${record.user_id}</li>`
+                        ).join('');
+                        
+                        document.getElementById('results').innerHTML += `<ul>${recordsHtml}</ul>`;
+                    }
+                }
+
+                // Test 3: Count records in tctc_quiz_submission
+                const { count: submissionCount, error: submissionError } = await supabaseClient
+                    .from('tctc_quiz_submission')
+                    .select('*', { count: 'exact', head: true });
+
+                if (submissionError) {
+                    console.error('Error counting tctc_quiz_submission:', submissionError);
+                    document.getElementById('results').innerHTML += `<p>Error counting tctc_quiz_submission: ${submissionError.message}</p>`;
+                } else {
+                    console.log('tctc_quiz_submission count:', submissionCount);
+                    document.getElementById('results').innerHTML += `<p>tctc_quiz_submission count: ${submissionCount}</p>`;
+                }
+
+            } catch (error) {
+                console.error('Exception during tests:', error);
+                document.getElementById('results').innerHTML += `<p>Exception during tests: ${error.message}</p>`;
+            }
+        }
+
+        // Run the tests
+        testConnection();
+    </script>
+</body>
+</html>

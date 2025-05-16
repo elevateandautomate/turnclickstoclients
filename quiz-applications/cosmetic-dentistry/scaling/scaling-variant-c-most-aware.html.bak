@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Your Dental Empire: The Scaler™ ELITE Program | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.75; color: #1A202C; /* Darker Gray-Blue */ background-color: #F7FAFC; /* Very Light Gray */ margin: 0; padding: 0; }
+        .result-container { padding: 50px 35px; max-width: 950px; margin: 40px auto; background-color: #fff; border-radius: 15px; box-shadow: 0 15px 45px rgba(0,0,0,0.1); }
+        .result-container h1 { font-family: 'Montserrat', sans-serif; color: #2A4365; /* Dark Slate Blue */ font-size: clamp(2.3em, 5.2vw, 3.2em); margin-bottom: 18px; text-align: center; line-height: 1.25; font-weight: 900; }
+        .result-container h1 .highlight { color: #C53030; /* Dark Red */ }
+        .result-container .subtitle { font-size: clamp(1.2em, 2.8vw, 1.45em); text-align: center; color: #4A5568; /* Medium Gray-Blue */ margin-bottom: 35px; font-weight: normal; }
+        .result-container h2 { font-family: 'Montserrat', sans-serif; color: #2D3748; /* Dark Gray */ font-size: clamp(1.8em, 4.2vw, 2.5em); margin-top: 45px; margin-bottom: 22px; border-bottom: 4px solid #718096; /* Gray Border */ padding-bottom: 12px; }
+        .result-container p { font-size: clamp(1.1em, 2.4vw, 1.2em); color: #2D3748; margin-bottom: 25px; line-height: 1.9; }
+        .result-container ul { list-style: none; padding-left: 0; margin-bottom: 28px; }
+        .result-container li { margin-bottom: 18px; padding-left: 40px; position: relative; font-size: clamp(1.05em, 2.3vw, 1.15em); }
+        .module-item li::before { content: '💎'; color: #718096; /* Gray Diamond */ position: absolute; left: 0; font-size: 1.6em; top: -2px; }
+        .differentiator-item li::before { content: '⚜️'; color: #B794F4; /* Purple Fleur-de-lis */ position: absolute; left: 0; font-size: 1.6em; top: -2px; }
+        .cta-section { text-align: center; padding: 55px 35px; background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%); /* Dark Gray Gradient */ border-radius: 15px; margin-top: 55px; color: #fff; }
+        .cta-button.primary { background-color: #D69E2E; /* Dark Gold */ border: none; color: #1A202C !important; padding: 22px 55px; font-size: 1.5em; font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 7px 20px rgba(0,0,0,0.3); }
+        .cta-button.primary:hover { background-color: #B8860B; /* Darker Gold */ transform: translateY(-3px); box-shadow: 0 9px 25px rgba(0,0,0,0.35); }
+        .user-name-emphasis { font-weight: 900; color: #2A4365; }
+        .testimonial-section { margin-top: 50px; padding-top: 30px; border-top: 2px solid #E2E8F0; /* Light Gray Border */ }
+        .testimonial { background: #EDF2F7; /* Lighter Gray-Blue */ padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 5px 12px rgba(0,0,0,0.08); border-left: 7px solid #718096; }
+        .testimonial p:first-child { font-style: italic; font-size: 1.2em; color: #2D3748; line-height: 1.7; }
+        .testimonial p:last-child { font-weight: bold; margin-top: 22px; color: #1A202C; text-align: right; }
+        .faq-section { margin-top: 50px; }
+        .faq-item { margin-bottom: 18px; background-color: #EDF2F7; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.06); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; font-weight: bold; font-size: 1.2em; color: #1A202C; cursor: pointer; border-bottom: 1px solid #CBD5E0; }
+        .faq-question:hover { background-color: #E2E8F0; }
+        .faq-question.open { background-color: #D2D9E3; border-bottom-color: #2A4365; }
+        .faq-question span.toggle-icon { font-size: 1.6em; transition: transform 0.3s ease; }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; font-size: 1.1em; color: #2D3748; line-height: 1.8; }
+        .faq-answer p { margin: 18px 0; }
+        .faq-question.open + .faq-answer { max-height: 600px; padding: 20px 25px; border-top: 1px solid #CBD5E0; }
+    </style>
+
+    <script src="/tracking.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="result-container">
+        <div class="personalized-greeting" id="personalized-greeting" style="display: none; text-align: center; margin-bottom: 1.3em; font-size: 1.45em; color: #2D3748;"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const firstName = urlParams.get('firstName');
+                const userNameSpan = document.getElementById('user-first-name');
+                const greetingDiv = document.getElementById('personalized-greeting');
+                if (firstName) {
+                    const decodedName = decodeURIComponent(firstName);
+                    if (userNameSpan) userNameSpan.textContent = decodedName;
+                    if (greetingDiv) {
+                        greetingDiv.innerHTML = `Esteemed <span class="user-name-emphasis">${decodedName}</span>, your legacy awaits its architect.`;
+                        greetingDiv.style.display = 'block';
+                    }
+                } else {
+                    if (userNameSpan) userNameSpan.textContent = "Visionary Entrepreneur"; // Fallback
+                     if (greetingDiv) {
+                        greetingDiv.innerHTML = `Esteemed <span class="user-name-emphasis">Visionary Entrepreneur</span>, your legacy awaits its architect.`;
+                        greetingDiv.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+
+        <h1><span id="user-first-name" class="user-name-emphasis">Visionary Entrepreneur</span>, It's Time to Build Your <span class="highlight">Indelible Legacy</span>.</h1>
+        <p class="subtitle">Introducing the "Cosmetic Practice Scaler™ ELITE" Program: The Ultimate Bespoke Partnership for Dominant Market Expansion and Enduring Brand Significance.</p>
+
+        <p>
+            You represent the pinnacle of ambition in cosmetic dentistry. Your sights are set far beyond incremental growth; you envision a multi-state presence, a nationally recognized brand, perhaps even a paradigm shift in how elite cosmetic dentistry is delivered. You require a partner as sophisticated and relentless as your own drive – a team that doesn't just offer services, but co-architects empires. 
+        </p>
+        <p>
+           The <strong>TurnClicksToClients "Cosmetic Practice Scaler™ ELITE"</strong> is that definitive alliance. This is not a program; it's a bespoke, white-glove strategic engagement for the 1% of dental leaders who are genuinely prepared to invest in and execute a vision of this magnitude. We offer unparalleled strategic depth, operational mastery, and a dedicated team focused solely on realizing your grandest ambitions.
+        </p>
+
+        <h2>The ELITE Framework: Pillars of Your Dental Empire</h2>
+        <p>Our ELITE engagement is tailored, but typically encompasses these mission-critical domains, executed at the highest level:</p>
+        <ul class="module-item">
+            <li><strong>National/Supra-Regional Expansion Master-Planning:</strong> Comprehensive geopolitical, demographic, and competitive landscape analysis for multi-state or large regional rollouts. Includes advanced financial modeling, M&A target identification, and de novo build-out strategies.</li>
+            <li><strong>Bespoke Enterprise Operating System (EOS) Design & Deployment:</strong> Crafting and implementing a custom, fully integrated EOS covering clinical protocols, patient journey, marketing, finance, HR, and leadership development, ensuring replicable excellence at scale.</li>
+            <li><strong>Executive Leadership & C-Suite Development:</strong> Strategic counsel on structuring your executive team (CEO, COO, CMO roles), including recruitment support for key hires and ongoing high-level leadership coaching.</li>
+            <li><strong>Apex Brand Architecture & National Thought Leadership:</strong> Developing a brand that transcends local markets to become a nationally recognized symbol of authority and innovation in cosmetic dentistry, including strategies for achieving national media presence and industry influence.</li>
+            <li><strong>Strategic Innovation & Future-Proofing:</strong> Proactive integration of cutting-edge technologies, service delivery models, and patient experience innovations to ensure your enterprise remains at the forefront of the industry for decades to come.</li>
+            <li><strong>Legacy Planning & Exit Strategy Formulation (Optional):</strong> For leaders considering long-term wealth creation and succession, we provide discreet advisory services on structuring your enterprise for maximum valuation and seamless transition or sale.</li>
+        </ul>
+
+        <h2>The ELITE Differentiators: An Unparalleled Partnership</h2>
+        <ul class="differentiator-item">
+            <li><strong>Exclusively for Empire-Builders:</strong> This is a highly selective partnership reserved for visionary dentists with proven success and the resources for transformative, large-scale investment.</li>
+            <li><strong>Truly Bespoke & Co-Creative:</strong> We don't use templates. Your ELITE strategy is built from the ground up, in deep collaboration with you and your core team.</li>
+            <li><strong>Dedicated C-Level Strategic Team:</strong> You gain access to a dedicated team of our most senior strategists, operational experts, and creative directors.</li>
+            <li><strong>Absolute Discretion & Confidentiality:</strong> We understand the sensitive nature of empire-level ambitions and operate with the utmost discretion.</li>
+            <li><strong>Focus on Enduring Legacy & Generational Impact:</strong> Our goal is to help you build an enterprise that defines excellence and creates a lasting positive impact on the field of cosmetic dentistry.</li>
+        </ul>
+
+        <div class="testimonial-section">
+            <h2>Testimonials from Dental Industry Titans</h2>
+            <div class="testimonial">
+                <p>"Scaling beyond a few successful locations into a true regional force required a level of strategic thinking and operational systemization we hadn't anticipated. The Scaler ELITE engagement was transformative. They helped us architect not just a business, but an institution. Their C-level insights were invaluable."</p>
+                <p>- Dr. Alistair Finch, CEO, Sovereign Dental Holdings</p>
+            </div>
+            <div class="testimonial">
+                <p>"My vision was to create a national brand synonymous with the highest echelon of cosmetic artistry. The TurnClicksToClients ELITE team became my indispensable partners in this journey, from refining the national brand strategy to orchestrating our multi-state expansion. This is for those who dream really, really big."</p>
+                <p>- Dr. Isabella Monroe, Founder, The Monroe Aesthetic Institute (National)</p>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>Frequently Asked Questions About the Scaler™ ELITE Program</h2>
+            <div class="faq-item">
+                <div class="faq-question">What is the typical investment for the Scaler™ ELITE Program? <span class="toggle-icon">+</span></div>
+                <div class="faq-answer">
+                    <p>The Scaler™ ELITE Program is a significant strategic investment, reflecting the depth of expertise, dedicated C-level team involvement, and bespoke nature of the engagement. Investment levels are customized based on the scale of your ambition, current enterprise size, and the specific scope of work, typically starting in the multiple six-figure range annually. This is for leaders who understand that building an empire requires world-class strategic partnership.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How long is an ELITE engagement? <span class="toggle-icon">+</span></div>
+                <div class="faq-answer">
+                    <p>ELITE engagements are typically multi-year partnerships, often spanning 24-36 months or longer, depending on the complexity and timeline of your empire-building goals. We are committed to seeing your grand vision through to fruition and beyond.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What level of access do I have to the TurnClicksToClients team? <span class="toggle-icon">+</span></div>
+                <div class="faq-answer">
+                    <p>As an ELITE partner, you have direct, priority access to our founding partners and a dedicated team of our most senior C-level strategists, operational architects, and creative directors. This ensures the highest level of strategic thinking and execution is applied to your enterprise.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do you ensure alignment with my unique vision and brand? <span class="toggle-icon">+</span></div>
+                <div class="faq-answer">
+                    <p>The ELITE program is fundamentally co-creative. We begin with an intensive deep-dive immersion into your vision, values, brand DNA, and long-term objectives. Every strategy, system, and deliverable is then custom-crafted and validated against this core understanding to ensure perfect alignment and authentic representation of your unique legacy.</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.querySelectorAll('.faq-question').forEach(item => {
+                item.addEventListener('click', () => {
+                    const currentlyOpen = document.querySelector('.faq-question.open');
+                    if (currentlyOpen && currentlyOpen !== item) {
+                        currentlyOpen.classList.remove('open');
+                        currentlyOpen.querySelector('.toggle-icon').textContent = '+';
+                        currentlyOpen.nextElementSibling.style.maxHeight = '0';
+                        currentlyOpen.nextElementSibling.style.padding = '0 25px';
+                    }
+                    item.classList.toggle('open');
+                    const answer = item.nextElementSibling;
+                    const toggleIcon = item.querySelector('.toggle-icon');
+                    if (item.classList.contains('open')) {
+                        answer.style.maxHeight = answer.scrollHeight + 40 + "px";
+                        answer.style.padding = '20px 25px';
+                        toggleIcon.textContent = '−';
+                    } else {
+                        answer.style.maxHeight = '0';
+                        answer.style.padding = '0 25px';
+                        toggleIcon.textContent = '+';
+                    }
+                });
+            });
+        </script>
+
+        <div class="cta-section">
+            <style>
+                 .cta-section p, .cta-section ul, .cta-section h2, .cta-section h3, .cta-section li, .cta-section div { color: #fff !important; }
+                 .cta-section .cta-button.primary { background-color: #D69E2E; color: #1A202C !important; text-shadow: none; }
+                 .cta-section .cta-button.primary:hover { background-color: #B8860B; }
+                 .cta-section span[style*="color: #D69E2E"] { color: #D69E2E !important; }
+            </style>
+            <h2 style="font-size: 2.6em; margin-bottom: 30px;">Ready to Stop Missing Out on the Success Other Professionals Are Already Enjoying?</h2>
+            
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You're Currently Missing Out On:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you worry about inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> Rather than stressing about marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day you wait is another day of missed opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p style="font-size: 1.35em; margin: 0 auto 38px auto; max-width: 850px; opacity: 0.95;">The "Cosmetic Practice Scaler™ ELITE" Program is reserved for the few who are not just building a business, but crafting a dynasty. If your ambition matches this level of strategic partnership, we invite you to apply for a confidential exploratory discussion.</p>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 38px; border-radius: 12px; margin: 45px 0; display: inline-block; border: 1px solid rgba(255,255,255,0.2); text-align: left;">
+                <h3 style="color: #D69E2E; margin-bottom: 25px; font-size: 2em; text-align: center;">Your ELITE Application Initiates:</h3>
+                 <ul style="list-style: none; padding: 0; max-width: 600px; margin: 0 auto; font-size: 1.25em;">
+                    <li style="margin-bottom: 15px; padding-left: 30px; position: relative;"> <span style="position: absolute; left: 0px; top: 0px; color: #D69E2E; font-weight: bold;">✓</span> A confidential, high-level consultation with our founding partners.</li>
+                    <li style="margin-bottom: 15px; padding-left: 30px; position: relative;"> <span style="position: absolute; left: 0px; top: 0px; color: #D69E2E; font-weight: bold;">✓</span> An initial assessment of your empire-scale vision and its strategic imperatives.</li>
+                    <li style="margin-bottom: 15px; padding-left: 30px; position: relative;"> <span style="position: absolute; left: 0px; top: 0px; color: #D69E2E; font-weight: bold;">✓</span> Exploration of a potential bespoke partnership to construct your national or supra-regional enterprise.</li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.3em; margin: 38px 0 30px 0; font-weight: bold;">This is more than scaling; it's about defining the future of cosmetic dentistry. <span style="color: #D69E2E;">The Scaler™ ELITE partnership is by invitation and mutual agreement only.</span></p>
+            
+            <a href="../../../universal-application-form.html?niche=cosmetic-dentistry&bucket=scaling&variant=C_MostAwareELITE" class="cta-button primary">Apply for an ELITE Legacy Partnership</a>
+            <div style="font-size: 1.25em; color: #fff; margin-top: 25px; font-weight: 600; letter-spacing: 0.5px;">TurnClicksToClients: Co-Architects of Dental Empires.</div>
+
+            <div style="margin-top: 45px; padding: 25px; background: rgba(0,0,0,0.3); border-radius: 12px; max-width: 750px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; font-size: 1.1em;">⚜️ Your grandest vision deserves an equally grand strategic alliance. Confidentiality is paramount.</p>
+            </div>
+        </div>
+    
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible (That You're Missing Out On)</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">The Gap Between You and These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div></main>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+<script> // Navigation Hamburger Script
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.getElementById('main-nav');
+    if (hamburger && navUl) {
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-parent').forEach(li => li.classList.remove('open'));
+        }
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            navUl.classList.toggle('active');
+            if (!isExpanded) {
+                hamburger.setAttribute('aria-label', 'Close navigation');
+            } else {
+                hamburger.setAttribute('aria-label', 'Open navigation');
+                closeAllDropdowns();
+            }
+        });
+        document.querySelectorAll('.dropdown-parent > a').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const parentLi = anchor.closest('.dropdown-parent');
+                if (window.innerWidth <= 768) { // Only enable toggle on mobile
+                    if (e.target.classList.contains('dropdown-arrow') || anchor.getAttribute('href') === '#ideal-clients' || anchor.getAttribute('href').includes('index.html#ideal-clients')) { // Allow toggle if arrow or main link clicked
+                        e.preventDefault();
+                        parentLi.classList.toggle('open');
+                        // Close other open dropdowns
+                        document.querySelectorAll('.dropdown-parent').forEach(li => {
+                            if (li !== parentLi) {
+                                li.classList.remove('open');
+                            }
+                        });
+                    } else if (!parentLi.classList.contains('open')) { // If a sub-item is clicked and dropdown is closed, open it.
+                         parentLi.classList.add('open');
+                    }
+                    // If a sub-item is clicked and dropdown is open, let the link work.
+                } else { // Desktop behavior: allow hover/focus to open, click navigates
+                    if (anchor.getAttribute('href') === '#ideal-clients' || anchor.getAttribute('href').includes('index.html#ideal-clients')) {
+                        e.preventDefault(); // Prevent jump for main "Clients We Serve" link on desktop
+                    }
+                }
+            });
+        });
+         document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown-parent') && !e.target.closest('.hamburger')) {
+                closeAllDropdowns();
+            }
+            if (navUl.classList.contains('active') && !e.target.closest('nav') && !e.target.closest('.hamburger')) {
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open navigation');
+                navUl.classList.remove('active');
+                closeAllDropdowns();
+            }
+        });
+    }
+</script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>⚜️</span> Inquire About ELITE Legacy Partnership
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Confidential ELITE Partnership Inquiry</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>For Visionary Leaders Ready to Build a National Dental Enterprise:</strong><br>
+                    The "Cosmetic Practice Scaler™ ELITE" program is a bespoke, C-level strategic alliance. Use this confidential channel to initiate a discussion with our founding partners about your empire-scale ambitions.
+                    <br><em>All inquiries are treated with the utmost discretion.</em><br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled>Select your industry...</option>
+                             <option value="Cosmetic Dentists" selected>Cosmetic Dentists</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name (Principal)</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Current Enterprise Name / Holding Group</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Confidential Email Address</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Direct Phone Number</label>
+                        <input type="tel" id="chat-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Briefly outline your grand vision or key strategic question for an ELITE partnership:</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., We aim for a 20-state presence in 10 years. Seeking strategic partners for national brand architecture. Interested in M&A strategies for rapid expansion."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Submit Confidential ELITE Inquiry</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Inquiry Received.</h3>
+                    <p>Thank you. Your confidential inquiry for the Scaler™ ELITE Program has been securely transmitted to our executive team. A founding partner will be in contact with you personally within one business day to arrange a discreet discussion.</p>
+                    <p>You may now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script> // Chat Modal Script
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatWidgetButton = document.getElementById('chat-widget-button');
+        const chatModal = document.getElementById('chat-modal');
+        const chatModalClose = document.getElementById('chat-modal-close');
+        const chatContactForm = document.getElementById('chat-contact-form');
+        const chatSuccessMessage = document.getElementById('chat-success-message');
+
+        if (chatWidgetButton && chatModal && chatModalClose && chatContactForm && chatSuccessMessage) {
+            chatWidgetButton.addEventListener('click', function() {
+                chatModal.classList.remove('modal-hidden');
+                chatModal.classList.add('modal-visible');
+            });
+
+            chatModalClose.addEventListener('click', function() {
+                chatModal.classList.add('modal-hidden');
+                chatModal.classList.remove('modal-visible');
+            });
+
+            chatModal.addEventListener('click', function(event) {
+                if (event.target === chatModal) {
+                    chatModal.classList.add('modal-hidden');
+                    chatModal.classList.remove('modal-visible');
+                }
+            });
+
+            chatContactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                chatContactForm.style.display = 'none';
+                chatSuccessMessage.style.display = 'block';
+            });
+        }
+
+        const industrySelect = document.getElementById('chat-industry');
+        const industries = [
+            "Child Care Centers", "PMU Artists", "Non-Surgical Body Contouring", 
+            "Weight Loss Clinics", "High-End Chiropractors", "Sleep Apnea & Snoring Clinics",
+            "Hearing Aid & Audiology", "DME Clinics"
+        ];
+        if (industrySelect) {
+            industries.forEach(industry => {
+                if (industry !== "Cosmetic Dentists") { 
+                    const option = document.createElement('option');
+                    option.value = industry;
+                    option.textContent = industry;
+                    industrySelect.appendChild(option);
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html> 
