@@ -22,9 +22,9 @@
 
     <script src="/tracking.js"></script>
       <link rel="stylesheet" href="../../mobile_optimization.css">
-    <link rel="stylesheet" href="../../hamburger_fix.css">
     <link rel="stylesheet" href="../../chat_widget_improvements.css">
-    <link rel="stylesheet" href="../../hamburger_clickable_fix.css">
+    <link rel="stylesheet" href="../../text_spacing.css">
+    <link rel="stylesheet" href="../../improved_hamburger_fix.css">
 </head>
 <body>
     <div id="dynamic-booking-banner">
@@ -42,9 +42,9 @@
             <ul id="main-nav">
                 <li style="margin-right: 8px;"><a href="../index.html">Home</a></li>
                 <li style="margin-right: 8px;"><a href="../about.html">About Us</a></li>
-                <li class="dropdown-parent" style="margin-right: 8px;">
-                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
-                    <ul class="dropdown-menu">
+                <li class="dropdown nav-item-parent" style="margin-right: 8px;">
+                    <a href="../index.html#ideal-clients">Clients We Serve <span class="dropdown nav-item-arrow">▼</span></a>
+                    <ul class="dropdown nav-item-menu">
                         <li><a href="child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="cosmetic-dentists.html">Cosmetic Dentists</a></li>
                         <li><a href="pmu-artists.html">PMU Artists</a></li>
@@ -313,7 +313,7 @@
 
     <!-- Chat Button and Modal -->
     <div id="chat-widget-button">
-        <span>💬</span> Have a ?<br>Click Here To Send Us a Instant Message
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span> Chat
     </div>
     <div id="chat-modal" class="modal-hidden">
         <div class="chat-modal-content">
@@ -325,7 +325,7 @@
                 <p>
                     <strong>Connect with Our Team Live!</strong><br>
                     Mon-Fri, 10am - 5pm EST: Expect a reply within the hour.<br>
-                    After hours & weekends: We'll get back to you first thing next business morning.<br><br>
+                    After hours & weekends: We'll get back to you first thing next business morning.</p><p>
                     Let us know how we can help your business grow! Please fill out the form below.
                 </p>
                 <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
@@ -377,7 +377,7 @@
         <div id="chat-body" class="chat-body">
             <p>Welcome! How can we help you today? Select your industry to get started or ask a general question.</p>
             <div id="initial-options" class="initial-options">
-                <select id="industry-dropdown" class="industry-dropdown">
+                <select id="industry-dropdown" class="industry-dropdown nav-item">
                     <option value="">-- Select Your Industry --</option>
                     <!-- Options will be populated by script.js -->
                 </select>
@@ -405,6 +405,6 @@
 
     <script src="../supabaseClient.js"></script>
     <script src="../script.js"></script>
-    <script src="../../hamburger_fix.js"></script>
+    <script src="../../improved_hamburger_fix.js"></script>
 </body>
 </html> 
