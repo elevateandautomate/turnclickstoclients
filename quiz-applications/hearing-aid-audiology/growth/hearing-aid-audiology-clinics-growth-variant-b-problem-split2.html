@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stuck in a Growth Plateau? Break Through with a Strategic System | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #4a4a4a; background-color: #fcfdfe; /* Very Light, almost white */ margin: 0; padding: 0; }
+        .problem-page-container { padding-top: 20px; padding-bottom: 40px; }
+        .problem-container { max-width: 900px; margin: 30px auto; padding: 40px 50px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 35px rgba(0, 50, 100, 0.08); }
+        .problem-header { text-align: center; margin-bottom: 40px; padding-bottom: 25px; border-bottom: 4px solid #dc3545; /* Red for problem */ }
+        .problem-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2em, 5vw, 3.1em); color: #b22222; /* Firebrick Red */ margin-bottom: 0.4em; line-height: 1.3; }
+        .problem-header .personalized-greeting { font-size: clamp(1.2em, 2.8vw, 1.4em); color: #c9302c; /* Darker Red */ font-weight: 700; margin-bottom: 0.7em; }
+        .problem-header .sub-headline { font-size: clamp(1.1em, 2.4vw, 1.25em); color: #5a5a5a; max-width: 760px; margin: 0 auto; line-height: 1.65; }
+        .empathy-section { margin-bottom: 40px; background-color: #fff5f5; /* Lightest Red */ border-left: 6px solid #b22222; padding: 35px; border-radius: 10px; }
+        .empathy-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.7em, 4vw, 2.3em); color: #a52a2a; /* Brown-Red */ margin-top: 0; margin-bottom: 22px; }
+        .empathy-section ul { list-style: none; padding-left: 0; }
+        .empathy-section ul li { position: relative; padding-left: 32px; margin-bottom: 15px; font-size: clamp(1.05em, 2.2vw, 1.15em); color: #4a4a4a; line-height: 1.75; }
+        .empathy-section ul li::before { content: '❓'; position: absolute; left: 0; color: #c9302c; font-size: 1.4em; top: 1px; }
+        .core-problem-section { margin-bottom:40px; padding:30px; background-color: #fffaf0; /* FloralWhite - light orange/yellow */ border: 1px solid #ffe4b5; /* Moccasin border */ border-radius:8px; text-align:center;}
+        .core-problem-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6em, 3.8vw, 2.2em); color: #d9534f; /* Soft Red */ margin-top:0; margin-bottom:18px; }
+        .solution-intro-section { margin-bottom: 40px; padding: 35px; background-color: #e6f7ff; /* Light Blue/Cyan */ border-left: 6px solid #007bff; /* Bright Blue */ border-radius: 10px;}
+        .solution-intro-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.7em, 4vw, 2.3em); color: #0056b3; /* Darker Blue */ margin-top: 0; margin-bottom: 22px; }
+        .solution-intro-section ul li::before { content: '💡'; color: #007bff; font-size:1.4em; top:1px; }
+        .solution-intro-section p, .solution-intro-section ul li { font-size: clamp(1.05em, 2.2vw, 1.15em); color: #2c3e50;}
+        .cta-section { text-align: center; padding: 45px 40px; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Blue Solution Gradient */ border-radius: 12px; margin-top: 45px; color: #fff; }
+        .cta-section h2 { font-family: 'Montserrat', sans-serif; color: #fff; margin-bottom: 20px; font-size: clamp(1.8em, 4.2vw, 2.5em); }
+        .cta-section p { color: #eafaff; margin-bottom: 30px; font-size: clamp(1.1em, 2.3vw, 1.3em); max-width:760px; margin-left:auto; margin-right:auto;}
+        .cta-button.primary { background-color: #ffc107; /* Amber/Gold for Action */ border: none; color: #212529 !important; padding: 20px 45px; font-size: 1.4em; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(0,0,0,0.22); }
+        .cta-button.primary:hover { background-color: #e0a800; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.28); }
+        .user-name-emphasis { font-weight: 900; color: #b22222; }
+        .testimonial-placeholder { background-color: #fef9e7; border: 2px dashed #f7dc6f; color: #b7950b; padding: 25px; text-align: center; margin: 30px 0; border-radius: 8px; font-style: italic;}
+
+        @media (max-width: 768px) {
+            .problem-container { margin: 20px 15px; padding: 30px 25px; }
+            .empathy-section, .solution-intro-section { padding: 28px; }
+            .problem-header h1 {font-size: 2em;}
+            .empathy-section h2, .solution-intro-section h2 {font-size: 1.6em;}
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="/split-test-redirect.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="problem-page-container">
+        <div class="problem-container">
+            <div class="problem-header">
+                <div class="personalized-greeting" id="personalized-greeting">Hello [First Name],</div>
+                <h1>Is Your Audiology Clinic's Growth Stagnant, <span class="user-name-emphasis">[First Name]</span>? Ready to Break Through the Plateau?</h1>
+                <p class="sub-headline">Your quiz results suggest you've built a solid practice, but now face the challenge of scaling further, differentiating in a competitive market, or expanding your services effectively. These are common hurdles for ambitious clinic owners.</p>
+            </div>
+
+            <div class="empathy-section">
+                <h2>Are These Growth Frustrations Holding Your Clinic Back?</h2>
+                <ul>
+                    <li><strong>Hitting a Growth Ceiling:</strong> Your patient numbers have plateaued, and current efforts aren't delivering the expansion you envision.</li>
+                    <li><strong>Struggling to Become a Market Leader:</strong> Competitors seem to be gaining more visibility, and your clinic isn't recognized as the go-to authority.</li>
+                    <li><strong>Uncertainty About Strategic Expansion:</strong> Hesitant to add new services, providers, or locations due to lack of a clear, systematic plan for success.</li>
+                    <li><strong>Ineffective High-Level Marketing:</strong> Current marketing feels piecemeal, not sophisticated enough to attract high-value patients or support brand leadership.</li>
+                    <li><strong>Missed Opportunities for Patient Reactivation:</strong> Lacking a system to re-engage past patients and maximize their lifetime value to the clinic.</li>
+                    <li><strong>Overwhelmed by Complex Growth Strategies:</strong> The idea of multi-channel marketing, PR, and brand building feels too complex to implement alone.</li>
+                </ul>
+                <p style="margin-top:25px; font-weight:bold; color: #a52a2a;">If these challenges resonate, you're likely missing a comprehensive, strategic system designed for advanced audiology practice growth. It's frustrating to see your clinic's potential unrealized.</p>
+            </div>
+
+            <div class="core-problem-section">
+                <h2>The Core Problem: Lacking a Strategic System for Advanced Growth & Market Leadership</h2>
+                <p style="font-size: clamp(1.1em, 2.3vw, 1.2em); color: #4a4a4a; margin-bottom:18px;">
+                   Relying on past successes or ad-hoc marketing won't propel your established audiology clinic to the next level of market leadership and scalable growth. Without a dedicated, sophisticated system to <strong style="color:#c9302c;">strategically build your brand, attract high-value patient segments, and systematically expand your operations</strong>, your clinic will continue to face these growth ceilings and competitive pressures.
+                </p>
+                <p style="font-size: clamp(1.1em, 2.3vw, 1.2em); color: #4a4a4a;">
+                    It's time to move beyond basic tactics and implement a proven framework for sustained, advanced growth.
+                </p>
+            </div>
+
+            <div class="solution-intro-section">
+                <h2>The Solution for Ambitious Growth: Introducing the "Audiology Growth & Leadership System™"</h2>
+                <p>
+                    Imagine your clinic not just growing, but strategically scaling, expanding its influence, and becoming the undisputed leader in your audiology market. The <strong>TurnClicksToClients "Audiology Growth & Leadership System™"</strong> is engineered to make this your reality. It's your comprehensive toolkit to diagnose and overcome growth plateaus, implementing a predictable system for market dominance and sustainable expansion.
+                </p>
+                <h3 style="color: #0056b3; margin-top:28px; margin-bottom:18px;">How Our System Addresses Your Growth Bottlenecks:</h3>
+                <ul style="list-style:none; padding-left:0;">
+                    <li><strong>Break Through Growth Ceilings:</strong> We implement advanced, multi-channel marketing strategies designed to reach new high-value patient segments and drive consistent growth.</li>
+                    <li><strong>Build Market Leadership:</strong> Our system includes strategic brand building, PR initiatives, and community engagement plans to position your clinic as the premier authority.</li>
+                    <li><strong>Enable Confident Expansion:</strong> Receive proven blueprints and support for adding specialized services, new providers, or even additional clinic locations.</li>
+                    <li><strong>Maximize Patient Lifetime Value:</strong> Implement sophisticated patient reactivation and loyalty programs to unlock hidden revenue and build lasting relationships.</li>
+                    <li><strong>Simplify Complex Strategies:</strong> We provide the expertise and done-for-you execution of advanced marketing and growth tactics, so you can focus on patient care and leadership.</li>
+                </ul>
+            </div>
+            
+            <div class="testimonial-placeholder">
+                <p><strong>Audiologists Who Broke Through Their Growth Barriers:</strong> We'll soon share inspiring stories from clinic owners who overcame stagnation and achieved new levels of success with the Audiology Growth & Leadership System™!</p>
+            </div>
+
+            <div class="cta-section">
+                 <style> /* CTA-specific styles for text color */
+                    .cta-section h2, .cta-section p { color: #fff !important; }
+                    .cta-section .cta-button.primary { color: #212529 !important; } 
+                </style>
+                
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2017, we've been helping audiology practices attract qualified patients who are ready to invest in better hearing.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our team developed this system after seeing how traditional marketing approaches failed to overcome the stigma and price objections common in the hearing aid market.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our approach has evolved from basic lead generation to a sophisticated education-first system that addresses objections before patients ever walk through your door.</p>
+    </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> An audiology practice in Florida increased their average sale value by 40% while reducing their no-show rate by half.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A clinic in Arizona now consistently fits 25-30 new hearing aid patients monthly with an average value of $4,800 per patient.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A practice in Michigan reduced their marketing cost per acquisition from $900 to under $300 while increasing their closing rate.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> Practices using our system for 2+ years have built sustainable businesses with strong word-of-mouth referrals and reduced dependence on manufacturer marketing support.</p>
+    </div>
+</div>
+<h2>Ready to Create the Success Other Professionals Are Already Enjoying?</h2>
+                
+        <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin: 25px 0; text-align: left; border-left: 4px solid #FFC107;">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">What You'll Soon Be Achieving:</h3>
+            <ul style="text-align: left; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 15px;"><strong>The Proven System:</strong> While you're struggling, others are leveraging a system that automatically brings ideal clients to their door.</li>
+                <li style="margin-bottom: 15px;"><strong>The Financial Security:</strong> As you prepare for inconsistent revenue, others with this system enjoy predictable, growing income month after month.</li>
+                <li style="margin-bottom: 0;"><strong>The Peace of Mind:</strong> By confidently managing marketing, these professionals sleep well knowing their client pipeline is consistently full.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 1.2em; font-weight: bold; margin: 25px 0;">Every day with this system means more opportunities and falling further behind those who have already implemented this system.</p>
+        
+
+<p>Don't let growth plateaus or market complexities limit your audiology clinic's potential. Let's diagnose your specific challenges and outline a clear, strategic plan to implement a proven system that propels your practice forward.</p>
+                
+                <div class="highlight-box-cta" style="background: rgba(255,255,255,0.09); padding: 28px; border-radius: 8px; margin: 32px auto; display: inline-block; border: 1px solid rgba(255,255,255,0.28); max-width: 680px;">
+                    <h3 style="margin-top:0; margin-bottom: 18px; font-size: 1.45em; color: #ffc107 !important;">Your Growth Bottleneck Diagnostic Session Will Reveal:</h3>
+                     <ul style="list-style: none; padding: 0; text-align: left; font-size: 1.1em; color: #eafaff !important;">
+                        <li style="margin-bottom: 12px; padding-left: 28px; position: relative;"> <span style="position: absolute; left: 0px; top: -1px; font-weight: bold; color: #ffc107 !important;">✓</span> The primary factors currently limiting your clinic's ability to scale and lead the market.</li>
+                        <li style="margin-bottom: 12px; padding-left: 28px; position: relative;"> <span style="position: absolute; left: 0px; top: -1px; font-weight: bold; color: #ffc107 !important;">✓</span> High-impact, actionable strategies to immediately address these bottlenecks and unlock new growth opportunities.</li>
+                        <li style="margin-bottom: 12px; padding-left: 28px; position: relative;"> <span style="position: absolute; left: 0px; top: -1px; font-weight: bold; color: #ffc107 !important;">✓</span> A transparent overview of how the "Audiology Growth & Leadership System™" provides a long-term, sustainable solution for achieving your most ambitious goals.</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top:28px; margin-bottom:28px; font-weight:bold;">It's time to transform your growth frustrations into strategic achievements. This no-obligation diagnostic session is your first step towards unlocking your clinic's true potential.</p>
+                <a href="../../../universal-application-form.html?niche=hearing-aid-audiology&bucket=growth&variant=B_Problem" class="cta-button primary">Apply for Your Growth Bottleneck Diagnostic Session</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The path to joining these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">Your opportunity is to implement a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>You have all the talent and dedication needed. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system you're currently missing.</strong></p>
+</div>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstName = params.get('firstName');
+            const greetingElement = document.getElementById('personalized-greeting');
+            const userNameElements = document.querySelectorAll('.user-name-emphasis');
+
+            if (firstName) {
+                const decodedName = decodeURIComponent(firstName);
+                if (greetingElement) {
+                    greetingElement.innerHTML = `Hello <span class="user-name-emphasis">${decodedName}</span>,`;
+                }
+                userNameElements.forEach(el => {
+                    if (el.parentNode.tagName === 'H1' && el.textContent.includes('[First Name]')) {
+                         el.textContent = decodedName;
+                    } else if (el.textContent === '[First Name]') { 
+                        el.textContent = decodedName;
+                    }
+                });
+            } else {
+                const defaultName = "Clinic Owner";
+                 if (greetingElement) {
+                    greetingElement.innerHTML = `Hello <span class="user-name-emphasis">${defaultName}</span>,`;
+                }
+                userNameElements.forEach(el => {
+                   if (el.parentNode.tagName === 'H1' && el.textContent.includes('[First Name]')) {
+                        el.textContent = defaultName;
+                    } else if (el.textContent === '[First Name]') {
+                        el.textContent = defaultName;
+                    }
+                });
+            }
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const mainNav = document.getElementById('main-nav');
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <!-- Chat Button and Modal -->
+    <div id="chat-widget-button">
+        <span>💬</span> Have a ? Send us a Instant Message
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Diagnose Your Clinic's Growth Bottlenecks</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                <p>
+                    <strong>Feeling stuck or unsure how to reach your clinic's next level of growth and market leadership?</strong><br>
+                    Our specialists can help you identify the core issues and explain how the "Audiology Growth & Leadership System™" provides the strategic breakthrough you need.
+                    <br><em>Mon-Fri, 10am - 5pm EST: Let's identify your path forward.</em><br>
+                    <em>Evenings & Weekends: We'll connect with you promptly next business day.</em><br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-industry">Your Industry:</label>
+                        <select id="chat-industry" name="industry" required>
+                            <option value="" disabled>Select your industry...</option>
+                            <option value="Hearing Aid & Audiology Clinics" selected>Hearing Aid & Audiology Clinics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-businessName">Clinic Name:</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address:</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number:</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">What is the #1 growth challenge or frustration your audiology clinic is currently facing?</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., Plateaued patient numbers, can't scale services, losing to competitors, ineffective marketing for growth..."></textarea>
+                    </div>
+                    <input type="hidden" name="systemInterest" value="Audiology Growth & Leadership System - Problem Aware">
+                    <button type="submit" class="cta-button secondary chat-submit-button">Request Growth Diagnostic</button>
+                </form>
+                <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Diagnostic Request Submitted!</h3>
+                    <p>Thank you for reaching out. A senior growth strategist will review your challenges and contact you soon to discuss how the "Audiology Growth & Leadership System™" can help your clinic break through its current plateaus.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../script.js"></script> <!-- General script for chat, nav, etc. -->
+</body>
+</html> 

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solution for Practice Efficiency: ContourClinic OS™ | TurnClicksToClients</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Lato', sans-serif; line-height: 1.8; color: #333; background-color: #E8F5E9; /* Light, hopeful green background */ margin: 0; padding: 0; }
+        .ops-solution-container-wrapper { padding: 30px 0; background: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%); /* Solution-oriented greens */ }
+        .ops-solution-container { max-width: 980px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; box-shadow: 0 18px 50px rgba(0,0,0,0.15); overflow: hidden; }
+        
+        .ops-solution-header { text-align: center; padding: 55px 30px; background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%); /* Deeper, confident greens */ color: #fff; border-bottom: 8px solid #A5D6A7; }
+        .ops-solution-header .personalized-greeting { font-size: clamp(1.2em, 2.8vw, 1.5em); font-weight: 700; margin-bottom: 10px; opacity: 0.9; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .ops-solution-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(2.2em, 4.8vw, 3.1em); margin-bottom: 15px; line-height: 1.25; text-shadow: 1px 1px 3px rgba(0,0,0,0.25); }
+        .ops-solution-header .sub-headline { font-size: clamp(1.1em, 2.5vw, 1.3em); max-width: 780px; margin: 0 auto 20px; line-height: 1.6; opacity: 0.95; }
+
+        .content-section { padding: 45px 50px; }
+        .content-section h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.8em, 4vw, 2.6em); color: #1B5E20; /* Strong Green */ margin-bottom: 25px; text-align: center; }
+        .content-section h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.4em, 3.2vw, 1.9em); color: #388E3C; /* Medium Green */ margin-top: 30px; margin-bottom: 18px; border-bottom: 2px solid #C8E6C9; padding-bottom: 8px; }
+        
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 25px; margin-bottom: 35px; }
+        .benefit-card { background-color: #F1F8E9; /* Very light green */ border-left: 5px solid #4CAF50; /* Accent Green */ padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+        .benefit-card .benefit-icon { font-size: 2.2em; color: #2E7D32; margin-bottom: 12px; display: block; }
+        .benefit-card h4 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.2em, 2.7vw, 1.4em); color: #1B5E20; margin-bottom: 10px; }
+        .benefit-card p { font-size: clamp(0.95em, 1.9vw, 1.0em); color: #333; line-height: 1.7; }
+
+        .how-it-works-section { background-color: #E8F5E9; padding: 40px; margin-top: 30px; border-radius: 8px; }
+        .step-list { list-style-type: none; padding-left:0; counter-reset: step-counter; }
+        .step-list li { position: relative; padding: 15px 15px 15px 50px; margin-bottom:15px; background:#fff; border-radius:6px; box-shadow: 0 3px 8px rgba(0,0,0,0.05);}
+        .step-list li::before { 
+            counter-increment: step-counter; content: counter(step-counter);
+            position:absolute; left:15px; top:50%; transform:translateY(-50%);
+            background-color: #4CAF50; color:white; width:30px; height:30px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:1.1em;
+        }
+        .step-list li strong {color: #1B5E20; font-size:1.1em;}
+        
+        .testimonial-section-solution { background-color: #A5D6A7; color: #1B5E20; padding: 50px; margin-top:40px;}
+        .testimonial-section-solution h2 { color: #1B5E20; text-shadow: 1px 1px 2px rgba(255,255,255,0.1); border-bottom: 2px solid #1B5E20; display:inline-block; padding-bottom:10px; margin-bottom:30px;}
+        .testimonial-card-solution { background-color: rgba(255,255,255,0.9); border-left: 5px solid #2E7D32; padding: 25px; margin-bottom: 25px; border-radius: 8px; }
+        .testimonial-card-solution p.quote { font-style: italic; font-size: clamp(1.05em, 2.2vw, 1.2em); margin-bottom: 15px; line-height:1.7; color: #263238;}
+        .testimonial-card-solution p.author { font-weight: bold; text-align: right; color: #388E3C; font-size: clamp(1em, 2.1vw, 1.1em); }
+
+        .final-cta-solution { text-align: center; padding: 50px 30px; background-color: #C8E6C9; /* Light Green base for CTA */ margin-top: 0; border-radius: 0 0 16px 16px; }
+        .final-cta-solution h2 { color: #1B5E20; margin-bottom: 20px; font-size: clamp(1.9em, 4.2vw, 2.8em); }
+        .final-cta-solution p { color: #2E7D32; margin-bottom: 30px; font-size: clamp(1.1em, 2.3vw, 1.25em); max-width:700px; margin-left:auto; margin-right:auto;}
+        .cta-button.solution-focused { background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); /* Green to Darker Green Button */ border: none; color: #fff !important; padding: 20px 45px; font-size: clamp(1.25em, 2.8vw, 1.5em); font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        .cta-button.solution-focused:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+        .user-name-emphasis { font-weight: 900; color: #E8F5E9; } 
+
+        @media (max-width: 768px) {
+            .content-section { padding: 30px 25px; }
+            .ops-solution-header { padding: 40px 20px; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .final-cta-solution, .testimonial-section-solution, .how-it-works-section { padding: 40px 25px; }
+        }
+    </style>
+
+    <script src="/tracking.js"></script>
+      <script src="/split-test-redirect.js"></script>
+  </head>
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="logo"><a href="../../../index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
+                <li style="margin-right: 8px;"><a href="../../../index.html">Home</a></li>
+                <li style="margin-right: 8px;"><a href="../../../about.html">About Us</a></li>
+                <li class="dropdown-parent" style="margin-right: 8px;">
+                    <a href="../../../index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                        <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                        <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                        <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                        <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                        <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                        <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                        <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                        <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                    </ul>
+                </li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#core-offer">Our Offer</a></li>
+                <li style="margin-right: 8px;"><a href="../../../index.html#guarantee">Guarantee</a></li>
+                <li><a href="../../../index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<div class="ops-solution-container-wrapper">
+    <div class="ops-solution-container">
+        <div class="ops-solution-header">
+            <div class="personalized-greeting" id="personalized-greeting-ops-solution">Searching for a Better Way, <span class="user-name-emphasis">[First Name]</span>?</div>
+            <h1>The Solution to Practice Chaos: Introducing ContourClinic OS™</h1>
+            <p class="sub-headline">You understand the daily struggles of operational inefficiencies. Now, discover the integrated system specifically designed to bring order, efficiency, and growth to your body contouring practice.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Escape the Grind, Embrace Operational Excellence with ContourClinic OS™</h2>
+            <p style="text-align:center; font-size:clamp(1.05em, 2.2vw, 1.15em); margin-bottom:30px;">Tired of battling scheduling conflicts, team misalignments, and inconsistent patient experiences? ContourClinic OS™ is the comprehensive operational system that transforms your practice from a source of stress into a smoothly running, profitable, and patient-centric powerhouse.</p>
+
+            <h3>Key Benefits: What ContourClinic OS™ Delivers</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-stream"></i></span>
+                    <h4>Streamlined Workflows</h4>
+                    <p>Eliminate bottlenecks and automate routine tasks, allowing your team to focus on high-value patient care and services, dramatically boosting productivity.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-smile-beam"></i></span>
+                    <h4>Elevated Patient Experience</h4>
+                    <p>Deliver consistent, high-quality care and communication at every touchpoint, fostering patient loyalty, positive reviews, and increased referrals.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-users"></i></span>
+                    <h4>Empowered & Aligned Team</h4>
+                    <p>Provide clear roles, efficient processes, and collaborative tools that reduce staff stress, improve morale, and build a high-performing team culture.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-chart-line"></i></span>
+                    <h4>Enhanced Profitability</h4>
+                    <p>Optimize resource utilization, reduce waste, improve patient retention, and create capacity for growth, all leading to a healthier bottom line.</p>
+                </div>
+                 <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-shield-alt"></i></span>
+                    <h4>Reduced Owner Stress</h4>
+                    <p>Gain peace of mind knowing your practice runs on proven systems, with clear data insights, allowing you to focus on strategic growth, not daily fires.</p>
+                </div>
+                 <div class="benefit-card">
+                    <span class="benefit-icon"><i class="fas fa-file-signature"></i></span>
+                    <h4>Simplified Compliance</h4>
+                    <p>Streamline documentation and adherence to industry standards, reducing risks and administrative burdens related to compliance.</p>
+                
+
+<div style="background-color: #f9f9f9; padding: 30px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #0077b6;">
+    <h2 style="color: #0077b6; margin-top: 0;">What's Possible When You Implement This Solution</h2>
+    <p>While you're working to build a foundation for your cosmetic practice, other dentists with your same level of clinical skill are experiencing extraordinary results:</p>
+    
+    <ul style="list-style-type: none; padding-left: 0; margin-top: 20px;">
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Predictable Flow of Ideal Patients:</strong> Imagine having 15-20 qualified cosmetic consultations every month, like clockwork, without the stress of wondering where your next patient will come from.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Premium Case Acceptance:</strong> Picture converting 70-80% of consultations into high-value cosmetic cases because you're attracting the right patients who are pre-qualified and ready to move forward.
+        </li>
+        <li style="margin-bottom: 20px; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Freedom from Price Shopping:</strong> Envision patients who come to you specifically for your expertise, not your price, allowing you to command premium fees for your exceptional work.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 35px; position: relative;">
+            <span style="position: absolute; left: 0; top: 2px; color: #0077b6; font-weight: bold; font-size: 1.2em;">✓</span>
+            <strong style="color: #0077b6;">Stress-Free Practice Growth:</strong> Consider what it would feel like to focus entirely on your clinical excellence while your patient acquisition runs automatically in the background.
+        </li>
+    </ul>
+</div>
+
+<div style="background-color: #FFF8E1; padding: 30px; border-radius: 8px; margin: 30px 0; border: 1px solid #FFB74D;">
+    <h2 style="color: #F57C00; margin-top: 0;">Your Path to Joining These Successful Dentists</h2>
+    
+    <p>The difference between your current situation and these success stories is <strong>not</strong> about:</p>
+    <ul style="margin-bottom: 20px;">
+        <li>Your clinical skills or the quality of your work</li>
+        <li>Your dedication to patient care</li>
+        <li>Your desire to grow and succeed</li>
+        <li>The location of your practice</li>
+    </ul>
+    
+    <p style="font-weight: bold; font-size: 1.2em; color: #F57C00;">The real difference is that these successful dentists have implemented a systematic patient acquisition approach that you haven't yet.</p>
+    
+    <p>They're not more skilled than you. They're not working harder than you. They simply have access to a proven system that consistently delivers ideal patients to their door - <strong>the exact system now available to you.</strong></p>
+</div></div>
+            </div>
+
+            <div class="how-it-works-section">
+                <h3>How We Implement ContourClinic OS™ For You</h3>
+                <p style="text-align:center; margin-bottom:25px; font-size:clamp(1.05em, 2.2vw, 1.15em);">Our approach is collaborative and tailored to your practice's unique needs:</p>
+                <ol class="step-list">
+                    <li><strong>Deep-Dive Assessment:</strong> We start by thoroughly understanding your current operations, pain points, and goals.</li>
+                    <li><strong>Customized Blueprint Design:</strong> We tailor the ContourClinic OS™ framework to your specific services, team structure, and patient flow.</li>
+                    <li><strong>Phased Implementation & Training:</strong> We roll out the system in manageable stages, with comprehensive training for your team to ensure smooth adoption.</li>
+                    <li><strong>Ongoing Support & Optimization:</strong> We provide continuous support and monitor performance, making adjustments to ensure sustained operational excellence.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="testimonial-section-solution">
+            <h2 style="text-align:center;">Practices Thriving with Systemized Operations (Placeholders)</h2>
+            <div class="testimonial-card-solution">
+                <p class="quote">"We knew we needed a better system, but didn't know where to start. ContourClinic OS™ provided the roadmap and support we desperately needed. Our practice runs so much smoother now!"
+                </p>
+                <p class="author">- Dr. Emily White, Sculpt & Smooth Clinic (Placeholder)</p>
+            </div>
+            <div class="testimonial-card-solution">
+                <p class="quote">"The biggest change since implementing these operational systems? My stress levels are way down, and the team is happier. Plus, our patient satisfaction scores have never been higher."
+                </p>
+                <p class="author">- Mark Jennings, Operations Manager at BodyRefined (Placeholder)</p>
+            </div>
+        </div>
+
+        <div class="final-cta-solution">
+            <h2>Ready to See How ContourClinic OS™ Can Power Our Partnership?</h2>
+            <p>Take the next step towards operational mastery and a fruitful partnership. Apply to discuss how ContourClinic OS™ can transform your practice and how we can achieve success together.</p>
+            <a href="../../../universal-application-form.html?niche=non-surgical-body-contouring&bucket=practice&variant=A-SolutionAware&system=ContourClinicOS&source_page=practice-variant-a-solution&partnership=true" class="cta-button solution-focused">Apply for Our Partnership</a>
+            <p style="font-size:0.9em; color:#387002; margin-top:20px;">It's time to invest in the operational backbone your practice deserves, supported by a dedicated partner.</p>
+        </div>
+    </div>
+</div>
+
+    
+<!-- Trust Mechanism Section -->
+<div class="trust-mechanism-container" style="background-color: #f9f9f9; padding: 25px; margin: 30px 0; border-radius: 8px; border-left: 5px solid #4A90E2;">
+    <h3 style="color: #000000; font-size: 1.4em; margin-bottom: 20px;">Our Journey to Creating This System</h3>
+
+    <div class="history-section" style="margin-bottom: 20px;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Since 2017, we've been helping body contouring clinics attract qualified clients who are ready to invest in their transformation.</strong></p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our team developed this system after seeing how traditional marketing approaches failed to properly educate clients about non-surgical options, leading to poor conversion rates.</p>
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;">Our approach has evolved from basic lead generation to a sophisticated pre-qualification system that educates clients on the value of your services before they ever walk through your door.</p>
+    </div>
+
+    <h4 style="color: #000000; font-size: 1.2em; margin: 20px 0 15px;">Consistent Results Across Different Businesses</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A body contouring clinic in Miami increased their monthly revenue from $45,000 to over $120,000 within 90 days.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> A new clinic in Houston became profitable in their second month and scaled to $80,000+ monthly within their first year.
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative; color: #000000;">
+            <span style="position: absolute; left: 0; color: #4A90E2;">✓</span> An established med spa added body contouring services and generated an additional $35,000 monthly revenue within 60 days.
+        </li>
+    </ul>
+
+    <div class="long-term-section" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+        <p style="font-size: 1.1em; line-height: 1.6; color: #000000;"><strong>Long-term Success:</strong> Clinics using our system for 3+ years have built sustainable businesses with strong recurring revenue and high client retention rates.</p>
+    </div>
+</div>
+<footer>
+        <div class="footer-main container">
+            <div class="footer-info">
+                <h3 style="font-size: 1.5em;">TurnClicksToClients.com</h3>
+                <p>1309 Coffeen Avenue STE 1200<br>Sheridan Wyoming 82801</p>
+                <p>Phone: <a href="tel:+12708181816">(270) 818-1816</a></p>
+                <p>Email: <a href="mailto:info@turnclickstoclients.com">info@turnclickstoclients.com</a></p>
+            </div>
+            <div class="footer-quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../index.html#core-offer">Our Offer</a></li>
+                    <li><a href="../../../index.html#guarantee">Guarantee</a></li>
+                    <li><a href="../../../index.html#ideal-clients">Clients We Serve</a></li>
+                </ul>
+            </div>
+            <div class="footer-niches">
+                <h4>Our Niche Expertise</h4>
+                 <ul>
+                    <li><a href="../../../niches/child-care-centers.html">Child Care Centers</a></li>
+                    <li><a href="../../../niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
+                    <li><a href="../../../niches/pmu-artists.html">PMU Artists</a></li>
+                    <li><a href="../../../niches/non-surgical-body-contouring.html">Non-Surgical Body Contouring</a></li>
+                    <li><a href="../../../niches/weight-loss-clinics.html">Weight Loss Clinics</a></li>
+                    <li><a href="../../../niches/high-end-chiropractors.html">High-End Chiropractors</a></li>
+                    <li><a href="../../../niches/sleep-apnea-snoring-clinics.html">Sleep Apnea & Snoring Clinics</a></li>
+                    <li><a href="../../../niches/hearing-aid-audiology-clinics.html">Hearing Aid & Audiology Clinics</a></li>
+                    <li><a href="../../../niches/dme-clinics.html">DME Clinics</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <a href="https://www.linkedin.com/in/aaron-p-813553112/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TurnClicksToClients.com. All rights reserved. | Only one client per city.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const firstName = params.get('firstName');
+            const greetingElement = document.getElementById('personalized-greeting-ops-solution');
+            
+            if (firstName) {
+                const decodedName = decodeURIComponent(firstName);
+                if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                     greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${decodedName}</span>`);
+                } else if (greetingElement) { 
+                    greetingElement.innerHTML = `Searching for a Better Way, <span class="user-name-emphasis">${decodedName}</span>?`;
+                }
+            } else {
+                const defaultName = "Practice Owner"; 
+                 if (greetingElement && greetingElement.innerHTML.includes('[First Name]')) {
+                    greetingElement.innerHTML = greetingElement.innerHTML.replace('[First Name]', `<span class="user-name-emphasis">${defaultName}</span>`);
+                 } else if (greetingElement) {
+                    greetingElement.innerHTML = `Searching for a Better Way, <span class="user-name-emphasis">${defaultName}</span>?`;
+                 }
+            }
+
+            const hamburger = document.querySelector('.hamburger');
+            const mainNav = document.getElementById('main-nav');
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
+
+            // No FAQ on this page, so FAQ script removed.
+        });
+    </script>
+
+    <div id="chat-widget-button">
+        <span>💡</span> Questions about ContourClinic OS™ Benefits?
+    </div>
+
+    <div id="chat-modal" class="modal-hidden">
+        <div class="chat-modal-content">
+            <div class="chat-modal-header">
+                <h2>Learn More About ContourClinic OS™</h2>
+                <button id="chat-modal-close" class="chat-close-button">&times;</button>
+            </div>
+            <div class="chat-modal-body">
+                 <p>
+                    <strong>Curious how ContourClinic OS™ can specifically benefit your body contouring practice?</strong><br>
+                    Ask us about features, implementation, or expected outcomes.
+                    <br><em>Mon-Fri, 10am - 5pm EST.</em><br>
+                    <em>Evenings & Weekends: We'll prioritize your contact next business day.</em><br><br>
+                </p>
+                <form id="chat-contact-form">
+                    <div class="form-group">
+                        <label for="chat-interest">I'm interested in:</label>
+                        <select id="chat-interest" name="systemInterest" required>
+                            <option value="ContourClinic OS Features" selected>ContourClinic OS™ Features</option>
+                            <option value="Implementation Process">Implementation Process</option>
+                            <option value="Expected ROI/Benefits">Expected ROI/Benefits</option>
+                            <option value="Pricing">Pricing/Packages</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-name">Full Name:</label>
+                        <input type="text" id="chat-name" name="name" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="chat-businessName">Practice Name:</label>
+                        <input type="text" id="chat-businessName" name="businessName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-email">Email Address:</label>
+                        <input type="email" id="chat-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-phone">Phone Number (Optional):</label>
+                        <input type="tel" id="chat-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="chat-message">Your Specific Questions:</label>
+                        <textarea id="chat-message" name="message" rows="4" required placeholder="e.g., How does the analytics dashboard work? What kind of training is provided? Can you give examples of workflow automation?..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button secondary chat-submit-button">Ask My Questions</button>
+                </form>
+                 <div id="chat-success-message" style="display: none; text-align: center; padding: 20px;">
+                    <h3>Questions Submitted!</h3>
+                    <p>Thank you! We'll review your questions about ContourClinic OS™ and a strategist will be in touch with answers and insights shortly.</p>
+                    <p>You can now close this window.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../script.js"></script> 
+</body>
+</html> 

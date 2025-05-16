@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurnClicksToClients - New Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav-item {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .sidebar-nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar-nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left: 3px solid #3498db;
+        }
+
+        .sidebar-nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-section {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .sidebar-section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .date-range-picker {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .date-range-picker label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+        }
+
+        .date-range-picker select {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .content-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-card h3 {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .metric-change {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Charts */
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            height: 350px;
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+
+        .chart-container h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: calc(100% - 40px) !important;
+        }
+
+        /* Sales Pipeline */
+        .pipeline-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .pipeline-stages {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .pipeline-stage {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 0 5px;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .pipeline-stage:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            width: 20px;
+            height: 2px;
+            background-color: #dee2e6;
+        }
+
+        .pipeline-stage-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        .pipeline-stage-count {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .pipeline-stage-percentage {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Placeholder and Error messages */
+        .placeholder-message, .error-message {
+            background-color: #f8f9fa;
+            border: 1px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .placeholder-message p {
+            color: #6c757d;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-stages {
+                flex-direction: column;
+            }
+
+            .pipeline-stage {
+                margin: 5px 0;
+            }
+
+            .pipeline-stage:not(:last-child):after {
+                top: auto;
+                right: 50%;
+                bottom: -10px;
+                width: 2px;
+                height: 20px;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">TurnClicksToClients</div>
+            <div class="sidebar-subtitle">Admin Dashboard</div>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link active" data-tab="overview">
+                    <i class="fas fa-chart-line"></i> Overview
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" data-tab="sales-pipeline">
+                    <i class="fas fa-funnel-dollar"></i> Sales Pipeline
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" data-tab="user-flow">
+                    <i class="fas fa-route"></i> User Flow
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" data-tab="quiz-analytics">
+                    <i class="fas fa-question-circle"></i> Quiz Analytics
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" data-tab="conversion">
+                    <i class="fas fa-exchange-alt"></i> Conversion
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="sidebar-nav-link" data-tab="users">
+                    <i class="fas fa-users"></i> Users
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Settings</div>
+            <div class="date-range-picker">
+                <label for="date-range">Date Range:</label>
+                <select id="date-range">
+                    <option value="today">Today</option>
+                    <option value="yesterday">Yesterday</option>
+                    <option value="7days" selected>Last 7 Days</option>
+                    <option value="30days">Last 30 Days</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div id="overview" class="tab-content active">
+            <div class="content-header">
+                <h1 class="content-title">Dashboard Overview</h1>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Total Visitors</h3>
+                    <div class="metric-value" id="total-visitors">Loading...</div>
+                    <div class="metric-change">Unique visitors</div>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Quiz Starts</h3>
+                    <div class="metric-value" id="quiz-starts">Loading...</div>
+                    <div class="metric-change">Unique users</div>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Quiz Completions</h3>
+                    <div class="metric-value" id="quiz-completions">Loading...</div>
+                    <div class="metric-change">Unique users</div>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Quiz Submissions</h3>
+                    <div class="metric-value" id="applications">Loading...</div>
+                    <div class="metric-change">Total submissions</div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3>Traffic by Source</h3>
+                    <canvas id="traffic-source-chart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Conversions by Niche</h3>
+                    <canvas id="niche-conversion-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3>User Activity Timeline</h3>
+                    <canvas id="activity-timeline-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="sales-pipeline" class="tab-content">
+            <div class="content-header">
+                <h1 class="content-title">Sales Pipeline</h1>
+            </div>
+
+            <div class="pipeline-container">
+                <h3>Lead to Customer Journey</h3>
+                <div class="pipeline-stages">
+                    <div class="pipeline-stage">
+                        <div class="pipeline-stage-title">Visitors</div>
+                        <div class="pipeline-stage-count" id="pipeline-visitors">Loading...</div>
+                        <div class="pipeline-stage-percentage">100%</div>
+                    </div>
+                    <div class="pipeline-stage">
+                        <div class="pipeline-stage-title">Quiz Takers</div>
+                        <div class="pipeline-stage-count" id="pipeline-quiz-takers">Loading...</div>
+                        <div class="pipeline-stage-percentage" id="pipeline-quiz-percentage">Loading...</div>
+                    </div>
+                    <div class="pipeline-stage">
+                        <div class="pipeline-stage-title">Applicants</div>
+                        <div class="pipeline-stage-count" id="pipeline-applicants">Loading...</div>
+                        <div class="pipeline-stage-percentage" id="pipeline-applicants-percentage">Loading...</div>
+                    </div>
+                    <div class="pipeline-stage">
+                        <div class="pipeline-stage-title">Qualified Leads</div>
+                        <div class="pipeline-stage-count" id="pipeline-qualified">Loading...</div>
+                        <div class="pipeline-stage-percentage" id="pipeline-qualified-percentage">Loading...</div>
+                    </div>
+                    <div class="pipeline-stage">
+                        <div class="pipeline-stage-title">Customers</div>
+                        <div class="pipeline-stage-count" id="pipeline-customers">Loading...</div>
+                        <div class="pipeline-stage-percentage" id="pipeline-customers-percentage">Loading...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Pipeline Conversion Rates</h3>
+                <canvas id="pipeline-conversion-chart"></canvas>
+            </div>
+        </div>
+
+        <div id="user-flow" class="tab-content">
+            <div class="content-header">
+                <h1 class="content-title">User Flow Analysis</h1>
+            </div>
+            <div class="placeholder-message">
+                <p>User flow analysis will be implemented in a future update.</p>
+            </div>
+        </div>
+
+        <div id="quiz-analytics" class="tab-content">
+            <div class="content-header">
+                <h1 class="content-title">Quiz Analytics</h1>
+            </div>
+            <div class="placeholder-message">
+                <p>Quiz analytics will be implemented in a future update.</p>
+            </div>
+        </div>
+
+        <div id="conversion" class="tab-content">
+            <div class="content-header">
+                <h1 class="content-title">Conversion Metrics</h1>
+            </div>
+            <div class="placeholder-message">
+                <p>Conversion metrics will be implemented in a future update.</p>
+            </div>
+        </div>
+
+        <div id="users" class="tab-content">
+            <div class="content-header">
+                <h1 class="content-title">User Details</h1>
+            </div>
+            <div class="placeholder-message">
+                <p>User details will be implemented in a future update.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Supabase client -->
+    <script src="../supabase-client.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Initialize Supabase client reference
+        let supabaseClient;
+
+        // Simple tab functionality without external dependencies
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tabs
+            const tabLinks = document.querySelectorAll('.sidebar-nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+
+                    // Remove active class from all tabs and contents
+                    tabLinks.forEach(tab => tab.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Use the global Supabase client
+            if (window.tctcSupabaseClient) {
+                supabaseClient = window.tctcSupabaseClient;
+                console.log('Using global Supabase client');
+
+                // Load dashboard data
+                loadDashboardData();
+
+                // Set up date range picker
+                setupDateRangePicker();
+            } else {
+                console.error('Supabase client not available');
+                showError('Supabase client not available. Please check your internet connection and try again.');
+            }
+        });
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            const dateRange = document.getElementById('date-range').value;
+            console.log('Loading dashboard data for date range:', dateRange);
+
+            try {
+                // Show loading state
+                showLoading();
+
+                // Fetch data
+                const pageViews = await fetchPageViews(dateRange);
+                const quizStarts = await fetchQuizStarts(dateRange);
+                const quizCompletions = await fetchQuizCompletions(dateRange);
+                const quizSubmissions = await fetchQuizSubmissions(dateRange);
+
+                // Update metrics
+                updateMetrics(pageViews, quizStarts, quizCompletions, quizSubmissions);
+
+                // Update pipeline
+                updatePipeline(pageViews, quizStarts, quizCompletions, quizSubmissions);
+
+                // Render charts
+                renderCharts(pageViews, quizStarts, quizCompletions, quizSubmissions);
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showError('Error loading dashboard data. Please try again later.');
+            }
+        }
+
+        // Fetch page views from Supabase
+        async function fetchPageViews(dateRange) {
+            try {
+                // Try tctc_user_flow table first
+                let { data: flowData, error: flowError } = await supabaseClient
+                    .from('tctc_user_flow')
+                    .select('*')
+                    .eq('action_type', 'page_view');
+
+                if (flowError || (flowData && flowData.length === 0)) {
+                    console.log('No data in tctc_user_flow, trying tctc_user_behavior...');
+
+                    // Try tctc_user_behavior table as fallback
+                    const { data: behaviorData, error: behaviorError } = await supabaseClient
+                        .from('tctc_user_behavior')
+                        .select('*')
+                        .eq('event_type', 'page_view');
+
+                    if (behaviorError) {
+                        console.error('Error fetching page views from tctc_user_behavior:', behaviorError);
+                        return [];
+                    }
+
+                    console.log(`Fetched ${behaviorData.length} page views from tctc_user_behavior`);
+                    return behaviorData;
+                }
+
+                console.log(`Fetched ${flowData.length} page views from tctc_user_flow`);
+                return flowData;
+            } catch (error) {
+                console.error('Error fetching page views:', error);
+                return [];
+            }
+        }
+
+        // Fetch quiz starts from Supabase
+        async function fetchQuizStarts(dateRange) {
+            try {
+                // Try tctc_user_flow table first
+                let { data: flowData, error: flowError } = await supabaseClient
+                    .from('tctc_user_flow')
+                    .select('*')
+                    .eq('action_type', 'quiz_started');
+
+                if (flowError || (flowData && flowData.length === 0)) {
+                    console.log('No data in tctc_user_flow, trying tctc_user_behavior...');
+
+                    // Try tctc_user_behavior table as fallback
+                    const { data: behaviorData, error: behaviorError } = await supabaseClient
+                        .from('tctc_user_behavior')
+                        .select('*')
+                        .eq('event_type', 'quiz_started');
+
+                    if (behaviorError) {
+                        console.error('Error fetching quiz starts from tctc_user_behavior:', behaviorError);
+                        return [];
+                    }
+
+                    console.log(`Fetched ${behaviorData.length} quiz starts from tctc_user_behavior`);
+                    return behaviorData;
+                }
+
+                console.log(`Fetched ${flowData.length} quiz starts from tctc_user_flow`);
+                return flowData;
+            } catch (error) {
+                console.error('Error fetching quiz starts:', error);
+                return [];
+            }
+        }
+
+        // Fetch quiz completions from Supabase
+        async function fetchQuizCompletions(dateRange) {
+            try {
+                // Try tctc_user_flow table first
+                let { data: flowData, error: flowError } = await supabaseClient
+                    .from('tctc_user_flow')
+                    .select('*')
+                    .eq('action_type', 'quiz_completed');
+
+                if (flowError || (flowData && flowData.length === 0)) {
+                    console.log('No data in tctc_user_flow, trying tctc_user_behavior...');
+
+                    // Try tctc_user_behavior table as fallback
+                    const { data: behaviorData, error: behaviorError } = await supabaseClient
+                        .from('tctc_user_behavior')
+                        .select('*')
+                        .eq('event_type', 'quiz_completed');
+
+                    if (behaviorError) {
+                        console.error('Error fetching quiz completions from tctc_user_behavior:', behaviorError);
+                        return [];
+                    }
+
+                    console.log(`Fetched ${behaviorData.length} quiz completions from tctc_user_behavior`);
+                    return behaviorData;
+                }
+
+                console.log(`Fetched ${flowData.length} quiz completions from tctc_user_flow`);
+                return flowData;
+            } catch (error) {
+                console.error('Error fetching quiz completions:', error);
+                return [];
+            }
+        }
+
+        // Fetch quiz submissions from Supabase
+        async function fetchQuizSubmissions(dateRange) {
+            try {
+                // Try tctc_user_flow table first
+                let { data: flowData, error: flowError } = await supabaseClient
+                    .from('tctc_user_flow')
+                    .select('*')
+                    .eq('action_type', 'form_submitted');
+
+                if (flowError || (flowData && flowData.length === 0)) {
+                    console.log('No data in tctc_user_flow, trying tctc_user_behavior...');
+
+                    // Try tctc_user_behavior table as fallback
+                    const { data: behaviorData, error: behaviorError } = await supabaseClient
+                        .from('tctc_user_behavior')
+                        .select('*')
+                        .eq('event_type', 'form_submitted');
+
+                    if (behaviorError) {
+                        console.error('Error fetching quiz submissions from tctc_user_behavior:', behaviorError);
+
+                        // Try tctc_quiz_submission table as another fallback
+                        const { data: submissionData, error: submissionError } = await supabaseClient
+                            .from('tctc_quiz_submission')
+                            .select('*');
+
+                        if (submissionError) {
+                            console.error('Error fetching quiz submissions from tctc_quiz_submission:', submissionError);
+                            return [];
+                        }
+
+                        console.log(`Fetched ${submissionData.length} quiz submissions from tctc_quiz_submission`);
+                        return submissionData;
+                    }
+
+                    console.log(`Fetched ${behaviorData.length} quiz submissions from tctc_user_behavior`);
+                    return behaviorData;
+                }
+
+                console.log(`Fetched ${flowData.length} quiz submissions from tctc_user_flow`);
+                return flowData;
+            } catch (error) {
+                console.error('Error fetching quiz submissions:', error);
+                return [];
+            }
+        }
+
+        // Update metrics with data
+        function updateMetrics(pageViews, quizStarts, quizCompletions, quizSubmissions) {
+            try {
+                const totalVisitors = countUniqueUsers(pageViews);
+                document.getElementById('total-visitors').textContent = totalVisitors;
+            } catch (e) {
+                console.error('Error updating total visitors:', e);
+                document.getElementById('total-visitors').textContent = '0';
+            }
+
+            try {
+                const quizStartsCount = countUniqueUsers(quizStarts);
+                document.getElementById('quiz-starts').textContent = quizStartsCount;
+            } catch (e) {
+                console.error('Error updating quiz starts:', e);
+                document.getElementById('quiz-starts').textContent = '0';
+            }
+
+            try {
+                const quizCompletionsCount = countUniqueUsers(quizCompletions);
+                document.getElementById('quiz-completions').textContent = quizCompletionsCount;
+            } catch (e) {
+                console.error('Error updating quiz completions:', e);
+                document.getElementById('quiz-completions').textContent = '0';
+            }
+
+            try {
+                const applicationsCount = quizSubmissions.length;
+                document.getElementById('applications').textContent = applicationsCount;
+            } catch (e) {
+                console.error('Error updating applications:', e);
+                document.getElementById('applications').textContent = '0';
+            }
+        }
+
+        // Update pipeline metrics
+        function updatePipeline(pageViews, quizStarts, quizCompletions, quizSubmissions) {
+            try {
+                // For this example, we'll use some assumptions for qualified leads and customers
+                // In a real implementation, you would fetch this data from your CRM or sales database
+                const visitorCount = countUniqueUsers(pageViews);
+                const quizTakerCount = countUniqueUsers(quizStarts);
+                const applicantCount = countUniqueUsers(quizSubmissions);
+
+                // Assuming 30% of applicants become qualified leads and 20% of qualified leads become customers
+                const qualifiedLeadCount = Math.round(applicantCount * 0.3);
+                const customerCount = Math.round(qualifiedLeadCount * 0.2);
+
+                // Update counts
+                document.getElementById('pipeline-visitors').textContent = visitorCount;
+                document.getElementById('pipeline-quiz-takers').textContent = quizTakerCount;
+                document.getElementById('pipeline-applicants').textContent = applicantCount;
+                document.getElementById('pipeline-qualified').textContent = qualifiedLeadCount;
+                document.getElementById('pipeline-customers').textContent = customerCount;
+
+                // Update percentages
+                if (visitorCount > 0) {
+                    document.getElementById('pipeline-quiz-percentage').textContent =
+                        Math.round((quizTakerCount / visitorCount) * 100) + '%';
+                    document.getElementById('pipeline-applicants-percentage').textContent =
+                        Math.round((applicantCount / visitorCount) * 100) + '%';
+                    document.getElementById('pipeline-qualified-percentage').textContent =
+                        Math.round((qualifiedLeadCount / visitorCount) * 100) + '%';
+                    document.getElementById('pipeline-customers-percentage').textContent =
+                        Math.round((customerCount / visitorCount) * 100) + '%';
+                } else {
+                    document.getElementById('pipeline-quiz-percentage').textContent = '0%';
+                    document.getElementById('pipeline-applicants-percentage').textContent = '0%';
+                    document.getElementById('pipeline-qualified-percentage').textContent = '0%';
+                    document.getElementById('pipeline-customers-percentage').textContent = '0%';
+                }
+            } catch (e) {
+                console.error('Error updating pipeline metrics:', e);
+            }
+        }
+
+        // Render charts
+        function renderCharts(pageViews, quizStarts, quizCompletions, quizSubmissions) {
+            try {
+                renderTrafficSourceChart(pageViews);
+                renderNicheConversionChart(quizStarts, quizCompletions);
+                renderActivityTimelineChart([...pageViews, ...quizStarts, ...quizCompletions, ...quizSubmissions]);
+                renderPipelineConversionChart(pageViews, quizStarts, quizCompletions, quizSubmissions);
+            } catch (e) {
+                console.error('Error rendering charts:', e);
+            }
+        }
+
+        // Count unique users in data
+        function countUniqueUsers(data) {
+            if (!Array.isArray(data)) {
+                console.error('Data is not an array:', data);
+                return 0;
+            }
+
+            const uniqueUsers = new Set();
+            data.forEach(item => {
+                // Try different combinations of user identifiers
+                let userId = '';
+
+                // Try user_id first
+                if (item.user_id) {
+                    userId = item.user_id;
+                }
+                // Try user_first_name, user_last_name, and user_email
+                else if (item.user_first_name || item.user_last_name || item.user_email) {
+                    userId = `${item.user_first_name || ''}_${item.user_last_name || ''}_${item.user_email || ''}`.toLowerCase();
+                }
+                // Try user_uuid
+                else if (item.user_uuid) {
+                    userId = item.user_uuid;
+                }
+                // Try session_id
+                else if (item.session_id) {
+                    userId = item.session_id;
+                }
+                // Try ip_address as last resort
+                else if (item.ip_address) {
+                    userId = item.ip_address;
+                }
+
+                if (userId && userId !== '__') {
+                    uniqueUsers.add(userId);
+                }
+            });
+            return uniqueUsers.size;
+        }
+
+        // Set up date range picker
+        function setupDateRangePicker() {
+            const dateRangePicker = document.getElementById('date-range');
+
+            dateRangePicker.addEventListener('change', function() {
+                // Reload dashboard with new date range
+                loadDashboardData();
+            });
+        }
+
+        // Show loading state
+        function showLoading() {
+            document.getElementById('total-visitors').textContent = 'Loading...';
+            document.getElementById('quiz-starts').textContent = 'Loading...';
+            document.getElementById('quiz-completions').textContent = 'Loading...';
+            document.getElementById('applications').textContent = 'Loading...';
+
+            // Pipeline metrics
+            document.getElementById('pipeline-visitors').textContent = 'Loading...';
+            document.getElementById('pipeline-quiz-takers').textContent = 'Loading...';
+            document.getElementById('pipeline-applicants').textContent = 'Loading...';
+            document.getElementById('pipeline-qualified').textContent = 'Loading...';
+            document.getElementById('pipeline-customers').textContent = 'Loading...';
+
+            document.getElementById('pipeline-quiz-percentage').textContent = 'Loading...';
+            document.getElementById('pipeline-applicants-percentage').textContent = 'Loading...';
+            document.getElementById('pipeline-qualified-percentage').textContent = 'Loading...';
+            document.getElementById('pipeline-customers-percentage').textContent = 'Loading...';
+        }
+
+        // Show error message
+        function showError(message) {
+            document.getElementById('total-visitors').textContent = 'Error';
+            document.getElementById('quiz-starts').textContent = 'Error';
+            document.getElementById('quiz-completions').textContent = 'Error';
+            document.getElementById('applications').textContent = 'Error';
+
+            // Pipeline metrics
+            document.getElementById('pipeline-visitors').textContent = 'Error';
+            document.getElementById('pipeline-quiz-takers').textContent = 'Error';
+            document.getElementById('pipeline-applicants').textContent = 'Error';
+            document.getElementById('pipeline-qualified').textContent = 'Error';
+            document.getElementById('pipeline-customers').textContent = 'Error';
+
+            document.getElementById('pipeline-quiz-percentage').textContent = 'Error';
+            document.getElementById('pipeline-applicants-percentage').textContent = 'Error';
+            document.getElementById('pipeline-qualified-percentage').textContent = 'Error';
+            document.getElementById('pipeline-customers-percentage').textContent = 'Error';
+
+            console.error(message);
+            alert(message);
+        }
+
+        // Traffic Source Chart
+        function renderTrafficSourceChart(data) {
+            const canvas = document.getElementById('traffic-source-chart');
+            const ctx = canvas.getContext('2d');
+
+            // Process data
+            const sourceCount = {};
+            data.forEach(item => {
+                // Try different source field names
+                let source = 'unknown';
+                if (item.original_source) {
+                    source = item.original_source;
+                } else if (item.track_source) {
+                    source = item.track_source;
+                } else if (item.traffic_source) {
+                    source = item.traffic_source;
+                } else if (item.source) {
+                    source = item.source;
+                } else if (item.referrer) {
+                    source = item.referrer;
+                }
+
+                // Clean up the source value
+                if (!source || source === 'null' || source === 'undefined') {
+                    source = 'unknown';
+                }
+
+                sourceCount[source] = (sourceCount[source] || 0) + 1;
+            });
+
+            const labels = Object.keys(sourceCount);
+            const counts = Object.values(sourceCount);
+
+            // Create chart
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: counts,
+                        backgroundColor: [
+                            '#3b82f6', // Blue
+                            '#10b981', // Green
+                            '#f59e0b', // Amber
+                            '#ef4444', // Red
+                            '#8b5cf6', // Purple
+                            '#ec4899', // Pink
+                            '#06b6d4', // Cyan
+                            '#f97316', // Orange
+                            '#14b8a6', // Teal
+                            '#6366f1'  // Indigo
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${value} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Niche Conversion Chart
+        function renderNicheConversionChart(quizStarts, quizCompletions) {
+            const canvas = document.getElementById('niche-conversion-chart');
+            const ctx = canvas.getContext('2d');
+
+            // Process data
+            const niches = {};
+
+            // Count quiz starts by niche
+            quizStarts.forEach(item => {
+                // Try different niche field names
+                let niche = 'unknown';
+                if (item.niche) {
+                    niche = item.niche;
+                } else if (item.business_type) {
+                    niche = item.business_type;
+                } else if (item.business_niche) {
+                    niche = item.business_niche;
+                } else if (item.quiz_niche) {
+                    niche = item.quiz_niche;
+                } else if (item.page_url && item.page_url.includes('niches/')) {
+                    // Extract niche from URL if possible
+                    const match = item.page_url.match(/niches\/([^\/]+)/);
+                    if (match && match[1]) {
+                        niche = match[1].replace(/-/g, ' ');
+                    }
+                }
+
+                // Clean up the niche value
+                if (!niche || niche === 'null' || niche === 'undefined') {
+                    niche = 'unknown';
+                }
+
+                if (!niches[niche]) {
+                    niches[niche] = { starts: 0, completions: 0 };
+                }
+                niches[niche].starts++;
+            });
+
+            // Count quiz completions by niche
+            quizCompletions.forEach(item => {
+                // Try different niche field names
+                let niche = 'unknown';
+                if (item.niche) {
+                    niche = item.niche;
+                } else if (item.business_type) {
+                    niche = item.business_type;
+                } else if (item.business_niche) {
+                    niche = item.business_niche;
+                } else if (item.quiz_niche) {
+                    niche = item.quiz_niche;
+                } else if (item.page_url && item.page_url.includes('niches/')) {
+                    // Extract niche from URL if possible
+                    const match = item.page_url.match(/niches\/([^\/]+)/);
+                    if (match && match[1]) {
+                        niche = match[1].replace(/-/g, ' ');
+                    }
+                }
+
+                // Clean up the niche value
+                if (!niche || niche === 'null' || niche === 'undefined') {
+                    niche = 'unknown';
+                }
+
+                if (!niches[niche]) {
+                    niches[niche] = { starts: 0, completions: 0 };
+                }
+                niches[niche].completions++;
+            });
+
+            // Calculate conversion rates
+            const nicheLabels = Object.keys(niches);
+            const conversionRates = nicheLabels.map(niche => {
+                const { starts, completions } = niches[niche];
+                return starts > 0 ? Math.round((completions / starts) * 100) : 0;
+            });
+
+            // Create chart
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: nicheLabels,
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: conversionRates,
+                        backgroundColor: '#3b82f6',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Niche'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const niche = context.label;
+                                    const rate = context.raw;
+                                    const starts = niches[niche].starts;
+                                    const completions = niches[niche].completions;
+                                    return [
+                                        `Conversion Rate: ${rate}%`,
+                                        `Starts: ${starts}`,
+                                        `Completions: ${completions}`
+                                    ];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Activity Timeline Chart
+        function renderActivityTimelineChart(data) {
+            const canvas = document.getElementById('activity-timeline-chart');
+            const ctx = canvas.getContext('2d');
+
+            // Process data
+            const timelineData = {};
+            const now = new Date();
+            const startDate = new Date(now);
+            startDate.setDate(startDate.getDate() - 6);
+
+            // Initialize timeline with zeros for the last 7 days
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(startDate);
+                date.setDate(date.getDate() + i);
+                const dateString = date.toISOString().split('T')[0];
+                timelineData[dateString] = { pageViews: 0, quizStarts: 0, quizCompletions: 0 };
+            }
+
+            // Count events by date
+            data.forEach(item => {
+                // Try different timestamp field names
+                let timestamp = null;
+                if (item.timestamp) {
+                    timestamp = new Date(item.timestamp);
+                } else if (item.created_at) {
+                    timestamp = new Date(item.created_at);
+                } else if (item.date) {
+                    timestamp = new Date(item.date);
+                } else if (item.time) {
+                    timestamp = new Date(item.time);
+                }
+
+                if (!timestamp || isNaN(timestamp.getTime())) {
+                    // If no valid timestamp found, use current date
+                    timestamp = new Date();
+                }
+
+                const dateString = timestamp.toISOString().split('T')[0];
+
+                if (timelineData[dateString]) {
+                    // Try different event type field names
+                    const eventType = item.action_type || item.event_type || item.type || '';
+
+                    if (eventType.includes('page_view') || eventType.includes('pageview')) {
+                        timelineData[dateString].pageViews++;
+                    } else if (eventType.includes('quiz_start') || eventType.includes('quizstart')) {
+                        timelineData[dateString].quizStarts++;
+                    } else if (eventType.includes('quiz_complet') || eventType.includes('quizcomplet')) {
+                        timelineData[dateString].quizCompletions++;
+                    }
+                }
+            });
+
+            const labels = Object.keys(timelineData);
+            const pageViews = labels.map(date => timelineData[date].pageViews);
+            const quizStarts = labels.map(date => timelineData[date].quizStarts);
+            const quizCompletions = labels.map(date => timelineData[date].quizCompletions);
+
+            // Format labels as readable dates
+            const formattedLabels = labels.map(date => {
+                const d = new Date(date);
+                return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            });
+
+            // Create chart
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: formattedLabels,
+                    datasets: [
+                        {
+                            label: 'Page Views',
+                            data: pageViews,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Quiz Starts',
+                            data: quizStarts,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Quiz Completions',
+                            data: quizCompletions,
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Pipeline Conversion Chart
+        function renderPipelineConversionChart(pageViews, quizStarts, quizCompletions, quizSubmissions) {
+            const canvas = document.getElementById('pipeline-conversion-chart');
+            if (!canvas) {
+                console.error('Pipeline conversion chart canvas not found');
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+
+            // For this example, we'll use some assumptions for qualified leads and customers
+            // In a real implementation, you would fetch this data from your CRM or sales database
+            const visitorCount = countUniqueUsers(pageViews);
+            const quizTakerCount = countUniqueUsers(quizStarts);
+            const applicantCount = countUniqueUsers(quizSubmissions);
+
+            // Assuming 30% of applicants become qualified leads and 20% of qualified leads become customers
+            const qualifiedLeadCount = Math.round(applicantCount * 0.3);
+            const customerCount = Math.round(qualifiedLeadCount * 0.2);
+
+            // Calculate conversion rates between stages
+            const stageLabels = ['Visitor to Quiz', 'Quiz to Application', 'Application to Qualified', 'Qualified to Customer'];
+            const conversionRates = [
+                quizTakerCount > 0 && visitorCount > 0 ? Math.round((quizTakerCount / visitorCount) * 100) : 0,
+                applicantCount > 0 && quizTakerCount > 0 ? Math.round((applicantCount / quizTakerCount) * 100) : 0,
+                qualifiedLeadCount > 0 && applicantCount > 0 ? Math.round((qualifiedLeadCount / applicantCount) * 100) : 0,
+                customerCount > 0 && qualifiedLeadCount > 0 ? Math.round((customerCount / qualifiedLeadCount) * 100) : 0
+            ];
+
+            // Create chart
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: stageLabels,
+                    datasets: [{
+                        label: 'Conversion Rate (%)',
+                        data: conversionRates,
+                        backgroundColor: [
+                            '#3b82f6', // Blue
+                            '#10b981', // Green
+                            '#f59e0b', // Amber
+                            '#ef4444'  // Red
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Conversion Rate (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Pipeline Stage'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Conversion Rate: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,3549 @@
+{
+  "website": {
+    "homepage": true,
+    "quiz_selection": true,
+    "quiz_pages": {
+      "cosmetic-dentistry": true,
+      "child-care-centers": true,
+      "pmu-artists": true,
+      "sleep-apnea-snoring-clinics": true,
+      "hearing-aid-audiology-clinics": true,
+      "dme-clinics": true,
+      "non-surgical-body-contouring": true
+    },
+    "results_pages": {
+      "cosmetic-dentistry": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      },
+      "child-care-centers": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      },
+      "pmu-artists": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      },
+      "sleep-apnea-snoring-clinics": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      },
+      "hearing-aid-audiology-clinics": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      },
+      "dme-clinics": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      },
+      "non-surgical-body-contouring": {
+        "foundation": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "growth": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "scaling": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "clients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "patients": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "practice": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "operations": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "enrollment": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "future": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "studio": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        },
+        "referrals": {
+          "a-solution": true,
+          "b-problem": true,
+          "c-most-aware": true
+        }
+      }
+    },
+    "application_form": true
+  },
+  "split_testing": {
+    "variations_exist": {
+      "cosmetic-dentistry": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      },
+      "child-care-centers": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      },
+      "pmu-artists": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      },
+      "sleep-apnea-snoring-clinics": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      },
+      "hearing-aid-audiology-clinics": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      },
+      "dme-clinics": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      },
+      "non-surgical-body-contouring": {
+        "foundation": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "future": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "b-problem": {
+            "1": true,
+            "2": true,
+            "3": true
+          },
+          "c-most-aware": {
+            "1": true,
+            "2": true,
+            "3": true
+          }
+        }
+      }
+    },
+    "redirects_working": {
+      "cosmetic-dentistry": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      },
+      "child-care-centers": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      },
+      "pmu-artists": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      },
+      "sleep-apnea-snoring-clinics": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      },
+      "hearing-aid-audiology-clinics": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      },
+      "dme-clinics": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      },
+      "non-surgical-body-contouring": {
+        "foundation": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "growth": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "scaling": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "clients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "patients": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "practice": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "operations": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "enrollment": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "future": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "studio": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        },
+        "referrals": {
+          "a-solution": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "b-problem": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          },
+          "c-most-aware": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 1,
+            "4": 2
+          }
+        }
+      }
+    }
+  },
+  "tracking": {
+    "supabase_connection": true,
+    "tables_exist": {
+      "tctc_user_flow": true,
+      "tctc_user_behavior": true,
+      "tctc_quiz_submission": true
+    },
+    "events_recorded": {
+      "tctc_user_behavior": true,
+      "tctc_quiz_submission": true
+    }
+  },
+  "dashboard": {
+    "accessible": true,
+    "displays_data": false
+  },
+  "errors": [],
+  "timestamp": "2025-05-15T20:02:57.395275"
+}
