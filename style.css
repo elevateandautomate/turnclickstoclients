@@ -2380,3 +2380,14 @@ footer .footer-bottom p {
         padding: 0.75rem 1rem;
     }
 }
+/* Fix for white space above footer */
+main {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#cta-contact {
+    margin-bottom: 0;
+    padding-bottom: 60px;
+}
+
