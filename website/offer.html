@@ -31,17 +31,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="/tracking.js"></script>
-  </head>
+      <link rel="stylesheet" href="../mobile_optimization.css">
+    <link rel="stylesheet" href="../hamburger_fix.css">
+    <link rel="stylesheet" href="../hamburger_clickable_fix.css">
+    <link rel="stylesheet" href="../chat_widget_improvements.css">
+</head>
 <body>
     <!-- Consider adding your standard header navigation here if you want it on this page -->
     <header>
         <nav aria-label="Main Navigation">
             <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">TurnClicksToClients.com</a></div>
-            <ul>
+            <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav">
                 <li style="margin-right: 8px;"><a href="index.html">Home</a></li>
                 <li style="margin-right: 8px;"><a href="about.html">About Us</a></li>
                 <li class="dropdown-parent" style="margin-right: 8px;">
-                    <a href="index.html#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
+                    <a href="#ideal-clients">Clients We Serve <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="niches/child-care-centers.html">Child Care Centers</a></li>
                         <li><a href="niches/cosmetic-dentists.html">Cosmetic Dentists</a></li>
@@ -56,7 +65,7 @@
                 </li>
                 <li style="margin-right: 8px;"><a href="index.html#core-offer">Our Offer</a></li>
                 <li style="margin-right: 8px;"><a href="index.html#guarantee">Guarantee</a></li>
-                <li><a href="quiz-start.html" class="cta-button nav-cta">Get Started Free Quiz</a></li>
+                <li><a href="index.html#cta-contact" class="cta-button nav-cta">Get Started</a></li>
             </ul>
         </nav>
     </header>
@@ -200,5 +209,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="../hamburger_fix.js"></script>
 </body>
 </html> 
